@@ -1,5 +1,5 @@
 {
-  "company_name": "Your Team Name",
+  "company_name": "Front Office Team",
   "weather_city": "London",
   "slide_duration": 9,
 
@@ -10,7 +10,7 @@
       "priority": "normal"
     },
     {
-      "title": "Reminder: All-Hands Meeting Friday",
+      "title": "Reminder: No Eating in the Changing Rooms",
       "body": "Please join the all-hands call at 10am this Friday. Dial-in details have been sent via email.",
       "priority": "important"
     }
