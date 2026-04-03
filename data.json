@@ -1,0 +1,54 @@
+{
+  "company_name": "Your Team Name",
+  "weather_city": "London",
+  "slide_duration": 9,
+
+  "announcements": [
+    {
+      "title": "Welcome to the Team Noticeboard!",
+      "body": "This board updates automatically when you edit data.json on GitHub. Change anything here and push — it goes live within minutes.",
+      "priority": "normal"
+    },
+    {
+      "title": "Reminder: All-Hands Meeting Friday",
+      "body": "Please join the all-hands call at 10am this Friday. Dial-in details have been sent via email.",
+      "priority": "important"
+    }
+  ],
+
+  "kpis": [
+    { "label": "Sales This Month",  "value": "£24k",  "change": "+12%",    "trend": "up"      },
+    { "label": "Open Tickets",      "value": "8",     "change": "-3 this week", "trend": "down" },
+    { "label": "Team Members",      "value": "12",    "change": "1 joining soon", "trend": "neutral" },
+    { "label": "Target Progress",   "value": "74%",   "change": "On track",  "trend": "up"    }
+  ],
+
+  "rota": {
+    "week": "Week of 7 Apr 2025",
+    "entries": [
+      { "name": "Alice",   "monday": "Office", "tuesday": "Remote", "wednesday": "Office", "thursday": "Remote", "friday": "Office" },
+      { "name": "Bob",     "monday": "Remote", "tuesday": "Office", "wednesday": "Remote", "thursday": "Office", "friday": "Remote" },
+      { "name": "Carmen",  "monday": "Office", "tuesday": "Office", "wednesday": "Leave",  "thursday": "Leave",  "friday": "Leave"  },
+      { "name": "David",   "monday": "Remote", "tuesday": "Remote", "wednesday": "Office", "thursday": "Office", "friday": "Remote" },
+      { "name": "Evie",    "monday": "Office", "tuesday": "Remote", "wednesday": "Office", "thursday": "Office", "friday": "Off"    }
+    ]
+  },
+
+  "tasks": [
+    { "text": "Submit Q1 expense reports",           "assignee": "All Staff",  "priority": "high"   },
+    { "text": "Update client onboarding docs",       "assignee": "Alice",      "priority": "medium" },
+    { "text": "Review new supplier contracts",       "assignee": "Bob",        "priority": "high"   },
+    { "text": "Book team lunch for end of month",    "assignee": "Carmen",     "priority": "low"    },
+    { "text": "Complete mandatory training by Fri",  "assignee": "All Staff",  "priority": "high"   },
+    { "text": "Update the shared project tracker",   "assignee": "David",      "priority": "medium" }
+  ],
+
+  "ticker": [
+    "🎉 Welcome to the team noticeboard — edit data.json on GitHub to customise everything here",
+    "📅 All-Hands meeting this Friday at 10am — don't forget!",
+    "📋 Expense reports for Q1 are due by end of week",
+    "🌟 Shoutout to Alice for landing the new client this month!",
+    "☕ Coffee machine on 3rd floor is back in service",
+    "🔒 Reminder: lock your screen when stepping away from your desk"
+  ]
+}

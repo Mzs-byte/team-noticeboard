@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#070d1a">
+  <title>Team Noticeboard</title>
+  <link rel="manifest" href="manifest.json">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700;800&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #070d1a;
+      --surface: rgba(255,255,255,0.04);
+      --surface2: rgba(255,255,255,0.07);
+      --border: rgba(255,255,255,0.08);
+      --text: #f0f4ff;
+      --text-dim: #94a3b8;
+      --text-muted: #475569;
+      --blue: #38bdf8;
+      --amber: #fbbf24;
+      --green: #34d399;
+      --red: #f87171;
+      --purple: #a78bfa;
+      --font-display: 'Bebas Neue', cursive;
+      --font-head: 'Barlow', sans-serif;
+      --font-body: 'Nunito', sans-serif;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      width: 100%; height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      overflow: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background:
+        radial-gradient(ellipse at 15% 50%, rgba(56,189,248,0.06) 0%, transparent 60%),
+        radial-gradient(ellipse at 85% 30%, rgba(167,139,250,0.05) 0%, transparent 55%);
+      pointer-events: none;
+    }
+
+    /* ── TOP BAR ── */
+    #top-bar {
+      position: fixed; top: 0; left: 0; right: 0; height: 64px;
+      display: flex; align-items: center; gap: 16px; padding: 0 20px;
+      background: rgba(7,13,26,0.92); backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border); z-index: 50;
+    }
+
+    #company-name {
+      font-family: var(--font-head); font-size: 18px; font-weight: 800;
+      color: var(--blue); letter-spacing: -0.5px; white-space: nowrap;
+    }
+
+    #slide-dots {
+      display: flex; gap: 6px; align-items: center; flex: 1; padding: 0 16px;
+    }
+
+    .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--border); transition: all 0.35s; cursor: pointer;
+    }
+
+    .dot.active { background: var(--blue); width: 22px; border-radius: 3px; }
+
+    #clock-block { text-align: right; }
+
+    #clock {
+      font-family: var(--font-display); font-size: 32px;
+      line-height: 1; color: var(--text); letter-spacing: 3px;
+    }
+
+    #date-str {
+      font-size: 11px; color: var(--text-dim);
+      font-family: var(--font-head); letter-spacing: 1px; text-transform: uppercase;
+    }
+
+    #weather-block {
+      display: flex; flex-direction: column; align-items: flex-end;
+      margin-left: 16px; padding-left: 16px; border-left: 1px solid var(--border);
+    }
+
+    #w-temp {
+      font-family: var(--font-display); font-size: 28px;
+      line-height: 1; color: var(--amber);
+    }
+
+    #w-desc {
+      font-size: 10px; color: var(--text-dim); font-family: var(--font-head);
+      letter-spacing: 1px; text-transform: uppercase; text-align: right;
+    }
+
+    /* ── PROGRESS BAR ── */
+    #prog-track {
+      position: fixed; top: 64px; left: 0; right: 0;
+      height: 2px; background: var(--border); z-index: 50;
+    }
+
+    #prog-fill {
+      height: 100%; width: 0%;
+      background: linear-gradient(90deg, var(--blue), var(--purple));
+    }
+
+    /* ── SLIDES ── */
+    #slides {
+      position: fixed; top: 66px; left: 0; right: 0; bottom: 44px; overflow: hidden;
+    }
+
+    .slide {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      padding: 22px 26px;
+      opacity: 0; transition: opacity 0.65s ease; pointer-events: none;
+    }
+
+    .slide.active { opacity: 1; pointer-events: all; }
+
+    .slide-hdr {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 16px; flex-shrink: 0;
+    }
+
+    .slide-icon { font-size: 22px; }
+
+    .slide-title {
+      font-family: var(--font-head); font-size: 13px; font-weight: 700;
+      color: var(--text-dim); text-transform: uppercase; letter-spacing: 2px; flex: 1;
+    }
+
+    .slide-tag {
+      font-family: var(--font-head); font-size: 10px; font-weight: 700;
+      padding: 3px 10px; border-radius: 20px; letter-spacing: 1px; text-transform: uppercase;
+    }
+
+    /* ── ANNOUNCEMENT ── */
+    .ann-card {
+      flex: 1; display: flex; flex-direction: column; justify-content: center;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 18px; padding: 36px 44px; position: relative; overflow: hidden;
+    }
+
+    .ann-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    }
+
+    .ann-card.urgent::before  { background: var(--red); }
+    .ann-card.important::before { background: var(--amber); }
+    .ann-card.normal::before  { background: var(--blue); }
+
+    .ann-pri {
+      font-size: 11px; font-weight: 800; letter-spacing: 2.5px;
+      text-transform: uppercase; margin-bottom: 14px;
+    }
+
+    .ann-pri.urgent   { color: var(--red); }
+    .ann-pri.important { color: var(--amber); }
+    .ann-pri.normal   { color: var(--blue); }
+
+    .ann-title {
+      font-family: var(--font-head); font-size: 42px; font-weight: 800;
+      line-height: 1.12; color: var(--text); margin-bottom: 18px;
+    }
+
+    .ann-body-text {
+      font-size: 19px; color: var(--text-dim); line-height: 1.65; max-width: 78%;
+    }
+
+    .ann-bg-char {
+      position: absolute; bottom: 16px; right: 28px;
+      font-family: var(--font-display); font-size: 140px;
+      color: rgba(255,255,255,0.025); line-height: 1; user-select: none;
+    }
+
+    /* ── KPIs ── */
+    .kpi-grid {
+      flex: 1; display: grid; grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr; gap: 12px;
+    }
+
+    .kpi-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 16px; padding: 22px 26px;
+      display: flex; flex-direction: column; justify-content: space-between;
+      position: relative; overflow: hidden;
+    }
+
+    .kpi-card::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+    }
+
+    .kpi-card.up::after      { background: var(--green); }
+    .kpi-card.down::after    { background: var(--red); }
+    .kpi-card.neutral::after { background: var(--blue); }
+
+    .kpi-label {
+      font-family: var(--font-head); font-size: 11px; font-weight: 700;
+      color: var(--text-dim); text-transform: uppercase; letter-spacing: 1.5px;
+    }
+
+    .kpi-value {
+      font-family: var(--font-display); font-size: 58px; line-height: 1; color: var(--text);
+    }
+
+    .kpi-change { font-family: var(--font-head); font-size: 14px; font-weight: 700; }
+    .kpi-card.up .kpi-change      { color: var(--green); }
+    .kpi-card.down .kpi-change    { color: var(--red); }
+    .kpi-card.neutral .kpi-change { color: var(--blue); }
+
+    /* ── ROTA ── */
+    .rota-wrap {
+      flex: 1; display: flex; flex-direction: column;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 18px; overflow: hidden;
+    }
+
+    .rota-week {
+      padding: 11px 20px; background: var(--surface2);
+      border-bottom: 1px solid var(--border);
+      font-family: var(--font-head); font-size: 13px; font-weight: 700;
+      color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px;
+    }
+
+    .rota-tbl { width: 100%; border-collapse: collapse; }
+
+    .rota-tbl th {
+      padding: 10px 14px; font-family: var(--font-head); font-size: 11px;
+      font-weight: 700; color: var(--text-dim); text-transform: uppercase;
+      letter-spacing: 1px; border-bottom: 1px solid var(--border); text-align: center;
+    }
+
+    .rota-tbl th:first-child { text-align: left; }
+
+    .rota-tbl td {
+      padding: 11px 14px; border-bottom: 1px solid rgba(255,255,255,0.03); text-align: center;
+    }
+
+    .rota-tbl td:first-child {
+      text-align: left; font-weight: 700; font-size: 15px; color: var(--text);
+    }
+
+    .rota-tbl tr:last-child td { border-bottom: none; }
+    .rota-tbl tbody tr:hover td { background: var(--surface2); }
+
+    .pill {
+      display: inline-block; padding: 4px 13px;
+      border-radius: 20px; font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.5px;
+    }
+
+    .pill-office { background: rgba(56,189,248,0.15); color: var(--blue); }
+    .pill-remote { background: rgba(167,139,250,0.15); color: var(--purple); }
+    .pill-leave  { background: rgba(52,211,153,0.15); color: var(--green); }
+    .pill-off    { background: rgba(148,163,184,0.1); color: var(--text-muted); }
+
+    /* ── TASKS ── */
+    .tasks-grid {
+      flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; overflow-y: auto;
+    }
+
+    .task-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; padding: 16px 18px;
+      display: flex; flex-direction: column; gap: 10px;
+      border-left: 3px solid transparent;
+    }
+
+    .task-card.high   { border-left-color: var(--red); }
+    .task-card.medium { border-left-color: var(--amber); }
+    .task-card.low    { border-left-color: var(--green); }
+
+    .task-text { font-size: 14px; font-weight: 600; color: var(--text); line-height: 1.4; }
+
+    .task-meta { display: flex; align-items: center; gap: 8px; }
+
+    .task-who { font-size: 11px; color: var(--text-dim); font-weight: 600; }
+
+    .task-pri {
+      font-size: 10px; font-weight: 800; text-transform: uppercase;
+      letter-spacing: 1px; padding: 2px 8px; border-radius: 10px;
+    }
+
+    .task-card.high   .task-pri { background: rgba(248,113,113,0.15); color: var(--red); }
+    .task-card.medium .task-pri { background: rgba(251,191,36,0.15);  color: var(--amber); }
+    .task-card.low    .task-pri { background: rgba(52,211,153,0.15);  color: var(--green); }
+
+    /* ── TICKER ── */
+    #ticker-bar {
+      position: fixed; bottom: 0; left: 0; right: 0; height: 44px;
+      background: rgba(7,13,26,0.96); border-top: 1px solid var(--border);
+      display: flex; align-items: center; overflow: hidden; z-index: 50;
+    }
+
+    #ticker-label {
+      flex-shrink: 0; font-family: var(--font-head); font-size: 10px;
+      font-weight: 800; color: #000; background: var(--blue);
+      padding: 0 16px; height: 100%; display: flex; align-items: center;
+      letter-spacing: 2px; text-transform: uppercase;
+    }
+
+    #ticker-wrap { flex: 1; overflow: hidden; height: 100%; }
+
+    #ticker-track {
+      display: flex; align-items: center; height: 100%;
+      white-space: nowrap; animation: scroll-left 40s linear infinite;
+    }
+
+    #ticker-track:hover { animation-play-state: paused; }
+
+    @keyframes scroll-left {
+      0%   { transform: translateX(100vw); }
+      100% { transform: translateX(-100%); }
+    }
+
+    .tick-item {
+      font-size: 13px; color: var(--text-dim);
+      font-family: var(--font-head); font-weight: 500;
+      padding: 0 36px; display: inline-flex; align-items: center; gap: 10px;
+    }
+
+    .tick-item::after { content: '✦'; color: var(--text-muted); font-size: 7px; }
+  </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div id="top-bar">
+  <div id="company-name">Team Board</div>
+  <div id="slide-dots"></div>
+  <div id="clock-block">
+    <div id="clock">00:00</div>
+    <div id="date-str">Loading…</div>
+  </div>
+  <div id="weather-block">
+    <div id="w-temp">--°</div>
+    <div id="w-desc">weather</div>
+  </div>
+</div>
+
+<!-- PROGRESS BAR -->
+<div id="prog-track"><div id="prog-fill"></div></div>
+
+<!-- SLIDES -->
+<div id="slides"></div>
+
+<!-- TICKER -->
+<div id="ticker-bar">
+  <div id="ticker-label">Updates</div>
+  <div id="ticker-wrap"><div id="ticker-track"></div></div>
+</div>
+
+<script>
+// ══════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════
+let cfg = null, slides = [], cur = 0, timer = null;
+
+// ══════════════════════════════════════════
+// LOAD DATA.JSON
+// ══════════════════════════════════════════
+async function load() {
+  try {
+    const r = await fetch('data.json?t=' + Date.now());
+    cfg = await r.json();
+    apply();
+  } catch(e) {
+    console.error('Cannot load data.json', e);
+  }
+}
+
+function apply() {
+  if (!cfg) return;
+  if (cfg.company_name)
+    document.getElementById('company-name').textContent = cfg.company_name;
+  buildSlides();
+  buildTicker();
+  if (cfg.weather_city) getWeather(cfg.weather_city);
+}
+
+// Refresh every 5 minutes
+setInterval(load, 5 * 60 * 1000);
+
+// ══════════════════════════════════════════
+// BUILD SLIDES
+// ══════════════════════════════════════════
+function buildSlides() {
+  const container = document.getElementById('slides');
+  container.innerHTML = '';
+  slides = []; cur = 0;
+
+  // Announcements — one slide each
+  (cfg.announcements || []).forEach(a => slides.push(annoSlide(a)));
+
+  // KPIs
+  if (cfg.kpis?.length) slides.push(kpiSlide(cfg.kpis));
+
+  // Rota
+  if (cfg.rota) slides.push(rotaSlide(cfg.rota));
+
+  // Tasks
+  if (cfg.tasks?.length) slides.push(tasksSlide(cfg.tasks));
+
+  if (!slides.length) return;
+  slides.forEach(el => container.appendChild(el));
+  makeDots();
+  show(0);
+  startPlay();
+}
+
+// ── Announcement ──
+function annoSlide(a) {
+  const el = div('slide');
+  const pri = a.priority || 'normal';
+  const priLabel = pri === 'urgent' ? '🚨 URGENT' : pri === 'important' ? '⚠️ IMPORTANT' : '📌 NOTICE';
+  el.innerHTML = `
+    <div class="slide-hdr">
+      <span class="slide-icon">📢</span>
+      <span class="slide-title">Announcement</span>
+      <span class="slide-tag" style="background:${pc(pri,.15)};color:${pc(pri)}">${pri.toUpperCase()}</span>
+    </div>
+    <div class="ann-card ${pri}">
+      <div class="ann-pri ${pri}">${priLabel}</div>
+      <div class="ann-title">${esc(a.title||'')}</div>
+      <div class="ann-body-text">${esc(a.body||'')}</div>
+      <div class="ann-bg-char">"</div>
+    </div>`;
+  return el;
+}
+
+// ── KPI ──
+function kpiSlide(kpis) {
+  const el = div('slide');
+  el.innerHTML = `
+    <div class="slide-hdr">
+      <span class="slide-icon">📊</span>
+      <span class="slide-title">Key Metrics</span>
+    </div>
+    <div class="kpi-grid">
+      ${kpis.slice(0,4).map(k=>`
+        <div class="kpi-card ${k.trend||'neutral'}">
+          <div class="kpi-label">${esc(k.label)}</div>
+          <div class="kpi-value">${esc(k.value)}</div>
+          <div class="kpi-change">${k.trend==='up'?'↑':k.trend==='down'?'↓':'→'} ${esc(k.change||'')}</div>
+        </div>`).join('')}
+    </div>`;
+  return el;
+}
+
+// ── Rota ──
+function rotaSlide(rota) {
+  const el = div('slide');
+  const days = ['monday','tuesday','wednesday','thursday','friday'];
+  const dLabels = ['Mon','Tue','Wed','Thu','Fri'];
+  const rows = (rota.entries||[]).map(e=>`
+    <tr>
+      <td>${esc(e.name)}</td>
+      ${days.map(d=>`<td>${rotaPill(e[d]||'')}</td>`).join('')}
+    </tr>`).join('');
+  el.innerHTML = `
+    <div class="slide-hdr">
+      <span class="slide-icon">🗓️</span>
+      <span class="slide-title">Weekly Rota</span>
+    </div>
+    <div class="rota-wrap">
+      <div class="rota-week">📆 ${esc(rota.week||'')}</div>
+      <table class="rota-tbl">
+        <thead><tr>
+          <th>Name</th>${dLabels.map(d=>`<th>${d}</th>`).join('')}
+        </tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>`;
+  return el;
+}
+
+// ── Tasks ──
+function tasksSlide(tasks) {
+  const el = div('slide');
+  el.innerHTML = `
+    <div class="slide-hdr">
+      <span class="slide-icon">✅</span>
+      <span class="slide-title">Team Tasks</span>
+    </div>
+    <div class="tasks-grid">
+      ${tasks.map(t=>`
+        <div class="task-card ${t.priority||'medium'}">
+          <div class="task-text">${esc(t.text)}</div>
+          <div class="task-meta">
+            ${t.assignee?`<span class="task-who">👤 ${esc(t.assignee)}</span>`:''}
+            <span class="task-pri">${t.priority||'medium'}</span>
+          </div>
+        </div>`).join('')}
+    </div>`;
+  return el;
+}
+
+// ══════════════════════════════════════════
+// SLIDESHOW
+// ══════════════════════════════════════════
+function show(i) {
+  slides.forEach((s,idx) => s.classList.toggle('active', idx===i));
+  cur = i; updateDots(); animProg();
+}
+
+function next() { show((cur+1) % slides.length); }
+
+function startPlay() {
+  if (timer) clearInterval(timer);
+  const dur = (cfg?.slide_duration || 9) * 1000;
+  timer = setInterval(next, dur);
+}
+
+function animProg() {
+  const fill = document.getElementById('prog-fill');
+  const dur = (cfg?.slide_duration || 9) * 1000;
+  fill.style.transition = 'none'; fill.style.width = '0%';
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    fill.style.transition = `width ${dur}ms linear`;
+    fill.style.width = '100%';
+  }));
+}
+
+// ══════════════════════════════════════════
+// DOTS
+// ══════════════════════════════════════════
+function makeDots() {
+  const wrap = document.getElementById('slide-dots');
+  wrap.innerHTML = slides.map((_,i)=>
+    `<div class="dot${i===0?' active':''}" onclick="jump(${i})"></div>`
+  ).join('');
+}
+
+function updateDots() {
+  document.querySelectorAll('.dot').forEach((d,i)=>
+    d.classList.toggle('active', i===cur));
+}
+
+function jump(i) {
+  clearInterval(timer); show(i); startPlay();
+}
+
+// ══════════════════════════════════════════
+// TICKER
+// ══════════════════════════════════════════
+function buildTicker() {
+  const items = cfg?.ticker || ['Edit data.json to add ticker messages here'];
+  const track = document.getElementById('ticker-track');
+  // Duplicate for seamless loop
+  const all = [...items, ...items];
+  track.innerHTML = all.map(t=>`<span class="tick-item">${esc(t)}</span>`).join('');
+  track.style.animationDuration = Math.max(25, items.length * 7) + 's';
+}
+
+// ══════════════════════════════════════════
+// WEATHER  (wttr.in — free, no API key)
+// ══════════════════════════════════════════
+async function getWeather(city) {
+  try {
+    const r = await fetch(`https://wttr.in/${encodeURIComponent(city)}?format=j1`);
+    const d = await r.json();
+    const c = d.current_condition?.[0];
+    if (!c) return;
+    document.getElementById('w-temp').textContent = c.temp_C + '°C';
+    document.getElementById('w-desc').textContent = (c.weatherDesc?.[0]?.value||'').toLowerCase();
+  } catch { /* weather unavailable */ }
+}
+
+// Refresh weather every 30 min
+setInterval(()=>{ if(cfg?.weather_city) getWeather(cfg.weather_city); }, 30*60*1000);
+
+// ══════════════════════════════════════════
+// CLOCK
+// ══════════════════════════════════════════
+function tick() {
+  const n = new Date();
+  document.getElementById('clock').textContent =
+    n.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+  document.getElementById('date-str').textContent =
+    n.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short',year:'numeric'});
+}
+tick(); setInterval(tick, 1000);
+
+// ══════════════════════════════════════════
+// UTILS
+// ══════════════════════════════════════════
+function div(cls) { const el=document.createElement('div'); el.className=cls; return el; }
+
+function esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function rotaPill(v) {
+  if(!v) return '';
+  const lv = v.toLowerCase();
+  const cls = lv==='office'?'pill-office':lv==='remote'?'pill-remote':lv==='leave'?'pill-leave':'pill-off';
+  return `<span class="pill ${cls}">${esc(v)}</span>`;
+}
+
+function pc(pri, a) {
+  const m={urgent:'248,113,113',important:'251,191,36',normal:'56,189,248'};
+  const rgb=m[pri]||m.normal;
+  return a?`rgba(${rgb},${a})`:`rgb(${rgb})`;
+}
+
+// ══════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════
+load();
+
+if ('serviceWorker' in navigator)
+  navigator.serviceWorker.register('sw.js').catch(console.error);
+</script>
+</body>
+</html>
