@@ -4,10 +4,24 @@
   "slide_duration": 10,
   "news_rss": "https://feeds.bbci.co.uk/news/business/rss.xml",
 
+  "meme": {
+    "url": "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDd3bXN6aXM3NTFvbm8xZnZxNHpicHo4NXgydHgwNHB2dHhtM2FiNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7abKhOpu0NwenH3O/giphy.gif",
+    "caption": "Us on a Friday afternoon ☕"
+  },
+
+  "leaderboard": [
+    { "name": "Alice Johnson", "title": "Sales Lead",       "points": 340, "change":  20 },
+    { "name": "Bob Smith",     "title": "Account Manager",  "points": 290, "change": -10 },
+    { "name": "Carmen Diaz",   "title": "Customer Success", "points": 275, "change":  35 },
+    { "name": "David Lee",     "title": "Developer",        "points": 210, "change":   0 },
+    { "name": "Evie Turner",   "title": "Marketing",        "points": 185, "change":  15 },
+    { "name": "Frank Webb",    "title": "Operations",       "points": 140, "change":  -5 }
+  ],
+
   "weekly_win": {
     "headline": "Landed the Henderson Account!",
-    "detail": "After three months of hard work and outstanding collaboration, we've officially signed one of our biggest clients to date. This is a massive win for the whole team.",
-    "who": "Sarah & the Sales Team"
+    "detail": "After three months of hard work and outstanding collaboration, we have officially signed one of our biggest clients to date.",
+    "who": "Sarah and the Sales Team"
   },
 
   "announcements": [
@@ -29,10 +43,10 @@
   ],
 
   "kpis": [
-    { "label": "Sales This Month",  "value": "£24k",  "change": "+12% vs last month", "trend": "up"      },
-    { "label": "Open Tickets",      "value": "8",     "change": "-3 this week",        "trend": "down"    },
-    { "label": "Team Members",      "value": "12",    "change": "1 joining next week",  "trend": "neutral" },
-    { "label": "Target Progress",   "value": "74%",   "change": "On track",            "trend": "up"      }
+    { "label": "Sales This Month", "value": "24k",  "change": "+12% vs last month", "trend": "up"      },
+    { "label": "Open Tickets",     "value": "8",    "change": "-3 this week",        "trend": "down"    },
+    { "label": "Team Members",     "value": "12",   "change": "1 joining next week", "trend": "neutral" },
+    { "label": "Target Progress",  "value": "74%",  "change": "On track",            "trend": "up"      }
   ],
 
   "target": {
@@ -40,40 +54,40 @@
     "current": 24000,
     "target": 35000,
     "unit": "GBP",
-    "message": "Keep pushing — we're on track for a strong finish!"
+    "message": "Keep pushing — we are on track for a strong finish!"
   },
 
   "countdowns": [
-    { "label": "All-Hands Meeting",       "date": "2025-04-11" },
-    { "label": "End of Quarter",          "date": "2025-06-30" },
-    { "label": "Team Away Day",           "date": "2025-05-15" },
-    { "label": "Annual Review Deadline",  "date": "2025-04-30" }
+    { "label": "All-Hands Meeting",      "date": "2025-04-11" },
+    { "label": "End of Quarter",         "date": "2025-06-30" },
+    { "label": "Team Away Day",          "date": "2025-05-15" },
+    { "label": "Annual Review Deadline", "date": "2025-04-30" }
   ],
 
   "birthdays": [
-    { "name": "Alice Johnson",  "date": "04-04", "type": "birthday"     },
-    { "name": "Bob Smith",      "date": "04-15", "type": "birthday"     },
-    { "name": "Carmen Diaz",    "date": "04-04", "type": "anniversary", "years": 3 },
-    { "name": "David Lee",      "date": "05-01", "type": "birthday"     }
+    { "name": "Alice Johnson", "date": "04-04", "type": "birthday"                },
+    { "name": "Bob Smith",     "date": "04-15", "type": "birthday"                },
+    { "name": "Carmen Diaz",   "date": "04-04", "type": "anniversary", "years": 3 },
+    { "name": "David Lee",     "date": "05-01", "type": "birthday"                }
   ],
 
   "team": [
-    { "name": "Alice Johnson", "default_status": "in"     },
-    { "name": "Bob Smith",     "default_status": "remote" },
-    { "name": "Carmen Diaz",   "default_status": "in"     },
-    { "name": "David Lee",     "default_status": "meeting"},
-    { "name": "Evie Turner",   "default_status": "away"   },
-    { "name": "Frank Webb",    "default_status": "off"    }
+    { "name": "Alice Johnson", "default_status": "in"      },
+    { "name": "Bob Smith",     "default_status": "remote"  },
+    { "name": "Carmen Diaz",   "default_status": "in"      },
+    { "name": "David Lee",     "default_status": "meeting" },
+    { "name": "Evie Turner",   "default_status": "away"    },
+    { "name": "Frank Webb",    "default_status": "off"     }
   ],
 
   "rota": {
     "week": "Week of 7 Apr 2025",
     "entries": [
-      { "name": "Alice",   "monday": "Office", "tuesday": "Remote", "wednesday": "Office", "thursday": "Remote", "friday": "Office" },
-      { "name": "Bob",     "monday": "Remote", "tuesday": "Office", "wednesday": "Remote", "thursday": "Office", "friday": "Remote" },
-      { "name": "Carmen",  "monday": "Office", "tuesday": "Office", "wednesday": "Leave",  "thursday": "Leave",  "friday": "Leave"  },
-      { "name": "David",   "monday": "Remote", "tuesday": "Remote", "wednesday": "Office", "thursday": "Office", "friday": "Remote" },
-      { "name": "Evie",    "monday": "Office", "tuesday": "Remote", "wednesday": "Office", "thursday": "Office", "friday": "Off"    }
+      { "name": "Alice",  "monday": "Office", "tuesday": "Remote", "wednesday": "Office", "thursday": "Remote", "friday": "Office" },
+      { "name": "Bob",    "monday": "Remote", "tuesday": "Office", "wednesday": "Remote", "thursday": "Office", "friday": "Remote" },
+      { "name": "Carmen", "monday": "Office", "tuesday": "Office", "wednesday": "Leave",  "thursday": "Leave",  "friday": "Leave"  },
+      { "name": "David",  "monday": "Remote", "tuesday": "Remote", "wednesday": "Office", "thursday": "Office", "friday": "Remote" },
+      { "name": "Evie",   "monday": "Office", "tuesday": "Remote", "wednesday": "Office", "thursday": "Office", "friday": "Off"    }
     ]
   },
 
@@ -87,12 +101,12 @@
   ],
 
   "ticker": [
-    "🎉 Welcome to the new and improved team noticeboard!",
-    "📅 All-Hands meeting this Friday at 10am — don't forget!",
-    "📋 Q1 expense reports are due by end of week",
-    "🌟 Big shoutout to Sarah for landing the Henderson account!",
-    "☕ Coffee machine on 3rd floor is back in service",
-    "🔒 Reminder: lock your screen when stepping away from your desk",
-    "🎯 We're at 74% of our monthly target — let's finish strong!"
+    "Welcome to the new and improved team noticeboard!",
+    "All-Hands meeting this Friday at 10am — do not forget!",
+    "Q1 expense reports are due by end of week",
+    "Big shoutout to Sarah for landing the Henderson account!",
+    "Coffee machine on 3rd floor is back in service",
+    "Reminder: lock your screen when stepping away from your desk",
+    "We are at 74% of our monthly target — let's finish strong!"
   ]
 }

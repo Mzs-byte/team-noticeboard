@@ -205,6 +205,97 @@
     .s-opt:hover { background:var(--surface2); }
     .s-opt-dot { width:12px; height:12px; border-radius:50%; }
 
+    /* ── LEADERBOARD ── */
+    .lb-wrap { flex:1; display:flex; flex-direction:column; gap:7px; overflow-y:auto; }
+
+    .lb-row {
+      display:flex; align-items:center; gap:14px;
+      background:var(--surface); border:1px solid var(--border);
+      border-radius:14px; padding:12px 18px; position:relative; overflow:hidden;
+      transition:all .3s;
+    }
+
+    .lb-row.rank-1 { background:rgba(251,191,36,.08); border-color:rgba(251,191,36,.3); }
+    .lb-row.rank-2 { background:rgba(148,163,184,.06); border-color:rgba(148,163,184,.2); }
+    .lb-row.rank-3 { background:rgba(205,127,50,.06);  border-color:rgba(205,127,50,.2); }
+
+    .lb-bar {
+      position:absolute; left:0; top:0; bottom:0;
+      background:rgba(255,255,255,.03); transition:width 1.2s cubic-bezier(.4,0,.2,1);
+    }
+
+    .lb-rank {
+      font-family:var(--font-display); font-size:28px; min-width:36px;
+      text-align:center; position:relative; z-index:1;
+    }
+
+    .rank-1 .lb-rank { color:var(--amber); }
+    .rank-2 .lb-rank { color:#cbd5e1; }
+    .rank-3 .lb-rank { color:#cd7f32; }
+
+    .lb-medal { font-size:22px; }
+
+    .lb-info { flex:1; position:relative; z-index:1; }
+    .lb-name { font-size:16px; font-weight:700; color:var(--text); }
+    .lb-title { font-size:11px; color:var(--text-muted); font-family:var(--font-head); margin-top:1px; }
+
+    .lb-score {
+      font-family:var(--font-display); font-size:38px;
+      position:relative; z-index:1; line-height:1;
+    }
+
+    .rank-1 .lb-score { color:var(--amber); }
+    .rank-2 .lb-score { color:#cbd5e1; }
+    .rank-3 .lb-score { color:#cd7f32; }
+    .lb-row:not(.rank-1):not(.rank-2):not(.rank-3) .lb-score { color:var(--blue); }
+
+    .lb-pts { font-size:10px; color:var(--text-muted); font-family:var(--font-head); text-align:right; }
+    .lb-change { font-size:12px; font-weight:700; font-family:var(--font-head); }
+    .lb-change.up   { color:var(--green); }
+    .lb-change.down { color:var(--red); }
+    .lb-change.same { color:var(--text-muted); }
+
+    /* Trophy jump button */
+    #lb-jump {
+      display:flex; align-items:center; gap:6px;
+      background:rgba(251,191,36,.12); border:1px solid rgba(251,191,36,.3);
+      border-radius:10px; padding:7px 13px; cursor:pointer;
+      font-family:var(--font-head); font-size:12px; font-weight:700;
+      color:var(--amber); transition:all .2s; white-space:nowrap; flex-shrink:0;
+    }
+
+    #lb-jump:hover { background:rgba(251,191,36,.22); transform:translateY(-1px); }
+    #lb-jump:active { transform:scale(.96); }
+    .lb-jump-pulse { animation:pulse-glow 2s ease-in-out infinite; }
+    @keyframes pulse-glow {
+      0%,100% { box-shadow:0 0 0 0 rgba(251,191,36,0); }
+      50%      { box-shadow:0 0 12px 3px rgba(251,191,36,.25); }
+    }
+
+    /* ── MEME / GIF ── */
+    .meme-wrap {
+      flex:1; display:flex; flex-direction:column; align-items:center;
+      justify-content:center; gap:14px; position:relative;
+    }
+
+    .meme-img {
+      max-width:100%; max-height:calc(100% - 60px);
+      border-radius:16px; object-fit:contain;
+      box-shadow:0 8px 40px rgba(0,0,0,.5);
+      border:1px solid var(--border);
+    }
+
+    .meme-caption {
+      font-family:var(--font-head); font-size:15px; font-weight:600;
+      color:var(--text-dim); text-align:center; max-width:80%;
+    }
+
+    .meme-tag {
+      position:absolute; top:10px; right:10px;
+      font-size:10px; font-weight:800; letter-spacing:2px;
+      color:var(--text-muted); font-family:var(--font-head); text-transform:uppercase;
+    }
+
     /* ── TICKER ── */
     #ticker-bar { position:fixed; bottom:0; left:0; right:0; height:44px; background:rgba(7,13,26,.97); border-top:1px solid var(--border); display:flex; align-items:center; overflow:hidden; z-index:50; }
     #ticker-label { flex-shrink:0; font-family:var(--font-head); font-size:10px; font-weight:800; color:#000; background:var(--blue); padding:0 14px; height:100%; display:flex; align-items:center; letter-spacing:2px; text-transform:uppercase; }
@@ -223,6 +314,7 @@
 <div id="top-bar">
   <div id="company-name">Team Board</div>
   <div id="slide-dots"></div>
+  <button id="lb-jump" class="lb-jump-pulse" onclick="jumpToLeaderboard()" title="Go to Leaderboard">🏅 Leaderboard</button>
   <div id="clock-block">
     <div id="clock">00:00</div>
     <div id="date-str">Loading…</div>
@@ -255,6 +347,7 @@
 // CONFIG & STATE
 // ══════════════════════════════════════════
 let cfg = null, slides = [], cur = 0, timer = null;
+let lbSlideIndex = -1;
 const STATUS_KEY = 'nb_status_v1';
 
 const STATUSES = [
@@ -318,6 +411,12 @@ function buildSlides() {
 
   // Team Status
   if (cfg.team?.length) slides.push(statusSlide(cfg.team));
+
+  // Meme / GIF of the day
+  if (cfg.meme) slides.push(memeSlide(cfg.meme));
+
+  // Leaderboard
+  if (cfg.leaderboard?.length) { lbSlideIndex = slides.length; slides.push(leaderboardSlide(cfg.leaderboard)); }
 
   // Tasks
   if (cfg.tasks?.length) slides.push(tasksSlide(cfg.tasks));
@@ -637,9 +736,90 @@ function overlayClose(e) {
   if (e.target.id === 's-overlay') document.getElementById('s-overlay').classList.remove('open');
 }
 
-// ══════════════════════════════════════════
-// TICKER + NEWS
-// ══════════════════════════════════════════
+// ── Leaderboard ──
+function leaderboardSlide(board) {
+  const el = div('slide');
+  el.id = 'lb-slide';
+
+  const sorted = [...board].sort((a, b) => b.points - a.points);
+  const max    = sorted[0]?.points || 1;
+  const medals = ['🥇','🥈','🥉'];
+
+  const rows = sorted.map((p, i) => {
+    const rank   = i + 1;
+    const rankCls= rank <= 3 ? `rank-${rank}` : '';
+    const medal  = medals[i] || '';
+    const barPct = Math.round((p.points / max) * 100);
+    const chg    = p.change > 0 ? `up` : p.change < 0 ? `down` : `same`;
+    const chgTxt = p.change > 0 ? `▲ +${p.change}` : p.change < 0 ? `▼ ${p.change}` : `—`;
+    return `
+      <div class="lb-row ${rankCls}" data-pct="${barPct}">
+        <div class="lb-bar" style="width:0%"></div>
+        <div class="lb-rank">${rank}</div>
+        <div class="lb-medal">${medal}</div>
+        <div class="lb-info">
+          <div class="lb-name">${esc(p.name)}</div>
+          ${p.title ? `<div class="lb-title">${esc(p.title)}</div>` : ''}
+        </div>
+        <div style="text-align:right">
+          <div class="lb-score">${p.points}</div>
+          <div class="lb-pts">pts</div>
+          <div class="lb-change ${chg}">${chgTxt}</div>
+        </div>
+      </div>`;
+  }).join('');
+
+  el.innerHTML = `
+    <div class="slide-hdr">
+      <span class="slide-icon">🏅</span>
+      <span class="slide-title">Team Leaderboard</span>
+      <span class="slide-tag" style="background:rgba(251,191,36,.15);color:var(--amber)">${sorted[0]?.name || ''} leads!</span>
+    </div>
+    <div class="lb-wrap">${rows}</div>`;
+
+  // Animate bars when slide becomes active
+  el._animateBars = () => {
+    el.querySelectorAll('.lb-row').forEach(row => {
+      const pct = row.dataset.pct;
+      const bar = row.querySelector('.lb-bar');
+      bar.style.width = '0%';
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        bar.style.transition = 'width 1.2s cubic-bezier(.4,0,.2,1)';
+        bar.style.width = pct + '%';
+      }));
+    });
+  };
+
+  return el;
+}
+
+function jumpToLeaderboard() {
+  if (lbSlideIndex < 0) return;
+  clearInterval(timer);
+  show(lbSlideIndex);
+  startPlay();
+  // Animate the bars
+  setTimeout(() => slides[lbSlideIndex]?._animateBars?.(), 100);
+}
+
+// ── Meme / GIF ──
+function memeSlide(m) {
+  const el = div('slide');
+  el.innerHTML = `
+    <div class="slide-hdr">
+      <span class="slide-icon">😂</span>
+      <span class="slide-title">Meme of the Day</span>
+    </div>
+    <div class="meme-wrap">
+      <div class="meme-tag">Today's mood 👇</div>
+      <img class="meme-img" src="${esc(m.url)}" alt="meme"
+           onerror="this.src='';this.alt='Could not load image — check the URL in data.json'"/>
+      ${m.caption ? `<div class="meme-caption">${esc(m.caption)}</div>` : ''}
+    </div>`;
+  return el;
+}
+
+
 let newsItems = [];
 
 function buildTicker() {
@@ -679,6 +859,8 @@ async function loadNews(rssUrl) {
 function show(i) {
   slides.forEach((s,idx) => s.classList.toggle('active', idx===i));
   cur = i; updateDots(); animProg();
+  // Animate leaderboard bars if jumping to that slide
+  if (i === lbSlideIndex) setTimeout(() => slides[i]?._animateBars?.(), 300);
 }
 function next() { show((cur+1) % slides.length); }
 function startPlay() {
