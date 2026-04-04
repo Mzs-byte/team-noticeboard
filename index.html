@@ -462,6 +462,7 @@
       <button class="btn btn-secondary" onclick="showAdminTab('kpi')">KPIs</button>
       <button class="btn btn-secondary" onclick="showAdminTab('tea')">Team</button>
       <button class="btn btn-secondary" onclick="showAdminTab('tas')">Tasks</button>
+      <button class="btn btn-secondary" style="background:rgba(52,211,153,0.1);color:var(--green);" onclick="showAdminTab('git')">GitHub Sync</button>
     </div>
 
     <div id="adm-tab-gen" class="admin-tab">
@@ -519,6 +520,20 @@
       </div>
     </div>
 
+    <div id="adm-tab-git" class="admin-tab" style="display:none">
+      <div class="admin-section">
+        <div class="admin-section-title">GitHub Sync</div>
+        <p style="font-size:11px;color:var(--text-dim);margin-bottom:15px;">Update <code>data.json</code> on GitHub. Token is stored only in your browser.</p>
+        <div class="admin-grid">
+          <div class="admin-field"><label>GitHub PAT</label><input type="password" id="gh-token" placeholder="github_pat_..."></div>
+          <div class="admin-field"><label>Repo Owner</label><input type="text" id="gh-owner" placeholder="mzs-byte"></div>
+          <div class="admin-field"><label>Repo Name</label><input type="text" id="gh-repo" placeholder="team-noticeboard"></div>
+        </div>
+        <button class="btn btn-primary" style="margin-top:20px;width:100%;" onclick="githubPush()">🚀 Push to GitHub</button>
+        <div id="gh-status" style="margin-top:10px;font-size:12px;text-align:center;font-weight:700;color:var(--blue);"></div>
+      </div>
+    </div>
+
     <div class="admin-section">
       <div class="admin-section-title">JSON Export</div>
       <textarea id="adm-json-view" class="admin-json-view" readonly></textarea>
@@ -551,6 +566,7 @@ let cfg = null, slides = [], cur = 0, timer = null;
 let lbSlideIndex = -1;
 const STATUS_KEY = 'nb_status_v1';
 const CONFIG_OVERRIDE_KEY = 'nb_config_override_v1';
+const GITHUB_SETTINGS_KEY = 'nb_github_settings_v1';
 
 const THEMES = {
   dawn:  { bg: '#0f172a', surface: 'rgba(56,189,248,0.06)', border: 'rgba(56,189,248,0.15)', text: '#f0f9ff', blue: '#38bdf8' },
@@ -624,6 +640,62 @@ function showAdminTab(id) {
   document.getElementById('adm-tab-' + id).style.display = 'block';
 }
 
+async function githubPush() {
+  const status = document.getElementById('gh-status');
+  const token = document.getElementById('gh-token').value;
+  const owner = document.getElementById('gh-owner').value;
+  const repo = document.getElementById('gh-repo').value;
+
+  if (!token || !owner || !repo) {
+    status.style.color = 'var(--red)';
+    status.textContent = '❌ Missing GitHub settings!';
+    return;
+  }
+
+  // Save settings locally
+  localStorage.setItem(GITHUB_SETTINGS_KEY, JSON.stringify({ token, owner, repo }));
+
+  status.style.color = 'var(--blue)';
+  status.textContent = '⏳ Getting file SHA...';
+
+  try {
+    const url = `https://api.github.com/repos/${owner}/${repo}/contents/data.json`;
+    const headers = { 'Authorization': `token ${token}`, 'Accept': 'application/vnd.github.v3+json' };
+
+    // 1. Get the current file SHA (required by GitHub API to update)
+    const r1 = await fetch(url, { headers });
+    if (!r1.ok) throw new Error('Could not find data.json on GitHub');
+    const d1 = await r1.json();
+    const sha = d1.sha;
+
+    status.textContent = '⏳ Pushing to GitHub...';
+
+    // 2. Update the file
+    // btoa is ASCII-only, so we use encodeURIComponent + unescape for Unicode support
+    const content = btoa(unescape(encodeURIComponent(JSON.stringify(cfg, null, 2))));
+    const r2 = await fetch(url, {
+      method: 'PUT',
+      headers,
+      body: JSON.stringify({
+        message: 'Update data.json via Team Noticeboard Admin',
+        content,
+        sha
+      })
+    });
+
+    if (r2.ok) {
+      status.style.color = 'var(--green)';
+      status.textContent = '✅ Successfully updated GitHub!';
+    } else {
+      const err = await r2.json();
+      throw new Error(err.message || 'Push failed');
+    }
+  } catch (e) {
+    status.style.color = 'var(--red)';
+    status.textContent = '❌ Error: ' + e.message;
+  }
+}
+
 function adminToggle() {
   const el = document.getElementById('admin-overlay');
   const isOpen = el.classList.toggle('open');
@@ -634,6 +706,14 @@ function adminToggle() {
     document.getElementById('adm-dur').value = cfg.slide_duration || 10;
     document.getElementById('adm-rss').value = cfg.news_rss || '';
     document.getElementById('adm-theme-force').value = cfg.theme_force || 'auto';
+    
+    // Load GitHub settings
+    const git = JSON.parse(localStorage.getItem(GITHUB_SETTINGS_KEY) || '{}');
+    document.getElementById('gh-token').value = git.token || '';
+    document.getElementById('gh-owner').value = git.owner || '';
+    document.getElementById('gh-repo').value = git.repo || '';
+    document.getElementById('gh-status').textContent = '';
+
     renderAdminLists();
     updateAdminJSONView();
   }
