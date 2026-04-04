@@ -1,7 +1,7 @@
 {
   "name": "Team Noticeboard",
   "short_name": "Noticeboard",
-  "description": "Looping team noticeboard with announcements, rota, KPIs and tasks",
+  "description": "Looping team noticeboard — announcements, rota, KPIs, status, countdowns and more",
   "start_url": "/team-noticeboard/",
   "scope": "/team-noticeboard/",
   "display": "standalone",

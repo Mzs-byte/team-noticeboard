@@ -1,4 +1,4 @@
-const CACHE = 'noticeboard-v1';
+const CACHE = 'noticeboard-v2';
 const ASSETS = ['/team-noticeboard/', '/team-noticeboard/index.html', '/team-noticeboard/manifest.json'];
 
 self.addEventListener('install', e => {
@@ -14,7 +14,9 @@ self.addEventListener('activate', e => {
 });
 
 self.addEventListener('fetch', e => {
-  // Always fetch data.json and weather fresh
-  if (e.request.url.includes('data.json') || e.request.url.includes('wttr.in')) return;
+  if (e.request.url.includes('data.json') ||
+      e.request.url.includes('wttr.in') ||
+      e.request.url.includes('rss2json') ||
+      e.request.url.includes('fonts.googleapis')) return;
   e.respondWith(caches.match(e.request).then(cached => cached || fetch(e.request)));
 });

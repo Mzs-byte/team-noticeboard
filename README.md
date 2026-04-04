@@ -1,88 +1,127 @@
-# 📋 Team Noticeboard
+# 📋 Team Noticeboard v2
 
-A looping digital noticeboard for your team. Rotating slides + a live scrolling ticker. Hosted free on GitHub Pages — update everything by editing one file.
+A looping digital noticeboard for your team. Rotating slides + live scrolling ticker. Hosted free on GitHub Pages — update everything by editing one JSON file.
 
 ---
 
 ## 🚀 Setup (10 minutes)
 
-### 1 — Create the GitHub repo
-
-1. Go to [github.com](https://github.com) → **New repository**
-2. Name it `team-noticeboard`
-3. Set it to **Public**
-4. Upload all these files: `index.html`, `data.json`, `manifest.json`, `sw.js`
-
-### 2 — Enable GitHub Pages
-
-1. Go to repo **Settings → Pages**
-2. Source: **Deploy from a branch**
-3. Branch: **main**, folder: **/ (root)**
-4. Click **Save**
+### 1 — Upload to GitHub
+Create a repo called `team-noticeboard`, upload all 5 files, enable **GitHub Pages** (Settings → Pages → main branch).
 
 Your board will be live at:
 👉 `https://mzs-byte.github.io/team-noticeboard/`
 
-### 3 — Install on your tablet
-
-1. Open **Chrome** on your tablet
-2. Go to your GitHub Pages URL
-3. Tap ⋮ menu → **Add to Home screen**
-4. Done! Opens full screen like a native app 🎉
+### 2 — Install on tablet
+Open Chrome → go to URL → tap ⋮ → **Add to Home screen**
 
 ---
 
-## ✏️ How to Update Content
+## ✏️ Updating Content
 
-**Everything is controlled by `data.json`** — the only file you need to edit.
-
-1. Open `data.json` on GitHub (click the file → pencil icon to edit)
-2. Make your changes (see guide below)
-3. Click **Commit changes**
-4. The board refreshes within 5 minutes automatically
+Edit `data.json` directly on GitHub (pencil icon) → Commit → board refreshes within 5 mins.
 
 ---
 
-## 📝 data.json Guide
+## 📝 data.json Full Guide
 
-### Company name & settings
+### Basic settings
 ```json
 "company_name": "Your Team Name",
 "weather_city": "London",
-"slide_duration": 9
+"slide_duration": 10,
+"news_rss": "https://feeds.bbci.co.uk/news/business/rss.xml"
 ```
-- `weather_city` — any city name, shows live temperature
-- `slide_duration` — seconds per slide (default: 9)
+- `slide_duration` — seconds per slide
+- `news_rss` — any RSS feed URL, headlines scroll in the ticker automatically
 
 ---
 
-### Announcements
+### 🏆 Weekly Win
+```json
+"weekly_win": {
+  "headline": "Landed the Henderson Account!",
+  "detail": "More detail about the win here...",
+  "who": "Sarah & the Sales Team"
+}
+```
+Remove this section entirely to hide the slide.
+
+---
+
+### 📢 Announcements
 ```json
 "announcements": [
-  {
-    "title": "Your announcement headline",
-    "body": "More detail goes here as a sentence or two.",
-    "priority": "normal"
-  }
+  { "title": "Headline", "body": "Detail text.", "priority": "normal" }
 ]
 ```
-- `priority` options: `"normal"` · `"important"` · `"urgent"`
-- Add as many announcements as you like — each gets its own slide
+`priority`: `"normal"` · `"important"` · `"urgent"`
 
 ---
 
-### KPIs / Key Numbers
+### 📊 KPIs
 ```json
 "kpis": [
-  { "label": "Sales This Month", "value": "£24k", "change": "+12%", "trend": "up" }
+  { "label": "Sales", "value": "£24k", "change": "+12%", "trend": "up" }
 ]
 ```
-- Maximum 4 KPIs displayed
-- `trend` options: `"up"` · `"down"` · `"neutral"`
+Max 4 KPIs. `trend`: `"up"` · `"down"` · `"neutral"`
 
 ---
 
-### Weekly Rota
+### 🎯 Target Thermometer
+```json
+"target": {
+  "label": "Monthly Sales Target",
+  "current": 24000,
+  "target": 35000,
+  "unit": "GBP",
+  "message": "Keep pushing!"
+}
+```
+The thermometer fills up automatically based on current vs target.
+
+---
+
+### ⏳ Countdown Timers
+```json
+"countdowns": [
+  { "label": "All-Hands Meeting", "date": "2025-04-11" }
+]
+```
+- Date format: `"YYYY-MM-DD"`
+- Max 4 countdowns shown
+- Shows "Today!" when the date arrives
+
+---
+
+### 🎂 Birthdays & Anniversaries
+```json
+"birthdays": [
+  { "name": "Alice Johnson", "date": "04-04", "type": "birthday" },
+  { "name": "Bob Smith",     "date": "05-01", "type": "anniversary", "years": 3 }
+]
+```
+- Date format: `"MM-DD"` (month-day, no year)
+- `type`: `"birthday"` or `"anniversary"`
+- `years` (optional): shows years of service for anniversaries
+- A special celebratory slide with confetti appears automatically on their day!
+
+---
+
+### 🚦 Team Status Board
+```json
+"team": [
+  { "name": "Alice Johnson", "default_status": "in" }
+]
+```
+`default_status` options: `"in"` · `"remote"` · `"away"` · `"meeting"` · `"off"`
+
+Team members can tap their card on the board to update their status live. Status is saved on the device.
+
+---
+
+### 🗓️ Weekly Rota
 ```json
 "rota": {
   "week": "Week of 7 Apr 2025",
@@ -91,54 +130,40 @@ Your board will be live at:
   ]
 }
 ```
-- Day values: `"Office"` · `"Remote"` · `"Leave"` · `"Off"` (or anything else)
-- Add/remove rows for each team member
+Day values: `"Office"` · `"Remote"` · `"Leave"` · `"Off"`
 
 ---
 
-### Team Tasks
+### ✅ Team Tasks
 ```json
 "tasks": [
-  { "text": "Submit Q1 expense reports", "assignee": "All Staff", "priority": "high" }
+  { "text": "Submit reports", "assignee": "All Staff", "priority": "high" }
 ]
 ```
-- `priority` options: `"high"` · `"medium"` · `"low"`
-- Displayed 2-column grid, up to 6 tasks recommended
+`priority`: `"high"` · `"medium"` · `"low"`
 
 ---
 
-### Ticker (scrolling bottom bar)
+### ↔️ Ticker
 ```json
 "ticker": [
-  "Your scrolling message here",
-  "Another update goes here"
+  "Your scrolling message here"
 ]
 ```
-- Add as many lines as you like — they scroll continuously
+If `news_rss` is set, live news headlines are automatically mixed in.
 
 ---
 
-## 📱 What the board shows
+## 📱 All slides at a glance
 
-| Slide | Content |
+| Slide | Appears when |
 |---|---|
-| 📢 Announcements | One slide per announcement, colour-coded by priority |
-| 📊 Key Metrics | 4 KPIs in a grid with trend arrows |
-| 🗓️ Weekly Rota | Full week schedule for each team member |
-| ✅ Team Tasks | Task cards with assignee and priority |
-| ↔️ Ticker | Always-on scrolling updates at the bottom |
-| 🕐 Clock | Live time and date always visible top-right |
-| 🌤️ Weather | Live temperature for your city top-right |
-
----
-
-## ❓ Troubleshooting
-
-**Board not updating after editing data.json**
-→ Wait 2–3 minutes for GitHub Pages CDN to refresh, then hard-reload (Ctrl+Shift+R)
-
-**Weather not showing**
-→ Check `weather_city` spelling in data.json. Must be a real city name.
-
-**Slides moving too fast/slow**
-→ Change `slide_duration` in data.json (seconds)
+| 🎂 Birthday/Anniversary | Automatically on the day |
+| 🏆 Weekly Win | `weekly_win` set in data.json |
+| 📢 Announcements | One slide per announcement |
+| 📊 KPIs | `kpis` array has entries |
+| 🎯 Thermometer | `target` set in data.json |
+| 🗓️ Rota | `rota` set in data.json |
+| ⏳ Countdowns | `countdowns` array has entries |
+| 🚦 Team Status | `team` array has entries |
+| ✅ Tasks | `tasks` array has entries |
