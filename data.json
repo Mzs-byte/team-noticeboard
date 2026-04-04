@@ -20,14 +20,14 @@
 
   "weekly_win": {
     "headline": "Breaking News! Manager actually did something.",
-    "detail": "On an extremely long Night shift alone the manager actually did work OMG.",
+    "detail": "On an extremely long Night shift, the manager actually did work OMG.",
     "who": "Matyas"
   },
 
   "announcements": [
     {
       "title": "Welcome to the Team Noticeboard!",
-      "body": "Everything you see here is controlled by editing data.json on GitHub. Change anything and push — it updates within minutes.",
+      "body": "Lets see how people react to this 👌",
       "priority": "normal"
     },
     {
@@ -36,8 +36,8 @@
       "priority": "important"
     },
     {
-      "title": "Office Closure — Bank Holiday Monday",
-      "body": "The office will be closed on Monday. All urgent queries should be directed to the on-call team. Enjoy the long weekend!",
+      "title": "Matyas Holidays",
+      "body": "Matyas will be on Annual leave from 13th Apr - 21st Apr, Good Luck Surviving. ",
       "priority": "urgent"
     }
   ],
@@ -58,14 +58,14 @@
   },
 
   "countdowns": [
-    { "label": "All-Hands Meeting",      "date": "2025-04-11" },
-    { "label": "End of Quarter",         "date": "2025-06-30" },
+    { "label": "Matyas Holidays",      "date": "2026-04-13" },
+    { "label": "Matyas Back from Holidays",         "date": "2026-4-26" },
     { "label": "Team Away Day",          "date": "2025-05-15" },
     { "label": "Annual Review Deadline", "date": "2025-04-30" }
   ],
 
   "birthdays": [
-    { "name": "Alice Johnson", "date": "04-04", "type": "birthday"                },
+    { "name": " want to sleep 😒", "date": "04-04", "type": "anniversary"                },
     { "name": "Bob Smith",     "date": "04-15", "type": "birthday"                },
     { "name": "Carmen Diaz",   "date": "04-04", "type": "anniversary", "years": 3 },
     { "name": "David Lee",     "date": "05-01", "type": "birthday"                }
@@ -92,8 +92,8 @@
   },
 
   "tasks": [
-    { "text": "Submit Q1 expense reports",          "assignee": "All Staff", "priority": "high"   },
-    { "text": "Update client onboarding docs",      "assignee": "Alice",     "priority": "medium" },
+    { "text": "Smooch Janjan when i see her next",          "assignee": "Matty", "priority": "high"   },
+    { "text": "Finish this damn thing at some point when i am not half asleep and can actually code 🤣",      "assignee": "Matty",     "priority": "medium" },
     { "text": "Review new supplier contracts",      "assignee": "Bob",       "priority": "high"   },
     { "text": "Book team lunch for end of month",   "assignee": "Carmen",    "priority": "low"    },
     { "text": "Complete mandatory training by Fri", "assignee": "All Staff", "priority": "high"   },
