@@ -296,6 +296,122 @@
       color:var(--text-muted); font-family:var(--font-head); text-transform:uppercase;
     }
 
+    /* ── THEME TRANSITIONS ── */
+    :root {
+      transition: --bg 1s, --surface 1s, --border 1s, --text 1s;
+    }
+
+    /* ── ADMIN PANEL ── */
+    #admin-trigger {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      width: 30px;
+      height: 30px;
+      opacity: 0.05;
+      cursor: pointer;
+      z-index: 100;
+      transition: opacity 0.3s;
+    }
+    #admin-trigger:hover { opacity: 0.5; }
+
+    .admin-modal {
+      background: #0f172a;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 30px;
+      width: 90%;
+      max-width: 800px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    }
+    .admin-section { margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+    .admin-section:last-child { border-bottom: none; }
+    .admin-section-title { font-family: var(--font-head); font-size: 14px; font-weight: 800; color: var(--blue); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; }
+    
+    .admin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+    .admin-field { display: flex; flex-direction: column; gap: 6px; }
+    .admin-field label { font-size: 11px; font-weight: 700; color: var(--text-dim); text-transform: uppercase; }
+    .admin-field input, .admin-field textarea, .admin-field select {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 12px;
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 14px;
+    }
+    .admin-field input:focus { border-color: var(--blue); outline: none; }
+    
+    .admin-btns { display: flex; gap: 12px; margin-top: 20px; position: sticky; bottom: 0; background: #0f172a; padding: 15px 0; }
+    .btn {
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-family: var(--font-head);
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+    }
+    .btn-primary { background: var(--blue); color: #000; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(56,189,248,0.3); }
+    .btn-secondary { background: var(--surface2); color: var(--text); }
+    .btn-danger { background: rgba(248,113,113,0.15); color: var(--red); border: 1px solid rgba(248,113,113,0.3); }
+
+    .admin-json-view {
+      width: 100%;
+      height: 200px;
+      background: #070d1a;
+      color: var(--green);
+      font-family: monospace;
+      font-size: 12px;
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 10px;
+      border: 1px solid var(--border);
+    }
+
+    /* ── ADMIN LISTS ── */
+    .adm-list-item {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 10px;
+      position: relative;
+    }
+    .adm-list-item .remove-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(248,113,113,0.1);
+      color: var(--red);
+      border: none;
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+    }
+    .adm-list-item .remove-btn:hover { background: var(--red); color: #fff; }
+    .add-btn {
+      width: 100%;
+      padding: 10px;
+      background: rgba(56,189,248,0.1);
+      color: var(--blue);
+      border: 1px dashed var(--blue);
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 700;
+      margin-top: 5px;
+    }
+    .add-btn:hover { background: rgba(56,189,248,0.2); }
+
     /* ── TICKER ── */
     #ticker-bar { position:fixed; bottom:0; left:0; right:0; height:44px; background:rgba(7,13,26,.97); border-top:1px solid var(--border); display:flex; align-items:center; overflow:hidden; z-index:50; }
     #ticker-label { flex-shrink:0; font-family:var(--font-head); font-size:10px; font-weight:800; color:#000; background:var(--blue); padding:0 14px; height:100%; display:flex; align-items:center; letter-spacing:2px; text-transform:uppercase; }
@@ -334,6 +450,91 @@
   <div id="ticker-wrap"><div id="ticker-track"></div></div>
 </div>
 
+<!-- ADMIN OVERLAY -->
+<div class="s-overlay" id="admin-overlay" onclick="adminOverlayClose(event)">
+  <div class="admin-modal">
+    <div class="s-modal-name">Admin Settings</div>
+    
+    <!-- Navigation Tabs (Simple) -->
+    <div style="display:flex;gap:10px;margin-bottom:20px;overflow-x:auto;padding-bottom:10px;">
+      <button class="btn btn-secondary" onclick="showAdminTab('gen')">General</button>
+      <button class="btn btn-secondary" onclick="showAdminTab('ann')">Announcements</button>
+      <button class="btn btn-secondary" onclick="showAdminTab('kpi')">KPIs</button>
+      <button class="btn btn-secondary" onclick="showAdminTab('tea')">Team</button>
+      <button class="btn btn-secondary" onclick="showAdminTab('tas')">Tasks</button>
+    </div>
+
+    <div id="adm-tab-gen" class="admin-tab">
+      <div class="admin-section">
+        <div class="admin-section-title">General</div>
+        <div class="admin-grid">
+          <div class="admin-field"><label>Company Name</label><input type="text" id="adm-company"></div>
+          <div class="admin-field"><label>Weather City</label><input type="text" id="adm-city"></div>
+          <div class="admin-field"><label>Slide Duration (sec)</label><input type="number" id="adm-dur"></div>
+          <div class="admin-field"><label>News RSS URL</label><input type="text" id="adm-rss"></div>
+        </div>
+      </div>
+      <div class="admin-section">
+        <div class="admin-section-title">Theme</div>
+        <div class="admin-field">
+          <label>Force Theme</label>
+          <select id="adm-theme-force">
+            <option value="auto">Auto (Time of Day)</option>
+            <option value="dawn">Dawn</option><option value="day">Day</option>
+            <option value="dusk">Dusk</option><option value="night">Night</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div id="adm-tab-ann" class="admin-tab" style="display:none">
+      <div class="admin-section">
+        <div class="admin-section-title">Announcements</div>
+        <div id="adm-list-ann"></div>
+        <button class="add-btn" onclick="addAdminListItem('ann')">+ Add Announcement</button>
+      </div>
+    </div>
+
+    <div id="adm-tab-kpi" class="admin-tab" style="display:none">
+      <div class="admin-section">
+        <div class="admin-section-title">KPIs (Max 4)</div>
+        <div id="adm-list-kpi"></div>
+        <button class="add-btn" onclick="addAdminListItem('kpi')">+ Add KPI</button>
+      </div>
+    </div>
+
+    <div id="adm-tab-tea" class="admin-tab" style="display:none">
+      <div class="admin-section">
+        <div class="admin-section-title">Team Status Board</div>
+        <div id="adm-list-team"></div>
+        <button class="add-btn" onclick="addAdminListItem('team')">+ Add Member</button>
+      </div>
+    </div>
+
+    <div id="adm-tab-tas" class="admin-tab" style="display:none">
+      <div class="admin-section">
+        <div class="admin-section-title">Team Tasks</div>
+        <div id="adm-list-tasks"></div>
+        <button class="add-btn" onclick="addAdminListItem('tasks')">+ Add Task</button>
+      </div>
+    </div>
+
+    <div class="admin-section">
+      <div class="admin-section-title">JSON Export</div>
+      <textarea id="adm-json-view" class="admin-json-view" readonly></textarea>
+    </div>
+
+    <div class="admin-btns">
+      <button class="btn btn-primary" onclick="adminSave()">Save Locally</button>
+      <button class="btn btn-secondary" onclick="adminCopyJSON()">Copy JSON</button>
+      <button class="btn btn-danger" onclick="adminReset()">Reset</button>
+      <button class="btn btn-secondary" style="margin-left:auto;" onclick="adminToggle()">Close</button>
+    </div>
+  </div>
+</div>
+
+<div id="admin-trigger" onclick="adminToggle()" title="Open Admin"></div>
+
 <!-- STATUS PICKER MODAL -->
 <div class="s-overlay" id="s-overlay" onclick="overlayClose(event)">
   <div class="s-modal">
@@ -349,6 +550,14 @@
 let cfg = null, slides = [], cur = 0, timer = null;
 let lbSlideIndex = -1;
 const STATUS_KEY = 'nb_status_v1';
+const CONFIG_OVERRIDE_KEY = 'nb_config_override_v1';
+
+const THEMES = {
+  dawn:  { bg: '#0f172a', surface: 'rgba(56,189,248,0.06)', border: 'rgba(56,189,248,0.15)', text: '#f0f9ff', blue: '#38bdf8' },
+  day:   { bg: '#070d1a', surface: 'rgba(255,255,255,0.04)', border: 'rgba(255,255,255,0.08)', text: '#f0f4ff', blue: '#38bdf8' },
+  dusk:  { bg: '#1e1b4b', surface: 'rgba(167,139,250,0.06)', border: 'rgba(167,139,250,0.15)', text: '#f5f3ff', blue: '#a78bfa' },
+  night: { bg: '#020617', surface: 'rgba(255,255,255,0.02)', border: 'rgba(255,255,255,0.05)', text: '#e2e8f0', blue: '#60a5fa' }
+};
 
 const STATUSES = [
   { id:'in',      label:'In Office',   emoji:'🏢', color:'var(--green)'  },
@@ -363,9 +572,15 @@ const STATUSES = [
 // ══════════════════════════════════════════
 async function load() {
   try {
-    const r = await fetch('data.json?t=' + Date.now());
-    cfg = await r.json();
-    apply();
+    const local = localStorage.getItem(CONFIG_OVERRIDE_KEY);
+    if (local) {
+      cfg = JSON.parse(local);
+      apply();
+    } else {
+      const r = await fetch('data.json?t=' + Date.now());
+      cfg = await r.json();
+      apply();
+    }
   } catch(e) { console.error('data.json load failed', e); }
 }
 setInterval(load, 5 * 60 * 1000);
@@ -373,10 +588,196 @@ setInterval(load, 5 * 60 * 1000);
 function apply() {
   if (!cfg) return;
   if (cfg.company_name) document.getElementById('company-name').textContent = cfg.company_name;
+  applyDynamicTheme();
   buildSlides();
   buildTicker();
   if (cfg.weather_city) getWeather(cfg.weather_city);
   if (cfg.news_rss) loadNews(cfg.news_rss);
+}
+
+function applyDynamicTheme() {
+  const h = new Date().getHours();
+  let mode = 'day';
+  if (cfg.theme_force && cfg.theme_force !== 'auto') {
+    mode = cfg.theme_force;
+  } else {
+    if (h >= 6 && h < 11) mode = 'dawn';
+    else if (h >= 11 && h < 17) mode = 'day';
+    else if (h >= 17 && h < 21) mode = 'dusk';
+    else mode = 'night';
+  }
+  const t = THEMES[mode] || THEMES.day;
+  const root = document.documentElement;
+  root.style.setProperty('--bg', t.bg);
+  root.style.setProperty('--surface', t.surface);
+  root.style.setProperty('--border', t.border);
+  root.style.setProperty('--text', t.text);
+  root.style.setProperty('--blue', t.blue);
+  document.querySelector('meta[name="theme-color"]').setAttribute('content', t.bg);
+}
+
+// ══════════════════════════════════════════
+// ADMIN LOGIC
+// ══════════════════════════════════════════
+function showAdminTab(id) {
+  document.querySelectorAll('.admin-tab').forEach(t => t.style.display = 'none');
+  document.getElementById('adm-tab-' + id).style.display = 'block';
+}
+
+function adminToggle() {
+  const el = document.getElementById('admin-overlay');
+  const isOpen = el.classList.toggle('open');
+  if (isOpen && cfg) {
+    showAdminTab('gen');
+    document.getElementById('adm-company').value = cfg.company_name || '';
+    document.getElementById('adm-city').value = cfg.weather_city || '';
+    document.getElementById('adm-dur').value = cfg.slide_duration || 10;
+    document.getElementById('adm-rss').value = cfg.news_rss || '';
+    document.getElementById('adm-theme-force').value = cfg.theme_force || 'auto';
+    renderAdminLists();
+    updateAdminJSONView();
+  }
+}
+
+function renderAdminLists() {
+  renderAdminList('ann', cfg.announcements || [], (a, i) => `
+    <div class="adm-list-item">
+      <button class="remove-btn" onclick="removeAdminListItem('ann',${i})">×</button>
+      <div class="admin-grid">
+        <div class="admin-field"><label>Title</label><input type="text" data-key="title" value="${esc(a.title)}"></div>
+        <div class="admin-field"><label>Priority</label>
+          <select data-key="priority">
+            <option value="normal" ${a.priority==='normal'?'selected':''}>Normal</option>
+            <option value="important" ${a.priority==='important'?'selected':''}>Important</option>
+            <option value="urgent" ${a.priority==='urgent'?'selected':''}>Urgent</option>
+          </select>
+        </div>
+      </div>
+      <div class="admin-field" style="margin-top:10px;"><label>Body</label><textarea data-key="body">${esc(a.body)}</textarea></div>
+    </div>`);
+
+  renderAdminList('kpi', cfg.kpis || [], (k, i) => `
+    <div class="adm-list-item">
+      <button class="remove-btn" onclick="removeAdminListItem('kpi',${i})">×</button>
+      <div class="admin-grid">
+        <div class="admin-field"><label>Label</label><input type="text" data-key="label" value="${esc(k.label)}"></div>
+        <div class="admin-field"><label>Value</label><input type="text" data-key="value" value="${esc(k.value)}"></div>
+        <div class="admin-field"><label>Trend</label>
+          <select data-key="trend">
+            <option value="up" ${k.trend==='up'?'selected':''}>Up</option>
+            <option value="down" ${k.trend==='down'?'selected':''}>Down</option>
+            <option value="neutral" ${k.trend==='neutral'?'selected':''}>Neutral</option>
+          </select>
+        </div>
+        <div class="admin-field"><label>Change Text</label><input type="text" data-key="change" value="${esc(k.change)}"></div>
+      </div>
+    </div>`);
+
+  renderAdminList('team', cfg.team || [], (m, i) => `
+    <div class="adm-list-item">
+      <button class="remove-btn" onclick="removeAdminListItem('team',${i})">×</button>
+      <div class="admin-grid">
+        <div class="admin-field"><label>Name</label><input type="text" data-key="name" value="${esc(m.name)}"></div>
+        <div class="admin-field"><label>Default Status</label>
+          <select data-key="default_status">
+            ${STATUSES.map(s=>`<option value="${s.id}" ${m.default_status===s.id?'selected':''}>${s.label}</option>`).join('')}
+          </select>
+        </div>
+      </div>
+    </div>`);
+
+  renderAdminList('tasks', cfg.tasks || [], (t, i) => `
+    <div class="adm-list-item">
+      <button class="remove-btn" onclick="removeAdminListItem('tasks',${i})">×</button>
+      <div class="admin-field"><label>Task Text</label><input type="text" data-key="text" value="${esc(t.text)}"></div>
+      <div class="admin-grid" style="margin-top:10px;">
+        <div class="admin-field"><label>Assignee</label><input type="text" data-key="assignee" value="${esc(t.assignee)}"></div>
+        <div class="admin-field"><label>Priority</label>
+          <select data-key="priority">
+            <option value="low" ${t.priority==='low'?'selected':''}>Low</option>
+            <option value="medium" ${t.priority==='medium'?'selected':''}>Medium</option>
+            <option value="high" ${t.priority==='high'?'selected':''}>High</option>
+          </select>
+        </div>
+      </div>
+    </div>`);
+}
+
+function renderAdminList(id, items, templateFn) {
+  const container = document.getElementById('adm-list-' + id);
+  if (container) container.innerHTML = items.map((item, i) => templateFn(item, i)).join('');
+}
+
+function addAdminListItem(type) {
+  const defaults = {
+    ann: { title: 'New Announcement', body: 'Detail text here...', priority: 'normal' },
+    kpi: { label: 'New KPI', value: '0', change: '0%', trend: 'neutral' },
+    team: { name: 'New Member', default_status: 'in' },
+    tasks: { text: 'New Task', assignee: 'All', priority: 'medium' }
+  };
+  const key = type==='ann'?'announcements':type==='team'?'team':type;
+  if(!cfg[key]) cfg[key] = [];
+  cfg[key].push(defaults[type]);
+  renderAdminLists();
+  updateAdminJSONView();
+}
+
+function removeAdminListItem(type, index) {
+  const key = type==='ann'?'announcements':type==='team'?'team':type;
+  cfg[key].splice(index, 1);
+  renderAdminLists();
+  updateAdminJSONView();
+}
+
+function updateAdminJSONView() {
+  document.getElementById('adm-json-view').value = JSON.stringify(cfg, null, 2);
+}
+
+function adminSave() {
+  if (!cfg) return;
+  cfg.company_name = document.getElementById('adm-company').value;
+  cfg.weather_city = document.getElementById('adm-city').value;
+  cfg.slide_duration = parseInt(document.getElementById('adm-dur').value);
+  cfg.news_rss = document.getElementById('adm-rss').value;
+  cfg.theme_force = document.getElementById('adm-theme-force').value;
+  cfg.announcements = collectAdminList('ann');
+  cfg.kpis = collectAdminList('kpi');
+  cfg.team = collectAdminList('team');
+  cfg.tasks = collectAdminList('tasks');
+  localStorage.setItem(CONFIG_OVERRIDE_KEY, JSON.stringify(cfg));
+  adminToggle(); apply();
+  alert('Settings saved locally!');
+}
+
+function collectAdminList(id) {
+  const items = [];
+  const container = document.getElementById('adm-list-' + id);
+  if(!container) return [];
+  container.querySelectorAll('.adm-list-item').forEach(el => {
+    const obj = {};
+    el.querySelectorAll('[data-key]').forEach(input => { obj[input.dataset.key] = input.value; });
+    items.push(obj);
+  });
+  return items;
+}
+
+function adminCopyJSON() {
+  updateAdminJSONView();
+  const view = document.getElementById('adm-json-view');
+  view.select();
+  document.execCommand('copy');
+  alert('JSON copied to clipboard!');
+}
+
+function adminReset() {
+  if (confirm('Are you sure you want to reset to the server default?')) {
+    localStorage.removeItem(CONFIG_OVERRIDE_KEY);
+    location.reload();
+  }
+}
+
+function adminOverlayClose(e) {
+  if (e.target.id === 'admin-overlay') adminToggle();
 }
 
 // ══════════════════════════════════════════
