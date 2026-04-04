@@ -1,17 +1,17 @@
 {
-  "company_name": "Your Team Name",
+  "company_name": "Front Office",
   "weather_city": "London",
   "slide_duration": 10,
   "news_rss": "https://feeds.bbci.co.uk/news/business/rss.xml",
 
   "meme": {
-    "url": "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDd3bXN6aXM3NTFvbm8xZnZxNHpicHo4NXgydHgwNHB2dHhtM2FiNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7abKhOpu0NwenH3O/giphy.gif",
-    "caption": "Us on a Friday afternoon ☕"
+    "url": "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2wxcXIwOWI0OXI3OGhyemo1ejExNGtydm83Zms1bWVnbHNydTdtZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/lkdH8FmImcGoylv3t3/giphy.gif",
+    "caption": "You when you walked in and saw the new notice board 🤔"
   },
 
   "leaderboard": [
-    { "name": "Alice Johnson", "title": "Sales Lead",       "points": 340, "change":  20 },
-    { "name": "Bob Smith",     "title": "Account Manager",  "points": 290, "change": -10 },
+    { "name": "Squishy <3 ", "title": "Best Girlfriend Ever",       "points": 9999, "change":  20 },
+    { "name": "Poopy Butt",     "title": "Assistant Manager",  "points": 290, "change": -10 },
     { "name": "Carmen Diaz",   "title": "Customer Success", "points": 275, "change":  35 },
     { "name": "David Lee",     "title": "Developer",        "points": 210, "change":   0 },
     { "name": "Evie Turner",   "title": "Marketing",        "points": 185, "change":  15 },
@@ -19,9 +19,9 @@
   ],
 
   "weekly_win": {
-    "headline": "Landed the Henderson Account!",
-    "detail": "After three months of hard work and outstanding collaboration, we have officially signed one of our biggest clients to date.",
-    "who": "Sarah and the Sales Team"
+    "headline": "Breaking News! Manager actually did something.",
+    "detail": "On an extremely long Night shift alone the manager actually did work OMG.",
+    "who": "Matyas"
   },
 
   "announcements": [
@@ -43,17 +43,17 @@
   ],
 
   "kpis": [
-    { "label": "Sales This Month", "value": "24k",  "change": "+12% vs last month", "trend": "up"      },
+    { "label": "Stay Experience", "value": "90.6%",  "change": "+12% vs same time last year", "trend": "up"      },
     { "label": "Open Tickets",     "value": "8",    "change": "-3 this week",        "trend": "down"    },
     { "label": "Team Members",     "value": "12",   "change": "1 joining next week", "trend": "neutral" },
     { "label": "Target Progress",  "value": "74%",  "change": "On track",            "trend": "up"      }
   ],
 
   "target": {
-    "label": "Monthly Sales Target",
-    "current": 24000,
-    "target": 35000,
-    "unit": "GBP",
+    "label": "Monthly Enrollment Target",
+    "current": 100,
+    "target": 150,
+    "unit": "HH Enrollments",
     "message": "Keep pushing — we are on track for a strong finish!"
   },
 
