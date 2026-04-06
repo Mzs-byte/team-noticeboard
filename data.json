@@ -3,39 +3,57 @@
   "weather_city": "London",
   "slide_duration": 10,
   "news_rss": "https://feeds.bbci.co.uk/news/business/rss.xml",
-
-  "image_slides": [
-    {
-      "title": "Team Photo",
-      "url": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200",
-      "caption": "Our amazing team — always stronger together 💪"
-    }
-  ],
-
   "meme": {
     "url": "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDd3bXN6aXM3NTFvbm8xZnZxNHpicHo4NXgydHgwNHB2dHhtM2FiNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7abKhOpu0NwenH3O/giphy.gif",
-    "caption": "Us on a Friday afternoon ☕"
+    "caption": "Us on a Friday afternoon \u2615"
   },
-
   "leaderboard": [
-    { "name": "Alice Johnson", "title": "Sales Lead",       "points": 340, "change":  20 },
-    { "name": "Bob Smith",     "title": "Account Manager",  "points": 290, "change": -10 },
-    { "name": "Carmen Diaz",   "title": "Customer Success", "points": 275, "change":  35 },
-    { "name": "David Lee",     "title": "Developer",        "points": 210, "change":   0 },
-    { "name": "Evie Turner",   "title": "Marketing",        "points": 185, "change":  15 },
-    { "name": "Frank Webb",    "title": "Operations",       "points": 140, "change":  -5 }
+    {
+      "name": "Alice Johnson",
+      "title": "Sales Lead",
+      "points": 340,
+      "change": 20
+    },
+    {
+      "name": "Bob Smith",
+      "title": "Account Manager",
+      "points": 290,
+      "change": -10
+    },
+    {
+      "name": "Carmen Diaz",
+      "title": "Customer Success",
+      "points": 275,
+      "change": 35
+    },
+    {
+      "name": "David Lee",
+      "title": "Developer",
+      "points": 210,
+      "change": 0
+    },
+    {
+      "name": "Evie Turner",
+      "title": "Marketing",
+      "points": 185,
+      "change": 15
+    },
+    {
+      "name": "Frank Webb",
+      "title": "Operations",
+      "points": 140,
+      "change": -5
+    }
   ],
-
   "weekly_win": {
     "headline": "Landed the Henderson Account!",
     "detail": "After three months of hard work and outstanding collaboration, we have officially signed one of our biggest clients to date.",
     "who": "Sarah and the Sales Team"
   },
-
   "announcements": [
     {
       "title": "Welcome to the Team Noticeboard!",
-      "body": "Everything you see here is controlled by editing data.json on GitHub. Change anything and push — it updates within minutes.",
+      "body": "Everything you see here is controlled by editing data.json on GitHub. Change anything and push \u2014 it updates within minutes.",
       "priority": "normal"
     },
     {
@@ -44,77 +62,285 @@
       "priority": "important"
     },
     {
-      "title": "Office Closure — Bank Holiday Monday",
+      "title": "Office Closure \u2014 Bank Holiday Monday",
       "body": "The office will be closed on Monday. All urgent queries should be directed to the on-call team. Enjoy the long weekend!",
       "priority": "urgent"
     }
   ],
-
   "kpis": [
-    { "label": "Sales This Month", "value": "24k",  "change": "+12% vs last month", "trend": "up"      },
-    { "label": "Open Tickets",     "value": "8",    "change": "-3 this week",        "trend": "down"    },
-    { "label": "Team Members",     "value": "12",   "change": "1 joining next week", "trend": "neutral" },
-    { "label": "Target Progress",  "value": "74%",  "change": "On track",            "trend": "up"      }
+    {
+      "label": "Sales This Month",
+      "value": "24k",
+      "change": "+12% vs last month",
+      "trend": "up"
+    },
+    {
+      "label": "Open Tickets",
+      "value": "8",
+      "change": "-3 this week",
+      "trend": "down"
+    },
+    {
+      "label": "Team Members",
+      "value": "12",
+      "change": "1 joining next week",
+      "trend": "neutral"
+    },
+    {
+      "label": "Target Progress",
+      "value": "74%",
+      "change": "On track",
+      "trend": "up"
+    }
   ],
-
   "target": {
     "label": "Monthly Sales Target",
     "current": 24000,
     "target": 35000,
     "unit": "GBP",
-    "message": "Keep pushing — we are on track for a strong finish!"
+    "message": "Keep pushing \u2014 we are on track for a strong finish!"
   },
-
   "countdowns": [
-    { "label": "All-Hands Meeting",      "date": "2025-04-11" },
-    { "label": "End of Quarter",         "date": "2025-06-30" },
-    { "label": "Team Away Day",          "date": "2025-05-15" },
-    { "label": "Annual Review Deadline", "date": "2025-04-30" }
+    {
+      "label": "All-Hands Meeting",
+      "date": "2025-04-11"
+    },
+    {
+      "label": "End of Quarter",
+      "date": "2025-06-30"
+    },
+    {
+      "label": "Team Away Day",
+      "date": "2025-05-15"
+    },
+    {
+      "label": "Annual Review Deadline",
+      "date": "2025-04-30"
+    }
   ],
-
   "birthdays": [
-    { "name": "Alice Johnson", "date": "04-04", "type": "birthday"                },
-    { "name": "Bob Smith",     "date": "04-15", "type": "birthday"                },
-    { "name": "Carmen Diaz",   "date": "04-04", "type": "anniversary", "years": 3 },
-    { "name": "David Lee",     "date": "05-01", "type": "birthday"                }
+    {
+      "name": "Alice Johnson",
+      "date": "04-04",
+      "type": "birthday"
+    },
+    {
+      "name": "Bob Smith",
+      "date": "04-15",
+      "type": "birthday"
+    },
+    {
+      "name": "Carmen Diaz",
+      "date": "04-04",
+      "type": "anniversary",
+      "years": 3
+    },
+    {
+      "name": "David Lee",
+      "date": "05-01",
+      "type": "birthday"
+    }
   ],
-
   "team": [
-    { "name": "Alice Johnson", "default_status": "in"      },
-    { "name": "Bob Smith",     "default_status": "remote"  },
-    { "name": "Carmen Diaz",   "default_status": "in"      },
-    { "name": "David Lee",     "default_status": "meeting" },
-    { "name": "Evie Turner",   "default_status": "away"    },
-    { "name": "Frank Webb",    "default_status": "off"     }
+    {
+      "name": "Alice Johnson",
+      "default_status": "in"
+    },
+    {
+      "name": "Bob Smith",
+      "default_status": "in"
+    },
+    {
+      "name": "Carmen Diaz",
+      "default_status": "in"
+    },
+    {
+      "name": "David Lee",
+      "default_status": "meeting"
+    },
+    {
+      "name": "Evie Turner",
+      "default_status": "away"
+    },
+    {
+      "name": "Frank Webb",
+      "default_status": "off"
+    }
   ],
-
-  "rota": {
-    "week": "Week of 7 Apr 2025",
-    "entries": [
-      { "name": "Alice",  "monday": "Office", "tuesday": "Remote", "wednesday": "Office", "thursday": "Remote", "friday": "Office" },
-      { "name": "Bob",    "monday": "Remote", "tuesday": "Office", "wednesday": "Remote", "thursday": "Office", "friday": "Remote" },
-      { "name": "Carmen", "monday": "Office", "tuesday": "Office", "wednesday": "Leave",  "thursday": "Leave",  "friday": "Leave"  },
-      { "name": "David",  "monday": "Remote", "tuesday": "Remote", "wednesday": "Office", "thursday": "Office", "friday": "Remote" },
-      { "name": "Evie",   "monday": "Office", "tuesday": "Remote", "wednesday": "Office", "thursday": "Office", "friday": "Off"    }
-    ]
-  },
-
   "tasks": [
-    { "text": "Submit Q1 expense reports",          "assignee": "All Staff", "priority": "high"   },
-    { "text": "Update client onboarding docs",      "assignee": "Alice",     "priority": "medium" },
-    { "text": "Review new supplier contracts",      "assignee": "Bob",       "priority": "high"   },
-    { "text": "Book team lunch for end of month",   "assignee": "Carmen",    "priority": "low"    },
-    { "text": "Complete mandatory training by Fri", "assignee": "All Staff", "priority": "high"   },
-    { "text": "Update the shared project tracker",  "assignee": "David",     "priority": "medium" }
+    {
+      "text": "Submit Q1 expense reports",
+      "assignee": "All Staff",
+      "priority": "high"
+    },
+    {
+      "text": "Update client onboarding docs",
+      "assignee": "Alice",
+      "priority": "medium"
+    },
+    {
+      "text": "Review new supplier contracts",
+      "assignee": "Bob",
+      "priority": "high"
+    },
+    {
+      "text": "Book team lunch for end of month",
+      "assignee": "Carmen",
+      "priority": "low"
+    },
+    {
+      "text": "Complete mandatory training by Fri",
+      "assignee": "All Staff",
+      "priority": "high"
+    },
+    {
+      "text": "Update the shared project tracker",
+      "assignee": "David",
+      "priority": "medium"
+    }
   ],
-
   "ticker": [
     "Welcome to the new and improved team noticeboard!",
-    "All-Hands meeting this Friday at 10am — do not forget!",
+    "All-Hands meeting this Friday at 10am \u2014 do not forget!",
     "Q1 expense reports are due by end of week",
     "Big shoutout to Sarah for landing the Henderson account!",
     "Coffee machine on 3rd floor is back in service",
     "Reminder: lock your screen when stepping away from your desk",
-    "We are at 74% of our monthly target — let's finish strong!"
-  ]
+    "We are at 74% of our monthly target \u2014 let's finish strong!"
+  ],
+  "image_slides": [
+    {
+      "title": "Example Image Slide",
+      "url": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200",
+      "caption": "Our amazing team at work \ud83d\udcaa",
+      "fullscreen": false
+    }
+  ],
+  "important_numbers": [
+    {
+      "label": "IT Helpdesk",
+      "number": "0800 123 456",
+      "emoji": "\ud83d\udcbb"
+    },
+    {
+      "label": "Building Manager",
+      "number": "0800 234 567",
+      "emoji": "\ud83c\udfe2"
+    },
+    {
+      "label": "Fire Marshal",
+      "number": "0800 345 678",
+      "emoji": "\ud83d\udd25"
+    },
+    {
+      "label": "Main Reception",
+      "number": "0800 456 789",
+      "emoji": "\ud83d\udcde"
+    },
+    {
+      "label": "Security",
+      "number": "0800 567 890",
+      "emoji": "\ud83d\udd12"
+    },
+    {
+      "label": "Taxi (Local)",
+      "number": "0800 678 901",
+      "emoji": "\ud83d\ude95"
+    }
+  ],
+  "new_starter": {
+    "enabled": true,
+    "name": "Jamie Collins",
+    "role": "Front Office Coordinator",
+    "start_date": "Monday 7 April 2025",
+    "fun_fact": "Jamie has visited 32 countries and speaks three languages!",
+    "welcome_msg": "Please give Jamie a warm welcome to the team!"
+  },
+  "training_reminders": [
+    {
+      "title": "Fire Safety Refresher",
+      "due": "2025-04-18",
+      "assignee": "All Staff"
+    },
+    {
+      "title": "GDPR Annual Training",
+      "due": "2025-04-30",
+      "assignee": "All Staff"
+    },
+    {
+      "title": "First Aid Recertification",
+      "due": "2025-05-10",
+      "assignee": "Alice, Bob"
+    }
+  ],
+  "supplies": [
+    {
+      "item": "Printer Paper (A4)",
+      "status": "low",
+      "emoji": "\ud83d\udcc4"
+    },
+    {
+      "item": "Hand Sanitiser",
+      "status": "low",
+      "emoji": "\ud83e\uddf4"
+    },
+    {
+      "item": "Coffee Pods",
+      "status": "critical",
+      "emoji": "\u2615"
+    },
+    {
+      "item": "Toner Cartridge",
+      "status": "ok",
+      "emoji": "\ud83d\udda8\ufe0f"
+    },
+    {
+      "item": "Pens / Stationery",
+      "status": "ok",
+      "emoji": "\u270f\ufe0f"
+    },
+    {
+      "item": "Visitor Badges",
+      "status": "low",
+      "emoji": "\ud83e\udeaa"
+    }
+  ],
+  "week_at_a_glance": {
+    "week": "Week of 7 Apr 2025",
+    "days": [
+      {
+        "day": "Mon",
+        "events": [
+          "Team standup 9am",
+          "Client visit 2pm"
+        ]
+      },
+      {
+        "day": "Tue",
+        "events": [
+          "Finance review 10am"
+        ]
+      },
+      {
+        "day": "Wed",
+        "events": [
+          "All-hands 10am",
+          "Fire drill 3pm"
+        ]
+      },
+      {
+        "day": "Thu",
+        "events": [
+          "New starter: Jamie"
+        ]
+      },
+      {
+        "day": "Fri",
+        "events": [
+          "Early finish 4pm",
+          "Team drinks 5pm"
+        ]
+      }
+    ]
+  }
 }

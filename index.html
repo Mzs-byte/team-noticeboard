@@ -304,14 +304,14 @@
     .s-name { font-size:13px; font-weight:700; color:var(--text); }
     .s-status { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; padding:3px 10px; border-radius:20px; }
     .st-in      .s-status { background:rgba(52,211,153,.15);  color:var(--green);  }
-    .st-remote  .s-status { background:rgba(167,139,250,.15); color:var(--purple); }
-    .st-away    .s-status { background:rgba(251,191,36,.15);  color:var(--amber);  }
     .st-meeting .s-status { background:rgba(56,189,248,.15);  color:var(--blue);   }
+    .st-away    .s-status { background:rgba(251,191,36,.15);  color:var(--amber);  }
+    .st-out     .s-status { background:rgba(167,139,250,.15); color:var(--purple); }
     .st-off     .s-status { background:rgba(148,163,184,.1);  color:var(--text-muted); }
     .st-in      .s-avatar { background:rgba(52,211,153,.15);  color:var(--green); }
-    .st-remote  .s-avatar { background:rgba(167,139,250,.15); color:var(--purple); }
-    .st-away    .s-avatar { background:rgba(251,191,36,.15);  color:var(--amber); }
     .st-meeting .s-avatar { background:rgba(56,189,248,.15);  color:var(--blue); }
+    .st-away    .s-avatar { background:rgba(251,191,36,.15);  color:var(--amber); }
+    .st-out     .s-avatar { background:rgba(167,139,250,.15); color:var(--purple); }
     .st-off     .s-avatar { background:rgba(148,163,184,.1);  color:var(--text-muted); }
 
     /* ── MEME ── */
@@ -328,200 +328,232 @@
     .s-opt:hover { background:var(--surface2); }
     .s-opt-dot { width:12px; height:12px; border-radius:50%; }
 
+    /* ── IMPORTANT NUMBERS ── */
+    .numbers-grid { flex:1; display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; }
+    .num-card { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:18px 20px; display:flex; align-items:center; gap:14px; }
+    .num-emoji { font-size:28px; flex-shrink:0; }
+    .num-info { flex:1; min-width:0; }
+    .num-label { font-size:11px; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:4px; }
+    .num-number { font-family:var(--font-display); font-size:24px; color:var(--blue); letter-spacing:1px; white-space:nowrap; }
+
+    /* ── NEW STARTER ── */
+    .starter-wrap { flex:1; display:flex; gap:20px; }
+    .starter-left { flex:1; display:flex; flex-direction:column; justify-content:center; gap:14px; background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:32px 40px; position:relative; overflow:hidden; }
+    .starter-avatar { width:80px; height:80px; border-radius:50%; background:linear-gradient(135deg, var(--blue), var(--purple)); display:flex; align-items:center; justify-content:center; font-family:var(--font-display); font-size:32px; color:#fff; flex-shrink:0; }
+    .starter-name { font-family:var(--font-head); font-size:42px; font-weight:800; color:var(--text); line-height:1.1; }
+    .starter-role { font-size:16px; color:var(--blue); font-weight:600; }
+    .starter-date { font-size:13px; color:var(--text-muted); font-family:var(--font-head); }
+    .starter-fact { font-size:16px; color:var(--text-dim); line-height:1.6; max-width:75%; padding:14px 18px; background:var(--surface2); border-radius:12px; border-left:3px solid var(--amber); }
+    .starter-welcome { font-family:var(--font-head); font-size:13px; font-weight:700; color:var(--green); text-transform:uppercase; letter-spacing:2px; }
+    .starter-glow { position:absolute; top:-40px; right:-40px; width:180px; height:180px; border-radius:50%; background:radial-gradient(circle, rgba(56,189,248,.08) 0%, transparent 70%); }
+    .confetti-starter { position:absolute; inset:0; pointer-events:none; overflow:hidden; }
+
+    /* ── TRAINING ── */
+    .training-list { flex:1; display:flex; flex-direction:column; gap:10px; }
+    .training-item { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:16px 20px; display:flex; align-items:center; gap:16px; }
+    .training-urgency { width:4px; border-radius:4px; align-self:stretch; flex-shrink:0; }
+    .training-info { flex:1; }
+    .training-title { font-size:15px; font-weight:700; color:var(--text); margin-bottom:4px; }
+    .training-assignee { font-size:12px; color:var(--text-muted); font-family:var(--font-head); }
+    .training-countdown { text-align:right; }
+    .training-days { font-family:var(--font-display); font-size:38px; line-height:1; }
+    .training-days-label { font-size:10px; color:var(--text-muted); font-family:var(--font-head); text-transform:uppercase; letter-spacing:1px; }
+
+    /* ── SUPPLIES ── */
+    .supplies-grid { flex:1; display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; }
+    .supply-card { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:16px 18px; display:flex; flex-direction:column; gap:10px; position:relative; overflow:hidden; }
+    .supply-card::after { content:''; position:absolute; bottom:0; left:0; right:0; height:3px; }
+    .supply-card.ok::after       { background:var(--green); }
+    .supply-card.low::after      { background:var(--amber); }
+    .supply-card.critical::after { background:var(--red); }
+    .supply-emoji { font-size:28px; }
+    .supply-item  { font-size:14px; font-weight:700; color:var(--text); }
+    .supply-status { font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; padding:3px 10px; border-radius:20px; align-self:flex-start; }
+    .supply-card.ok       .supply-status { background:rgba(52,211,153,.15);  color:var(--green); }
+    .supply-card.low      .supply-status { background:rgba(251,191,36,.15);  color:var(--amber); }
+    .supply-card.critical .supply-status { background:rgba(248,113,113,.15); color:var(--red);   }
+
+    /* ── WEEK AT A GLANCE ── */
+    .week-grid { flex:1; display:grid; grid-template-columns:repeat(5,1fr); gap:8px; }
+    .week-col { background:var(--surface); border:1px solid var(--border); border-radius:14px; display:flex; flex-direction:column; overflow:hidden; }
+    .week-col.today { border-color:var(--blue); background:rgba(56,189,248,.06); }
+    .week-day-label { font-family:var(--font-head); font-size:12px; font-weight:800; color:var(--text-dim); text-transform:uppercase; letter-spacing:2px; padding:10px 14px; border-bottom:1px solid var(--border); text-align:center; }
+    .week-col.today .week-day-label { color:var(--blue); }
+    .week-events { flex:1; padding:8px; display:flex; flex-direction:column; gap:6px; }
+    .week-event { background:var(--surface2); border-radius:8px; padding:7px 10px; font-size:12px; color:var(--text-dim); line-height:1.4; }
+    .week-col.today .week-event { color:var(--text); }
+    .week-empty { font-size:11px; color:var(--text-muted); padding:8px 10px; font-style:italic; }
+
+    /* ── WORD OF THE DAY ── */
+    .word-card { flex:1; display:flex; flex-direction:column; justify-content:center; align-items:center; background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:32px 48px; gap:16px; text-align:center; position:relative; overflow:hidden; }
+    .word-lang-flag { font-size:52px; }
+    .word-lang-name { font-family:var(--font-head); font-size:11px; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:3px; }
+    .word-foreign { font-family:var(--font-display); font-size:72px; color:var(--blue); letter-spacing:4px; line-height:1; }
+    .word-phonetic { font-size:16px; color:var(--text-muted); font-style:italic; }
+    .word-divider { width:60px; height:2px; background:var(--border); border-radius:2px; }
+    .word-english { font-family:var(--font-head); font-size:22px; font-weight:700; color:var(--text); }
+    .word-example { font-size:14px; color:var(--text-dim); line-height:1.6; max-width:60%; }
+    .word-bg { position:absolute; font-family:var(--font-display); font-size:200px; color:rgba(255,255,255,.02); bottom:-20px; right:-10px; line-height:1; user-select:none; pointer-events:none; }
+
+    /* ── FUN STAT ── */
+    .stat-card { flex:1; display:flex; flex-direction:column; justify-content:center; align-items:center; background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:32px 48px; gap:18px; text-align:center; position:relative; overflow:hidden; }
+    .stat-emoji { font-size:58px; }
+    .stat-label { font-family:var(--font-head); font-size:11px; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:3px; }
+    .stat-text { font-family:var(--font-head); font-size:26px; font-weight:800; color:var(--text); line-height:1.4; max-width:80%; }
+    .stat-source { font-size:11px; color:var(--text-muted); font-family:var(--font-head); }
+    .stat-glow { position:absolute; inset:0; background:radial-gradient(ellipse at 50% 50%, rgba(56,189,248,.04) 0%, transparent 70%); pointer-events:none; }
+
+    /* ── ON THIS DAY ── */
+    .otd-card { flex:1; display:flex; flex-direction:column; justify-content:center; background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:32px 44px; position:relative; overflow:hidden; gap:14px; }
+    .otd-year { font-family:var(--font-display); font-size:90px; color:rgba(255,255,255,.04); position:absolute; top:10px; right:20px; line-height:1; user-select:none; }
+    .otd-year-badge { display:inline-flex; align-items:center; gap:8px; background:rgba(56,189,248,.12); border:1px solid rgba(56,189,248,.25); border-radius:40px; padding:6px 16px; width:fit-content; }
+    .otd-year-text { font-family:var(--font-display); font-size:22px; color:var(--blue); letter-spacing:2px; }
+    .otd-year-label { font-size:11px; color:var(--text-muted); font-family:var(--font-head); text-transform:uppercase; letter-spacing:1px; }
+    .otd-headline { font-family:var(--font-head); font-size:34px; font-weight:800; line-height:1.2; color:var(--text); max-width:85%; position:relative; z-index:1; }
+    .otd-detail { font-size:16px; color:var(--text-dim); line-height:1.65; max-width:78%; position:relative; z-index:1; }
+    .otd-loading { font-size:14px; color:var(--text-muted); font-family:var(--font-head); font-style:italic; }
+
     /* ── IMAGE SLIDE ── */
     .img-slide-wrap {
       flex:1; display:flex; flex-direction:column; align-items:center;
       justify-content:center; gap:14px; position:relative; overflow:hidden;
-      border-radius:18px;
-    }
-    .img-slide-bg {
-      position:absolute; inset:0; background-size:cover; background-position:center;
-      filter:blur(18px) brightness(.4); transform:scale(1.08);
+      background:var(--surface); border:1px solid var(--border); border-radius:18px;
     }
     .img-slide-img {
-      position:relative; z-index:1;
       max-width:100%; max-height:calc(100% - 70px);
-      border-radius:14px; object-fit:contain;
-      box-shadow:0 12px 48px rgba(0,0,0,.7);
+      object-fit:contain; border-radius:12px;
     }
     .img-slide-caption {
-      position:relative; z-index:1;
       font-family:var(--font-head); font-size:16px; font-weight:600;
-      color:#fff; text-align:center; max-width:80%;
-      text-shadow:0 2px 8px rgba(0,0,0,.8);
+      color:var(--text-dim); text-align:center; max-width:80%; padding:0 20px;
+    }
+    .img-slide-full .img-slide-img {
+      max-height:100%; border-radius:18px; position:absolute; inset:0;
+      width:100%; height:100%; object-fit:cover; opacity:.85;
+    }
+    .img-slide-full .img-slide-caption {
+      position:absolute; bottom:20px; left:50%; transform:translateX(-50%);
+      background:rgba(0,0,0,.6); padding:10px 24px; border-radius:40px;
+      color:#fff; backdrop-filter:blur(6px); white-space:nowrap;
     }
 
     /* ── ADMIN OVERLAY ── */
     #admin-overlay {
-      display:none; position:fixed; inset:0; z-index:1000;
-      background:rgba(0,0,0,.92); backdrop-filter:blur(12px);
-      flex-direction:column;
+      display:none; position:fixed; inset:0; z-index:500;
+      background:rgba(0,0,0,.85); backdrop-filter:blur(12px);
+      overflow-y:auto;
     }
-    #admin-overlay.open { display:flex; }
+    #admin-overlay.open { display:block; }
 
-    #admin-bar {
+    #admin-panel {
+      max-width:720px; margin:24px auto 60px; padding:0 16px;
+    }
+
+    .adm-header {
       display:flex; align-items:center; gap:14px;
-      padding:14px 20px; background:rgba(255,255,255,.04);
-      border-bottom:1px solid var(--border); flex-shrink:0;
+      padding:20px 0 16px; border-bottom:1px solid var(--border); margin-bottom:20px;
     }
-    #admin-bar-title {
-      font-family:var(--font-display); font-size:22px;
-      color:var(--blue); letter-spacing:1px; flex:1;
-    }
-    .adm-badge {
-      font-size:10px; font-weight:800; letter-spacing:2px;
-      color:#000; background:var(--amber);
-      padding:3px 10px; border-radius:20px; text-transform:uppercase;
-    }
-    .adm-btn {
-      padding:9px 18px; border-radius:10px; border:none; cursor:pointer;
-      font-family:var(--font-head); font-size:13px; font-weight:700;
-      transition:all .15s;
-    }
-    .adm-btn-ghost {
-      background:var(--surface2); color:var(--text-dim);
-    }
-    .adm-btn-ghost:hover { background:var(--surface); color:var(--text); }
-    .adm-btn-primary {
-      background:var(--blue); color:#000;
-    }
-    .adm-btn-primary:hover { filter:brightness(1.1); }
-    .adm-btn-danger {
-      background:rgba(248,113,113,.15); color:var(--red);
-      border:1px solid rgba(248,113,113,.3);
-    }
-    .adm-btn-danger:hover { background:var(--red); color:#000; }
-    .adm-btn-success {
-      background:var(--green); color:#000;
-    }
-    .adm-btn-success:hover { filter:brightness(1.1); }
-
-    /* Tabs */
-    #admin-tabs {
-      display:flex; gap:4px; padding:12px 20px 0;
-      border-bottom:1px solid var(--border); flex-shrink:0;
-      overflow-x:auto;
-    }
-    .adm-tab {
-      padding:9px 16px; border-radius:10px 10px 0 0;
-      font-family:var(--font-head); font-size:12px; font-weight:700;
-      cursor:pointer; color:var(--text-muted); transition:all .15s;
-      white-space:nowrap; border:1px solid transparent;
-      border-bottom:none; margin-bottom:-1px;
-    }
-    .adm-tab:hover { color:var(--text-dim); }
-    .adm-tab.active {
-      background:var(--surface2); color:var(--blue);
-      border-color:var(--border);
-    }
-
-    /* Panel body */
-    #admin-body {
-      flex:1; overflow-y:auto; padding:20px;
-      scrollbar-width:thin; scrollbar-color:var(--border) transparent;
-    }
-
-    .adm-panel { display:none; }
-    .adm-panel.active { display:block; }
-
-    /* Form elements */
-    .adm-section { margin-bottom:28px; }
-    .adm-section-title {
-      font-family:var(--font-head); font-size:11px; font-weight:800;
-      color:var(--text-muted); text-transform:uppercase; letter-spacing:2px;
-      margin-bottom:12px;
-    }
-    .adm-row {
-      display:grid; gap:10px; margin-bottom:10px;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    }
-    .adm-field { display:flex; flex-direction:column; gap:5px; }
-    .adm-label {
-      font-size:11px; font-weight:700; color:var(--text-muted);
-      font-family:var(--font-head); text-transform:uppercase; letter-spacing:1px;
-    }
-    .adm-input, .adm-select, .adm-textarea {
+    .adm-title { font-family:var(--font-display); font-size:32px; color:var(--blue); flex:1; }
+    .adm-close {
       background:var(--surface2); border:1px solid var(--border);
+      border-radius:10px; padding:8px 16px; cursor:pointer;
+      font-family:var(--font-head); font-size:13px; font-weight:700; color:var(--text-dim);
+      transition:all .2s;
+    }
+    .adm-close:hover { color:var(--red); border-color:var(--red); }
+
+    .adm-section {
+      background:var(--surface); border:1px solid var(--border);
+      border-radius:14px; padding:18px 20px; margin-bottom:14px;
+    }
+    .adm-section-title {
+      font-family:var(--font-head); font-size:12px; font-weight:800;
+      color:var(--text-dim); text-transform:uppercase; letter-spacing:2px;
+      margin-bottom:14px; display:flex; align-items:center; gap:8px;
+    }
+
+    .adm-row { display:flex; gap:10px; margin-bottom:10px; align-items:flex-start; }
+    .adm-row:last-child { margin-bottom:0; }
+
+    .adm-input, .adm-select, .adm-textarea {
+      flex:1; background:#0a1020; border:1px solid var(--border);
       border-radius:8px; padding:9px 12px; color:var(--text);
       font-family:var(--font-body); font-size:13px; outline:none;
-      transition:border-color .15s; width:100%;
+      transition:border-color .2s;
     }
-    .adm-input:focus, .adm-select:focus, .adm-textarea:focus {
-      border-color:var(--blue);
+    .adm-input:focus, .adm-select:focus, .adm-textarea:focus { border-color:var(--blue); }
+    .adm-input::placeholder, .adm-textarea::placeholder { color:var(--text-muted); }
+    .adm-textarea { resize:vertical; min-height:64px; }
+    .adm-select { cursor:pointer; }
+    .adm-label {
+      font-size:11px; font-weight:700; color:var(--text-muted);
+      text-transform:uppercase; letter-spacing:1px; margin-bottom:4px;
+      display:block;
     }
-    .adm-textarea { resize:vertical; min-height:72px; }
-    .adm-select option { background:#0f1828; }
 
-    /* Repeater cards */
-    .adm-card {
-      background:var(--surface); border:1px solid var(--border);
-      border-radius:12px; padding:14px 16px; margin-bottom:10px;
-      position:relative;
-    }
-    .adm-card-del {
-      position:absolute; top:10px; right:10px;
-      background:none; border:none; color:var(--text-muted);
-      cursor:pointer; font-size:14px; transition:color .15s;
-    }
-    .adm-card-del:hover { color:var(--red); }
-    .adm-add-btn {
-      display:flex; align-items:center; gap:6px;
-      background:var(--surface); border:1px dashed var(--border);
-      border-radius:10px; padding:10px 16px; cursor:pointer;
-      color:var(--text-muted); font-size:13px; font-weight:600;
-      font-family:var(--font-head); transition:all .15s; width:100%;
-      margin-top:6px;
-    }
-    .adm-add-btn:hover { border-color:var(--blue); color:var(--blue); }
+    .adm-field { flex:1; display:flex; flex-direction:column; }
 
-    /* PIN screen */
+    .btn-adm-add {
+      background:var(--surface2); border:1px dashed var(--border);
+      border-radius:8px; padding:9px 14px; cursor:pointer;
+      font-family:var(--font-head); font-size:12px; font-weight:700;
+      color:var(--text-dim); transition:all .2s; width:100%; margin-top:8px;
+    }
+    .btn-adm-add:hover { border-color:var(--blue); color:var(--blue); }
+
+    .btn-adm-del {
+      background:none; border:1px solid var(--border); border-radius:8px;
+      padding:9px 10px; cursor:pointer; color:var(--text-muted);
+      transition:all .2s; flex-shrink:0; font-size:14px;
+    }
+    .btn-adm-del:hover { color:var(--red); border-color:var(--red); }
+
+    .adm-export-bar {
+      position:sticky; bottom:0; background:rgba(7,13,26,.97);
+      border-top:1px solid var(--border); padding:14px 16px;
+      display:flex; gap:10px; align-items:center;
+      max-width:720px; margin:0 auto;
+    }
+
+    .btn-export {
+      flex:1; background:var(--blue); color:#000; border:none;
+      border-radius:10px; padding:13px; cursor:pointer;
+      font-family:var(--font-display); font-size:20px; font-weight:700;
+      letter-spacing:1px; transition:all .2s;
+    }
+    .btn-export:hover { background:#60d4f8; transform:translateY(-1px); }
+
+    .adm-export-hint { font-size:11px; color:var(--text-muted); font-family:var(--font-head); line-height:1.5; }
+
+    /* PIN SCREEN */
     #pin-screen {
-      display:none; position:fixed; inset:0; z-index:1001;
-      background:rgba(0,0,0,.95); backdrop-filter:blur(16px);
-      flex-direction:column; align-items:center; justify-content:center; gap:24px;
+      display:none; position:fixed; inset:0; z-index:600;
+      background:rgba(0,0,0,.92); backdrop-filter:blur(16px);
+      align-items:center; justify-content:center; flex-direction:column; gap:20px;
     }
     #pin-screen.open { display:flex; }
-    #pin-title {
-      font-family:var(--font-display); font-size:28px;
-      color:var(--text); letter-spacing:2px;
-    }
-    #pin-dots { display:flex; gap:14px; }
-    .pin-dot {
-      width:16px; height:16px; border-radius:50%;
-      border:2px solid var(--text-muted); transition:all .15s;
-    }
+    .pin-title { font-family:var(--font-display); font-size:28px; color:var(--blue); letter-spacing:2px; }
+    .pin-dots { display:flex; gap:14px; }
+    .pin-dot { width:16px; height:16px; border-radius:50%; border:2px solid var(--text-muted); transition:all .2s; }
     .pin-dot.filled { background:var(--blue); border-color:var(--blue); }
-    .pin-dot.error  { background:var(--red);  border-color:var(--red); animation:shake .4s ease; }
-    @keyframes shake {
-      0%,100%{transform:translateX(0);}
-      25%{transform:translateX(-6px);}
-      75%{transform:translateX(6px);}
+    .pin-pad { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; width:240px; }
+    .pin-btn {
+      background:var(--surface2); border:1px solid var(--border); border-radius:12px;
+      padding:16px; font-family:var(--font-display); font-size:26px; color:var(--text);
+      cursor:pointer; transition:all .15s; text-align:center;
     }
-    #pin-pad {
-      display:grid; grid-template-columns:repeat(3,72px);
-      gap:10px;
-    }
-    .pin-key {
-      height:60px; border-radius:14px;
-      background:var(--surface2); border:1px solid var(--border);
-      color:var(--text); font-family:var(--font-display); font-size:26px;
-      cursor:pointer; transition:all .12s; display:flex;
-      align-items:center; justify-content:center;
-    }
-    .pin-key:hover  { background:var(--surface); border-color:var(--blue); }
-    .pin-key:active { transform:scale(.93); }
-    .pin-key.wide   { grid-column:span 2; }
-    #pin-hint { font-size:12px; color:var(--text-muted); font-family:var(--font-head); }
-    #pin-error { font-size:13px; color:var(--red); font-family:var(--font-head); font-weight:700; min-height:18px; }
+    .pin-btn:hover { background:var(--surface); border-color:var(--blue); color:var(--blue); }
+    .pin-btn:active { transform:scale(.93); }
+    .pin-error { font-size:13px; color:var(--red); font-family:var(--font-head); min-height:20px; }
+    .pin-hint { font-size:11px; color:var(--text-muted); font-family:var(--font-head); }
 
-    /* Export success toast */
-    #export-toast {
-      position:fixed; bottom:60px; left:50%; transform:translateX(-50%) translateY(20px);
-      background:var(--green); color:#000; padding:10px 22px;
-      border-radius:10px; font-weight:800; font-size:13px; z-index:2000;
-      opacity:0; transition:all .3s; pointer-events:none;
+    /* clock hold indicator */
+    #clock-hold-ring {
+      position:absolute; inset:-4px; border-radius:50%;
+      border:2px solid var(--blue); opacity:0;
+      transition:opacity .2s; pointer-events:none;
     }
-    #export-toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+    #clock-block { position:relative; cursor:pointer; user-select:none; }
 
     /* ── TICKER ── */
     #ticker-bar { position:fixed; bottom:0; left:0; right:0; height:44px; background:rgba(7,13,26,.97); border-top:1px solid var(--border); display:flex; align-items:center; overflow:hidden; z-index:50; }
@@ -542,7 +574,8 @@
   <div id="company-name">Team Board</div>
   <div id="slide-dots"></div>
   <button id="lb-jump" onclick="jumpToLeaderboard()" title="Go to Leaderboard">🏅 Leaderboard</button>
-  <div id="clock-block">
+  <div id="clock-block" id="clock-block">
+    <div id="clock-hold-ring"></div>
     <div id="clock">00:00</div>
     <div id="date-str">Loading…</div>
   </div>
@@ -560,232 +593,225 @@
   <div id="ticker-wrap"><div id="ticker-track"></div></div>
 </div>
 
-<!-- PIN SCREEN -->
-<div id="pin-screen">
-  <div id="pin-title">🔐 Admin Access</div>
-  <div id="pin-dots">
-    <div class="pin-dot" id="pd0"></div>
-    <div class="pin-dot" id="pd1"></div>
-    <div class="pin-dot" id="pd2"></div>
-    <div class="pin-dot" id="pd3"></div>
-  </div>
-  <div id="pin-error"></div>
-  <div id="pin-pad">
-    <button class="pin-key" onclick="pinKey('1')">1</button>
-    <button class="pin-key" onclick="pinKey('2')">2</button>
-    <button class="pin-key" onclick="pinKey('3')">3</button>
-    <button class="pin-key" onclick="pinKey('4')">4</button>
-    <button class="pin-key" onclick="pinKey('5')">5</button>
-    <button class="pin-key" onclick="pinKey('6')">6</button>
-    <button class="pin-key" onclick="pinKey('7')">7</button>
-    <button class="pin-key" onclick="pinKey('8')">8</button>
-    <button class="pin-key" onclick="pinKey('9')">9</button>
-    <button class="pin-key" onclick="pinKey('0')">0</button>
-    <button class="pin-key" onclick="pinBack()">⌫</button>
-  </div>
-  <div id="pin-hint">Hold the clock for 3 seconds to open</div>
-  <button class="adm-btn adm-btn-ghost" onclick="closePinScreen()" style="margin-top:8px">Cancel</button>
-</div>
-
-<!-- ADMIN PANEL -->
-<div id="admin-overlay">
-  <div id="admin-bar">
-    <div id="admin-bar-title">⚙️ Admin Panel</div>
-    <span class="adm-badge">v5</span>
-    <button class="adm-btn adm-btn-ghost" onclick="closeAdmin()">✕ Close</button>
-    <button class="adm-btn adm-btn-success" onclick="exportJSON()">⬇ Export data.json</button>
-  </div>
-
-  <div id="admin-tabs">
-    <div class="adm-tab active" onclick="admTab('general')">⚙️ General</div>
-    <div class="adm-tab" onclick="admTab('announcements')">📢 Announcements</div>
-    <div class="adm-tab" onclick="admTab('kpis')">📊 KPIs</div>
-    <div class="adm-tab" onclick="admTab('target')">🎯 Target</div>
-    <div class="adm-tab" onclick="admTab('leaderboard')">🏅 Leaderboard</div>
-    <div class="adm-tab" onclick="admTab('tasks')">✅ Tasks</div>
-    <div class="adm-tab" onclick="admTab('rota')">🗓️ Rota</div>
-    <div class="adm-tab" onclick="admTab('countdowns')">⏳ Countdowns</div>
-    <div class="adm-tab" onclick="admTab('birthdays')">🎂 Birthdays</div>
-    <div class="adm-tab" onclick="admTab('team')">🚦 Team</div>
-    <div class="adm-tab" onclick="admTab('images')">🖼️ Image Slides</div>
-    <div class="adm-tab" onclick="admTab('meme')">😂 Meme</div>
-    <div class="adm-tab" onclick="admTab('win')">🏆 Weekly Win</div>
-    <div class="adm-tab" onclick="admTab('ticker')">↔️ Ticker</div>
-    <div class="adm-tab" onclick="admTab('pin')">🔐 PIN</div>
-  </div>
-
-  <div id="admin-body">
-
-    <!-- GENERAL -->
-    <div class="adm-panel active" id="panel-general">
-      <div class="adm-section">
-        <div class="adm-section-title">Board Settings</div>
-        <div class="adm-row">
-          <div class="adm-field"><label class="adm-label">Company Name</label><input class="adm-input" id="g-company" placeholder="Your Team Name"></div>
-          <div class="adm-field"><label class="adm-label">Weather City</label><input class="adm-input" id="g-city" placeholder="London"></div>
-          <div class="adm-field"><label class="adm-label">Slide Duration (seconds)</label><input class="adm-input" id="g-dur" type="number" min="5" max="60" placeholder="10"></div>
-          <div class="adm-field"><label class="adm-label">News RSS Feed URL</label><input class="adm-input" id="g-rss" placeholder="https://feeds.bbc.co.uk/..."></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ANNOUNCEMENTS -->
-    <div class="adm-panel" id="panel-announcements">
-      <div class="adm-section">
-        <div class="adm-section-title">Announcements</div>
-        <div id="ann-list"></div>
-        <button class="adm-add-btn" onclick="annAdd()">+ Add Announcement</button>
-      </div>
-    </div>
-
-    <!-- KPIs -->
-    <div class="adm-panel" id="panel-kpis">
-      <div class="adm-section">
-        <div class="adm-section-title">KPIs (max 4)</div>
-        <div id="kpi-list"></div>
-        <button class="adm-add-btn" onclick="kpiAdd()">+ Add KPI</button>
-      </div>
-    </div>
-
-    <!-- TARGET -->
-    <div class="adm-panel" id="panel-target">
-      <div class="adm-section">
-        <div class="adm-section-title">Team Target Thermometer</div>
-        <div class="adm-row">
-          <div class="adm-field"><label class="adm-label">Label</label><input class="adm-input" id="t-label" placeholder="Monthly Sales Target"></div>
-          <div class="adm-field"><label class="adm-label">Current Value</label><input class="adm-input" id="t-current" type="number" placeholder="24000"></div>
-          <div class="adm-field"><label class="adm-label">Target Value</label><input class="adm-input" id="t-target" type="number" placeholder="35000"></div>
-          <div class="adm-field"><label class="adm-label">Unit (e.g. GBP)</label><input class="adm-input" id="t-unit" placeholder="GBP"></div>
-        </div>
-        <div class="adm-field"><label class="adm-label">Message</label><input class="adm-input" id="t-msg" placeholder="Keep pushing!"></div>
-      </div>
-    </div>
-
-    <!-- LEADERBOARD -->
-    <div class="adm-panel" id="panel-leaderboard">
-      <div class="adm-section">
-        <div class="adm-section-title">Leaderboard Entries</div>
-        <div id="lb-list"></div>
-        <button class="adm-add-btn" onclick="lbAdd()">+ Add Person</button>
-      </div>
-    </div>
-
-    <!-- TASKS -->
-    <div class="adm-panel" id="panel-tasks">
-      <div class="adm-section">
-        <div class="adm-section-title">Team Tasks</div>
-        <div id="task-list"></div>
-        <button class="adm-add-btn" onclick="taskAdd()">+ Add Task</button>
-      </div>
-    </div>
-
-    <!-- ROTA -->
-    <div class="adm-panel" id="panel-rota">
-      <div class="adm-section">
-        <div class="adm-section-title">Weekly Rota</div>
-        <div class="adm-row" style="grid-template-columns:1fr">
-          <div class="adm-field"><label class="adm-label">Week Label</label><input class="adm-input" id="rota-week" placeholder="Week of 7 Apr 2025"></div>
-        </div>
-        <div id="rota-list"></div>
-        <button class="adm-add-btn" onclick="rotaAdd()">+ Add Person</button>
-      </div>
-    </div>
-
-    <!-- COUNTDOWNS -->
-    <div class="adm-panel" id="panel-countdowns">
-      <div class="adm-section">
-        <div class="adm-section-title">Countdown Timers (max 4)</div>
-        <div id="cd-list"></div>
-        <button class="adm-add-btn" onclick="cdAdd()">+ Add Countdown</button>
-      </div>
-    </div>
-
-    <!-- BIRTHDAYS -->
-    <div class="adm-panel" id="panel-birthdays">
-      <div class="adm-section">
-        <div class="adm-section-title">Birthdays & Anniversaries</div>
-        <div id="bday-list"></div>
-        <button class="adm-add-btn" onclick="bdayAdd()">+ Add Entry</button>
-      </div>
-    </div>
-
-    <!-- TEAM STATUS -->
-    <div class="adm-panel" id="panel-team">
-      <div class="adm-section">
-        <div class="adm-section-title">Team Members (Status Board)</div>
-        <div id="team-list"></div>
-        <button class="adm-add-btn" onclick="teamAdd()">+ Add Member</button>
-      </div>
-    </div>
-
-    <!-- IMAGE SLIDES -->
-    <div class="adm-panel" id="panel-images">
-      <div class="adm-section">
-        <div class="adm-section-title">Image / Photo Slides</div>
-        <p style="font-size:13px;color:var(--text-dim);margin-bottom:14px;line-height:1.6">
-          Add any image URL (from the web, Google Drive share link, Imgur etc). The image fills the slide with a blurred background. Optional caption underneath.
-        </p>
-        <div id="img-list"></div>
-        <button class="adm-add-btn" onclick="imgAdd()">+ Add Image Slide</button>
-      </div>
-    </div>
-
-    <!-- MEME -->
-    <div class="adm-panel" id="panel-meme">
-      <div class="adm-section">
-        <div class="adm-section-title">Meme / GIF of the Day</div>
-        <div class="adm-field" style="margin-bottom:10px"><label class="adm-label">Image or GIF URL</label><input class="adm-input" id="meme-url" placeholder="https://media.giphy.com/..."></div>
-        <div class="adm-field"><label class="adm-label">Caption (optional)</label><input class="adm-input" id="meme-caption" placeholder="Us on a Friday afternoon ☕"></div>
-      </div>
-    </div>
-
-    <!-- WEEKLY WIN -->
-    <div class="adm-panel" id="panel-win">
-      <div class="adm-section">
-        <div class="adm-section-title">Weekly Win</div>
-        <div class="adm-field" style="margin-bottom:10px"><label class="adm-label">Headline</label><input class="adm-input" id="win-headline" placeholder="Landed the Henderson Account!"></div>
-        <div class="adm-field" style="margin-bottom:10px"><label class="adm-label">Detail</label><textarea class="adm-textarea" id="win-detail" placeholder="More detail about the win..."></textarea></div>
-        <div class="adm-field"><label class="adm-label">Who (credit)</label><input class="adm-input" id="win-who" placeholder="Sarah and the Sales Team"></div>
-      </div>
-    </div>
-
-    <!-- TICKER -->
-    <div class="adm-panel" id="panel-ticker">
-      <div class="adm-section">
-        <div class="adm-section-title">Ticker Messages</div>
-        <div id="ticker-list"></div>
-        <button class="adm-add-btn" onclick="tickerAdd()">+ Add Message</button>
-      </div>
-    </div>
-
-    <!-- PIN -->
-    <div class="adm-panel" id="panel-pin">
-      <div class="adm-section">
-        <div class="adm-section-title">Change Admin PIN</div>
-        <p style="font-size:13px;color:var(--text-dim);margin-bottom:14px;line-height:1.6">
-          The PIN is saved in this browser. You'll need to set it on each device separately.
-          Default PIN is <strong style="color:var(--blue)">1234</strong>.
-        </p>
-        <div class="adm-row">
-          <div class="adm-field"><label class="adm-label">Current PIN</label><input class="adm-input" id="pin-current" type="password" maxlength="4" placeholder="••••"></div>
-          <div class="adm-field"><label class="adm-label">New PIN</label><input class="adm-input" id="pin-new" type="password" maxlength="4" placeholder="••••"></div>
-          <div class="adm-field"><label class="adm-label">Confirm New PIN</label><input class="adm-input" id="pin-confirm" type="password" maxlength="4" placeholder="••••"></div>
-        </div>
-        <button class="adm-btn adm-btn-primary" onclick="changePin()" style="margin-top:8px">Update PIN</button>
-        <div id="pin-change-msg" style="margin-top:10px;font-size:13px;font-weight:700;min-height:18px;font-family:var(--font-head)"></div>
-      </div>
-    </div>
-
-  </div><!-- /admin-body -->
-</div><!-- /admin-overlay -->
-
-<div id="export-toast">✅ data.json downloaded!</div>
-
 <!-- STATUS MODAL -->
 <div class="s-overlay" id="s-overlay" onclick="overlayClose(event)">
   <div class="s-modal">
     <div class="s-modal-name" id="s-modal-name">Update Status</div>
     <div id="s-opts"></div>
+  </div>
+</div>
+
+<!-- PIN SCREEN -->
+<div id="pin-screen">
+  <div class="pin-title">🔐 Admin Access</div>
+  <div class="pin-hint">Hold the clock for 3 seconds to open</div>
+  <div class="pin-dots">
+    <div class="pin-dot" id="pd0"></div>
+    <div class="pin-dot" id="pd1"></div>
+    <div class="pin-dot" id="pd2"></div>
+    <div class="pin-dot" id="pd3"></div>
+  </div>
+  <div class="pin-pad">
+    <div class="pin-btn" onclick="pinPress(1)">1</div>
+    <div class="pin-btn" onclick="pinPress(2)">2</div>
+    <div class="pin-btn" onclick="pinPress(3)">3</div>
+    <div class="pin-btn" onclick="pinPress(4)">4</div>
+    <div class="pin-btn" onclick="pinPress(5)">5</div>
+    <div class="pin-btn" onclick="pinPress(6)">6</div>
+    <div class="pin-btn" onclick="pinPress(7)">7</div>
+    <div class="pin-btn" onclick="pinPress(8)">8</div>
+    <div class="pin-btn" onclick="pinPress(9)">9</div>
+    <div class="pin-btn" onclick="pinClear()" style="font-size:16px">⌫</div>
+    <div class="pin-btn" onclick="pinPress(0)">0</div>
+    <div class="pin-btn" onclick="pinCancel()" style="font-size:13px;color:var(--text-muted)">ESC</div>
+  </div>
+  <div class="pin-error" id="pin-error"></div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div id="admin-overlay">
+  <div id="admin-panel">
+    <div class="adm-header">
+      <div class="adm-title">⚙️ Admin Panel</div>
+      <button class="adm-close" onclick="closeAdmin()">✕ Close</button>
+    </div>
+
+    <!-- PIN CHANGE -->
+    <div class="adm-section">
+      <div class="adm-section-title">🔐 Change PIN</div>
+      <div class="adm-row">
+        <div class="adm-field">
+          <label class="adm-label">New 4-digit PIN</label>
+          <input class="adm-input" id="adm-pin" type="password" maxlength="4" placeholder="Enter new PIN" inputmode="numeric">
+        </div>
+        <div class="adm-field">
+          <label class="adm-label">Confirm PIN</label>
+          <input class="adm-input" id="adm-pin2" type="password" maxlength="4" placeholder="Confirm PIN" inputmode="numeric">
+        </div>
+        <button class="btn-adm-del" onclick="savePin()" title="Save PIN" style="align-self:flex-end;color:var(--green);padding:9px 14px;">✓</button>
+      </div>
+      <div id="pin-save-msg" style="font-size:12px;color:var(--green);font-family:var(--font-head);min-height:18px;margin-top:4px;"></div>
+    </div>
+
+    <!-- SETTINGS -->
+    <div class="adm-section">
+      <div class="adm-section-title">⚙️ General Settings</div>
+      <div class="adm-row">
+        <div class="adm-field"><label class="adm-label">Company Name</label><input class="adm-input" id="adm-company" placeholder="Your Team Name"></div>
+        <div class="adm-field"><label class="adm-label">Weather City</label><input class="adm-input" id="adm-city" placeholder="London"></div>
+        <div class="adm-field"><label class="adm-label">Slide Duration (sec)</label><input class="adm-input" id="adm-dur" type="number" min="5" max="60" placeholder="10"></div>
+      </div>
+    </div>
+
+    <!-- NEW STARTER -->
+    <div class="adm-section">
+      <div class="adm-section-title">🌟 New Starter Spotlight</div>
+      <div class="adm-row">
+        <div class="adm-field" style="max-width:120px">
+          <label class="adm-label">Show Slide</label>
+          <select class="adm-select" id="adm-starter-enabled">
+            <option value="true">✅ Enabled</option>
+            <option value="false">❌ Hidden</option>
+          </select>
+        </div>
+        <div class="adm-field"><label class="adm-label">Full Name</label><input class="adm-input" id="adm-starter-name" placeholder="Jamie Collins"></div>
+        <div class="adm-field"><label class="adm-label">Role</label><input class="adm-input" id="adm-starter-role" placeholder="Front Office Coordinator"></div>
+      </div>
+      <div class="adm-row">
+        <div class="adm-field"><label class="adm-label">Start Date</label><input class="adm-input" id="adm-starter-date" placeholder="Monday 7 April 2025"></div>
+        <div class="adm-field"><label class="adm-label">Fun Fact</label><input class="adm-input" id="adm-starter-fact" placeholder="Jamie speaks three languages!"></div>
+      </div>
+      <div class="adm-row">
+        <div class="adm-field"><label class="adm-label">Welcome Message</label><input class="adm-input" id="adm-starter-welcome" placeholder="Please give Jamie a warm welcome!"></div>
+      </div>
+    </div>
+
+    <!-- IMPORTANT NUMBERS -->
+    <div class="adm-section">
+      <div class="adm-section-title">📞 Important Numbers</div>
+      <div id="adm-numbers"></div>
+      <button class="btn-adm-add" onclick="addNumber()">+ Add Number</button>
+    </div>
+
+    <!-- SUPPLIES -->
+    <div class="adm-section">
+      <div class="adm-section-title">🧴 Supplies Status</div>
+      <div id="adm-supplies"></div>
+      <button class="btn-adm-add" onclick="addSupply()">+ Add Supply</button>
+    </div>
+
+    <!-- TRAINING -->
+    <div class="adm-section">
+      <div class="adm-section-title">🎓 Training Reminders</div>
+      <div id="adm-training"></div>
+      <button class="btn-adm-add" onclick="addTraining()">+ Add Training</button>
+    </div>
+
+    <!-- WEEK AT A GLANCE -->
+    <div class="adm-section">
+      <div class="adm-section-title">🗓️ Week at a Glance</div>
+      <div class="adm-row">
+        <div class="adm-field"><label class="adm-label">Week Label</label><input class="adm-input" id="adm-week-label" placeholder="Week of 7 Apr 2025"></div>
+      </div>
+      <div id="adm-week-days"></div>
+    </div>
+
+    <!-- WEEKLY WIN -->
+    <div class="adm-section">
+      <div class="adm-section-title">🏆 Weekly Win</div>
+      <div class="adm-row">
+        <div class="adm-field"><label class="adm-label">Headline</label><input class="adm-input" id="adm-win-hl" placeholder="Landed the big account!"></div>
+      </div>
+      <div class="adm-row">
+        <div class="adm-field"><label class="adm-label">Detail</label><textarea class="adm-textarea" id="adm-win-detail" placeholder="More detail about the win…"></textarea></div>
+      </div>
+      <div class="adm-row">
+        <div class="adm-field"><label class="adm-label">Who</label><input class="adm-input" id="adm-win-who" placeholder="Alice and the Sales Team"></div>
+      </div>
+    </div>
+
+    <!-- ANNOUNCEMENTS -->
+    <div class="adm-section">
+      <div class="adm-section-title">📢 Announcements</div>
+      <div id="adm-annos"></div>
+      <button class="btn-adm-add" onclick="addAnno()">+ Add Announcement</button>
+    </div>
+
+    <!-- KPIs -->
+    <div class="adm-section">
+      <div class="adm-section-title">📊 KPIs</div>
+      <div id="adm-kpis"></div>
+      <button class="btn-adm-add" onclick="addKpi()">+ Add KPI</button>
+    </div>
+
+    <!-- TARGET -->
+    <div class="adm-section">
+      <div class="adm-section-title">🎯 Target Thermometer</div>
+      <div class="adm-row">
+        <div class="adm-field"><label class="adm-label">Label</label><input class="adm-input" id="adm-tgt-label" placeholder="Monthly Sales Target"></div>
+        <div class="adm-field"><label class="adm-label">Current</label><input class="adm-input" id="adm-tgt-cur" type="number" placeholder="24000"></div>
+        <div class="adm-field"><label class="adm-label">Target</label><input class="adm-input" id="adm-tgt-tgt" type="number" placeholder="35000"></div>
+        <div class="adm-field"><label class="adm-label">Unit</label><input class="adm-input" id="adm-tgt-unit" placeholder="GBP"></div>
+      </div>
+      <div class="adm-row">
+        <div class="adm-field"><label class="adm-label">Message</label><input class="adm-input" id="adm-tgt-msg" placeholder="Keep pushing!"></div>
+      </div>
+    </div>
+
+    <!-- LEADERBOARD -->
+    <div class="adm-section">
+      <div class="adm-section-title">🏅 Leaderboard</div>
+      <div id="adm-lb"></div>
+      <button class="btn-adm-add" onclick="addLbEntry()">+ Add Person</button>
+    </div>
+
+    <!-- TASKS -->
+    <div class="adm-section">
+      <div class="adm-section-title">✅ Team Tasks</div>
+      <div id="adm-tasks"></div>
+      <button class="btn-adm-add" onclick="addTask()">+ Add Task</button>
+    </div>
+
+    <!-- MEME -->
+    <div class="adm-section">
+      <div class="adm-section-title">😂 Meme / GIF of the Day</div>
+      <div class="adm-row">
+        <div class="adm-field"><label class="adm-label">Image or GIF URL</label><input class="adm-input" id="adm-meme-url" placeholder="https://media.giphy.com/…"></div>
+      </div>
+      <div class="adm-row">
+        <div class="adm-field"><label class="adm-label">Caption (optional)</label><input class="adm-input" id="adm-meme-cap" placeholder="Us on a Friday afternoon ☕"></div>
+      </div>
+    </div>
+
+    <!-- IMAGE SLIDES -->
+    <div class="adm-section">
+      <div class="adm-section-title">🖼️ Image Slides</div>
+      <div id="adm-imgslides"></div>
+      <button class="btn-adm-add" onclick="addImgSlide()">+ Add Image Slide</button>
+    </div>
+
+    <!-- TICKER -->
+    <div class="adm-section">
+      <div class="adm-section-title">↔️ Ticker Messages</div>
+      <div id="adm-ticker"></div>
+      <button class="btn-adm-add" onclick="addTicker()">+ Add Message</button>
+    </div>
+
+    <!-- ROTA -->
+    <div class="adm-section">
+      <div class="adm-section-title">🗓️ Rota Week Label</div>
+      <div class="adm-row">
+        <div class="adm-field"><label class="adm-label">Week Label</label><input class="adm-input" id="adm-rota-week" placeholder="Week of 7 Apr 2025"></div>
+      </div>
+    </div>
+
+    <div style="height:80px"></div>
+  </div>
+
+  <!-- STICKY EXPORT BAR -->
+  <div class="adm-export-bar">
+    <div class="adm-export-hint">Download your updated<br><strong>data.json</strong> then upload to GitHub</div>
+    <button class="btn-export" onclick="exportData()">⬇ Download data.json</button>
   </div>
 </div>
 
@@ -911,11 +937,11 @@ const QUOTES = [
 let cfg = null, slides = [], cur = 0, timer = null, lbSlideIndex = -1;
 const STATUS_KEY = 'nb_status_v4';
 const STATUSES = [
-  { id:'in',      label:'In Office',  emoji:'🏢', color:'var(--green)'       },
-  { id:'remote',  label:'Remote',     emoji:'🏠', color:'var(--purple)'      },
-  { id:'away',    label:'Away',       emoji:'⏸️',  color:'var(--amber)'       },
-  { id:'meeting', label:'In Meeting', emoji:'📞', color:'var(--blue)'        },
-  { id:'off',     label:'Off Today',  emoji:'🌙', color:'var(--text-muted)'  },
+  { id:'in',      label:'On Desk',     emoji:'✅', color:'var(--green)'       },
+  { id:'meeting', label:'In Meeting',  emoji:'📞', color:'var(--blue)'        },
+  { id:'away',    label:'On Break',    emoji:'☕', color:'var(--amber)'       },
+  { id:'out',     label:'Out of Office',emoji:'🚪', color:'var(--purple)'    },
+  { id:'off',     label:'Off Today',   emoji:'🌙', color:'var(--text-muted)'  },
 ];
 let newsItems = [];
 
@@ -968,54 +994,78 @@ async function buildSlides() {
   const dd  = String(now.getDate()).padStart(2,'0');
   const key = `${mm}-${dd}`;
 
-  // 1 — Birthdays / Anniversaries
+  // 1 — On This Day (Wikipedia — fetched async)
+  const otdEl = otdSlide();
+  slides.push(otdEl);
+  fetchOTD(mm, dd, otdEl);
+
+  // 2 — Birthdays / Anniversaries
   const bdays = (cfg.birthdays || []).filter(b => b.date === key);
   for (const b of bdays) {
     const extra = await fetchWikiExtra(b.type, mm, dd);
     slides.push(bdaySlide(b, extra));
   }
 
-  // 2 — International Day (if today)
+  // 3 — New Starter (if enabled)
+  if (cfg.new_starter?.enabled) slides.push(newStarterSlide(cfg.new_starter));
+
+  // 4 — International Day
   const intl = INTL_DAYS[key];
   if (intl) slides.push(intlSlide(intl));
 
-  // 3 — Quote of the Day
+  // 5 — Quote of the Day
   const doy = Math.floor((now - new Date(now.getFullYear(),0,0)) / 86400000);
-  const q = QUOTES[doy % QUOTES.length];
-  slides.push(quoteSlide(q, doy));
+  slides.push(quoteSlide(QUOTES[doy % QUOTES.length], doy));
 
-  // 4 — Weekly Win
-  if (cfg.weekly_win) slides.push(winSlide(cfg.weekly_win));
+  // 6 — Word of the Day
+  slides.push(wordSlide(doy));
 
-  // 5 — Announcements
+  // 7 — Fun Stat
+  const statEl = statSlide();
+  slides.push(statEl);
+  fetchStat(statEl);
+
+  // 8 — Weekly Win
+  if (cfg.weekly_win?.headline) slides.push(winSlide(cfg.weekly_win));
+
+  // 9 — Announcements
   (cfg.announcements || []).forEach(a => slides.push(annoSlide(a)));
 
-  // 6 — KPIs
+  // 10 — Week at a Glance
+  if (cfg.week_at_a_glance) slides.push(weekSlide(cfg.week_at_a_glance));
+
+  // 11 — KPIs
   if (cfg.kpis?.length) slides.push(kpiSlide(cfg.kpis));
 
-  // 7 — Target Thermometer
+  // 12 — Target Thermometer
   if (cfg.target) slides.push(thermoSlide(cfg.target));
 
-  // 8 — Rota
-  if (cfg.rota) slides.push(rotaSlide(cfg.rota));
+  // 13 — Important Numbers
+  if (cfg.important_numbers?.length) slides.push(numbersSlide(cfg.important_numbers));
 
-  // 9 — Countdowns
+  // 14 — Supplies Running Low
+  if (cfg.supplies?.length) slides.push(suppliesSlide(cfg.supplies));
+
+  // 15 — Training Reminders
+  if (cfg.training_reminders?.length) slides.push(trainingSlide(cfg.training_reminders));
+
+  // 16 — Countdowns
   if (cfg.countdowns?.length) slides.push(cdSlide(cfg.countdowns));
 
-  // 10 — Leaderboard
+  // 17 — Leaderboard
   if (cfg.leaderboard?.length) { lbSlideIndex = slides.length; slides.push(lbSlide(cfg.leaderboard)); }
 
-  // 11 — Status Board
+  // 18 — Status Board (front office statuses only)
   if (cfg.team?.length) slides.push(statusSlide(cfg.team));
 
-  // 12 — Tasks
+  // 19 — Tasks
   if (cfg.tasks?.length) slides.push(tasksSlide(cfg.tasks));
 
-  // 13 — Image slides
-  (cfg.image_slides || []).forEach(img => slides.push(imgSlide(img)));
+  // 20 — Meme
+  if (cfg.meme?.url) slides.push(memeSlide(cfg.meme));
 
-  // 14 — Meme
-  if (cfg.meme) slides.push(memeSlide(cfg.meme));
+  // 21 — Image Slides
+  (cfg.image_slides || []).forEach(s => slides.push(imgSlide(s)));
 
   if (!slides.length) return;
   slides.forEach(el => container.appendChild(el));
@@ -1428,444 +1478,275 @@ function updateDots() {
 
 function jump(i) { clearInterval(timer); show(i); startPlay(); }
 
-// ── Image Slide ──
-function imgSlide(img) {
+// ── On This Day ──
+function otdSlide() {
+  const el = mkSlide('slide-left');
+  el.id = 'otd-slide';
+  el.innerHTML = `
+    <div class="slide-hdr"><span class="slide-icon">📅</span><span class="slide-title">On This Day in History</span></div>
+    <div class="otd-card">
+      <div class="otd-loading">⏳ Fetching today's historical event…</div>
+    </div>`;
+  return el;
+}
+
+async function fetchOTD(mm, dd, el) {
+  try {
+    const r = await fetch(`https://en.wikipedia.org/api/rest_v1/feed/onthisday/events/${mm}/${dd}`);
+    const d = await r.json();
+    const events = d.events || [];
+    // Pick a notable event with a decent extract
+    const pick = events.find(e => e.pages?.length && e.pages[0].extract?.length > 80) || events[0];
+    if (!pick) return;
+    const page = pick.pages?.[0];
+    const extract = page?.extract?.split('.')[0] + '.';
+    el.querySelector('.otd-card').innerHTML = `
+      <div class="otd-year">${pick.year}</div>
+      <div class="otd-year-badge">
+        <span class="otd-year-text">${pick.year}</span>
+        <span class="otd-year-label">years in history</span>
+      </div>
+      <div class="otd-headline">${esc(pick.text || '')}</div>
+      <div class="otd-detail">${esc(extract || '')}</div>`;
+  } catch {
+    el.querySelector('.otd-card').innerHTML = `<div class="otd-loading">Could not load today's event — check connection.</div>`;
+  }
+}
+
+// ── Fun Stat ──
+function statSlide() {
   const el = mkSlide('zoom');
+  el.id = 'stat-slide';
+  el.innerHTML = `
+    <div class="slide-hdr"><span class="slide-icon">📊</span><span class="slide-title">Fun Stat of the Day</span></div>
+    <div class="stat-card">
+      <div class="stat-glow"></div>
+      <div class="stat-emoji">⏳</div>
+      <div class="stat-label">Did you know?</div>
+      <div class="stat-text">Fetching today's fact…</div>
+    </div>`;
+  return el;
+}
+
+// Curated fallback stats + uselessfacts API
+const FALLBACK_STATS = [
+  { emoji:'🌍', text:'Every minute, 500 hours of video are uploaded to YouTube.', source:'YouTube' },
+  { emoji:'🐝', text:'A single beehive can contain up to 80,000 bees during summer.', source:'Nature' },
+  { emoji:'⚡', text:'A bolt of lightning is five times hotter than the surface of the sun.', source:'NASA' },
+  { emoji:'🦷', text:'Your tooth enamel is the hardest substance your body produces.', source:'Science' },
+  { emoji:'🌊', text:'More than 80% of the world\'s oceans remain unexplored and unmapped.', source:'NOAA' },
+  { emoji:'🧠', text:'Your brain generates about 23 watts of power — enough to light a small bulb.', source:'Neuroscience' },
+  { emoji:'🌳', text:'There are roughly 3 trillion trees on Earth — about 400 for every person.', source:'Nature' },
+  { emoji:'🦈', text:'Sharks are older than trees — they\'ve existed for over 400 million years.', source:'Palaeontology' },
+  { emoji:'📱', text:'The average person unlocks their phone 80 times per day.', source:'Research' },
+  { emoji:'🐙', text:'Octopuses have three hearts, blue blood, and nine brains.', source:'Marine Biology' },
+  { emoji:'🌙', text:'The Moon is moving away from Earth at about 3.8cm per year.', source:'NASA' },
+  { emoji:'🎵', text:'Music can trigger the same pleasure centres in the brain as food and sex.', source:'Neuroscience' },
+  { emoji:'✈️', text:'A commercial flight generates less CO₂ per passenger than driving the same distance alone.', source:'Climate Research' },
+  { emoji:'🐘', text:'Elephants are the only animals that can\'t jump — and they\'re fine with that.', source:'Zoology' },
+  { emoji:'💤', text:'Humans spend roughly one third of their entire lives asleep.', source:'Sleep Science' },
+  { emoji:'🔬', text:'There are more bacteria in your mouth right now than people on Earth.', source:'Microbiology' },
+  { emoji:'🌺', text:'The smell of freshly cut grass is actually a distress signal released by the plant.', source:'Botany' },
+  { emoji:'🧊', text:'Hot water can freeze faster than cold water — this is called the Mpemba effect.', source:'Physics' },
+  { emoji:'🦴', text:'Babies are born with 270 bones — adults only have 206.', source:'Anatomy' },
+  { emoji:'🎲', text:'If you shuffle a deck of cards properly, it\'s likely no deck has ever been in that order before.', source:'Mathematics' },
+];
+
+async function fetchStat(el) {
+  const doy = Math.floor((new Date() - new Date(new Date().getFullYear(),0,0)) / 86400000);
+  let stat = FALLBACK_STATS[doy % FALLBACK_STATS.length];
+  try {
+    const r = await fetch('https://uselessfacts.jsph.pl/api/v2/facts/random?language=en');
+    const d = await r.json();
+    if (d.text) stat = { emoji:'🤯', text:d.text, source:'Useless Facts API' };
+  } catch {}
+  el.querySelector('.stat-card').innerHTML = `
+    <div class="stat-glow"></div>
+    <div class="stat-emoji">${stat.emoji}</div>
+    <div class="stat-label">Did you know?</div>
+    <div class="stat-text">${esc(stat.text)}</div>
+    <div class="stat-source">Source: ${esc(stat.source)}</div>`;
+}
+
+// ── Word of the Day ──
+const WORD_BANK = [
+  { lang:'French',     flag:'🇫🇷', word:'Dépaysement',  phonetic:'day-pay-iz-MON',   english:'The feeling of being a foreigner or fish out of water',  example:'On his first day in a new city, he felt a deep dépaysement.' },
+  { lang:'Japanese',   flag:'🇯🇵', word:'木漏れ日',       phonetic:'ko-mo-re-bi',       english:'Sunlight filtering through leaves in the trees',           example:'She paused to enjoy the komorebi on her morning walk.' },
+  { lang:'Portuguese', flag:'🇵🇹', word:'Saudade',       phonetic:'saw-DAH-deh',       english:'A deep emotional longing for something or someone absent',  example:'Listening to the old song filled her with saudade.' },
+  { lang:'German',     flag:'🇩🇪', word:'Fernweh',       phonetic:'FERN-veh',          english:'An ache to travel far away — a deep wanderlust',           example:'On grey Mondays, his fernweh was overwhelming.' },
+  { lang:'Danish',     flag:'🇩🇰', word:'Hygge',         phonetic:'HOO-gah',           english:'A quality of cosiness and comfortable conviviality',        example:'The team dinner had a real sense of hygge about it.' },
+  { lang:'Italian',    flag:'🇮🇹', word:'Abbiocco',      phonetic:'ab-bee-OH-koh',     english:'The drowsy feeling after eating a large meal',             example:'He blamed the abbiocco for his slow afternoon.' },
+  { lang:'Swedish',    flag:'🇸🇪', word:'Lagom',         phonetic:'LAH-gom',           english:'Not too much, not too little — just the right amount',     example:'The Swedish concept of lagom is central to their culture.' },
+  { lang:'Finnish',    flag:'🇫🇮', word:'Sisu',          phonetic:'SEE-soo',           english:'Extraordinary determination and resilience in adversity',   example:'It took real sisu to finish the project under pressure.' },
+  { lang:'Spanish',    flag:'🇪🇸', word:'Madrugada',     phonetic:'mah-droo-GAH-dah',  english:'The hours between midnight and dawn — the dark small hours', example:'He finished the report in the madrugada.' },
+  { lang:'Greek',      flag:'🇬🇷', word:'Meraki',        phonetic:'meh-RAH-kee',       english:'Doing something with soul, creativity and love',           example:'She cooked every meal with meraki.' },
+  { lang:'Dutch',      flag:'🇳🇱', word:'Uitwaaien',     phonetic:'OWT-vah-yen',       english:'To walk in the wind to clear your head',                  example:'A quick uitwaaien sorted out his thinking.' },
+  { lang:'Welsh',      flag:'🏴󠁧󠁢󠁷󠁬󠁳󠁿', word:'Hiraeth',       phonetic:'HEER-eyeth',        english:'A homesickness for a home you cannot return to or never had', example:'The old photograph stirred something like hiraeth in her.' },
+  { lang:'Czech',      flag:'🇨🇿', word:'Prozvonit',     phonetic:'proz-VOH-nit',      english:'To call someone\'s phone and hang up so they call you back', example:'He prozvonited her to save his credit.' },
+  { lang:'Indonesian', flag:'🇮🇩', word:'Jayus',         phonetic:'JAY-oos',           english:'A joke so unfunny it becomes funny',                       example:'His terrible pun was pure jayus.' },
+  { lang:'Russian',    flag:'🇷🇺', word:'Toska',         phonetic:'TAHS-kah',          english:'A longing with nothing to long for — vague restlessness',  example:'On Sunday afternoons he felt a vague toska.' },
+  { lang:'Hawaiian',   flag:'🌺',   word:'Pana Poʻo',    phonetic:'pah-nah-POH-oh',   english:'Scratching your head to remember something forgotten',     example:'She did a little pana poʻo trying to recall the name.' },
+  { lang:'Tagalog',    flag:'🇵🇭', word:'Gigil',         phonetic:'GEE-gil',           english:'The urge to pinch or squeeze something unbearably cute',   example:'The puppy gave her an overwhelming sense of gigil.' },
+  { lang:'Arabic',     flag:'🌙',   word:'Ya\'aburnee',  phonetic:'ya-AB-ur-nee',      english:'May you bury me — a term of endearment meaning I love you so much I want to die first', example:'He whispered ya\'aburnee as she left.' },
+  { lang:'Turkish',    flag:'🇹🇷', word:'Hüzün',        phonetic:'hoo-ZUHN',          english:'A collective melancholy felt by an entire city or people',  example:'Istanbul carries its hüzün like an old coat.' },
+  { lang:'Norwegian',  flag:'🇳🇴', word:'Forelsket',    phonetic:'for-EL-sket',       english:'The euphoria you feel when you\'re falling in love',        example:'The whole office noticed she was clearly forelsket.' },
+];
+
+function wordSlide(doy) {
+  const el = mkSlide('zoom');
+  const w = WORD_BANK[doy % WORD_BANK.length];
   el.innerHTML = `
     <div class="slide-hdr">
-      <span class="slide-icon">🖼️</span>
-      <span class="slide-title">${esc(img.title || 'Photo')}</span>
+      <span class="slide-icon">🌐</span>
+      <span class="slide-title">Word of the Day</span>
+      <span class="slide-tag" style="background:rgba(167,139,250,.15);color:var(--purple)">${esc(w.lang)}</span>
     </div>
-    <div class="img-slide-wrap">
-      <div class="img-slide-bg" style="background-image:url('${esc(img.url)}')"></div>
-      <img class="img-slide-img" src="${esc(img.url)}" alt="${esc(img.caption||img.title||'')}"
-           onerror="this.style.display='none'"/>
-      ${img.caption ? `<div class="img-slide-caption">${esc(img.caption)}</div>` : ''}
+    <div class="word-card">
+      <div class="word-bg">${esc(w.word[0]||'')}</div>
+      <div class="word-lang-flag">${w.flag}</div>
+      <div class="word-lang-name">${esc(w.lang)}</div>
+      <div class="word-foreign">${esc(w.word)}</div>
+      <div class="word-phonetic">${esc(w.phonetic)}</div>
+      <div class="word-divider"></div>
+      <div class="word-english">${esc(w.english)}</div>
+      <div class="word-example">"${esc(w.example)}"</div>
+    </div>`;
+  return el;
+}
+
+// ── New Starter ──
+function newStarterSlide(s) {
+  const el = mkSlide('zoom');
+  const colours = ['#f87171','#fbbf24','#34d399','#38bdf8','#a78bfa','#f472b6'];
+  let confetti = '';
+  for (let i = 0; i < 22; i++) {
+    const c = colours[i % colours.length];
+    confetti += `<div class="cc" style="left:${Math.random()*100}%;background:${c};animation-duration:${3+Math.random()*4}s;animation-delay:-${Math.random()*5}s;width:${6+Math.random()*6}px;height:${6+Math.random()*6}px;"></div>`;
+  }
+  const initials = s.name.split(' ').map(n=>n[0]).join('').slice(0,2).toUpperCase();
+  el.innerHTML = `
+    <div class="slide-hdr">
+      <span class="slide-icon">🌟</span>
+      <span class="slide-title">New Starter Spotlight</span>
+      <span class="slide-tag" style="background:rgba(52,211,153,.15);color:var(--green)">Welcome!</span>
+    </div>
+    <div class="starter-wrap">
+      <div class="starter-left">
+        <div class="confetti-starter">${confetti}</div>
+        <div class="starter-glow"></div>
+        <div style="display:flex;align-items:center;gap:20px">
+          <div class="starter-avatar">${initials}</div>
+          <div>
+            <div class="starter-name">${esc(s.name)}</div>
+            <div class="starter-role">${esc(s.role)}</div>
+            <div class="starter-date">📅 Started ${esc(s.start_date)}</div>
+          </div>
+        </div>
+        <div class="starter-fact">💡 ${esc(s.fun_fact)}</div>
+        <div class="starter-welcome">🎉 ${esc(s.welcome_msg)}</div>
+      </div>
+    </div>`;
+  return el;
+}
+
+// ── Important Numbers ──
+function numbersSlide(numbers) {
+  const el = mkSlide('slide-left');
+  el.innerHTML = `
+    <div class="slide-hdr"><span class="slide-icon">📞</span><span class="slide-title">Important Numbers</span></div>
+    <div class="numbers-grid">
+      ${numbers.map(n => `
+        <div class="num-card">
+          <div class="num-emoji">${n.emoji||'📞'}</div>
+          <div class="num-info">
+            <div class="num-label">${esc(n.label)}</div>
+            <div class="num-number">${esc(n.number)}</div>
+          </div>
+        </div>`).join('')}
+    </div>`;
+  return el;
+}
+
+// ── Supplies ──
+function suppliesSlide(supplies) {
+  const el = mkSlide('slide-up');
+  const flagged = supplies.filter(s => s.status !== 'ok');
+  const all = [...flagged, ...supplies.filter(s => s.status === 'ok')];
+  el.innerHTML = `
+    <div class="slide-hdr">
+      <span class="slide-icon">🧴</span>
+      <span class="slide-title">Supplies Status</span>
+      ${flagged.length ? `<span class="slide-tag" style="background:rgba(248,113,113,.15);color:var(--red)">${flagged.length} need attention</span>` : '<span class="slide-tag" style="background:rgba(52,211,153,.15);color:var(--green)">All stocked ✓</span>'}
+    </div>
+    <div class="supplies-grid">
+      ${all.map(s => `
+        <div class="supply-card ${s.status}">
+          <div class="supply-emoji">${s.emoji||'📦'}</div>
+          <div class="supply-item">${esc(s.item)}</div>
+          <div class="supply-status">${s.status === 'critical' ? '🚨 Critical' : s.status === 'low' ? '⚠️ Low' : '✓ Stocked'}</div>
+        </div>`).join('')}
+    </div>`;
+  return el;
+}
+
+// ── Training ──
+function trainingSlide(trainings) {
+  const el = mkSlide('slide-left');
+  const now = new Date();
+  const items = trainings.map(t => {
+    const due  = new Date(t.due);
+    const days = Math.ceil((due - now) / 86400000);
+    const urgent = days <= 7 ? 'var(--red)' : days <= 14 ? 'var(--amber)' : 'var(--green)';
+    return { ...t, days, urgent };
+  }).sort((a,b) => a.days - b.days);
+  el.innerHTML = `
+    <div class="slide-hdr"><span class="slide-icon">🎓</span><span class="slide-title">Training Reminders</span></div>
+    <div class="training-list">
+      ${items.map(t => `
+        <div class="training-item">
+          <div class="training-urgency" style="background:${t.urgent}"></div>
+          <div class="training-info">
+            <div class="training-title">${esc(t.title)}</div>
+            <div class="training-assignee">👤 ${esc(t.assignee)} · Due ${new Date(t.due).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})}</div>
+          </div>
+          <div class="training-countdown">
+            <div class="training-days" style="color:${t.urgent}">${t.days <= 0 ? 'NOW' : t.days}</div>
+            <div class="training-days-label">${t.days <= 0 ? 'overdue' : 'days left'}</div>
+          </div>
+        </div>`).join('')}
+    </div>`;
+  return el;
+}
+
+// ── Week at a Glance ──
+function weekSlide(w) {
+  const el = mkSlide('slide-up');
+  const todayName = new Date().toLocaleDateString('en-GB',{weekday:'short'});
+  el.innerHTML = `
+    <div class="slide-hdr">
+      <span class="slide-icon">🗓️</span>
+      <span class="slide-title">This Week at a Glance</span>
+      <span class="slide-tag" style="background:rgba(56,189,248,.12);color:var(--blue)">${esc(w.week||'')}</span>
+    </div>
+    <div class="week-grid">
+      ${(w.days||[]).map(d => {
+        const isToday = d.day.toLowerCase().startsWith(todayName.toLowerCase());
+        return `<div class="week-col${isToday?' today':''}">
+          <div class="week-day-label">${esc(d.day)}${isToday?' 📍':''}</div>
+          <div class="week-events">
+            ${d.events?.length
+              ? d.events.map(e=>`<div class="week-event">${esc(e)}</div>`).join('')
+              : '<div class="week-empty">Nothing scheduled</div>'}
+          </div>
+        </div>`;
+      }).join('')}
     </div>`;
   return el;
 }
 
 // ══════════════════════════════════════════
-// PIN SYSTEM
+// TICKER + NEWS
 // ══════════════════════════════════════════
-const PIN_KEY = 'nb_admin_pin';
-let pinBuffer = '';
-let clockHoldTimer = null;
-
-function getPin() { return localStorage.getItem(PIN_KEY) || '1234'; }
-
-// Hold clock for 3 seconds
-document.getElementById('clock-block').addEventListener('mousedown', startHold);
-document.getElementById('clock-block').addEventListener('touchstart', startHold, {passive:true});
-document.getElementById('clock-block').addEventListener('mouseup', cancelHold);
-document.getElementById('clock-block').addEventListener('touchend', cancelHold);
-document.getElementById('clock-block').addEventListener('mouseleave', cancelHold);
-
-function startHold(e) {
-  clockHoldTimer = setTimeout(() => { openPinScreen(); }, 3000);
-}
-function cancelHold() {
-  if (clockHoldTimer) { clearTimeout(clockHoldTimer); clockHoldTimer = null; }
-}
-
-function openPinScreen() {
-  pinBuffer = '';
-  updatePinDots();
-  document.getElementById('pin-error').textContent = '';
-  document.getElementById('pin-screen').classList.add('open');
-}
-
-function closePinScreen() {
-  pinBuffer = '';
-  document.getElementById('pin-screen').classList.remove('open');
-}
-
-function pinKey(d) {
-  if (pinBuffer.length >= 4) return;
-  pinBuffer += d;
-  updatePinDots();
-  if (pinBuffer.length === 4) setTimeout(checkPin, 120);
-}
-
-function pinBack() {
-  pinBuffer = pinBuffer.slice(0, -1);
-  updatePinDots();
-}
-
-function updatePinDots(state) {
-  for (let i = 0; i < 4; i++) {
-    const dot = document.getElementById('pd' + i);
-    dot.classList.toggle('filled', i < pinBuffer.length);
-    dot.classList.toggle('error', state === 'error');
-  }
-}
-
-function checkPin() {
-  if (pinBuffer === getPin()) {
-    closePinScreen();
-    openAdmin();
-  } else {
-    updatePinDots('error');
-    document.getElementById('pin-error').textContent = 'Incorrect PIN';
-    setTimeout(() => { pinBuffer = ''; updatePinDots(); document.getElementById('pin-error').textContent=''; }, 900);
-  }
-}
-
-function changePin() {
-  const cur = document.getElementById('pin-current').value;
-  const nw  = document.getElementById('pin-new').value;
-  const cnf = document.getElementById('pin-confirm').value;
-  const msg = document.getElementById('pin-change-msg');
-  if (cur !== getPin()) { msg.style.color='var(--red)'; msg.textContent='Current PIN is incorrect.'; return; }
-  if (nw.length !== 4 || !/^\d{4}$/.test(nw)) { msg.style.color='var(--red)'; msg.textContent='New PIN must be exactly 4 digits.'; return; }
-  if (nw !== cnf) { msg.style.color='var(--red)'; msg.textContent='PINs do not match.'; return; }
-  localStorage.setItem(PIN_KEY, nw);
-  msg.style.color='var(--green)'; msg.textContent='PIN updated successfully!';
-  ['pin-current','pin-new','pin-confirm'].forEach(id => document.getElementById(id).value='');
-}
-
-// ══════════════════════════════════════════
-// ADMIN PANEL
-// ══════════════════════════════════════════
-function openAdmin() {
-  populateAdmin();
-  document.getElementById('admin-overlay').classList.add('open');
-  // Pause slideshow
-  clearInterval(timer);
-}
-
-function closeAdmin() {
-  document.getElementById('admin-overlay').classList.remove('open');
-  startPlay();
-}
-
-function admTab(name) {
-  document.querySelectorAll('.adm-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.adm-panel').forEach(p => p.classList.remove('active'));
-  event.target.classList.add('active');
-  document.getElementById('panel-' + name).classList.add('active');
-}
-
-// ── Populate all fields from cfg ──
-function populateAdmin() {
-  if (!cfg) return;
-
-  // General
-  setV('g-company', cfg.company_name || '');
-  setV('g-city',    cfg.weather_city || '');
-  setV('g-dur',     cfg.slide_duration || 10);
-  setV('g-rss',     cfg.news_rss || '');
-
-  // Announcements
-  renderRepeater('ann-list', cfg.announcements || [], annCard);
-
-  // KPIs
-  renderRepeater('kpi-list', cfg.kpis || [], kpiCard);
-
-  // Target
-  const t = cfg.target || {};
-  setV('t-label', t.label||''); setV('t-current', t.current||'');
-  setV('t-target', t.target||''); setV('t-unit', t.unit||''); setV('t-msg', t.message||'');
-
-  // Leaderboard
-  renderRepeater('lb-list', cfg.leaderboard || [], lbCard);
-
-  // Tasks
-  renderRepeater('task-list', cfg.tasks || [], taskCard);
-
-  // Rota
-  setV('rota-week', cfg.rota?.week || '');
-  renderRepeater('rota-list', cfg.rota?.entries || [], rotaCard);
-
-  // Countdowns
-  renderRepeater('cd-list', cfg.countdowns || [], cdCard);
-
-  // Birthdays
-  renderRepeater('bday-list', cfg.birthdays || [], bdayCard);
-
-  // Team
-  renderRepeater('team-list', cfg.team || [], teamCard);
-
-  // Image slides
-  renderRepeater('img-list', cfg.image_slides || [], imgCard);
-
-  // Meme
-  setV('meme-url',     cfg.meme?.url     || '');
-  setV('meme-caption', cfg.meme?.caption || '');
-
-  // Win
-  setV('win-headline', cfg.weekly_win?.headline || '');
-  setV('win-detail',   cfg.weekly_win?.detail   || '');
-  setV('win-who',      cfg.weekly_win?.who       || '');
-
-  // Ticker
-  renderRepeater('ticker-list', (cfg.ticker||[]).map(t=>({text:t})), tickerCard);
-}
-
-function setV(id, val) { const el=document.getElementById(id); if(el) el.value=val; }
-function getV(id) { const el=document.getElementById(id); return el?el.value.trim():''; }
-
-function renderRepeater(containerId, items, cardFn) {
-  const el = document.getElementById(containerId);
-  if (!el) return;
-  el.innerHTML = '';
-  items.forEach((item, i) => {
-    const card = document.createElement('div');
-    card.className = 'adm-card';
-    card.dataset.idx = i;
-    card.innerHTML = cardFn(item, i) +
-      `<button class="adm-card-del" onclick="this.parentElement.remove()">✕</button>`;
-    el.appendChild(card);
-  });
-}
-
-// ── Card templates ──
-function annCard(a) { return `
-  <div class="adm-row">
-    <div class="adm-field" style="grid-column:span 2"><label class="adm-label">Title</label><input class="adm-input ann-title" value="${esc(a.title||'')}"></div>
-    <div class="adm-field"><label class="adm-label">Priority</label>
-      <select class="adm-select ann-pri">
-        <option value="normal" ${a.priority==='normal'?'selected':''}>Normal</option>
-        <option value="important" ${a.priority==='important'?'selected':''}>Important</option>
-        <option value="urgent" ${a.priority==='urgent'?'selected':''}>Urgent</option>
-      </select>
-    </div>
-  </div>
-  <div class="adm-field"><label class="adm-label">Body</label><textarea class="adm-textarea ann-body">${esc(a.body||'')}</textarea></div>`; }
-
-function kpiCard(k) { return `
-  <div class="adm-row">
-    <div class="adm-field"><label class="adm-label">Label</label><input class="adm-input kpi-label" value="${esc(k.label||'')}"></div>
-    <div class="adm-field"><label class="adm-label">Value</label><input class="adm-input kpi-value" value="${esc(k.value||'')}"></div>
-    <div class="adm-field"><label class="adm-label">Change</label><input class="adm-input kpi-change" value="${esc(k.change||'')}"></div>
-    <div class="adm-field"><label class="adm-label">Trend</label>
-      <select class="adm-select kpi-trend">
-        <option value="up" ${k.trend==='up'?'selected':''}>↑ Up</option>
-        <option value="down" ${k.trend==='down'?'selected':''}>↓ Down</option>
-        <option value="neutral" ${k.trend==='neutral'?'selected':''}>→ Neutral</option>
-      </select>
-    </div>
-  </div>`; }
-
-function lbCard(p) { return `
-  <div class="adm-row">
-    <div class="adm-field"><label class="adm-label">Name</label><input class="adm-input lb-name" value="${esc(p.name||'')}"></div>
-    <div class="adm-field"><label class="adm-label">Title / Role</label><input class="adm-input lb-title" value="${esc(p.title||'')}"></div>
-    <div class="adm-field"><label class="adm-label">Points</label><input class="adm-input lb-points" type="number" value="${p.points||0}"></div>
-    <div class="adm-field"><label class="adm-label">Change (+/-)</label><input class="adm-input lb-change" type="number" value="${p.change||0}"></div>
-  </div>`; }
-
-function taskCard(t) { return `
-  <div class="adm-row">
-    <div class="adm-field" style="grid-column:span 2"><label class="adm-label">Task</label><input class="adm-input task-text" value="${esc(t.text||'')}"></div>
-    <div class="adm-field"><label class="adm-label">Assignee</label><input class="adm-input task-assignee" value="${esc(t.assignee||'')}"></div>
-    <div class="adm-field"><label class="adm-label">Priority</label>
-      <select class="adm-select task-pri">
-        <option value="high" ${t.priority==='high'?'selected':''}>🔴 High</option>
-        <option value="medium" ${t.priority==='medium'?'selected':''}>🟡 Medium</option>
-        <option value="low" ${t.priority==='low'?'selected':''}>🟢 Low</option>
-      </select>
-    </div>
-  </div>`; }
-
-function rotaCard(e) {
-  const days=['monday','tuesday','wednesday','thursday','friday'];
-  const opts=['Office','Remote','Leave','Off',''];
-  return `
-  <div class="adm-row" style="grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr">
-    <div class="adm-field"><label class="adm-label">Name</label><input class="adm-input rota-name" value="${esc(e.name||'')}"></div>
-    ${days.map(d=>`
-    <div class="adm-field"><label class="adm-label">${d[0].toUpperCase()+d.slice(1,3)}</label>
-      <select class="adm-select rota-${d}">
-        ${opts.map(o=>`<option value="${o}" ${e[d]===o?'selected':''}>${o||'—'}</option>`).join('')}
-      </select>
-    </div>`).join('')}
-  </div>`; }
-
-function cdCard(c) { return `
-  <div class="adm-row">
-    <div class="adm-field" style="grid-column:span 2"><label class="adm-label">Label</label><input class="adm-input cd-label" value="${esc(c.label||'')}"></div>
-    <div class="adm-field"><label class="adm-label">Date (YYYY-MM-DD)</label><input class="adm-input cd-date" type="date" value="${esc(c.date||'')}"></div>
-  </div>`; }
-
-function bdayCard(b) { return `
-  <div class="adm-row">
-    <div class="adm-field"><label class="adm-label">Name</label><input class="adm-input bd-name" value="${esc(b.name||'')}"></div>
-    <div class="adm-field"><label class="adm-label">Date (MM-DD)</label><input class="adm-input bd-date" value="${esc(b.date||'')}" placeholder="04-15"></div>
-    <div class="adm-field"><label class="adm-label">Type</label>
-      <select class="adm-select bd-type">
-        <option value="birthday" ${b.type==='birthday'?'selected':''}>🎂 Birthday</option>
-        <option value="anniversary" ${b.type==='anniversary'?'selected':''}>🎊 Anniversary</option>
-      </select>
-    </div>
-    <div class="adm-field"><label class="adm-label">Years (anniversary)</label><input class="adm-input bd-years" type="number" value="${b.years||''}"></div>
-  </div>`; }
-
-function teamCard(m) { return `
-  <div class="adm-row">
-    <div class="adm-field" style="grid-column:span 2"><label class="adm-label">Name</label><input class="adm-input tm-name" value="${esc(m.name||'')}"></div>
-    <div class="adm-field"><label class="adm-label">Default Status</label>
-      <select class="adm-select tm-status">
-        <option value="in" ${m.default_status==='in'?'selected':''}>🏢 In Office</option>
-        <option value="remote" ${m.default_status==='remote'?'selected':''}>🏠 Remote</option>
-        <option value="away" ${m.default_status==='away'?'selected':''}>⏸️ Away</option>
-        <option value="meeting" ${m.default_status==='meeting'?'selected':''}>📞 In Meeting</option>
-        <option value="off" ${m.default_status==='off'?'selected':''}>🌙 Off Today</option>
-      </select>
-    </div>
-  </div>`; }
-
-function imgCard(img) { return `
-  <div class="adm-row">
-    <div class="adm-field"><label class="adm-label">Slide Title</label><input class="adm-input img-title" value="${esc(img.title||'')}"></div>
-    <div class="adm-field" style="grid-column:span 2"><label class="adm-label">Image URL</label><input class="adm-input img-url" value="${esc(img.url||'')}" placeholder="https://..."></div>
-    <div class="adm-field"><label class="adm-label">Caption (optional)</label><input class="adm-input img-caption" value="${esc(img.caption||'')}"></div>
-  </div>`; }
-
-function tickerCard(t) { return `
-  <div class="adm-field"><input class="adm-input ticker-text" value="${esc(t.text||'')}"></div>`; }
-
-// ── Add buttons ──
-function annAdd()    { addCard('ann-list',    annCard({})); }
-function kpiAdd()    { addCard('kpi-list',    kpiCard({})); }
-function lbAdd()     { addCard('lb-list',     lbCard({})); }
-function taskAdd()   { addCard('task-list',   taskCard({})); }
-function rotaAdd()   { addCard('rota-list',   rotaCard({})); }
-function cdAdd()     { addCard('cd-list',     cdCard({})); }
-function bdayAdd()   { addCard('bday-list',   bdayCard({})); }
-function teamAdd()   { addCard('team-list',   teamCard({})); }
-function imgAdd()    { addCard('img-list',    imgCard({})); }
-function tickerAdd() { addCard('ticker-list', tickerCard({})); }
-
-function addCard(listId, html) {
-  const el = document.getElementById(listId);
-  const card = document.createElement('div');
-  card.className = 'adm-card';
-  card.innerHTML = html + `<button class="adm-card-del" onclick="this.parentElement.remove()">✕</button>`;
-  el.appendChild(card);
-}
-
-// ── Read all fields into a cfg object ──
-function readAdmin() {
-  const out = {};
-
-  out.company_name   = getV('g-company');
-  out.weather_city   = getV('g-city');
-  out.slide_duration = parseInt(getV('g-dur')) || 10;
-  out.news_rss       = getV('g-rss') || undefined;
-
-  // Announcements
-  out.announcements = [...document.querySelectorAll('#ann-list .adm-card')].map(c => ({
-    title:    c.querySelector('.ann-title')?.value.trim() || '',
-    body:     c.querySelector('.ann-body')?.value.trim()  || '',
-    priority: c.querySelector('.ann-pri')?.value          || 'normal',
-  })).filter(a => a.title);
-
-  // KPIs
-  out.kpis = [...document.querySelectorAll('#kpi-list .adm-card')].map(c => ({
-    label:  c.querySelector('.kpi-label')?.value.trim()  || '',
-    value:  c.querySelector('.kpi-value')?.value.trim()  || '',
-    change: c.querySelector('.kpi-change')?.value.trim() || '',
-    trend:  c.querySelector('.kpi-trend')?.value         || 'neutral',
-  })).filter(k => k.label);
-
-  // Target
-  const tc = parseFloat(getV('t-current')), tt = parseFloat(getV('t-target'));
-  if (getV('t-label') && !isNaN(tc) && !isNaN(tt)) {
-    out.target = { label:getV('t-label'), current:tc, target:tt, unit:getV('t-unit'), message:getV('t-msg') };
-  }
-
-  // Leaderboard
-  out.leaderboard = [...document.querySelectorAll('#lb-list .adm-card')].map(c => ({
-    name:   c.querySelector('.lb-name')?.value.trim()   || '',
-    title:  c.querySelector('.lb-title')?.value.trim()  || '',
-    points: parseInt(c.querySelector('.lb-points')?.value) || 0,
-    change: parseInt(c.querySelector('.lb-change')?.value) || 0,
-  })).filter(p => p.name);
-
-  // Tasks
-  out.tasks = [...document.querySelectorAll('#task-list .adm-card')].map(c => ({
-    text:     c.querySelector('.task-text')?.value.trim()     || '',
-    assignee: c.querySelector('.task-assignee')?.value.trim() || '',
-    priority: c.querySelector('.task-pri')?.value             || 'medium',
-  })).filter(t => t.text);
-
-  // Rota
-  const days=['monday','tuesday','wednesday','thursday','friday'];
-  const rotaEntries = [...document.querySelectorAll('#rota-list .adm-card')].map(c => {
-    const entry = { name: c.querySelector('.rota-name')?.value.trim() || '' };
-    days.forEach(d => { entry[d] = c.querySelector('.rota-'+d)?.value || ''; });
-    return entry;
-  }).filter(e => e.name);
-  if (rotaEntries.length) out.rota = { week: getV('rota-week'), entries: rotaEntries };
-
-  // Countdowns
-  out.countdowns = [...document.querySelectorAll('#cd-list .adm-card')].map(c => ({
-    label: c.querySelector('.cd-label')?.value.trim() || '',
-    date:  c.querySelector('.cd-date')?.value         || '',
-  })).filter(c => c.label && c.date);
-
-  // Birthdays
-  out.birthdays = [...document.querySelectorAll('#bday-list .adm-card')].map(c => {
-    const yrs = parseInt(c.querySelector('.bd-years')?.value);
-    return {
-      name: c.querySelector('.bd-name')?.value.trim() || '',
-      date: c.querySelector('.bd-date')?.value.trim() || '',
-      type: c.querySelector('.bd-type')?.value        || 'birthday',
-      ...(yrs ? { years: yrs } : {})
-    };
-  }).filter(b => b.name && b.date);
-
-  // Team
-  out.team = [...document.querySelectorAll('#team-list .adm-card')].map(c => ({
-    name:           c.querySelector('.tm-name')?.value.trim() || '',
-    default_status: c.querySelector('.tm-status')?.value      || 'in',
-  })).filter(m => m.name);
-
-  // Image slides
-  out.image_slides = [...document.querySelectorAll('#img-list .adm-card')].map(c => ({
-    title:   c.querySelector('.img-title')?.value.trim()   || 'Photo',
-    url:     c.querySelector('.img-url')?.value.trim()     || '',
-    caption: c.querySelector('.img-caption')?.value.trim() || '',
-  })).filter(i => i.url);
-
-  // Meme
-  const mu = getV('meme-url');
-  if (mu) out.meme = { url: mu, caption: getV('meme-caption') };
-
-  // Weekly win
-  const wh = getV('win-headline');
-  if (wh) out.weekly_win = { headline: wh, detail: getV('win-detail'), who: getV('win-who') };
-
-  // Ticker
-  out.ticker = [...document.querySelectorAll('#ticker-list .adm-card')].map(c =>
-    c.querySelector('.ticker-text')?.value.trim()
-  ).filter(Boolean);
-
-  return out;
-}
-
-// ── Export ──
-function exportJSON() {
-  const data = readAdmin();
-  // Update live cfg too
-  cfg = data;
-  buildSlides();
-  buildTicker();
-
-  const blob = new Blob([JSON.stringify(data, null, 2)], { type:'application/json' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'data.json';
-  a.click();
-  URL.revokeObjectURL(a.href);
-
-  const toast = document.getElementById('export-toast');
-  toast.classList.add('show');
-  setTimeout(() => toast.classList.remove('show'), 3000);
-}
-
-
 function buildTicker() {
   rebuildTickerTrack();
   document.getElementById('ticker-track').style.animationDuration =
@@ -1933,6 +1814,454 @@ function pc(pri, a) {
   const m={urgent:'248,113,113',important:'251,191,36',normal:'56,189,248'};
   const rgb=m[pri]||m.normal;
   return a?`rgba(${rgb},${a})`:`rgb(${rgb})`;
+}
+
+// ══════════════════════════════════════════
+// IMAGE SLIDES
+// ══════════════════════════════════════════
+function imgSlide(s) {
+  const trans = s.fullscreen ? 'fade' : 'zoom';
+  const el = mkSlide(trans);
+  if (s.fullscreen) {
+    el.innerHTML = `
+      <div class="slide-hdr"><span class="slide-icon">🖼️</span><span class="slide-title">${esc(s.title||'Image')}</span></div>
+      <div class="img-slide-wrap img-slide-full">
+        <img class="img-slide-img" src="${esc(s.url)}" alt="${esc(s.title||'')}">
+        ${s.caption?`<div class="img-slide-caption">${esc(s.caption)}</div>`:''}
+      </div>`;
+  } else {
+    el.innerHTML = `
+      <div class="slide-hdr"><span class="slide-icon">🖼️</span><span class="slide-title">${esc(s.title||'Image')}</span></div>
+      <div class="img-slide-wrap">
+        <img class="img-slide-img" src="${esc(s.url)}" alt="${esc(s.title||'')}">
+        ${s.caption?`<div class="img-slide-caption">${esc(s.caption)}</div>`:''}
+      </div>`;
+  }
+  return el;
+}
+
+// ══════════════════════════════════════════
+// PIN SYSTEM
+// ══════════════════════════════════════════
+const PIN_KEY  = 'nb_admin_pin';
+const getPin   = () => localStorage.getItem(PIN_KEY) || '1234';
+let pinEntry   = '';
+let holdTimer  = null;
+let holdStart  = null;
+
+// 3-second hold on clock
+const clockEl = document.getElementById('clock-block');
+const ringEl  = document.getElementById('clock-hold-ring');
+
+clockEl.addEventListener('mousedown',  startHold);
+clockEl.addEventListener('touchstart', startHold, {passive:true});
+clockEl.addEventListener('mouseup',    cancelHold);
+clockEl.addEventListener('mouseleave', cancelHold);
+clockEl.addEventListener('touchend',   cancelHold);
+
+function startHold(e) {
+  holdStart = Date.now();
+  ringEl.style.opacity = '1';
+  ringEl.style.transition = 'transform 3s linear, opacity .2s';
+  ringEl.style.transform = 'scale(1.4)';
+  holdTimer = setTimeout(() => {
+    cancelHold();
+    openPin();
+  }, 3000);
+}
+
+function cancelHold() {
+  clearTimeout(holdTimer);
+  holdStart = null;
+  ringEl.style.opacity = '0';
+  ringEl.style.transition = 'opacity .3s';
+  ringEl.style.transform = 'scale(1)';
+}
+
+function openPin() {
+  pinEntry = '';
+  updatePinDots();
+  document.getElementById('pin-error').textContent = '';
+  document.getElementById('pin-screen').classList.add('open');
+}
+
+function pinPress(n) {
+  if (pinEntry.length >= 4) return;
+  pinEntry += String(n);
+  updatePinDots();
+  if (pinEntry.length === 4) {
+    setTimeout(() => {
+      if (pinEntry === getPin()) {
+        document.getElementById('pin-screen').classList.remove('open');
+        openAdmin();
+      } else {
+        document.getElementById('pin-error').textContent = '✕ Incorrect PIN — try again';
+        pinEntry = '';
+        updatePinDots();
+      }
+    }, 200);
+  }
+}
+
+function pinClear() {
+  pinEntry = pinEntry.slice(0, -1);
+  updatePinDots();
+  document.getElementById('pin-error').textContent = '';
+}
+
+function pinCancel() {
+  document.getElementById('pin-screen').classList.remove('open');
+  pinEntry = '';
+  updatePinDots();
+}
+
+function updatePinDots() {
+  for (let i = 0; i < 4; i++) {
+    document.getElementById('pd' + i).classList.toggle('filled', i < pinEntry.length);
+  }
+}
+
+function savePin() {
+  const p1 = document.getElementById('adm-pin').value;
+  const p2 = document.getElementById('adm-pin2').value;
+  const msg = document.getElementById('pin-save-msg');
+  if (p1.length !== 4 || !/^\d{4}$/.test(p1)) { msg.style.color='var(--red)'; msg.textContent='PIN must be exactly 4 digits.'; return; }
+  if (p1 !== p2) { msg.style.color='var(--red)'; msg.textContent='PINs do not match.'; return; }
+  localStorage.setItem(PIN_KEY, p1);
+  msg.style.color='var(--green)'; msg.textContent='✓ PIN updated successfully!';
+  document.getElementById('adm-pin').value = '';
+  document.getElementById('adm-pin2').value = '';
+  setTimeout(() => msg.textContent = '', 3000);
+}
+
+// ══════════════════════════════════════════
+// ADMIN PANEL
+// ══════════════════════════════════════════
+function openAdmin() {
+  populateAdmin();
+  document.getElementById('admin-overlay').classList.add('open');
+  clearInterval(timer); // pause slideshow while admin is open
+}
+
+function closeAdmin() {
+  document.getElementById('admin-overlay').classList.remove('open');
+  startPlay(); // resume slideshow
+}
+
+function populateAdmin() {
+  if (!cfg) return;
+  // Settings
+  document.getElementById('adm-company').value = cfg.company_name || '';
+  document.getElementById('adm-city').value     = cfg.weather_city || '';
+  document.getElementById('adm-dur').value      = cfg.slide_duration || 10;
+
+  // Weekly Win
+  document.getElementById('adm-win-hl').value     = cfg.weekly_win?.headline || '';
+  document.getElementById('adm-win-detail').value  = cfg.weekly_win?.detail   || '';
+  document.getElementById('adm-win-who').value     = cfg.weekly_win?.who      || '';
+
+  // Target
+  document.getElementById('adm-tgt-label').value = cfg.target?.label   || '';
+  document.getElementById('adm-tgt-cur').value   = cfg.target?.current || '';
+  document.getElementById('adm-tgt-tgt').value   = cfg.target?.target  || '';
+  document.getElementById('adm-tgt-unit').value  = cfg.target?.unit    || '';
+  document.getElementById('adm-tgt-msg').value   = cfg.target?.message || '';
+
+  // Meme
+  document.getElementById('adm-meme-url').value = cfg.meme?.url     || '';
+  document.getElementById('adm-meme-cap').value = cfg.meme?.caption || '';
+
+  // Rota week
+  document.getElementById('adm-rota-week').value = cfg.rota?.week || '';
+
+  // New Starter
+  const ns = cfg.new_starter || {};
+  document.getElementById('adm-starter-enabled').value = ns.enabled ? 'true' : 'false';
+  document.getElementById('adm-starter-name').value    = ns.name        || '';
+  document.getElementById('adm-starter-role').value    = ns.role        || '';
+  document.getElementById('adm-starter-date').value    = ns.start_date  || '';
+  document.getElementById('adm-starter-fact').value    = ns.fun_fact    || '';
+  document.getElementById('adm-starter-welcome').value = ns.welcome_msg || '';
+
+  // Week at a Glance
+  document.getElementById('adm-week-label').value = cfg.week_at_a_glance?.week || '';
+  renderWeekDays(cfg.week_at_a_glance?.days || []);
+
+  // Lists
+  renderAdmList('adm-numbers',  cfg.important_numbers   || [], numberRow);
+  renderAdmList('adm-supplies', cfg.supplies            || [], supplyRow);
+  renderAdmList('adm-training', cfg.training_reminders  || [], trainingRow);
+  renderAdmList('adm-annos',    cfg.announcements       || [], annoRow);
+  renderAdmList('adm-kpis',     cfg.kpis                || [], kpiRow);
+  renderAdmList('adm-lb',       cfg.leaderboard         || [], lbRow);
+  renderAdmList('adm-tasks',    cfg.tasks               || [], taskRow);
+  renderAdmList('adm-ticker',  (cfg.ticker||[]).map(t=>({text:t})), tickerRow);
+  renderAdmList('adm-imgslides', cfg.image_slides       || [], imgSlideRow);
+}
+
+function renderAdmList(id, items, rowFn) {
+  const el = document.getElementById(id);
+  el.innerHTML = '';
+  items.forEach((item, i) => el.appendChild(rowFn(item, i, id)));
+}
+
+// ── Row builders ──
+function annoRow(a, i, lid) {
+  const wrap = document.createElement('div');
+  wrap.className = 'adm-row'; wrap.dataset.idx = i;
+  wrap.innerHTML = `
+    <div class="adm-field"><label class="adm-label">Title</label><input class="adm-input" data-f="title" value="${esc(a.title||'')}"></div>
+    <div class="adm-field"><label class="adm-label">Body</label><textarea class="adm-textarea" data-f="body">${esc(a.body||'')}</textarea></div>
+    <div class="adm-field" style="max-width:100px"><label class="adm-label">Priority</label>
+      <select class="adm-select" data-f="priority">
+        <option${a.priority==='normal'?' selected':''}>normal</option>
+        <option${a.priority==='important'?' selected':''}>important</option>
+        <option${a.priority==='urgent'?' selected':''}>urgent</option>
+      </select></div>
+    <button class="btn-adm-del" onclick="delRow('adm-annos',${i})">✕</button>`;
+  return wrap;
+}
+
+function kpiRow(k, i) {
+  const wrap = document.createElement('div');
+  wrap.className = 'adm-row'; wrap.dataset.idx = i;
+  wrap.innerHTML = `
+    <div class="adm-field"><label class="adm-label">Label</label><input class="adm-input" data-f="label" value="${esc(k.label||'')}"></div>
+    <div class="adm-field"><label class="adm-label">Value</label><input class="adm-input" data-f="value" value="${esc(k.value||'')}"></div>
+    <div class="adm-field"><label class="adm-label">Change</label><input class="adm-input" data-f="change" value="${esc(k.change||'')}"></div>
+    <div class="adm-field" style="max-width:90px"><label class="adm-label">Trend</label>
+      <select class="adm-select" data-f="trend">
+        <option${k.trend==='up'?' selected':''}>up</option>
+        <option${k.trend==='down'?' selected':''}>down</option>
+        <option${k.trend==='neutral'?' selected':''}>neutral</option>
+      </select></div>
+    <button class="btn-adm-del" onclick="delRow('adm-kpis',${i})">✕</button>`;
+  return wrap;
+}
+
+function lbRow(p, i) {
+  const wrap = document.createElement('div');
+  wrap.className = 'adm-row'; wrap.dataset.idx = i;
+  wrap.innerHTML = `
+    <div class="adm-field"><label class="adm-label">Name</label><input class="adm-input" data-f="name" value="${esc(p.name||'')}"></div>
+    <div class="adm-field"><label class="adm-label">Title</label><input class="adm-input" data-f="title" value="${esc(p.title||'')}"></div>
+    <div class="adm-field" style="max-width:80px"><label class="adm-label">Points</label><input class="adm-input" data-f="points" type="number" value="${p.points||0}"></div>
+    <div class="adm-field" style="max-width:80px"><label class="adm-label">Change</label><input class="adm-input" data-f="change" type="number" value="${p.change||0}"></div>
+    <button class="btn-adm-del" onclick="delRow('adm-lb',${i})">✕</button>`;
+  return wrap;
+}
+
+function taskRow(t, i) {
+  const wrap = document.createElement('div');
+  wrap.className = 'adm-row'; wrap.dataset.idx = i;
+  wrap.innerHTML = `
+    <div class="adm-field"><label class="adm-label">Task</label><input class="adm-input" data-f="text" value="${esc(t.text||'')}"></div>
+    <div class="adm-field"><label class="adm-label">Assignee</label><input class="adm-input" data-f="assignee" value="${esc(t.assignee||'')}"></div>
+    <div class="adm-field" style="max-width:90px"><label class="adm-label">Priority</label>
+      <select class="adm-select" data-f="priority">
+        <option${t.priority==='high'?' selected':''}>high</option>
+        <option${t.priority==='medium'?' selected':''}>medium</option>
+        <option${t.priority==='low'?' selected':''}>low</option>
+      </select></div>
+    <button class="btn-adm-del" onclick="delRow('adm-tasks',${i})">✕</button>`;
+  return wrap;
+}
+
+function tickerRow(t, i) {
+  const wrap = document.createElement('div');
+  wrap.className = 'adm-row'; wrap.dataset.idx = i;
+  wrap.innerHTML = `
+    <div class="adm-field"><label class="adm-label">Message</label><input class="adm-input" data-f="text" value="${esc(t.text||'')}"></div>
+    <button class="btn-adm-del" onclick="delRow('adm-ticker',${i})">✕</button>`;
+  return wrap;
+}
+
+function imgSlideRow(s, i) {
+  const wrap = document.createElement('div');
+  wrap.className = 'adm-row'; wrap.dataset.idx = i;
+  wrap.innerHTML = `
+    <div class="adm-field"><label class="adm-label">Title</label><input class="adm-input" data-f="title" value="${esc(s.title||'')}"></div>
+    <div class="adm-field"><label class="adm-label">Image URL</label><input class="adm-input" data-f="url" value="${esc(s.url||'')}" placeholder="https://…"></div>
+    <div class="adm-field"><label class="adm-label">Caption</label><input class="adm-input" data-f="caption" value="${esc(s.caption||'')}"></div>
+    <div class="adm-field" style="max-width:110px"><label class="adm-label">Style</label>
+      <select class="adm-select" data-f="fullscreen">
+        <option value="false"${!s.fullscreen?' selected':''}>Contained</option>
+        <option value="true"${s.fullscreen?' selected':''}>Full screen</option>
+      </select></div>
+    <button class="btn-adm-del" onclick="delRow('adm-imgslides',${i})">✕</button>`;
+  return wrap;
+}
+
+function numberRow(n, i) {
+  const wrap = document.createElement('div');
+  wrap.className = 'adm-row'; wrap.dataset.idx = i;
+  wrap.innerHTML = `
+    <div class="adm-field" style="max-width:60px"><label class="adm-label">Emoji</label><input class="adm-input" data-f="emoji" value="${esc(n.emoji||'📞')}"></div>
+    <div class="adm-field"><label class="adm-label">Label</label><input class="adm-input" data-f="label" value="${esc(n.label||'')}"></div>
+    <div class="adm-field"><label class="adm-label">Number</label><input class="adm-input" data-f="number" value="${esc(n.number||'')}"></div>
+    <button class="btn-adm-del" onclick="delRow('adm-numbers',${i})">✕</button>`;
+  return wrap;
+}
+
+function supplyRow(s, i) {
+  const wrap = document.createElement('div');
+  wrap.className = 'adm-row'; wrap.dataset.idx = i;
+  wrap.innerHTML = `
+    <div class="adm-field" style="max-width:60px"><label class="adm-label">Emoji</label><input class="adm-input" data-f="emoji" value="${esc(s.emoji||'📦')}"></div>
+    <div class="adm-field"><label class="adm-label">Item</label><input class="adm-input" data-f="item" value="${esc(s.item||'')}"></div>
+    <div class="adm-field" style="max-width:110px"><label class="adm-label">Status</label>
+      <select class="adm-select" data-f="status">
+        <option${s.status==='ok'?' selected':''}>ok</option>
+        <option${s.status==='low'?' selected':''}>low</option>
+        <option${s.status==='critical'?' selected':''}>critical</option>
+      </select></div>
+    <button class="btn-adm-del" onclick="delRow('adm-supplies',${i})">✕</button>`;
+  return wrap;
+}
+
+function trainingRow(t, i) {
+  const wrap = document.createElement('div');
+  wrap.className = 'adm-row'; wrap.dataset.idx = i;
+  wrap.innerHTML = `
+    <div class="adm-field"><label class="adm-label">Training Title</label><input class="adm-input" data-f="title" value="${esc(t.title||'')}"></div>
+    <div class="adm-field"><label class="adm-label">Assignee</label><input class="adm-input" data-f="assignee" value="${esc(t.assignee||'')}"></div>
+    <div class="adm-field" style="max-width:140px"><label class="adm-label">Due Date</label><input class="adm-input" data-f="due" type="date" value="${esc(t.due||'')}"></div>
+    <button class="btn-adm-del" onclick="delRow('adm-training',${i})">✕</button>`;
+  return wrap;
+}
+
+function renderWeekDays(days) {
+  const container = document.getElementById('adm-week-days');
+  const dayNames = ['Mon','Tue','Wed','Thu','Fri'];
+  container.innerHTML = dayNames.map((d, i) => {
+    const existing = days.find(x => x.day === d) || {day:d, events:[]};
+    return `<div style="margin-top:10px">
+      <label class="adm-label">${d}</label>
+      <textarea class="adm-textarea" id="adm-week-${d}" style="min-height:52px" placeholder="One event per line">${(existing.events||[]).join('\n')}</textarea>
+    </div>`;
+  }).join('');
+}
+
+function addNumber()   { cfg.important_numbers=[...readList('adm-numbers','emoji,label,number')]; cfg.important_numbers.push({emoji:'📞',label:'',number:''}); renderAdmList('adm-numbers',cfg.important_numbers,numberRow); }
+function addSupply()   { cfg.supplies=[...readList('adm-supplies','emoji,item,status')]; cfg.supplies.push({emoji:'📦',item:'',status:'ok'}); renderAdmList('adm-supplies',cfg.supplies,supplyRow); }
+function addTraining() { cfg.training_reminders=[...readList('adm-training','title,assignee,due')]; cfg.training_reminders.push({title:'',assignee:'All Staff',due:''}); renderAdmList('adm-training',cfg.training_reminders,trainingRow); }
+
+
+function addAnno()     { cfg.announcements = readList('adm-annos','title,body,priority');      cfg.announcements.push({title:'',body:'',priority:'normal'});   renderAdmList('adm-annos', cfg.announcements, annoRow); }
+function addKpi()      { cfg.kpis = readList('adm-kpis','label,value,change,trend');           cfg.kpis.push({label:'',value:'',change:'',trend:'neutral'});   renderAdmList('adm-kpis',  cfg.kpis, kpiRow); }
+function addLbEntry()  { cfg.leaderboard = readList('adm-lb','name,title,points,change');      cfg.leaderboard.push({name:'',title:'',points:0,change:0});     renderAdmList('adm-lb',    cfg.leaderboard, lbRow); }
+function addTask()     { cfg.tasks = readList('adm-tasks','text,assignee,priority');           cfg.tasks.push({text:'',assignee:'',priority:'medium'});         renderAdmList('adm-tasks', cfg.tasks, taskRow); }
+function addTicker()   { const t=readList('adm-ticker','text');                                t.push({text:''});                                               renderAdmList('adm-ticker',t, tickerRow); }
+function addImgSlide() { cfg.image_slides = readList('adm-imgslides','title,url,caption,fullscreen'); cfg.image_slides.push({title:'',url:'',caption:'',fullscreen:false}); renderAdmList('adm-imgslides',cfg.image_slides,imgSlideRow); }
+
+function delRow(listId, idx) {
+  const fieldMap = {
+    'adm-annos':'title,body,priority','adm-kpis':'label,value,change,trend',
+    'adm-lb':'name,title,points,change','adm-tasks':'text,assignee,priority',
+    'adm-ticker':'text','adm-imgslides':'title,url,caption,fullscreen',
+    'adm-numbers':'emoji,label,number','adm-supplies':'emoji,item,status',
+    'adm-training':'title,assignee,due'
+  };
+  const rowFns = {
+    'adm-annos':annoRow,'adm-kpis':kpiRow,'adm-lb':lbRow,'adm-tasks':taskRow,
+    'adm-ticker':tickerRow,'adm-imgslides':imgSlideRow,
+    'adm-numbers':numberRow,'adm-supplies':supplyRow,'adm-training':trainingRow
+  };
+  const items = readList(listId, fieldMap[listId]);
+  items.splice(idx, 1);
+  renderAdmList(listId, items, rowFns[listId]);
+}
+
+function readList(id, fields) {
+  const rows  = document.querySelectorAll(`#${id} .adm-row`);
+  const flist = fields.split(',');
+  return Array.from(rows).map(row => {
+    const obj = {};
+    flist.forEach(f => {
+      const el = row.querySelector(`[data-f="${f}"]`);
+      if (!el) return;
+      const v = el.value;
+      if (f === 'points' || f === 'change') obj[f] = Number(v) || 0;
+      else if (f === 'fullscreen') obj[f] = v === 'true';
+      else obj[f] = v;
+    });
+    return obj;
+  });
+}
+
+// ══════════════════════════════════════════
+// EXPORT
+// ══════════════════════════════════════════
+function exportData() {
+  // Read all form values into a new cfg object
+  const out = JSON.parse(JSON.stringify(cfg)); // deep clone
+
+  out.company_name   = document.getElementById('adm-company').value;
+  out.weather_city   = document.getElementById('adm-city').value;
+  out.slide_duration = Number(document.getElementById('adm-dur').value) || 10;
+
+  out.weekly_win = {
+    headline: document.getElementById('adm-win-hl').value,
+    detail:   document.getElementById('adm-win-detail').value,
+    who:      document.getElementById('adm-win-who').value
+  };
+
+  out.target = {
+    label:   document.getElementById('adm-tgt-label').value,
+    current: Number(document.getElementById('adm-tgt-cur').value) || 0,
+    target:  Number(document.getElementById('adm-tgt-tgt').value) || 0,
+    unit:    document.getElementById('adm-tgt-unit').value,
+    message: document.getElementById('adm-tgt-msg').value
+  };
+
+  out.meme = {
+    url:     document.getElementById('adm-meme-url').value,
+    caption: document.getElementById('adm-meme-cap').value
+  };
+
+  if (cfg.rota) out.rota.week = document.getElementById('adm-rota-week').value;
+
+  // New Starter
+  out.new_starter = {
+    enabled:     document.getElementById('adm-starter-enabled').value === 'true',
+    name:        document.getElementById('adm-starter-name').value,
+    role:        document.getElementById('adm-starter-role').value,
+    start_date:  document.getElementById('adm-starter-date').value,
+    fun_fact:    document.getElementById('adm-starter-fact').value,
+    welcome_msg: document.getElementById('adm-starter-welcome').value
+  };
+
+  // Week at a Glance
+  const dayNames = ['Mon','Tue','Wed','Thu','Fri'];
+  out.week_at_a_glance = {
+    week: document.getElementById('adm-week-label').value,
+    days: dayNames.map(d => ({
+      day:    d,
+      events: (document.getElementById('adm-week-'+d)?.value||'').split('\n').map(s=>s.trim()).filter(Boolean)
+    }))
+  };
+
+  out.important_numbers  = readList('adm-numbers',  'emoji,label,number');
+  out.supplies           = readList('adm-supplies',  'emoji,item,status');
+  out.training_reminders = readList('adm-training',  'title,assignee,due');
+  out.announcements      = readList('adm-annos',     'title,body,priority');
+  out.kpis               = readList('adm-kpis',      'label,value,change,trend');
+  out.leaderboard        = readList('adm-lb',         'name,title,points,change');
+  out.tasks              = readList('adm-tasks',      'text,assignee,priority');
+  out.ticker             = readList('adm-ticker',     'text').map(t=>t.text).filter(Boolean);
+  out.image_slides       = readList('adm-imgslides',  'title,url,caption,fullscreen');
+
+  // Download as data.json
+  const blob = new Blob([JSON.stringify(out, null, 2)], {type:'application/json'});
+  const a    = document.createElement('a');
+  a.href     = URL.createObjectURL(blob);
+  a.download = 'data.json';
+  a.click();
+
+  // Apply changes locally immediately
+  cfg = out;
+  buildSlides();
+  buildTicker();
 }
 
 // ══════════════════════════════════════════
