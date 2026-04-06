@@ -1,43 +1,22 @@
-const CACHE = 'noticeboard-v3';
-
-// Always fetch fresh from network for these
-const NETWORK_FIRST = ['index.html', 'data.json', 'wttr.in', 'rss2json', 'fonts.googleapis'];
+const CACHE = 'noticeboard-v2';
+const ASSETS = ['/team-noticeboard/', '/team-noticeboard/index.html', '/team-noticeboard/manifest.json'];
 
 self.addEventListener('install', e => {
-  self.skipWaiting(); // activate immediately
+  e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)));
+  self.skipWaiting();
 });
 
 self.addEventListener('activate', e => {
-  // Wipe ALL old caches on every update
-  e.waitUntil(
-    caches.keys().then(keys => Promise.all(keys.map(k => caches.delete(k))))
-  );
+  e.waitUntil(caches.keys().then(keys =>
+    Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))
+  ));
   self.clients.claim();
 });
 
 self.addEventListener('fetch', e => {
-  const url = e.request.url;
-  const alwaysFresh = NETWORK_FIRST.some(p => url.includes(p));
-
-  if (alwaysFresh) {
-    // Network first — fall back to cache only if offline
-    e.respondWith(
-      fetch(e.request, { cache: 'no-store' })
-        .catch(() => caches.match(e.request))
-    );
-    return;
-  }
-
-  // Cache first for static assets (fonts, icons)
-  e.respondWith(
-    caches.match(e.request).then(cached => {
-      if (cached) return cached;
-      return fetch(e.request).then(res => {
-        if (!res || res.status !== 200) return res;
-        const clone = res.clone();
-        caches.open(CACHE).then(c => c.put(e.request, clone));
-        return res;
-      });
-    })
-  );
+  if (e.request.url.includes('data.json') ||
+      e.request.url.includes('wttr.in') ||
+      e.request.url.includes('rss2json') ||
+      e.request.url.includes('fonts.googleapis')) return;
+  e.respondWith(caches.match(e.request).then(cached => cached || fetch(e.request)));
 });

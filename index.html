@@ -10,30 +10,69 @@
   <link rel="manifest" href="manifest.json">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700;800&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
+    /* ══════════════════════════════════
+       DESIGN TOKENS — edit these!
+       ══════════════════════════════════ */
     :root {
-      --bg: #070d1a;
-      --surface: rgba(255,255,255,0.04);
+      /* Base (night/default) */
+      --bg:       #070d1a;
+      --surface:  rgba(255,255,255,0.04);
       --surface2: rgba(255,255,255,0.07);
-      --border: rgba(255,255,255,0.08);
-      --text: #f0f4ff;
+      --border:   rgba(255,255,255,0.08);
+      --text:     #f0f4ff;
       --text-dim: #94a3b8;
       --text-muted: #475569;
-      --blue: #38bdf8;
-      --amber: #fbbf24;
-      --green: #34d399;
-      --red: #f87171;
-      --purple: #a78bfa;
-      --pink: #f472b6;
+      --blue:     #38bdf8;
+      --amber:    #fbbf24;
+      --green:    #34d399;
+      --red:      #f87171;
+      --purple:   #a78bfa;
+      --pink:     #f472b6;
+      --glow-a:   rgba(56,189,248,.07);
+      --glow-b:   rgba(167,139,250,.05);
       --font-display: 'Bebas Neue', cursive;
-      --font-head: 'Barlow', sans-serif;
-      --font-body: 'Nunito', sans-serif;
+      --font-head:    'Barlow', sans-serif;
+      --font-body:    'Nunito', sans-serif;
+      --slide-dur: 0.65s;
     }
+
+    /* ── TIME THEMES ── */
+    body.theme-morning {
+      --bg:       #0a1628;
+      --surface:  rgba(255,255,255,0.05);
+      --blue:     #60c8f0;
+      --text:     #eef6ff;
+      --glow-a:   rgba(96,200,240,.08);
+      --glow-b:   rgba(96,200,240,.04);
+    }
+    body.theme-afternoon {
+      --bg:       #100e06;
+      --surface:  rgba(255,255,255,0.05);
+      --blue:     #fbbf24;
+      --amber:    #fb923c;
+      --text:     #fff8ec;
+      --text-dim: #a3855a;
+      --glow-a:   rgba(251,191,36,.07);
+      --glow-b:   rgba(251,146,60,.05);
+    }
+    body.theme-evening {
+      --bg:       #0c0718;
+      --surface:  rgba(255,255,255,0.04);
+      --blue:     #a78bfa;
+      --amber:    #f472b6;
+      --text:     #f5f0ff;
+      --text-dim: #8b7aa8;
+      --glow-a:   rgba(167,139,250,.08);
+      --glow-b:   rgba(244,114,182,.05);
+    }
+
     *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-    html, body { width:100%; height:100%; background:var(--bg); color:var(--text); font-family:var(--font-body); overflow:hidden; }
+    html, body { width:100%; height:100%; background:var(--bg); color:var(--text); font-family:var(--font-body); overflow:hidden; transition:background 2s ease, color 2s ease; }
     body::before {
       content:''; position:fixed; inset:0; pointer-events:none;
-      background: radial-gradient(ellipse at 15% 50%, rgba(56,189,248,.06) 0%, transparent 60%),
-                  radial-gradient(ellipse at 85% 30%, rgba(167,139,250,.05) 0%, transparent 55%);
+      background: radial-gradient(ellipse at 15% 50%, var(--glow-a) 0%, transparent 60%),
+                  radial-gradient(ellipse at 85% 30%, var(--glow-b) 0%, transparent 55%);
+      transition: background 2s ease;
     }
 
     /* ── TOP BAR ── */
@@ -42,11 +81,25 @@
       display:flex; align-items:center; gap:12px; padding:0 18px;
       background:rgba(7,13,26,.93); backdrop-filter:blur(20px);
       border-bottom:1px solid var(--border); z-index:50;
+      transition: background 2s ease;
     }
-    #company-name { font-family:var(--font-head); font-size:17px; font-weight:800; color:var(--blue); letter-spacing:-.5px; white-space:nowrap; }
+    #company-name { font-family:var(--font-head); font-size:17px; font-weight:800; color:var(--blue); letter-spacing:-.5px; white-space:nowrap; transition:color 2s; }
     #slide-dots { display:flex; gap:6px; align-items:center; flex:1; padding:0 12px; }
     .dot { width:6px; height:6px; border-radius:50%; background:var(--border); transition:all .35s; cursor:pointer; }
     .dot.active { background:var(--blue); width:22px; border-radius:3px; }
+
+    /* Trophy jump */
+    #lb-jump {
+      display:flex; align-items:center; gap:6px;
+      background:rgba(251,191,36,.12); border:1px solid rgba(251,191,36,.3);
+      border-radius:10px; padding:7px 13px; cursor:pointer;
+      font-family:var(--font-head); font-size:12px; font-weight:700;
+      color:var(--amber); transition:all .2s; white-space:nowrap; flex-shrink:0;
+      animation: pulse-glow 2.5s ease-in-out infinite;
+    }
+    #lb-jump:hover { background:rgba(251,191,36,.25); transform:translateY(-1px); }
+    @keyframes pulse-glow { 0%,100%{box-shadow:0 0 0 0 rgba(251,191,36,0);}50%{box-shadow:0 0 14px 3px rgba(251,191,36,.2);} }
+
     #clock-block { text-align:right; }
     #clock { font-family:var(--font-display); font-size:30px; line-height:1; color:var(--text); letter-spacing:3px; }
     #date-str { font-size:10px; color:var(--text-dim); font-family:var(--font-head); letter-spacing:1px; text-transform:uppercase; }
@@ -60,15 +113,41 @@
 
     /* ── SLIDES ── */
     #slides { position:fixed; top:66px; left:0; right:0; bottom:44px; overflow:hidden; }
-    .slide { position:absolute; inset:0; display:flex; flex-direction:column; padding:18px 22px; opacity:0; transition:opacity .65s ease; pointer-events:none; }
+
+    .slide {
+      position:absolute; inset:0; display:flex; flex-direction:column; padding:18px 22px;
+      opacity:0; pointer-events:none; will-change:transform,opacity;
+    }
     .slide.active { opacity:1; pointer-events:all; }
 
+    /* Transition types — added via data attr */
+    /* FADE (default) */
+    .slide[data-trans="fade"] { transition: opacity var(--slide-dur) ease; }
+
+    /* SLIDE-LEFT */
+    .slide[data-trans="slide-left"] { transition: opacity var(--slide-dur) ease, transform var(--slide-dur) cubic-bezier(.4,0,.2,1); transform: translateX(60px); }
+    .slide[data-trans="slide-left"].active { transform: translateX(0); }
+    .slide[data-trans="slide-left"].exit   { transform: translateX(-60px); opacity:0; }
+
+    /* SLIDE-UP */
+    .slide[data-trans="slide-up"] { transition: opacity var(--slide-dur) ease, transform var(--slide-dur) cubic-bezier(.4,0,.2,1); transform: translateY(40px); }
+    .slide[data-trans="slide-up"].active { transform: translateY(0); }
+
+    /* ZOOM */
+    .slide[data-trans="zoom"] { transition: opacity var(--slide-dur) ease, transform var(--slide-dur) cubic-bezier(.34,1.56,.64,1); transform: scale(.92); }
+    .slide[data-trans="zoom"].active { transform: scale(1); }
+
+    /* FLIP */
+    .slide[data-trans="flip"] { transition: opacity var(--slide-dur) ease, transform var(--slide-dur) cubic-bezier(.4,0,.2,1); transform: rotateY(8deg) scale(.96); }
+    .slide[data-trans="flip"].active { transform: rotateY(0) scale(1); }
+
+    /* ── COMMON SLIDE ELEMENTS ── */
     .slide-hdr { display:flex; align-items:center; gap:10px; margin-bottom:14px; flex-shrink:0; }
     .slide-icon { font-size:20px; }
     .slide-title { font-family:var(--font-head); font-size:12px; font-weight:700; color:var(--text-dim); text-transform:uppercase; letter-spacing:2px; flex:1; }
     .slide-tag { font-family:var(--font-head); font-size:10px; font-weight:700; padding:3px 10px; border-radius:20px; letter-spacing:1px; text-transform:uppercase; }
 
-    /* ── ANNOUNCEMENTS ── */
+    /* ── ANNOUNCEMENT ── */
     .ann-card { flex:1; display:flex; flex-direction:column; justify-content:center; background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:32px 40px; position:relative; overflow:hidden; }
     .ann-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; }
     .ann-card.urgent::before  { background:var(--red); }
@@ -76,13 +155,13 @@
     .ann-card.normal::before  { background:var(--blue); }
     .ann-pri { font-size:11px; font-weight:800; letter-spacing:2.5px; text-transform:uppercase; margin-bottom:12px; }
     .ann-pri.urgent   { color:var(--red); }
-    .ann-pri.important { color:var(--amber); }
+    .ann-pri.important{ color:var(--amber); }
     .ann-pri.normal   { color:var(--blue); }
-    .ann-title { font-family:var(--font-head); font-size:38px; font-weight:800; line-height:1.12; color:var(--text); margin-bottom:14px; }
-    .ann-body-text { font-size:18px; color:var(--text-dim); line-height:1.65; max-width:78%; }
-    .ann-bg-char { position:absolute; bottom:10px; right:24px; font-family:var(--font-display); font-size:130px; color:rgba(255,255,255,.025); line-height:1; user-select:none; }
+    .ann-title { font-family:var(--font-head); font-size:36px; font-weight:800; line-height:1.12; color:var(--text); margin-bottom:14px; }
+    .ann-body-text { font-size:17px; color:var(--text-dim); line-height:1.65; max-width:78%; }
+    .ann-bg-char { position:absolute; bottom:10px; right:24px; font-family:var(--font-display); font-size:120px; color:rgba(255,255,255,.025); line-height:1; user-select:none; }
 
-    /* ── KPIs ── */
+    /* ── KPI ── */
     .kpi-grid { flex:1; display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:10px; }
     .kpi-card { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:20px 24px; display:flex; flex-direction:column; justify-content:space-between; position:relative; overflow:hidden; }
     .kpi-card::after { content:''; position:absolute; bottom:0; left:0; right:0; height:3px; }
@@ -123,19 +202,67 @@
     .task-who { font-size:11px; color:var(--text-dim); font-weight:600; }
     .task-pri { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1px; padding:2px 8px; border-radius:10px; }
     .task-card.high   .task-pri { background:rgba(248,113,113,.15); color:var(--red); }
-    .task-card.medium .task-pri { background:rgba(251,191,36,.15);  color:var(--amber); }
-    .task-card.low    .task-pri { background:rgba(52,211,153,.15);  color:var(--green); }
+    .task-card.medium .task-pri { background:rgba(251,191,36,.15); color:var(--amber); }
+    .task-card.low    .task-pri { background:rgba(52,211,153,.15); color:var(--green); }
 
     /* ── BIRTHDAY ── */
-    .bday-slide { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:18px; position:relative; overflow:hidden; }
-    .bday-emoji { font-size:80px; animation:bounce 1.2s ease-in-out infinite alternate; }
-    @keyframes bounce { from { transform:translateY(0); } to { transform:translateY(-14px); } }
-    .bday-name { font-family:var(--font-display); font-size:68px; color:var(--text); letter-spacing:2px; text-align:center; }
-    .bday-type { font-family:var(--font-head); font-size:16px; font-weight:700; color:var(--amber); text-transform:uppercase; letter-spacing:4px; text-align:center; }
-    .bday-msg  { font-size:17px; color:var(--text-dim); text-align:center; }
-    .confetti { position:absolute; inset:0; pointer-events:none; }
+    .bday-outer { flex:1; display:flex; gap:14px; }
+    .bday-main { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; position:relative; overflow:hidden; background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:24px; }
+    .bday-emoji { font-size:68px; animation:bounce 1.2s ease-in-out infinite alternate; }
+    @keyframes bounce { from{transform:translateY(0);}to{transform:translateY(-14px);} }
+    .bday-name { font-family:var(--font-display); font-size:60px; color:var(--text); letter-spacing:2px; text-align:center; }
+    .bday-type { font-family:var(--font-head); font-size:14px; font-weight:700; color:var(--amber); text-transform:uppercase; letter-spacing:4px; text-align:center; }
+    .confetti { position:absolute; inset:0; pointer-events:none; overflow:hidden; }
     .cc { position:absolute; width:8px; height:8px; border-radius:2px; animation:fall linear infinite; }
-    @keyframes fall { 0%{top:-5%;opacity:1;transform:rotate(0deg);} 100%{top:105%;opacity:.5;transform:rotate(360deg);} }
+    @keyframes fall { 0%{top:-5%;opacity:1;transform:rotate(0deg);}100%{top:105%;opacity:.4;transform:rotate(360deg);} }
+
+    .bday-side { display:flex; flex-direction:column; gap:10px; width:240px; }
+    .bday-fact-card { flex:1; background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:16px 18px; display:flex; flex-direction:column; gap:8px; }
+    .bfc-label { font-family:var(--font-head); font-size:10px; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:1.5px; }
+    .bfc-name  { font-size:14px; font-weight:700; color:var(--blue); line-height:1.3; }
+    .bfc-desc  { font-size:11px; color:var(--text-dim); line-height:1.5; }
+
+    /* ── QUOTE ── */
+    .quote-card { flex:1; display:flex; flex-direction:column; justify-content:center; align-items:center; background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:36px 48px; position:relative; overflow:hidden; text-align:center; gap:20px; }
+    .quote-mark { font-family:var(--font-display); font-size:120px; color:rgba(255,255,255,.04); position:absolute; top:-10px; left:20px; line-height:1; user-select:none; }
+    .quote-text { font-family:var(--font-head); font-size:28px; font-weight:700; line-height:1.4; color:var(--text); position:relative; z-index:1; max-width:80%; }
+    .quote-author { font-family:var(--font-head); font-size:14px; font-weight:600; color:var(--blue); letter-spacing:1px; text-transform:uppercase; position:relative; z-index:1; }
+    .quote-author::before { content:'— '; }
+    .quote-day { font-family:var(--font-head); font-size:10px; color:var(--text-muted); letter-spacing:2px; text-transform:uppercase; }
+
+    /* ── INTERNATIONAL DAY ── */
+    .intl-card { flex:1; display:flex; flex-direction:column; justify-content:center; align-items:center; background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:32px 48px; gap:18px; position:relative; overflow:hidden; text-align:center; }
+    .intl-globe { font-size:72px; }
+    .intl-label { font-family:var(--font-head); font-size:11px; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:3px; }
+    .intl-name  { font-family:var(--font-head); font-size:36px; font-weight:800; color:var(--text); line-height:1.2; }
+    .intl-desc  { font-size:15px; color:var(--text-dim); line-height:1.65; max-width:70%; }
+    .intl-ribbon { position:absolute; bottom:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--blue),var(--purple),var(--pink)); }
+
+    /* ── LEADERBOARD ── */
+    .lb-wrap { flex:1; display:flex; flex-direction:column; gap:7px; overflow-y:auto; }
+    .lb-row { display:flex; align-items:center; gap:14px; background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:12px 18px; position:relative; overflow:hidden; }
+    .lb-row.rank-1 { background:rgba(251,191,36,.08); border-color:rgba(251,191,36,.3); }
+    .lb-row.rank-2 { background:rgba(148,163,184,.06); border-color:rgba(148,163,184,.2); }
+    .lb-row.rank-3 { background:rgba(205,127,50,.06);  border-color:rgba(205,127,50,.2); }
+    .lb-bar { position:absolute; left:0; top:0; bottom:0; background:rgba(255,255,255,.03); transition:width 1.2s cubic-bezier(.4,0,.2,1); }
+    .lb-rank { font-family:var(--font-display); font-size:28px; min-width:36px; text-align:center; position:relative; z-index:1; }
+    .rank-1 .lb-rank { color:var(--amber); }
+    .rank-2 .lb-rank { color:#cbd5e1; }
+    .rank-3 .lb-rank { color:#cd7f32; }
+    .lb-medal { font-size:22px; }
+    .lb-info { flex:1; position:relative; z-index:1; }
+    .lb-name { font-size:16px; font-weight:700; color:var(--text); }
+    .lb-title-sm { font-size:11px; color:var(--text-muted); font-family:var(--font-head); margin-top:1px; }
+    .lb-score { font-family:var(--font-display); font-size:38px; position:relative; z-index:1; line-height:1; }
+    .rank-1 .lb-score { color:var(--amber); }
+    .rank-2 .lb-score { color:#cbd5e1; }
+    .rank-3 .lb-score { color:#cd7f32; }
+    .lb-row:not(.rank-1):not(.rank-2):not(.rank-3) .lb-score { color:var(--blue); }
+    .lb-pts { font-size:10px; color:var(--text-muted); font-family:var(--font-head); text-align:right; }
+    .lb-change { font-size:12px; font-weight:700; font-family:var(--font-head); }
+    .lb-change.up   { color:var(--green); }
+    .lb-change.down { color:var(--red); }
+    .lb-change.same { color:var(--text-muted); }
 
     /* ── COUNTDOWN ── */
     .cd-grid { flex:1; display:grid; grid-template-columns:1fr 1fr; gap:10px; }
@@ -151,53 +278,49 @@
 
     /* ── WEEKLY WIN ── */
     .win-card { flex:1; display:flex; flex-direction:column; justify-content:center; background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:32px 40px; position:relative; overflow:hidden; }
-    .win-trophy { font-size:56px; margin-bottom:16px; }
-    .win-headline { font-family:var(--font-head); font-size:36px; font-weight:800; line-height:1.15; color:var(--text); margin-bottom:12px; }
-    .win-detail { font-size:17px; color:var(--text-dim); line-height:1.65; max-width:80%; }
-    .win-who { display:inline-flex; align-items:center; gap:8px; margin-top:20px; background:rgba(251,191,36,.12); border:1px solid rgba(251,191,36,.25); border-radius:40px; padding:8px 20px; }
+    .win-trophy { font-size:52px; margin-bottom:14px; }
+    .win-headline { font-family:var(--font-head); font-size:34px; font-weight:800; line-height:1.15; color:var(--text); margin-bottom:12px; }
+    .win-detail { font-size:16px; color:var(--text-dim); line-height:1.65; max-width:80%; }
+    .win-who { display:inline-flex; align-items:center; gap:8px; margin-top:18px; background:rgba(251,191,36,.12); border:1px solid rgba(251,191,36,.25); border-radius:40px; padding:8px 20px; }
     .win-who-name { font-size:14px; font-weight:700; color:var(--amber); }
-    .win-stars { letter-spacing:2px; font-size:14px; }
-    .win-glow { position:absolute; top:-60px; right:-60px; width:220px; height:220px; border-radius:50%; background:radial-gradient(circle, rgba(251,191,36,.12) 0%, transparent 70%); pointer-events:none; }
+    .win-glow { position:absolute; top:-60px; right:-60px; width:220px; height:220px; border-radius:50%; background:radial-gradient(circle, rgba(251,191,36,.1) 0%, transparent 70%); pointer-events:none; }
 
     /* ── THERMOMETER ── */
     .thermo-wrap { flex:1; display:flex; gap:18px; }
-    .thermo-left { display:flex; flex-direction:column; justify-content:center; flex:1; gap:18px; }
+    .thermo-left { display:flex; flex-direction:column; justify-content:center; flex:1; gap:16px; }
     .thermo-right { display:flex; flex-direction:column; align-items:center; justify-content:center; width:110px; }
-    .thermo-label { font-family:var(--font-head); font-size:12px; font-weight:700; color:var(--text-dim); text-transform:uppercase; letter-spacing:1.5px; margin-bottom:6px; }
-    .thermo-value { font-family:var(--font-display); font-size:62px; line-height:1; color:var(--text); }
+    .thermo-label { font-family:var(--font-head); font-size:12px; font-weight:700; color:var(--text-dim); text-transform:uppercase; letter-spacing:1.5px; margin-bottom:4px; }
+    .thermo-value { font-family:var(--font-display); font-size:58px; line-height:1; color:var(--text); }
     .thermo-target { font-size:14px; color:var(--text-muted); font-family:var(--font-head); }
-    .thermo-pct { font-family:var(--font-display); font-size:48px; color:var(--green); margin-top:8px; }
-    .thermo-msg { font-size:16px; color:var(--text-dim); line-height:1.5; max-width:400px; }
-    /* SVG thermometer built via JS */
-    #thermo-svg { width:80px; height:100%; }
+    .thermo-pct { font-family:var(--font-display); font-size:44px; margin-top:6px; }
+    .thermo-msg { font-size:15px; color:var(--text-dim); line-height:1.5; max-width:400px; }
 
     /* ── STATUS BOARD ── */
-    .status-grid { flex:1; display:grid; grid-template-columns:repeat(3, 1fr); gap:10px; }
+    .status-grid { flex:1; display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
     .status-card { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:16px 14px; display:flex; flex-direction:column; align-items:center; gap:8px; cursor:pointer; transition:all .2s; user-select:none; }
     .status-card:hover { background:var(--surface2); }
     .status-card:active { transform:scale(.97); }
-    .s-avatar { width:46px; height:46px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:20px; font-weight:800; font-family:var(--font-head); }
+    .s-avatar { width:46px; height:46px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:800; font-family:var(--font-head); }
     .s-name { font-size:13px; font-weight:700; color:var(--text); }
     .s-status { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; padding:3px 10px; border-radius:20px; }
-    .s-dot { width:10px; height:10px; border-radius:50%; margin-left:4px; display:inline-block; }
-
-    /* Status colours */
     .st-in      .s-status { background:rgba(52,211,153,.15);  color:var(--green);  }
     .st-remote  .s-status { background:rgba(167,139,250,.15); color:var(--purple); }
     .st-away    .s-status { background:rgba(251,191,36,.15);  color:var(--amber);  }
     .st-meeting .s-status { background:rgba(56,189,248,.15);  color:var(--blue);   }
     .st-off     .s-status { background:rgba(148,163,184,.1);  color:var(--text-muted); }
-
     .st-in      .s-avatar { background:rgba(52,211,153,.15);  color:var(--green); }
     .st-remote  .s-avatar { background:rgba(167,139,250,.15); color:var(--purple); }
     .st-away    .s-avatar { background:rgba(251,191,36,.15);  color:var(--amber); }
     .st-meeting .s-avatar { background:rgba(56,189,248,.15);  color:var(--blue); }
     .st-off     .s-avatar { background:rgba(148,163,184,.1);  color:var(--text-muted); }
 
-    .status-tap-hint { font-size:10px; color:var(--text-muted); text-align:center; margin-top:4px; font-family:var(--font-head); }
+    /* ── MEME ── */
+    .meme-wrap { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; }
+    .meme-img { max-width:100%; max-height:calc(100% - 60px); border-radius:16px; object-fit:contain; box-shadow:0 8px 40px rgba(0,0,0,.5); border:1px solid var(--border); }
+    .meme-caption { font-family:var(--font-head); font-size:15px; font-weight:600; color:var(--text-dim); text-align:center; max-width:80%; }
 
-    /* ── STATUS PICKER MODAL ── */
-    .s-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,.7); z-index:200; align-items:center; justify-content:center; backdrop-filter:blur(8px); }
+    /* ── STATUS MODAL ── */
+    .s-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,.75); z-index:200; align-items:center; justify-content:center; backdrop-filter:blur(8px); }
     .s-overlay.open { display:flex; }
     .s-modal { background:#0f1828; border:1px solid var(--border); border-radius:20px; padding:28px 32px; min-width:280px; }
     .s-modal-name { font-family:var(--font-head); font-size:18px; font-weight:800; color:var(--text); margin-bottom:18px; }
@@ -205,220 +328,208 @@
     .s-opt:hover { background:var(--surface2); }
     .s-opt-dot { width:12px; height:12px; border-radius:50%; }
 
-    /* ── LEADERBOARD ── */
-    .lb-wrap { flex:1; display:flex; flex-direction:column; gap:7px; overflow-y:auto; }
-
-    .lb-row {
-      display:flex; align-items:center; gap:14px;
-      background:var(--surface); border:1px solid var(--border);
-      border-radius:14px; padding:12px 18px; position:relative; overflow:hidden;
-      transition:all .3s;
-    }
-
-    .lb-row.rank-1 { background:rgba(251,191,36,.08); border-color:rgba(251,191,36,.3); }
-    .lb-row.rank-2 { background:rgba(148,163,184,.06); border-color:rgba(148,163,184,.2); }
-    .lb-row.rank-3 { background:rgba(205,127,50,.06);  border-color:rgba(205,127,50,.2); }
-
-    .lb-bar {
-      position:absolute; left:0; top:0; bottom:0;
-      background:rgba(255,255,255,.03); transition:width 1.2s cubic-bezier(.4,0,.2,1);
-    }
-
-    .lb-rank {
-      font-family:var(--font-display); font-size:28px; min-width:36px;
-      text-align:center; position:relative; z-index:1;
-    }
-
-    .rank-1 .lb-rank { color:var(--amber); }
-    .rank-2 .lb-rank { color:#cbd5e1; }
-    .rank-3 .lb-rank { color:#cd7f32; }
-
-    .lb-medal { font-size:22px; }
-
-    .lb-info { flex:1; position:relative; z-index:1; }
-    .lb-name { font-size:16px; font-weight:700; color:var(--text); }
-    .lb-title { font-size:11px; color:var(--text-muted); font-family:var(--font-head); margin-top:1px; }
-
-    .lb-score {
-      font-family:var(--font-display); font-size:38px;
-      position:relative; z-index:1; line-height:1;
-    }
-
-    .rank-1 .lb-score { color:var(--amber); }
-    .rank-2 .lb-score { color:#cbd5e1; }
-    .rank-3 .lb-score { color:#cd7f32; }
-    .lb-row:not(.rank-1):not(.rank-2):not(.rank-3) .lb-score { color:var(--blue); }
-
-    .lb-pts { font-size:10px; color:var(--text-muted); font-family:var(--font-head); text-align:right; }
-    .lb-change { font-size:12px; font-weight:700; font-family:var(--font-head); }
-    .lb-change.up   { color:var(--green); }
-    .lb-change.down { color:var(--red); }
-    .lb-change.same { color:var(--text-muted); }
-
-    /* Trophy jump button */
-    #lb-jump {
-      display:flex; align-items:center; gap:6px;
-      background:rgba(251,191,36,.12); border:1px solid rgba(251,191,36,.3);
-      border-radius:10px; padding:7px 13px; cursor:pointer;
-      font-family:var(--font-head); font-size:12px; font-weight:700;
-      color:var(--amber); transition:all .2s; white-space:nowrap; flex-shrink:0;
-    }
-
-    #lb-jump:hover { background:rgba(251,191,36,.22); transform:translateY(-1px); }
-    #lb-jump:active { transform:scale(.96); }
-    .lb-jump-pulse { animation:pulse-glow 2s ease-in-out infinite; }
-    @keyframes pulse-glow {
-      0%,100% { box-shadow:0 0 0 0 rgba(251,191,36,0); }
-      50%      { box-shadow:0 0 12px 3px rgba(251,191,36,.25); }
-    }
-
-    /* ── MEME / GIF ── */
-    .meme-wrap {
+    /* ── IMAGE SLIDE ── */
+    .img-slide-wrap {
       flex:1; display:flex; flex-direction:column; align-items:center;
-      justify-content:center; gap:14px; position:relative;
+      justify-content:center; gap:14px; position:relative; overflow:hidden;
+      border-radius:18px;
+    }
+    .img-slide-bg {
+      position:absolute; inset:0; background-size:cover; background-position:center;
+      filter:blur(18px) brightness(.4); transform:scale(1.08);
+    }
+    .img-slide-img {
+      position:relative; z-index:1;
+      max-width:100%; max-height:calc(100% - 70px);
+      border-radius:14px; object-fit:contain;
+      box-shadow:0 12px 48px rgba(0,0,0,.7);
+    }
+    .img-slide-caption {
+      position:relative; z-index:1;
+      font-family:var(--font-head); font-size:16px; font-weight:600;
+      color:#fff; text-align:center; max-width:80%;
+      text-shadow:0 2px 8px rgba(0,0,0,.8);
     }
 
-    .meme-img {
-      max-width:100%; max-height:calc(100% - 60px);
-      border-radius:16px; object-fit:contain;
-      box-shadow:0 8px 40px rgba(0,0,0,.5);
-      border:1px solid var(--border);
+    /* ── ADMIN OVERLAY ── */
+    #admin-overlay {
+      display:none; position:fixed; inset:0; z-index:1000;
+      background:rgba(0,0,0,.92); backdrop-filter:blur(12px);
+      flex-direction:column;
     }
+    #admin-overlay.open { display:flex; }
 
-    .meme-caption {
-      font-family:var(--font-head); font-size:15px; font-weight:600;
-      color:var(--text-dim); text-align:center; max-width:80%;
+    #admin-bar {
+      display:flex; align-items:center; gap:14px;
+      padding:14px 20px; background:rgba(255,255,255,.04);
+      border-bottom:1px solid var(--border); flex-shrink:0;
     }
-
-    .meme-tag {
-      position:absolute; top:10px; right:10px;
+    #admin-bar-title {
+      font-family:var(--font-display); font-size:22px;
+      color:var(--blue); letter-spacing:1px; flex:1;
+    }
+    .adm-badge {
       font-size:10px; font-weight:800; letter-spacing:2px;
-      color:var(--text-muted); font-family:var(--font-head); text-transform:uppercase;
+      color:#000; background:var(--amber);
+      padding:3px 10px; border-radius:20px; text-transform:uppercase;
+    }
+    .adm-btn {
+      padding:9px 18px; border-radius:10px; border:none; cursor:pointer;
+      font-family:var(--font-head); font-size:13px; font-weight:700;
+      transition:all .15s;
+    }
+    .adm-btn-ghost {
+      background:var(--surface2); color:var(--text-dim);
+    }
+    .adm-btn-ghost:hover { background:var(--surface); color:var(--text); }
+    .adm-btn-primary {
+      background:var(--blue); color:#000;
+    }
+    .adm-btn-primary:hover { filter:brightness(1.1); }
+    .adm-btn-danger {
+      background:rgba(248,113,113,.15); color:var(--red);
+      border:1px solid rgba(248,113,113,.3);
+    }
+    .adm-btn-danger:hover { background:var(--red); color:#000; }
+    .adm-btn-success {
+      background:var(--green); color:#000;
+    }
+    .adm-btn-success:hover { filter:brightness(1.1); }
+
+    /* Tabs */
+    #admin-tabs {
+      display:flex; gap:4px; padding:12px 20px 0;
+      border-bottom:1px solid var(--border); flex-shrink:0;
+      overflow-x:auto;
+    }
+    .adm-tab {
+      padding:9px 16px; border-radius:10px 10px 0 0;
+      font-family:var(--font-head); font-size:12px; font-weight:700;
+      cursor:pointer; color:var(--text-muted); transition:all .15s;
+      white-space:nowrap; border:1px solid transparent;
+      border-bottom:none; margin-bottom:-1px;
+    }
+    .adm-tab:hover { color:var(--text-dim); }
+    .adm-tab.active {
+      background:var(--surface2); color:var(--blue);
+      border-color:var(--border);
     }
 
-    /* ── THEME TRANSITIONS ── */
-    :root {
-      transition: --bg 1s, --surface 1s, --border 1s, --text 1s;
+    /* Panel body */
+    #admin-body {
+      flex:1; overflow-y:auto; padding:20px;
+      scrollbar-width:thin; scrollbar-color:var(--border) transparent;
     }
 
-    /* ── ADMIN PANEL ── */
-    #admin-trigger {
-      position: fixed;
-      bottom: 10px;
-      right: 10px;
-      width: 30px;
-      height: 30px;
-      opacity: 0.05;
-      cursor: pointer;
-      z-index: 100;
-      transition: opacity 0.3s;
-    }
-    #admin-trigger:hover { opacity: 0.5; }
+    .adm-panel { display:none; }
+    .adm-panel.active { display:block; }
 
-    .admin-modal {
-      background: #0f172a;
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 30px;
-      width: 90%;
-      max-width: 800px;
-      max-height: 90vh;
-      overflow-y: auto;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    /* Form elements */
+    .adm-section { margin-bottom:28px; }
+    .adm-section-title {
+      font-family:var(--font-head); font-size:11px; font-weight:800;
+      color:var(--text-muted); text-transform:uppercase; letter-spacing:2px;
+      margin-bottom:12px;
     }
-    .admin-section { margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
-    .admin-section:last-child { border-bottom: none; }
-    .admin-section-title { font-family: var(--font-head); font-size: 14px; font-weight: 800; color: var(--blue); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; }
-    
-    .admin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-    .admin-field { display: flex; flex-direction: column; gap: 6px; }
-    .admin-field label { font-size: 11px; font-weight: 700; color: var(--text-dim); text-transform: uppercase; }
-    .admin-field input, .admin-field textarea, .admin-field select {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 10px 12px;
-      color: var(--text);
-      font-family: var(--font-body);
-      font-size: 14px;
+    .adm-row {
+      display:grid; gap:10px; margin-bottom:10px;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     }
-    .admin-field input:focus { border-color: var(--blue); outline: none; }
-    
-    .admin-btns { display: flex; gap: 12px; margin-top: 20px; position: sticky; bottom: 0; background: #0f172a; padding: 15px 0; }
-    .btn {
-      padding: 12px 24px;
-      border-radius: 10px;
-      font-family: var(--font-head);
-      font-size: 14px;
-      font-weight: 700;
-      cursor: pointer;
-      border: none;
-      transition: all 0.2s;
+    .adm-field { display:flex; flex-direction:column; gap:5px; }
+    .adm-label {
+      font-size:11px; font-weight:700; color:var(--text-muted);
+      font-family:var(--font-head); text-transform:uppercase; letter-spacing:1px;
     }
-    .btn-primary { background: var(--blue); color: #000; }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(56,189,248,0.3); }
-    .btn-secondary { background: var(--surface2); color: var(--text); }
-    .btn-danger { background: rgba(248,113,113,0.15); color: var(--red); border: 1px solid rgba(248,113,113,0.3); }
+    .adm-input, .adm-select, .adm-textarea {
+      background:var(--surface2); border:1px solid var(--border);
+      border-radius:8px; padding:9px 12px; color:var(--text);
+      font-family:var(--font-body); font-size:13px; outline:none;
+      transition:border-color .15s; width:100%;
+    }
+    .adm-input:focus, .adm-select:focus, .adm-textarea:focus {
+      border-color:var(--blue);
+    }
+    .adm-textarea { resize:vertical; min-height:72px; }
+    .adm-select option { background:#0f1828; }
 
-    .admin-json-view {
-      width: 100%;
-      height: 200px;
-      background: #070d1a;
-      color: var(--green);
-      font-family: monospace;
-      font-size: 12px;
-      padding: 15px;
-      border-radius: 10px;
-      margin-top: 10px;
-      border: 1px solid var(--border);
+    /* Repeater cards */
+    .adm-card {
+      background:var(--surface); border:1px solid var(--border);
+      border-radius:12px; padding:14px 16px; margin-bottom:10px;
+      position:relative;
     }
+    .adm-card-del {
+      position:absolute; top:10px; right:10px;
+      background:none; border:none; color:var(--text-muted);
+      cursor:pointer; font-size:14px; transition:color .15s;
+    }
+    .adm-card-del:hover { color:var(--red); }
+    .adm-add-btn {
+      display:flex; align-items:center; gap:6px;
+      background:var(--surface); border:1px dashed var(--border);
+      border-radius:10px; padding:10px 16px; cursor:pointer;
+      color:var(--text-muted); font-size:13px; font-weight:600;
+      font-family:var(--font-head); transition:all .15s; width:100%;
+      margin-top:6px;
+    }
+    .adm-add-btn:hover { border-color:var(--blue); color:var(--blue); }
 
-    /* ── ADMIN LISTS ── */
-    .adm-list-item {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 15px;
-      margin-bottom: 10px;
-      position: relative;
+    /* PIN screen */
+    #pin-screen {
+      display:none; position:fixed; inset:0; z-index:1001;
+      background:rgba(0,0,0,.95); backdrop-filter:blur(16px);
+      flex-direction:column; align-items:center; justify-content:center; gap:24px;
     }
-    .adm-list-item .remove-btn {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: rgba(248,113,113,0.1);
-      color: var(--red);
-      border: none;
-      width: 24px;
-      height: 24px;
-      border-radius: 6px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
+    #pin-screen.open { display:flex; }
+    #pin-title {
+      font-family:var(--font-display); font-size:28px;
+      color:var(--text); letter-spacing:2px;
     }
-    .adm-list-item .remove-btn:hover { background: var(--red); color: #fff; }
-    .add-btn {
-      width: 100%;
-      padding: 10px;
-      background: rgba(56,189,248,0.1);
-      color: var(--blue);
-      border: 1px dashed var(--blue);
-      border-radius: 10px;
-      cursor: pointer;
-      font-weight: 700;
-      margin-top: 5px;
+    #pin-dots { display:flex; gap:14px; }
+    .pin-dot {
+      width:16px; height:16px; border-radius:50%;
+      border:2px solid var(--text-muted); transition:all .15s;
     }
-    .add-btn:hover { background: rgba(56,189,248,0.2); }
+    .pin-dot.filled { background:var(--blue); border-color:var(--blue); }
+    .pin-dot.error  { background:var(--red);  border-color:var(--red); animation:shake .4s ease; }
+    @keyframes shake {
+      0%,100%{transform:translateX(0);}
+      25%{transform:translateX(-6px);}
+      75%{transform:translateX(6px);}
+    }
+    #pin-pad {
+      display:grid; grid-template-columns:repeat(3,72px);
+      gap:10px;
+    }
+    .pin-key {
+      height:60px; border-radius:14px;
+      background:var(--surface2); border:1px solid var(--border);
+      color:var(--text); font-family:var(--font-display); font-size:26px;
+      cursor:pointer; transition:all .12s; display:flex;
+      align-items:center; justify-content:center;
+    }
+    .pin-key:hover  { background:var(--surface); border-color:var(--blue); }
+    .pin-key:active { transform:scale(.93); }
+    .pin-key.wide   { grid-column:span 2; }
+    #pin-hint { font-size:12px; color:var(--text-muted); font-family:var(--font-head); }
+    #pin-error { font-size:13px; color:var(--red); font-family:var(--font-head); font-weight:700; min-height:18px; }
+
+    /* Export success toast */
+    #export-toast {
+      position:fixed; bottom:60px; left:50%; transform:translateX(-50%) translateY(20px);
+      background:var(--green); color:#000; padding:10px 22px;
+      border-radius:10px; font-weight:800; font-size:13px; z-index:2000;
+      opacity:0; transition:all .3s; pointer-events:none;
+    }
+    #export-toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
 
     /* ── TICKER ── */
     #ticker-bar { position:fixed; bottom:0; left:0; right:0; height:44px; background:rgba(7,13,26,.97); border-top:1px solid var(--border); display:flex; align-items:center; overflow:hidden; z-index:50; }
-    #ticker-label { flex-shrink:0; font-family:var(--font-head); font-size:10px; font-weight:800; color:#000; background:var(--blue); padding:0 14px; height:100%; display:flex; align-items:center; letter-spacing:2px; text-transform:uppercase; }
+    #ticker-label { flex-shrink:0; font-family:var(--font-head); font-size:10px; font-weight:800; color:#000; background:var(--blue); padding:0 14px; height:100%; display:flex; align-items:center; letter-spacing:2px; text-transform:uppercase; transition:background 2s; }
     #ticker-wrap { flex:1; overflow:hidden; height:100%; }
     #ticker-track { display:flex; align-items:center; height:100%; white-space:nowrap; animation:scroll-left 50s linear infinite; }
     #ticker-track:hover { animation-play-state:paused; }
-    @keyframes scroll-left { 0%{transform:translateX(100vw);} 100%{transform:translateX(-100%);} }
+    @keyframes scroll-left { 0%{transform:translateX(100vw);}100%{transform:translateX(-100%);} }
     .tick-item { font-size:13px; color:var(--text-dim); font-family:var(--font-head); font-weight:500; padding:0 32px; display:inline-flex; align-items:center; gap:10px; }
     .tick-item::after { content:'✦'; color:var(--text-muted); font-size:7px; }
     .tick-news { color:var(--blue); }
@@ -430,7 +541,7 @@
 <div id="top-bar">
   <div id="company-name">Team Board</div>
   <div id="slide-dots"></div>
-  <button id="lb-jump" class="lb-jump-pulse" onclick="jumpToLeaderboard()" title="Go to Leaderboard">🏅 Leaderboard</button>
+  <button id="lb-jump" onclick="jumpToLeaderboard()" title="Go to Leaderboard">🏅 Leaderboard</button>
   <div id="clock-block">
     <div id="clock">00:00</div>
     <div id="date-str">Loading…</div>
@@ -444,113 +555,233 @@
 <div id="prog-track"><div id="prog-fill"></div></div>
 <div id="slides"></div>
 
-<!-- TICKER -->
 <div id="ticker-bar">
   <div id="ticker-label">Updates</div>
   <div id="ticker-wrap"><div id="ticker-track"></div></div>
 </div>
 
-<!-- ADMIN OVERLAY -->
-<div class="s-overlay" id="admin-overlay" onclick="adminOverlayClose(event)">
-  <div class="admin-modal">
-    <div class="s-modal-name">Admin Settings</div>
-    
-    <!-- Navigation Tabs (Simple) -->
-    <div style="display:flex;gap:10px;margin-bottom:20px;overflow-x:auto;padding-bottom:10px;">
-      <button class="btn btn-secondary" onclick="showAdminTab('gen')">General</button>
-      <button class="btn btn-secondary" onclick="showAdminTab('ann')">Announcements</button>
-      <button class="btn btn-secondary" onclick="showAdminTab('kpi')">KPIs</button>
-      <button class="btn btn-secondary" onclick="showAdminTab('tea')">Team</button>
-      <button class="btn btn-secondary" onclick="showAdminTab('tas')">Tasks</button>
-      <button class="btn btn-secondary" style="background:rgba(52,211,153,0.1);color:var(--green);" onclick="showAdminTab('git')">GitHub Sync</button>
-    </div>
-
-    <div id="adm-tab-gen" class="admin-tab">
-      <div class="admin-section">
-        <div class="admin-section-title">General</div>
-        <div class="admin-grid">
-          <div class="admin-field"><label>Company Name</label><input type="text" id="adm-company"></div>
-          <div class="admin-field"><label>Weather City</label><input type="text" id="adm-city"></div>
-          <div class="admin-field"><label>Slide Duration (sec)</label><input type="number" id="adm-dur"></div>
-          <div class="admin-field"><label>News RSS URL</label><input type="text" id="adm-rss"></div>
-        </div>
-      </div>
-      <div class="admin-section">
-        <div class="admin-section-title">Theme</div>
-        <div class="admin-field">
-          <label>Force Theme</label>
-          <select id="adm-theme-force">
-            <option value="auto">Auto (Time of Day)</option>
-            <option value="dawn">Dawn</option><option value="day">Day</option>
-            <option value="dusk">Dusk</option><option value="night">Night</option>
-          </select>
-        </div>
-      </div>
-    </div>
-
-    <div id="adm-tab-ann" class="admin-tab" style="display:none">
-      <div class="admin-section">
-        <div class="admin-section-title">Announcements</div>
-        <div id="adm-list-ann"></div>
-        <button class="add-btn" onclick="addAdminListItem('ann')">+ Add Announcement</button>
-      </div>
-    </div>
-
-    <div id="adm-tab-kpi" class="admin-tab" style="display:none">
-      <div class="admin-section">
-        <div class="admin-section-title">KPIs (Max 4)</div>
-        <div id="adm-list-kpi"></div>
-        <button class="add-btn" onclick="addAdminListItem('kpi')">+ Add KPI</button>
-      </div>
-    </div>
-
-    <div id="adm-tab-tea" class="admin-tab" style="display:none">
-      <div class="admin-section">
-        <div class="admin-section-title">Team Status Board</div>
-        <div id="adm-list-team"></div>
-        <button class="add-btn" onclick="addAdminListItem('team')">+ Add Member</button>
-      </div>
-    </div>
-
-    <div id="adm-tab-tas" class="admin-tab" style="display:none">
-      <div class="admin-section">
-        <div class="admin-section-title">Team Tasks</div>
-        <div id="adm-list-tasks"></div>
-        <button class="add-btn" onclick="addAdminListItem('tasks')">+ Add Task</button>
-      </div>
-    </div>
-
-    <div id="adm-tab-git" class="admin-tab" style="display:none">
-      <div class="admin-section">
-        <div class="admin-section-title">GitHub Sync</div>
-        <p style="font-size:11px;color:var(--text-dim);margin-bottom:15px;">Update <code>data.json</code> on GitHub. Token is stored only in your browser.</p>
-        <div class="admin-grid">
-          <div class="admin-field"><label>GitHub PAT</label><input type="password" id="gh-token" placeholder="github_pat_..."></div>
-          <div class="admin-field"><label>Repo Owner</label><input type="text" id="gh-owner" placeholder="mzs-byte"></div>
-          <div class="admin-field"><label>Repo Name</label><input type="text" id="gh-repo" placeholder="team-noticeboard"></div>
-        </div>
-        <button class="btn btn-primary" style="margin-top:20px;width:100%;" onclick="githubPush()">🚀 Push to GitHub</button>
-        <div id="gh-status" style="margin-top:10px;font-size:12px;text-align:center;font-weight:700;color:var(--blue);"></div>
-      </div>
-    </div>
-
-    <div class="admin-section">
-      <div class="admin-section-title">JSON Export</div>
-      <textarea id="adm-json-view" class="admin-json-view" readonly></textarea>
-    </div>
-
-    <div class="admin-btns">
-      <button class="btn btn-primary" onclick="adminSave()">Save Locally</button>
-      <button class="btn btn-secondary" onclick="adminCopyJSON()">Copy JSON</button>
-      <button class="btn btn-danger" onclick="adminReset()">Reset</button>
-      <button class="btn btn-secondary" style="margin-left:auto;" onclick="adminToggle()">Close</button>
-    </div>
+<!-- PIN SCREEN -->
+<div id="pin-screen">
+  <div id="pin-title">🔐 Admin Access</div>
+  <div id="pin-dots">
+    <div class="pin-dot" id="pd0"></div>
+    <div class="pin-dot" id="pd1"></div>
+    <div class="pin-dot" id="pd2"></div>
+    <div class="pin-dot" id="pd3"></div>
   </div>
+  <div id="pin-error"></div>
+  <div id="pin-pad">
+    <button class="pin-key" onclick="pinKey('1')">1</button>
+    <button class="pin-key" onclick="pinKey('2')">2</button>
+    <button class="pin-key" onclick="pinKey('3')">3</button>
+    <button class="pin-key" onclick="pinKey('4')">4</button>
+    <button class="pin-key" onclick="pinKey('5')">5</button>
+    <button class="pin-key" onclick="pinKey('6')">6</button>
+    <button class="pin-key" onclick="pinKey('7')">7</button>
+    <button class="pin-key" onclick="pinKey('8')">8</button>
+    <button class="pin-key" onclick="pinKey('9')">9</button>
+    <button class="pin-key" onclick="pinKey('0')">0</button>
+    <button class="pin-key" onclick="pinBack()">⌫</button>
+  </div>
+  <div id="pin-hint">Hold the clock for 3 seconds to open</div>
+  <button class="adm-btn adm-btn-ghost" onclick="closePinScreen()" style="margin-top:8px">Cancel</button>
 </div>
 
-<div id="admin-trigger" onclick="adminToggle()" title="Open Admin"></div>
+<!-- ADMIN PANEL -->
+<div id="admin-overlay">
+  <div id="admin-bar">
+    <div id="admin-bar-title">⚙️ Admin Panel</div>
+    <span class="adm-badge">v5</span>
+    <button class="adm-btn adm-btn-ghost" onclick="closeAdmin()">✕ Close</button>
+    <button class="adm-btn adm-btn-success" onclick="exportJSON()">⬇ Export data.json</button>
+  </div>
 
-<!-- STATUS PICKER MODAL -->
+  <div id="admin-tabs">
+    <div class="adm-tab active" onclick="admTab('general')">⚙️ General</div>
+    <div class="adm-tab" onclick="admTab('announcements')">📢 Announcements</div>
+    <div class="adm-tab" onclick="admTab('kpis')">📊 KPIs</div>
+    <div class="adm-tab" onclick="admTab('target')">🎯 Target</div>
+    <div class="adm-tab" onclick="admTab('leaderboard')">🏅 Leaderboard</div>
+    <div class="adm-tab" onclick="admTab('tasks')">✅ Tasks</div>
+    <div class="adm-tab" onclick="admTab('rota')">🗓️ Rota</div>
+    <div class="adm-tab" onclick="admTab('countdowns')">⏳ Countdowns</div>
+    <div class="adm-tab" onclick="admTab('birthdays')">🎂 Birthdays</div>
+    <div class="adm-tab" onclick="admTab('team')">🚦 Team</div>
+    <div class="adm-tab" onclick="admTab('images')">🖼️ Image Slides</div>
+    <div class="adm-tab" onclick="admTab('meme')">😂 Meme</div>
+    <div class="adm-tab" onclick="admTab('win')">🏆 Weekly Win</div>
+    <div class="adm-tab" onclick="admTab('ticker')">↔️ Ticker</div>
+    <div class="adm-tab" onclick="admTab('pin')">🔐 PIN</div>
+  </div>
+
+  <div id="admin-body">
+
+    <!-- GENERAL -->
+    <div class="adm-panel active" id="panel-general">
+      <div class="adm-section">
+        <div class="adm-section-title">Board Settings</div>
+        <div class="adm-row">
+          <div class="adm-field"><label class="adm-label">Company Name</label><input class="adm-input" id="g-company" placeholder="Your Team Name"></div>
+          <div class="adm-field"><label class="adm-label">Weather City</label><input class="adm-input" id="g-city" placeholder="London"></div>
+          <div class="adm-field"><label class="adm-label">Slide Duration (seconds)</label><input class="adm-input" id="g-dur" type="number" min="5" max="60" placeholder="10"></div>
+          <div class="adm-field"><label class="adm-label">News RSS Feed URL</label><input class="adm-input" id="g-rss" placeholder="https://feeds.bbc.co.uk/..."></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ANNOUNCEMENTS -->
+    <div class="adm-panel" id="panel-announcements">
+      <div class="adm-section">
+        <div class="adm-section-title">Announcements</div>
+        <div id="ann-list"></div>
+        <button class="adm-add-btn" onclick="annAdd()">+ Add Announcement</button>
+      </div>
+    </div>
+
+    <!-- KPIs -->
+    <div class="adm-panel" id="panel-kpis">
+      <div class="adm-section">
+        <div class="adm-section-title">KPIs (max 4)</div>
+        <div id="kpi-list"></div>
+        <button class="adm-add-btn" onclick="kpiAdd()">+ Add KPI</button>
+      </div>
+    </div>
+
+    <!-- TARGET -->
+    <div class="adm-panel" id="panel-target">
+      <div class="adm-section">
+        <div class="adm-section-title">Team Target Thermometer</div>
+        <div class="adm-row">
+          <div class="adm-field"><label class="adm-label">Label</label><input class="adm-input" id="t-label" placeholder="Monthly Sales Target"></div>
+          <div class="adm-field"><label class="adm-label">Current Value</label><input class="adm-input" id="t-current" type="number" placeholder="24000"></div>
+          <div class="adm-field"><label class="adm-label">Target Value</label><input class="adm-input" id="t-target" type="number" placeholder="35000"></div>
+          <div class="adm-field"><label class="adm-label">Unit (e.g. GBP)</label><input class="adm-input" id="t-unit" placeholder="GBP"></div>
+        </div>
+        <div class="adm-field"><label class="adm-label">Message</label><input class="adm-input" id="t-msg" placeholder="Keep pushing!"></div>
+      </div>
+    </div>
+
+    <!-- LEADERBOARD -->
+    <div class="adm-panel" id="panel-leaderboard">
+      <div class="adm-section">
+        <div class="adm-section-title">Leaderboard Entries</div>
+        <div id="lb-list"></div>
+        <button class="adm-add-btn" onclick="lbAdd()">+ Add Person</button>
+      </div>
+    </div>
+
+    <!-- TASKS -->
+    <div class="adm-panel" id="panel-tasks">
+      <div class="adm-section">
+        <div class="adm-section-title">Team Tasks</div>
+        <div id="task-list"></div>
+        <button class="adm-add-btn" onclick="taskAdd()">+ Add Task</button>
+      </div>
+    </div>
+
+    <!-- ROTA -->
+    <div class="adm-panel" id="panel-rota">
+      <div class="adm-section">
+        <div class="adm-section-title">Weekly Rota</div>
+        <div class="adm-row" style="grid-template-columns:1fr">
+          <div class="adm-field"><label class="adm-label">Week Label</label><input class="adm-input" id="rota-week" placeholder="Week of 7 Apr 2025"></div>
+        </div>
+        <div id="rota-list"></div>
+        <button class="adm-add-btn" onclick="rotaAdd()">+ Add Person</button>
+      </div>
+    </div>
+
+    <!-- COUNTDOWNS -->
+    <div class="adm-panel" id="panel-countdowns">
+      <div class="adm-section">
+        <div class="adm-section-title">Countdown Timers (max 4)</div>
+        <div id="cd-list"></div>
+        <button class="adm-add-btn" onclick="cdAdd()">+ Add Countdown</button>
+      </div>
+    </div>
+
+    <!-- BIRTHDAYS -->
+    <div class="adm-panel" id="panel-birthdays">
+      <div class="adm-section">
+        <div class="adm-section-title">Birthdays & Anniversaries</div>
+        <div id="bday-list"></div>
+        <button class="adm-add-btn" onclick="bdayAdd()">+ Add Entry</button>
+      </div>
+    </div>
+
+    <!-- TEAM STATUS -->
+    <div class="adm-panel" id="panel-team">
+      <div class="adm-section">
+        <div class="adm-section-title">Team Members (Status Board)</div>
+        <div id="team-list"></div>
+        <button class="adm-add-btn" onclick="teamAdd()">+ Add Member</button>
+      </div>
+    </div>
+
+    <!-- IMAGE SLIDES -->
+    <div class="adm-panel" id="panel-images">
+      <div class="adm-section">
+        <div class="adm-section-title">Image / Photo Slides</div>
+        <p style="font-size:13px;color:var(--text-dim);margin-bottom:14px;line-height:1.6">
+          Add any image URL (from the web, Google Drive share link, Imgur etc). The image fills the slide with a blurred background. Optional caption underneath.
+        </p>
+        <div id="img-list"></div>
+        <button class="adm-add-btn" onclick="imgAdd()">+ Add Image Slide</button>
+      </div>
+    </div>
+
+    <!-- MEME -->
+    <div class="adm-panel" id="panel-meme">
+      <div class="adm-section">
+        <div class="adm-section-title">Meme / GIF of the Day</div>
+        <div class="adm-field" style="margin-bottom:10px"><label class="adm-label">Image or GIF URL</label><input class="adm-input" id="meme-url" placeholder="https://media.giphy.com/..."></div>
+        <div class="adm-field"><label class="adm-label">Caption (optional)</label><input class="adm-input" id="meme-caption" placeholder="Us on a Friday afternoon ☕"></div>
+      </div>
+    </div>
+
+    <!-- WEEKLY WIN -->
+    <div class="adm-panel" id="panel-win">
+      <div class="adm-section">
+        <div class="adm-section-title">Weekly Win</div>
+        <div class="adm-field" style="margin-bottom:10px"><label class="adm-label">Headline</label><input class="adm-input" id="win-headline" placeholder="Landed the Henderson Account!"></div>
+        <div class="adm-field" style="margin-bottom:10px"><label class="adm-label">Detail</label><textarea class="adm-textarea" id="win-detail" placeholder="More detail about the win..."></textarea></div>
+        <div class="adm-field"><label class="adm-label">Who (credit)</label><input class="adm-input" id="win-who" placeholder="Sarah and the Sales Team"></div>
+      </div>
+    </div>
+
+    <!-- TICKER -->
+    <div class="adm-panel" id="panel-ticker">
+      <div class="adm-section">
+        <div class="adm-section-title">Ticker Messages</div>
+        <div id="ticker-list"></div>
+        <button class="adm-add-btn" onclick="tickerAdd()">+ Add Message</button>
+      </div>
+    </div>
+
+    <!-- PIN -->
+    <div class="adm-panel" id="panel-pin">
+      <div class="adm-section">
+        <div class="adm-section-title">Change Admin PIN</div>
+        <p style="font-size:13px;color:var(--text-dim);margin-bottom:14px;line-height:1.6">
+          The PIN is saved in this browser. You'll need to set it on each device separately.
+          Default PIN is <strong style="color:var(--blue)">1234</strong>.
+        </p>
+        <div class="adm-row">
+          <div class="adm-field"><label class="adm-label">Current PIN</label><input class="adm-input" id="pin-current" type="password" maxlength="4" placeholder="••••"></div>
+          <div class="adm-field"><label class="adm-label">New PIN</label><input class="adm-input" id="pin-new" type="password" maxlength="4" placeholder="••••"></div>
+          <div class="adm-field"><label class="adm-label">Confirm New PIN</label><input class="adm-input" id="pin-confirm" type="password" maxlength="4" placeholder="••••"></div>
+        </div>
+        <button class="adm-btn adm-btn-primary" onclick="changePin()" style="margin-top:8px">Update PIN</button>
+        <div id="pin-change-msg" style="margin-top:10px;font-size:13px;font-weight:700;min-height:18px;font-family:var(--font-head)"></div>
+      </div>
+    </div>
+
+  </div><!-- /admin-body -->
+</div><!-- /admin-overlay -->
+
+<div id="export-toast">✅ data.json downloaded!</div>
+
+<!-- STATUS MODAL -->
 <div class="s-overlay" id="s-overlay" onclick="overlayClose(event)">
   <div class="s-modal">
     <div class="s-modal-name" id="s-modal-name">Update Status</div>
@@ -560,347 +791,231 @@
 
 <script>
 // ══════════════════════════════════════════
-// CONFIG & STATE
+// INTERNATIONAL DAYS (UN + popular)
 // ══════════════════════════════════════════
-let cfg = null, slides = [], cur = 0, timer = null;
-let lbSlideIndex = -1;
-const STATUS_KEY = 'nb_status_v1';
-const CONFIG_OVERRIDE_KEY = 'nb_config_override_v1';
-const GITHUB_SETTINGS_KEY = 'nb_github_settings_v1';
-
-const THEMES = {
-  dawn:  { bg: '#0f172a', surface: 'rgba(56,189,248,0.06)', border: 'rgba(56,189,248,0.15)', text: '#f0f9ff', blue: '#38bdf8' },
-  day:   { bg: '#070d1a', surface: 'rgba(255,255,255,0.04)', border: 'rgba(255,255,255,0.08)', text: '#f0f4ff', blue: '#38bdf8' },
-  dusk:  { bg: '#1e1b4b', surface: 'rgba(167,139,250,0.06)', border: 'rgba(167,139,250,0.15)', text: '#f5f3ff', blue: '#a78bfa' },
-  night: { bg: '#020617', surface: 'rgba(255,255,255,0.02)', border: 'rgba(255,255,255,0.05)', text: '#e2e8f0', blue: '#60a5fa' }
+const INTL_DAYS = {
+  "01-01": { name:"New Year's Day",                          emoji:"🎆", desc:"The world celebrates the start of a brand new year." },
+  "01-27": { name:"International Holocaust Remembrance Day", emoji:"🕯️",  desc:"A day of reflection and remembrance for victims of the Holocaust." },
+  "02-04": { name:"World Cancer Day",                        emoji:"🎗️",  desc:"Raising global awareness and improving cancer education and care." },
+  "02-11": { name:"Day of Women in Science",                 emoji:"🔬", desc:"Celebrating the vital role women and girls play in science." },
+  "02-13": { name:"World Radio Day",                         emoji:"📻", desc:"Celebrating radio as a medium and improving international cooperation." },
+  "02-20": { name:"World Day of Social Justice",             emoji:"⚖️",  desc:"Promoting human rights, gender equity, and the wellbeing of all." },
+  "02-21": { name:"International Mother Language Day",       emoji:"🗣️",  desc:"Promoting linguistic and cultural diversity worldwide." },
+  "03-08": { name:"International Women's Day",               emoji:"♀️",  desc:"Celebrating women's achievements and calling for gender equality." },
+  "03-20": { name:"International Day of Happiness",          emoji:"😊", desc:"Recognising happiness as a fundamental human goal." },
+  "03-21": { name:"World Poetry Day",                        emoji:"📜", desc:"Supporting linguistic diversity through poetic expression." },
+  "03-22": { name:"World Water Day",                         emoji:"💧", desc:"Raising awareness of the global water crisis and sustainable use." },
+  "04-02": { name:"World Autism Awareness Day",              emoji:"🧩", desc:"Increasing understanding and acceptance of people with autism." },
+  "04-07": { name:"World Health Day",                        emoji:"🏥", desc:"Raising awareness of global health issues and universal healthcare." },
+  "04-22": { name:"Earth Day",                               emoji:"🌍", desc:"Demonstrating support for environmental protection worldwide." },
+  "04-23": { name:"World Book Day",                          emoji:"📚", desc:"Celebrating books, reading, and the power of literature." },
+  "05-01": { name:"International Workers' Day",              emoji:"✊", desc:"Honouring the labour movement and workers around the world." },
+  "05-03": { name:"World Press Freedom Day",                 emoji:"📰", desc:"Celebrating free press and defending media against threats." },
+  "05-15": { name:"International Day of Families",           emoji:"👨‍👩‍👧‍👦", desc:"Reflecting on the importance of families in global society." },
+  "05-20": { name:"World Bee Day",                           emoji:"🐝", desc:"Raising awareness of the importance of bees and other pollinators." },
+  "05-31": { name:"World No Tobacco Day",                    emoji:"🚭", desc:"Raising awareness of the harmful effects of tobacco use." },
+  "06-05": { name:"World Environment Day",                   emoji:"🌿", desc:"The UN's principal vehicle for encouraging awareness of the environment." },
+  "06-08": { name:"World Oceans Day",                        emoji:"🌊", desc:"Celebrating our world ocean and our personal connection to the sea." },
+  "06-20": { name:"World Refugee Day",                       emoji:"🌐", desc:"Honouring the strength and resilience of refugees worldwide." },
+  "06-21": { name:"International Day of Yoga",               emoji:"🧘", desc:"Celebrating yoga's universal appeal and its benefits for health." },
+  "07-11": { name:"World Population Day",                    emoji:"👥", desc:"Focusing attention on population issues around the world." },
+  "07-18": { name:"Nelson Mandela International Day",        emoji:"✊", desc:"Honouring Nelson Mandela's legacy and his values of service." },
+  "07-30": { name:"International Day of Friendship",         emoji:"🤝", desc:"Promoting friendship between peoples, countries and cultures." },
+  "08-12": { name:"International Youth Day",                 emoji:"🌟", desc:"Celebrating young people as key agents of change worldwide." },
+  "08-19": { name:"World Humanitarian Day",                  emoji:"❤️",  desc:"Paying tribute to humanitarian workers who risk their lives." },
+  "09-05": { name:"International Day of Charity",            emoji:"💝", desc:"Raising awareness of charitable activities worldwide." },
+  "09-08": { name:"International Literacy Day",              emoji:"📖", desc:"Highlighting the importance of literacy for individuals and society." },
+  "09-10": { name:"World Suicide Prevention Day",            emoji:"💚", desc:"Raising awareness of suicide prevention around the world." },
+  "09-15": { name:"International Day of Democracy",          emoji:"🗳️",  desc:"Celebrating the values, principles and practice of democracy." },
+  "09-21": { name:"International Day of Peace",              emoji:"☮️",  desc:"Dedicated to world peace and specifically the absence of war." },
+  "10-01": { name:"International Day of Older Persons",      emoji:"👴", desc:"Raising awareness of the opportunities and challenges of ageing." },
+  "10-02": { name:"International Day of Non-Violence",       emoji:"🕊️",  desc:"Celebrating the birthday of Mahatma Gandhi and his philosophy." },
+  "10-04": { name:"World Animal Day",                        emoji:"🐾", desc:"Raising the status of animals to improve welfare standards globally." },
+  "10-05": { name:"World Teachers' Day",                     emoji:"🍎", desc:"Celebrating teachers and the teaching profession worldwide." },
+  "10-10": { name:"World Mental Health Day",                 emoji:"🧠", desc:"Raising awareness of mental health issues and mobilising support." },
+  "10-11": { name:"International Day of the Girl Child",     emoji:"👧", desc:"Addressing the needs of girls and promoting their empowerment." },
+  "10-16": { name:"World Food Day",                          emoji:"🌽", desc:"Raising awareness of world hunger and promoting food security." },
+  "10-24": { name:"United Nations Day",                      emoji:"🇺🇳", desc:"Marking the anniversary of the entry into force of the UN Charter." },
+  "11-14": { name:"World Diabetes Day",                      emoji:"💙", desc:"Raising awareness of diabetes and its impact on millions worldwide." },
+  "11-16": { name:"International Day for Tolerance",         emoji:"🤲", desc:"Fostering mutual understanding among cultures and peoples." },
+  "11-19": { name:"World Toilet Day",                        emoji:"🚽", desc:"Raising awareness of the global sanitation crisis." },
+  "11-20": { name:"Universal Children's Day",                emoji:"🧒", desc:"Promoting international togetherness and children's welfare worldwide." },
+  "11-25": { name:"Day for Elimination of Violence Against Women", emoji:"🟣", desc:"Raising awareness of violence against women and girls." },
+  "12-01": { name:"World AIDS Day",                          emoji:"🎀", desc:"Raising awareness of HIV/AIDS and mourning those who've died." },
+  "12-03": { name:"Day of Persons with Disabilities",        emoji:"♿", desc:"Promoting the rights and well-being of persons with disabilities." },
+  "12-05": { name:"International Volunteer Day",             emoji:"🙋", desc:"Celebrating the power of volunteerism to transform communities." },
+  "12-10": { name:"Human Rights Day",                        emoji:"✊", desc:"Commemorating the day the UN adopted the Universal Declaration." },
+  "12-18": { name:"International Migrants Day",              emoji:"🌍", desc:"Recognising the contributions of migrants worldwide." }
 };
 
-const STATUSES = [
-  { id:'in',      label:'In Office',   emoji:'🏢', color:'var(--green)'  },
-  { id:'remote',  label:'Remote',      emoji:'🏠', color:'var(--purple)' },
-  { id:'away',    label:'Away',        emoji:'⏸️',  color:'var(--amber)'  },
-  { id:'meeting', label:'In Meeting',  emoji:'📞', color:'var(--blue)'   },
-  { id:'off',     label:'Off Today',   emoji:'🌙', color:'var(--text-muted)' },
+// ══════════════════════════════════════════
+// MOTIVATIONAL QUOTES (365 days)
+// ══════════════════════════════════════════
+const QUOTES = [
+  { text:"The secret of getting ahead is getting started.", author:"Mark Twain" },
+  { text:"It always seems impossible until it's done.", author:"Nelson Mandela" },
+  { text:"Don't watch the clock; do what it does. Keep going.", author:"Sam Levenson" },
+  { text:"Believe you can and you're halfway there.", author:"Theodore Roosevelt" },
+  { text:"Act as if what you do makes a difference. It does.", author:"William James" },
+  { text:"Success is not final, failure is not fatal — it is the courage to continue that counts.", author:"Winston Churchill" },
+  { text:"The only way to do great work is to love what you do.", author:"Steve Jobs" },
+  { text:"In the middle of every difficulty lies opportunity.", author:"Albert Einstein" },
+  { text:"It does not matter how slowly you go as long as you do not stop.", author:"Confucius" },
+  { text:"Everything you've ever wanted is on the other side of fear.", author:"George Addair" },
+  { text:"Start where you are. Use what you have. Do what you can.", author:"Arthur Ashe" },
+  { text:"Dream big and dare to fail.", author:"Norman Vaughan" },
+  { text:"You are never too old to set another goal or to dream a new dream.", author:"C.S. Lewis" },
+  { text:"The future belongs to those who believe in the beauty of their dreams.", author:"Eleanor Roosevelt" },
+  { text:"Hardships often prepare ordinary people for an extraordinary destiny.", author:"C.S. Lewis" },
+  { text:"Talent wins games, but teamwork and intelligence win championships.", author:"Michael Jordan" },
+  { text:"You miss 100% of the shots you don't take.", author:"Wayne Gretzky" },
+  { text:"Whether you think you can or you think you can't, you're right.", author:"Henry Ford" },
+  { text:"The best time to plant a tree was 20 years ago. The second best time is now.", author:"Chinese Proverb" },
+  { text:"An unexamined life is not worth living.", author:"Socrates" },
+  { text:"The way to get started is to quit talking and begin doing.", author:"Walt Disney" },
+  { text:"Life is what happens when you're busy making other plans.", author:"John Lennon" },
+  { text:"The real test is not whether you avoid failure, it's whether you learn from it.", author:"Barack Obama" },
+  { text:"It's not whether you get knocked down, it's whether you get up.", author:"Vince Lombardi" },
+  { text:"Opportunities don't happen. You create them.", author:"Chris Grosser" },
+  { text:"Try not to become a person of success, but rather try to become a person of value.", author:"Albert Einstein" },
+  { text:"A person who never made a mistake never tried anything new.", author:"Albert Einstein" },
+  { text:"If you want to lift yourself up, lift up someone else.", author:"Booker T. Washington" },
+  { text:"It is never too late to be what you might have been.", author:"George Eliot" },
+  { text:"Don't limit your challenges. Challenge your limits.", author:"Jerry Dunn" },
+  { text:"Great things never come from comfort zones.", author:"Neil Strauss" },
+  { text:"Do one thing every day that scares you.", author:"Eleanor Roosevelt" },
+  { text:"What lies behind us and what lies before us are tiny matters compared to what lies within us.", author:"Ralph Waldo Emerson" },
+  { text:"It's not the mountain we conquer, but ourselves.", author:"Edmund Hillary" },
+  { text:"All our dreams can come true, if we have the courage to pursue them.", author:"Walt Disney" },
+  { text:"The harder the conflict, the more glorious the triumph.", author:"Thomas Paine" },
+  { text:"Keep your face always toward the sunshine and shadows will fall behind you.", author:"Walt Whitman" },
+  { text:"Spread love everywhere you go. Let no one ever come to you without leaving happier.", author:"Mother Teresa" },
+  { text:"When you reach the end of your rope, tie a knot in it and hang on.", author:"Franklin D. Roosevelt" },
+  { text:"Always remember that you are absolutely unique. Just like everyone else.", author:"Margaret Mead" },
+  { text:"Do not go where the path may lead; go instead where there is no path and leave a trail.", author:"Emerson" },
+  { text:"You will face many defeats in life, but never let yourself be defeated.", author:"Maya Angelou" },
+  { text:"The greatest glory in living lies not in never falling, but in rising every time we fall.", author:"Nelson Mandela" },
+  { text:"In the end, it's not the years in your life that count. It's the life in your years.", author:"Abraham Lincoln" },
+  { text:"Never let the fear of striking out keep you from playing the game.", author:"Babe Ruth" },
+  { text:"Life is either a daring adventure or nothing at all.", author:"Helen Keller" },
+  { text:"Many of life's failures are people who did not realize how close they were to success when they gave up.", author:"Thomas A. Edison" },
+  { text:"You have brains in your head. You have feet in your shoes. You can steer yourself in any direction you choose.", author:"Dr. Seuss" },
+  { text:"If life were predictable it would cease to be life, and be without flavour.", author:"Eleanor Roosevelt" },
+  { text:"If you look at what you have in life, you'll always have more.", author:"Oprah Winfrey" },
+  { text:"If you set your goals ridiculously high and it's a failure, you will fail above everyone else's success.", author:"James Cameron" },
 ];
+
+// ══════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════
+let cfg = null, slides = [], cur = 0, timer = null, lbSlideIndex = -1;
+const STATUS_KEY = 'nb_status_v4';
+const STATUSES = [
+  { id:'in',      label:'In Office',  emoji:'🏢', color:'var(--green)'       },
+  { id:'remote',  label:'Remote',     emoji:'🏠', color:'var(--purple)'      },
+  { id:'away',    label:'Away',       emoji:'⏸️',  color:'var(--amber)'       },
+  { id:'meeting', label:'In Meeting', emoji:'📞', color:'var(--blue)'        },
+  { id:'off',     label:'Off Today',  emoji:'🌙', color:'var(--text-muted)'  },
+];
+let newsItems = [];
+
+// ══════════════════════════════════════════
+// TIME THEMING
+// ══════════════════════════════════════════
+function applyTimeTheme() {
+  const h = new Date().getHours();
+  const body = document.body;
+  body.classList.remove('theme-morning','theme-afternoon','theme-evening');
+  if      (h >= 6  && h < 12) body.classList.add('theme-morning');
+  else if (h >= 12 && h < 18) body.classList.add('theme-afternoon');
+  else if (h >= 18 && h < 22) body.classList.add('theme-evening');
+  // 22-6: default dark
+}
+applyTimeTheme();
+setInterval(applyTimeTheme, 60 * 1000);
 
 // ══════════════════════════════════════════
 // LOAD
 // ══════════════════════════════════════════
 async function load() {
   try {
-    const local = localStorage.getItem(CONFIG_OVERRIDE_KEY);
-    if (local) {
-      cfg = JSON.parse(local);
-      apply();
-    } else {
-      const r = await fetch('data.json?t=' + Date.now());
-      cfg = await r.json();
-      apply();
-    }
-  } catch(e) { console.error('data.json load failed', e); }
+    const r = await fetch('data.json?t=' + Date.now());
+    cfg = await r.json();
+    apply();
+  } catch(e) { console.error('data.json failed', e); }
 }
 setInterval(load, 5 * 60 * 1000);
 
 function apply() {
   if (!cfg) return;
   if (cfg.company_name) document.getElementById('company-name').textContent = cfg.company_name;
-  applyDynamicTheme();
   buildSlides();
   buildTicker();
   if (cfg.weather_city) getWeather(cfg.weather_city);
   if (cfg.news_rss) loadNews(cfg.news_rss);
 }
 
-function applyDynamicTheme() {
-  const h = new Date().getHours();
-  let mode = 'day';
-  if (cfg.theme_force && cfg.theme_force !== 'auto') {
-    mode = cfg.theme_force;
-  } else {
-    if (h >= 6 && h < 11) mode = 'dawn';
-    else if (h >= 11 && h < 17) mode = 'day';
-    else if (h >= 17 && h < 21) mode = 'dusk';
-    else mode = 'night';
-  }
-  const t = THEMES[mode] || THEMES.day;
-  const root = document.documentElement;
-  root.style.setProperty('--bg', t.bg);
-  root.style.setProperty('--surface', t.surface);
-  root.style.setProperty('--border', t.border);
-  root.style.setProperty('--text', t.text);
-  root.style.setProperty('--blue', t.blue);
-  document.querySelector('meta[name="theme-color"]').setAttribute('content', t.bg);
-}
-
-// ══════════════════════════════════════════
-// ADMIN LOGIC
-// ══════════════════════════════════════════
-function showAdminTab(id) {
-  document.querySelectorAll('.admin-tab').forEach(t => t.style.display = 'none');
-  document.getElementById('adm-tab-' + id).style.display = 'block';
-}
-
-async function githubPush() {
-  const status = document.getElementById('gh-status');
-  const token = document.getElementById('gh-token').value;
-  const owner = document.getElementById('gh-owner').value;
-  const repo = document.getElementById('gh-repo').value;
-
-  if (!token || !owner || !repo) {
-    status.style.color = 'var(--red)';
-    status.textContent = '❌ Missing GitHub settings!';
-    return;
-  }
-
-  // Save settings locally
-  localStorage.setItem(GITHUB_SETTINGS_KEY, JSON.stringify({ token, owner, repo }));
-
-  status.style.color = 'var(--blue)';
-  status.textContent = '⏳ Getting file SHA...';
-
-  try {
-    const url = `https://api.github.com/repos/${owner}/${repo}/contents/data.json`;
-    const headers = { 'Authorization': `token ${token}`, 'Accept': 'application/vnd.github.v3+json' };
-
-    // 1. Get the current file SHA (required by GitHub API to update)
-    const r1 = await fetch(url, { headers });
-    if (!r1.ok) throw new Error('Could not find data.json on GitHub');
-    const d1 = await r1.json();
-    const sha = d1.sha;
-
-    status.textContent = '⏳ Pushing to GitHub...';
-
-    // 2. Update the file
-    // btoa is ASCII-only, so we use encodeURIComponent + unescape for Unicode support
-    const content = btoa(unescape(encodeURIComponent(JSON.stringify(cfg, null, 2))));
-    const r2 = await fetch(url, {
-      method: 'PUT',
-      headers,
-      body: JSON.stringify({
-        message: 'Update data.json via Team Noticeboard Admin',
-        content,
-        sha
-      })
-    });
-
-    if (r2.ok) {
-      status.style.color = 'var(--green)';
-      status.textContent = '✅ Successfully updated GitHub!';
-    } else {
-      const err = await r2.json();
-      throw new Error(err.message || 'Push failed');
-    }
-  } catch (e) {
-    status.style.color = 'var(--red)';
-    status.textContent = '❌ Error: ' + e.message;
-  }
-}
-
-function adminToggle() {
-  const el = document.getElementById('admin-overlay');
-  const isOpen = el.classList.toggle('open');
-  if (isOpen && cfg) {
-    showAdminTab('gen');
-    document.getElementById('adm-company').value = cfg.company_name || '';
-    document.getElementById('adm-city').value = cfg.weather_city || '';
-    document.getElementById('adm-dur').value = cfg.slide_duration || 10;
-    document.getElementById('adm-rss').value = cfg.news_rss || '';
-    document.getElementById('adm-theme-force').value = cfg.theme_force || 'auto';
-    
-    // Load GitHub settings
-    const git = JSON.parse(localStorage.getItem(GITHUB_SETTINGS_KEY) || '{}');
-    document.getElementById('gh-token').value = git.token || '';
-    document.getElementById('gh-owner').value = git.owner || '';
-    document.getElementById('gh-repo').value = git.repo || '';
-    document.getElementById('gh-status').textContent = '';
-
-    renderAdminLists();
-    updateAdminJSONView();
-  }
-}
-
-function renderAdminLists() {
-  renderAdminList('ann', cfg.announcements || [], (a, i) => `
-    <div class="adm-list-item">
-      <button class="remove-btn" onclick="removeAdminListItem('ann',${i})">×</button>
-      <div class="admin-grid">
-        <div class="admin-field"><label>Title</label><input type="text" data-key="title" value="${esc(a.title)}"></div>
-        <div class="admin-field"><label>Priority</label>
-          <select data-key="priority">
-            <option value="normal" ${a.priority==='normal'?'selected':''}>Normal</option>
-            <option value="important" ${a.priority==='important'?'selected':''}>Important</option>
-            <option value="urgent" ${a.priority==='urgent'?'selected':''}>Urgent</option>
-          </select>
-        </div>
-      </div>
-      <div class="admin-field" style="margin-top:10px;"><label>Body</label><textarea data-key="body">${esc(a.body)}</textarea></div>
-    </div>`);
-
-  renderAdminList('kpi', cfg.kpis || [], (k, i) => `
-    <div class="adm-list-item">
-      <button class="remove-btn" onclick="removeAdminListItem('kpi',${i})">×</button>
-      <div class="admin-grid">
-        <div class="admin-field"><label>Label</label><input type="text" data-key="label" value="${esc(k.label)}"></div>
-        <div class="admin-field"><label>Value</label><input type="text" data-key="value" value="${esc(k.value)}"></div>
-        <div class="admin-field"><label>Trend</label>
-          <select data-key="trend">
-            <option value="up" ${k.trend==='up'?'selected':''}>Up</option>
-            <option value="down" ${k.trend==='down'?'selected':''}>Down</option>
-            <option value="neutral" ${k.trend==='neutral'?'selected':''}>Neutral</option>
-          </select>
-        </div>
-        <div class="admin-field"><label>Change Text</label><input type="text" data-key="change" value="${esc(k.change)}"></div>
-      </div>
-    </div>`);
-
-  renderAdminList('team', cfg.team || [], (m, i) => `
-    <div class="adm-list-item">
-      <button class="remove-btn" onclick="removeAdminListItem('team',${i})">×</button>
-      <div class="admin-grid">
-        <div class="admin-field"><label>Name</label><input type="text" data-key="name" value="${esc(m.name)}"></div>
-        <div class="admin-field"><label>Default Status</label>
-          <select data-key="default_status">
-            ${STATUSES.map(s=>`<option value="${s.id}" ${m.default_status===s.id?'selected':''}>${s.label}</option>`).join('')}
-          </select>
-        </div>
-      </div>
-    </div>`);
-
-  renderAdminList('tasks', cfg.tasks || [], (t, i) => `
-    <div class="adm-list-item">
-      <button class="remove-btn" onclick="removeAdminListItem('tasks',${i})">×</button>
-      <div class="admin-field"><label>Task Text</label><input type="text" data-key="text" value="${esc(t.text)}"></div>
-      <div class="admin-grid" style="margin-top:10px;">
-        <div class="admin-field"><label>Assignee</label><input type="text" data-key="assignee" value="${esc(t.assignee)}"></div>
-        <div class="admin-field"><label>Priority</label>
-          <select data-key="priority">
-            <option value="low" ${t.priority==='low'?'selected':''}>Low</option>
-            <option value="medium" ${t.priority==='medium'?'selected':''}>Medium</option>
-            <option value="high" ${t.priority==='high'?'selected':''}>High</option>
-          </select>
-        </div>
-      </div>
-    </div>`);
-}
-
-function renderAdminList(id, items, templateFn) {
-  const container = document.getElementById('adm-list-' + id);
-  if (container) container.innerHTML = items.map((item, i) => templateFn(item, i)).join('');
-}
-
-function addAdminListItem(type) {
-  const defaults = {
-    ann: { title: 'New Announcement', body: 'Detail text here...', priority: 'normal' },
-    kpi: { label: 'New KPI', value: '0', change: '0%', trend: 'neutral' },
-    team: { name: 'New Member', default_status: 'in' },
-    tasks: { text: 'New Task', assignee: 'All', priority: 'medium' }
-  };
-  const key = type==='ann'?'announcements':type==='team'?'team':type;
-  if(!cfg[key]) cfg[key] = [];
-  cfg[key].push(defaults[type]);
-  renderAdminLists();
-  updateAdminJSONView();
-}
-
-function removeAdminListItem(type, index) {
-  const key = type==='ann'?'announcements':type==='team'?'team':type;
-  cfg[key].splice(index, 1);
-  renderAdminLists();
-  updateAdminJSONView();
-}
-
-function updateAdminJSONView() {
-  document.getElementById('adm-json-view').value = JSON.stringify(cfg, null, 2);
-}
-
-function adminSave() {
-  if (!cfg) return;
-  cfg.company_name = document.getElementById('adm-company').value;
-  cfg.weather_city = document.getElementById('adm-city').value;
-  cfg.slide_duration = parseInt(document.getElementById('adm-dur').value);
-  cfg.news_rss = document.getElementById('adm-rss').value;
-  cfg.theme_force = document.getElementById('adm-theme-force').value;
-  cfg.announcements = collectAdminList('ann');
-  cfg.kpis = collectAdminList('kpi');
-  cfg.team = collectAdminList('team');
-  cfg.tasks = collectAdminList('tasks');
-  localStorage.setItem(CONFIG_OVERRIDE_KEY, JSON.stringify(cfg));
-  adminToggle(); apply();
-  alert('Settings saved locally!');
-}
-
-function collectAdminList(id) {
-  const items = [];
-  const container = document.getElementById('adm-list-' + id);
-  if(!container) return [];
-  container.querySelectorAll('.adm-list-item').forEach(el => {
-    const obj = {};
-    el.querySelectorAll('[data-key]').forEach(input => { obj[input.dataset.key] = input.value; });
-    items.push(obj);
-  });
-  return items;
-}
-
-function adminCopyJSON() {
-  updateAdminJSONView();
-  const view = document.getElementById('adm-json-view');
-  view.select();
-  document.execCommand('copy');
-  alert('JSON copied to clipboard!');
-}
-
-function adminReset() {
-  if (confirm('Are you sure you want to reset to the server default?')) {
-    localStorage.removeItem(CONFIG_OVERRIDE_KEY);
-    location.reload();
-  }
-}
-
-function adminOverlayClose(e) {
-  if (e.target.id === 'admin-overlay') adminToggle();
-}
-
 // ══════════════════════════════════════════
 // BUILD SLIDES
 // ══════════════════════════════════════════
-function buildSlides() {
+async function buildSlides() {
   const container = document.getElementById('slides');
   container.innerHTML = '';
-  slides = []; cur = 0;
+  slides = []; cur = 0; lbSlideIndex = -1;
 
-  // Birthday/Anniversary — inject first if today
-  const bdays = checkBirthdays(cfg.birthdays || []);
-  bdays.forEach(b => slides.push(bdaySlide(b)));
+  const now = new Date();
+  const mm  = String(now.getMonth() + 1).padStart(2,'0');
+  const dd  = String(now.getDate()).padStart(2,'0');
+  const key = `${mm}-${dd}`;
 
-  // Weekly Win
+  // 1 — Birthdays / Anniversaries
+  const bdays = (cfg.birthdays || []).filter(b => b.date === key);
+  for (const b of bdays) {
+    const extra = await fetchWikiExtra(b.type, mm, dd);
+    slides.push(bdaySlide(b, extra));
+  }
+
+  // 2 — International Day (if today)
+  const intl = INTL_DAYS[key];
+  if (intl) slides.push(intlSlide(intl));
+
+  // 3 — Quote of the Day
+  const doy = Math.floor((now - new Date(now.getFullYear(),0,0)) / 86400000);
+  const q = QUOTES[doy % QUOTES.length];
+  slides.push(quoteSlide(q, doy));
+
+  // 4 — Weekly Win
   if (cfg.weekly_win) slides.push(winSlide(cfg.weekly_win));
 
-  // Announcements
+  // 5 — Announcements
   (cfg.announcements || []).forEach(a => slides.push(annoSlide(a)));
 
-  // KPIs
+  // 6 — KPIs
   if (cfg.kpis?.length) slides.push(kpiSlide(cfg.kpis));
 
-  // Target Thermometer
+  // 7 — Target Thermometer
   if (cfg.target) slides.push(thermoSlide(cfg.target));
 
-  // Rota
+  // 8 — Rota
   if (cfg.rota) slides.push(rotaSlide(cfg.rota));
 
-  // Countdown Timers
-  if (cfg.countdowns?.length) slides.push(countdownSlide(cfg.countdowns));
+  // 9 — Countdowns
+  if (cfg.countdowns?.length) slides.push(cdSlide(cfg.countdowns));
 
-  // Team Status
+  // 10 — Leaderboard
+  if (cfg.leaderboard?.length) { lbSlideIndex = slides.length; slides.push(lbSlide(cfg.leaderboard)); }
+
+  // 11 — Status Board
   if (cfg.team?.length) slides.push(statusSlide(cfg.team));
 
-  // Meme / GIF of the day
-  if (cfg.meme) slides.push(memeSlide(cfg.meme));
-
-  // Leaderboard
-  if (cfg.leaderboard?.length) { lbSlideIndex = slides.length; slides.push(leaderboardSlide(cfg.leaderboard)); }
-
-  // Tasks
+  // 12 — Tasks
   if (cfg.tasks?.length) slides.push(tasksSlide(cfg.tasks));
+
+  // 13 — Image slides
+  (cfg.image_slides || []).forEach(img => slides.push(imgSlide(img)));
+
+  // 14 — Meme
+  if (cfg.meme) slides.push(memeSlide(cfg.meme));
 
   if (!slides.length) return;
   slides.forEach(el => container.appendChild(el));
@@ -910,12 +1025,105 @@ function buildSlides() {
 }
 
 // ══════════════════════════════════════════
+// WIKIPEDIA FETCH
+// ══════════════════════════════════════════
+async function fetchWikiExtra(type, mm, dd) {
+  try {
+    const endpoint = type === 'anniversary' ? 'events' : 'births';
+    const r = await fetch(`https://en.wikipedia.org/api/rest_v1/feed/onthisday/${endpoint}/${mm}/${dd}`);
+    const d = await r.json();
+    const items = d[endpoint] || [];
+    // Pick the most notable (Wikipedia orders by relevance)
+    const pick = items.find(i => i.pages?.length > 0);
+    if (!pick) return null;
+    const page = pick.pages[0];
+    return {
+      year:    pick.year,
+      title:   page.titles?.normalized || page.title,
+      extract: page.extract?.split('.')[0] + '.',
+      type:    type === 'anniversary' ? 'event' : 'person'
+    };
+  } catch { return null; }
+}
+
+// ══════════════════════════════════════════
 // SLIDE BUILDERS
 // ══════════════════════════════════════════
 
+// ── Quote ──
+function quoteSlide(q, doy) {
+  const el = mkSlide('zoom');
+  el.innerHTML = `
+    <div class="slide-hdr">
+      <span class="slide-icon">💭</span>
+      <span class="slide-title">Quote of the Day</span>
+      <span class="slide-tag" style="background:rgba(56,189,248,.12);color:var(--blue)">Day ${doy}</span>
+    </div>
+    <div class="quote-card">
+      <div class="quote-mark">"</div>
+      <div class="quote-text">${esc(q.text)}</div>
+      <div class="quote-author">${esc(q.author)}</div>
+    </div>`;
+  return el;
+}
+
+// ── International Day ──
+function intlSlide(intl) {
+  const el = mkSlide('zoom');
+  el.innerHTML = `
+    <div class="slide-hdr">
+      <span class="slide-icon">🌍</span>
+      <span class="slide-title">International Day</span>
+    </div>
+    <div class="intl-card">
+      <div class="intl-globe">${intl.emoji}</div>
+      <div class="intl-label">Today is</div>
+      <div class="intl-name">${esc(intl.name)}</div>
+      <div class="intl-desc">${esc(intl.desc)}</div>
+      <div class="intl-ribbon"></div>
+    </div>`;
+  return el;
+}
+
+// ── Birthday / Anniversary ──
+function bdaySlide(b, extra) {
+  const el = mkSlide('zoom');
+  const isAnni = b.type === 'anniversary';
+  const emoji  = isAnni ? '🎊' : '🎂';
+  const typeStr = isAnni
+    ? `🎊 ${b.years ? b.years + ' Year' : ''} Work Anniversary`
+    : '🎂 Happy Birthday';
+  const colours = ['#f87171','#fbbf24','#34d399','#38bdf8','#a78bfa','#f472b6'];
+  let confetti = '';
+  for (let i = 0; i < 28; i++) {
+    const c = colours[i % colours.length];
+    confetti += `<div class="cc" style="left:${Math.random()*100}%;background:${c};animation-duration:${3+Math.random()*4}s;animation-delay:-${Math.random()*5}s;width:${6+Math.random()*6}px;height:${6+Math.random()*6}px;"></div>`;
+  }
+
+  const sideCard = extra ? `
+    <div class="bday-fact-card">
+      <div class="bfc-label">${isAnni ? '📅 On this day in ' + extra.year : '🌟 Also born today'}</div>
+      <div class="bfc-name">${esc(extra.title)}</div>
+      <div class="bfc-desc">${esc(extra.extract || '')}</div>
+    </div>` : '';
+
+  el.innerHTML = `
+    <div class="slide-hdr"><span class="slide-icon">${emoji}</span><span class="slide-title">${typeStr}</span></div>
+    <div class="bday-outer">
+      <div class="bday-main">
+        <div class="confetti">${confetti}</div>
+        <div class="bday-emoji">${emoji}</div>
+        <div class="bday-name">${esc(b.name)}</div>
+        <div class="bday-type">${typeStr}</div>
+      </div>
+      ${sideCard ? `<div class="bday-side">${sideCard}</div>` : ''}
+    </div>`;
+  return el;
+}
+
 // ── Announcement ──
 function annoSlide(a) {
-  const el = div('slide');
+  const el = mkSlide('slide-left');
   const pri = a.priority || 'normal';
   const priLabel = pri==='urgent'?'🚨 URGENT': pri==='important'?'⚠️ IMPORTANT':'📌 NOTICE';
   el.innerHTML = `
@@ -935,7 +1143,7 @@ function annoSlide(a) {
 
 // ── KPI ──
 function kpiSlide(kpis) {
-  const el = div('slide');
+  const el = mkSlide('slide-up');
   el.innerHTML = `
     <div class="slide-hdr"><span class="slide-icon">📊</span><span class="slide-title">Key Metrics</span></div>
     <div class="kpi-grid">
@@ -949,13 +1157,44 @@ function kpiSlide(kpis) {
   return el;
 }
 
+// ── Thermometer ──
+function thermoSlide(t) {
+  const el = mkSlide('slide-up');
+  const pct = Math.min(100, Math.round((t.current / t.target) * 100));
+  const colour = pct >= 100 ? 'var(--green)' : pct >= 60 ? 'var(--amber)' : 'var(--red)';
+  const mood = pct >= 100 ? '🎯 Target smashed!' : pct >= 75 ? '📈 Looking great!' : pct >= 50 ? '💪 Halfway there!' : '🚀 Let\'s push harder!';
+  const fillH = Math.round(160 * (pct / 100));
+  const thermSVG = `<svg viewBox="0 0 60 220" xmlns="http://www.w3.org/2000/svg" style="width:80px;height:100%">
+    <rect x="18" y="20" width="24" height="160" rx="12" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+    <rect x="18" y="${220-fillH-30}" width="24" height="${fillH}" rx="2" fill="${colour}" opacity="0.85"/>
+    <circle cx="30" cy="195" r="22" fill="${colour}" opacity="0.85"/>
+    <circle cx="30" cy="195" r="14" fill="${colour}"/>
+    ${[0,25,50,75,100].map(p=>{
+      const y=180-Math.round(160*(p/100));
+      return `<line x1="42" y1="${y}" x2="50" y2="${y}" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+              <text x="52" y="${y+4}" fill="rgba(255,255,255,0.35)" font-size="8" font-family="Barlow,sans-serif">${p}%</text>`;
+    }).join('')}
+  </svg>`;
+  el.innerHTML = `
+    <div class="slide-hdr"><span class="slide-icon">🎯</span><span class="slide-title">Team Target — ${esc(t.label||'')}</span></div>
+    <div class="thermo-wrap">
+      <div class="thermo-left">
+        <div><div class="thermo-label">Current</div><div class="thermo-value" style="color:${colour}">${esc(String(t.current))}</div></div>
+        <div><div class="thermo-label">Target</div><div class="thermo-target">${esc(String(t.target))} ${esc(t.unit||'')}</div></div>
+        <div class="thermo-pct" style="color:${colour}">${pct}%</div>
+        <div class="thermo-msg">${mood}${t.message?' '+esc(t.message):''}</div>
+      </div>
+      <div class="thermo-right">${thermSVG}</div>
+    </div>`;
+  return el;
+}
+
 // ── Rota ──
 function rotaSlide(rota) {
-  const el = div('slide');
-  const days = ['monday','tuesday','wednesday','thursday','friday'];
-  const dL = ['Mon','Tue','Wed','Thu','Fri'];
-  const rows = (rota.entries||[]).map(e=>`
-    <tr><td>${esc(e.name)}</td>${days.map(d=>`<td>${rotaPill(e[d]||'')}</td>`).join('')}</tr>`).join('');
+  const el = mkSlide('slide-left');
+  const days=['monday','tuesday','wednesday','thursday','friday'];
+  const dL=['Mon','Tue','Wed','Thu','Fri'];
+  const rows=(rota.entries||[]).map(e=>`<tr><td>${esc(e.name)}</td>${days.map(d=>`<td>${rotaPill(e[d]||'')}</td>`).join('')}</tr>`).join('');
   el.innerHTML = `
     <div class="slide-hdr"><span class="slide-icon">🗓️</span><span class="slide-title">Weekly Rota</span></div>
     <div class="rota-wrap">
@@ -968,120 +1207,39 @@ function rotaSlide(rota) {
   return el;
 }
 
-// ── Tasks ──
-function tasksSlide(tasks) {
-  const el = div('slide');
-  el.innerHTML = `
-    <div class="slide-hdr"><span class="slide-icon">✅</span><span class="slide-title">Team Tasks</span></div>
-    <div class="tasks-grid">
-      ${tasks.map(t=>`
-        <div class="task-card ${t.priority||'medium'}">
-          <div class="task-text">${esc(t.text)}</div>
-          <div class="task-meta">
-            ${t.assignee?`<span class="task-who">👤 ${esc(t.assignee)}</span>`:''}
-            <span class="task-pri">${t.priority||'medium'}</span>
-          </div>
-        </div>`).join('')}
-    </div>`;
-  return el;
-}
-
-// ── Birthday / Anniversary ──
-function checkBirthdays(list) {
-  const now = new Date();
-  const mm = now.getMonth() + 1;
-  const dd = now.getDate();
-  return list.filter(b => {
-    const [bm, bday] = b.date.split('-').map(Number);
-    return bm === mm && bday === dd;
-  });
-}
-
-function bdaySlide(b) {
-  const el = div('slide');
-  const isAnni = b.type === 'anniversary';
-  const emoji  = isAnni ? '🎊' : '🎂';
-  const typeStr = isAnni ? '🎊 Work Anniversary' : '🎂 Happy Birthday';
-  const msg = isAnni
-    ? `Celebrating ${b.years ? b.years + ' incredible year' + (b.years>1?'s':'') : 'another year'} with the team!`
-    : `Wishing you an amazing day — enjoy every moment! 🥳`;
-
-  const colours = ['#f87171','#fbbf24','#34d399','#38bdf8','#a78bfa','#f472b6'];
-  let confetti = '';
-  for(let i=0;i<28;i++){
-    const c = colours[i%colours.length];
-    const left = Math.random()*100;
-    const dur  = 3 + Math.random()*4;
-    const delay= Math.random()*5;
-    confetti += `<div class="cc" style="left:${left}%;background:${c};animation-duration:${dur}s;animation-delay:-${delay}s;width:${6+Math.random()*6}px;height:${6+Math.random()*6}px;"></div>`;
-  }
-
-  el.innerHTML = `
-    <div class="slide-hdr"><span class="slide-icon">${emoji}</span><span class="slide-title">${typeStr}</span></div>
-    <div class="bday-slide">
-      <div class="confetti">${confetti}</div>
-      <div class="bday-emoji">${emoji}</div>
-      <div class="bday-name">${esc(b.name)}</div>
-      <div class="bday-type">${typeStr}</div>
-      <div class="bday-msg">${esc(msg)}</div>
-    </div>`;
-  return el;
-}
-
-// ── Countdown ──
-function countdownSlide(cds) {
-  const el = div('slide');
-  const colours = [
-    'var(--blue)','var(--purple)','var(--green)','var(--amber)'
-  ];
-  const cards = cds.slice(0,4).map((c,i) => {
-    const target = new Date(c.date);
-    const now    = new Date();
-    const diff   = Math.max(0, target - now);
-    const totalD = Math.floor(diff / 86400000);
-    const h      = Math.floor((diff % 86400000) / 3600000);
-    const m      = Math.floor((diff % 3600000)  / 60000);
-    const colour = colours[i % colours.length];
-    const past   = diff <= 0;
-    return `
-      <div class="cd-card">
-        <div class="cd-accent" style="background:${colour}"></div>
-        <div class="cd-label">${esc(c.label)}</div>
-        ${past ? `<div class="cd-nums"><span class="cd-n" style="color:${colour}">Today!</span></div>` : `
-        <div class="cd-nums">
-          <div class="cd-unit"><span class="cd-n" style="color:${colour}">${totalD}</span><span class="cd-u">days</span></div>
-          <span class="cd-sep">:</span>
-          <div class="cd-unit"><span class="cd-n" style="color:${colour}">${String(h).padStart(2,'0')}</span><span class="cd-u">hrs</span></div>
-          <span class="cd-sep">:</span>
-          <div class="cd-unit"><span class="cd-n" style="color:${colour}">${String(m).padStart(2,'0')}</span><span class="cd-u">min</span></div>
-        </div>`}
-        <div class="cd-date">📅 ${target.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}</div>
-      </div>`;
-  }).join('');
-
+// ── Countdowns ──
+function cdSlide(cds) {
+  const el = mkSlide('slide-up');
+  const colours=['var(--blue)','var(--purple)','var(--green)','var(--amber)'];
   el.innerHTML = `
     <div class="slide-hdr"><span class="slide-icon">⏳</span><span class="slide-title">Countdowns</span></div>
-    <div class="cd-grid">${cards}</div>`;
-
-  // Live tick every minute
-  el._liveTick = setInterval(() => {
-    if (!el.classList.contains('active')) return;
-    const parent = el.parentNode;
-    if (parent) { parent.removeChild(el); parent.appendChild(el); }
-    rebuildCountdownInPlace(el, cds);
-  }, 60000);
-
+    <div class="cd-grid">
+      ${cds.slice(0,4).map((c,i)=>{
+        const target=new Date(c.date), now=new Date(), diff=Math.max(0,target-now);
+        const totalD=Math.floor(diff/86400000), h=Math.floor((diff%86400000)/3600000), m=Math.floor((diff%3600000)/60000);
+        const colour=colours[i%colours.length];
+        const past=diff<=0;
+        return `<div class="cd-card">
+          <div class="cd-accent" style="background:${colour}"></div>
+          <div class="cd-label">${esc(c.label)}</div>
+          ${past?`<div class="cd-nums"><span class="cd-n" style="color:${colour}">Today!</span></div>`:`
+          <div class="cd-nums">
+            <div class="cd-unit"><span class="cd-n" style="color:${colour}">${totalD}</span><span class="cd-u">days</span></div>
+            <span class="cd-sep">:</span>
+            <div class="cd-unit"><span class="cd-n" style="color:${colour}">${String(h).padStart(2,'0')}</span><span class="cd-u">hrs</span></div>
+            <span class="cd-sep">:</span>
+            <div class="cd-unit"><span class="cd-n" style="color:${colour}">${String(m).padStart(2,'0')}</span><span class="cd-u">min</span></div>
+          </div>`}
+          <div class="cd-date">📅 ${target.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}</div>
+        </div>`;
+      }).join('')}
+    </div>`;
   return el;
-}
-
-function rebuildCountdownInPlace(el, cds) {
-  const tmp = countdownSlide(cds);
-  el.innerHTML = tmp.innerHTML;
 }
 
 // ── Weekly Win ──
 function winSlide(w) {
-  const el = div('slide');
+  const el = mkSlide('zoom');
   el.innerHTML = `
     <div class="slide-hdr"><span class="slide-icon">🏆</span><span class="slide-title">Weekly Win</span></div>
     <div class="win-card">
@@ -1089,76 +1247,69 @@ function winSlide(w) {
       <div class="win-trophy">🏆</div>
       <div class="win-headline">${esc(w.headline||'')}</div>
       <div class="win-detail">${esc(w.detail||'')}</div>
-      ${w.who?`
-      <div class="win-who">
-        <span class="win-stars">⭐⭐⭐</span>
-        <span class="win-who-name">${esc(w.who)}</span>
-        <span class="win-stars">⭐⭐⭐</span>
-      </div>`:''}
+      ${w.who?`<div class="win-who"><span>⭐⭐⭐</span><span class="win-who-name">${esc(w.who)}</span><span>⭐⭐⭐</span></div>`:''}
     </div>`;
   return el;
 }
 
-// ── Thermometer ──
-function thermoSlide(t) {
-  const el = div('slide');
-  const pct = Math.min(100, Math.round((t.current / t.target) * 100));
-  const colour = pct >= 100 ? 'var(--green)' : pct >= 60 ? 'var(--amber)' : 'var(--red)';
-  const mood = pct >= 100 ? '🎯 Target smashed!' : pct >= 75 ? '📈 Looking great!' : pct >= 50 ? '💪 Halfway there!' : '🚀 Let\'s push harder!';
-
-  // SVG thermometer
-  const fillH = Math.round(160 * (pct / 100));
-  const thermSVG = `
-    <svg viewBox="0 0 60 220" xmlns="http://www.w3.org/2000/svg" id="thermo-svg">
-      <defs>
-        <clipPath id="fill-clip">
-          <rect x="18" y="${220 - fillH - 30}" width="24" height="${fillH}" rx="2"/>
-        </clipPath>
-      </defs>
-      <!-- tube -->
-      <rect x="18" y="20" width="24" height="160" rx="12" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-      <!-- fill -->
-      <rect x="18" y="${220 - fillH - 30}" width="24" height="${fillH}" rx="2" fill="${colour}" opacity="0.85"/>
-      <!-- bulb -->
-      <circle cx="30" cy="195" r="22" fill="${colour}" opacity="0.85"/>
-      <circle cx="30" cy="195" r="14" fill="${colour}"/>
-      <!-- markers -->
-      ${[0,25,50,75,100].map(p=>{
-        const y = 180 - Math.round(160*(p/100));
-        return `<line x1="42" y1="${y}" x2="50" y2="${y}" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
-                <text x="52" y="${y+4}" fill="rgba(255,255,255,0.35)" font-size="8" font-family="Barlow,sans-serif">${p}%</text>`;
-      }).join('')}
-    </svg>`;
-
-  el.innerHTML = `
-    <div class="slide-hdr"><span class="slide-icon">🎯</span><span class="slide-title">Team Target — ${esc(t.label||'')}</span></div>
-    <div class="thermo-wrap">
-      <div class="thermo-left">
-        <div>
-          <div class="thermo-label">Current</div>
-          <div class="thermo-value" style="color:${colour}">${esc(String(t.current))}</div>
-        </div>
-        <div>
-          <div class="thermo-label">Target</div>
-          <div class="thermo-target">${esc(String(t.target))} ${esc(t.unit||'')}</div>
-        </div>
-        <div class="thermo-pct" style="color:${colour}">${pct}%</div>
-        <div class="thermo-msg">${mood}${t.message ? ' ' + esc(t.message) : ''}</div>
+// ── Leaderboard ──
+function lbSlide(board) {
+  const el = mkSlide('slide-up');
+  el.id = 'lb-slide';
+  const sorted = [...board].sort((a,b) => b.points - a.points);
+  const max = sorted[0]?.points || 1;
+  const medals = ['🥇','🥈','🥉'];
+  const rows = sorted.map((p,i) => {
+    const rank = i + 1;
+    const chg  = p.change > 0 ? 'up' : p.change < 0 ? 'down' : 'same';
+    const chgT = p.change > 0 ? `▲ +${p.change}` : p.change < 0 ? `▼ ${p.change}` : '—';
+    return `<div class="lb-row${rank<=3?' rank-'+rank:''}" data-pct="${Math.round(p.points/max*100)}">
+      <div class="lb-bar" style="width:0%"></div>
+      <div class="lb-rank">${rank}</div>
+      <div class="lb-medal">${medals[i]||''}</div>
+      <div class="lb-info"><div class="lb-name">${esc(p.name)}</div>${p.title?`<div class="lb-title-sm">${esc(p.title)}</div>`:''}</div>
+      <div style="text-align:right">
+        <div class="lb-score">${p.points}</div>
+        <div class="lb-pts">pts</div>
+        <div class="lb-change ${chg}">${chgT}</div>
       </div>
-      <div class="thermo-right">${thermSVG}</div>
     </div>`;
+  }).join('');
+  el.innerHTML = `
+    <div class="slide-hdr">
+      <span class="slide-icon">🏅</span>
+      <span class="slide-title">Team Leaderboard</span>
+      <span class="slide-tag" style="background:rgba(251,191,36,.15);color:var(--amber)">${sorted[0]?.name||''} leads!</span>
+    </div>
+    <div class="lb-wrap">${rows}</div>`;
+  el._animateBars = () => {
+    el.querySelectorAll('.lb-row').forEach(row => {
+      const bar = row.querySelector('.lb-bar');
+      bar.style.width = '0%';
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        bar.style.transition = 'width 1.2s cubic-bezier(.4,0,.2,1)';
+        bar.style.width = row.dataset.pct + '%';
+      }));
+    });
+  };
   return el;
 }
 
-// ── Team Status ──
+function jumpToLeaderboard() {
+  if (lbSlideIndex < 0) return;
+  clearInterval(timer); show(lbSlideIndex); startPlay();
+  setTimeout(() => slides[lbSlideIndex]?._animateBars?.(), 300);
+}
+
+// ── Status Board ──
 function statusSlide(team) {
-  const el = div('slide');
+  const el = mkSlide('fade');
   el.id = 'status-slide';
   el.innerHTML = `
     <div class="slide-hdr">
       <span class="slide-icon">🚦</span>
       <span class="slide-title">Team Status</span>
-      <span style="font-size:11px;color:var(--text-muted);font-family:var(--font-head)">tap a card to update</span>
+      <span style="font-size:11px;color:var(--text-muted);font-family:var(--font-head)">tap to update</span>
     </div>
     <div class="status-grid" id="status-grid"></div>`;
   renderStatusCards(team, el);
@@ -1169,38 +1320,28 @@ function renderStatusCards(team, el) {
   const stored = getSavedStatuses();
   const grid = el.querySelector('#status-grid');
   if (!grid) return;
-  grid.innerHTML = team.map((member, i) => {
+  grid.innerHTML = team.map(member => {
     const stId  = stored[member.name] || member.default_status || 'in';
     const stObj = STATUSES.find(s => s.id === stId) || STATUSES[0];
     const init  = member.name.split(' ').map(n=>n[0]).join('').slice(0,2).toUpperCase();
-    return `
-      <div class="status-card st-${stId}" onclick="openStatusPicker('${esc(member.name)}')">
-        <div class="s-avatar">${init}</div>
-        <div class="s-name">${esc(member.name)}</div>
-        <div class="s-status">${stObj.emoji} ${stObj.label}</div>
-      </div>`;
+    return `<div class="status-card st-${stId}" onclick="openStatusPicker('${esc(member.name)}')">
+      <div class="s-avatar">${init}</div>
+      <div class="s-name">${esc(member.name)}</div>
+      <div class="s-status">${stObj.emoji} ${stObj.label}</div>
+    </div>`;
   }).join('');
 }
 
-function getSavedStatuses() {
-  try { return JSON.parse(localStorage.getItem(STATUS_KEY) || '{}'); } catch { return {}; }
-}
-
-function saveStatus(name, stId) {
-  const d = getSavedStatuses(); d[name] = stId;
-  localStorage.setItem(STATUS_KEY, JSON.stringify(d));
-}
+function getSavedStatuses() { try { return JSON.parse(localStorage.getItem(STATUS_KEY)||'{}'); } catch { return {}; } }
+function saveStatus(name, stId) { const d=getSavedStatuses(); d[name]=stId; localStorage.setItem(STATUS_KEY,JSON.stringify(d)); }
 
 let pickerTarget = null;
 function openStatusPicker(name) {
   pickerTarget = name;
   document.getElementById('s-modal-name').textContent = '📍 ' + name;
-  const opts = document.getElementById('s-opts');
-  opts.innerHTML = STATUSES.map(s => `
-    <div class="s-opt" onclick="pickStatus('${s.id}')">
-      <div class="s-opt-dot" style="background:${s.color}"></div>
-      ${s.emoji} ${s.label}
-    </div>`).join('');
+  document.getElementById('s-opts').innerHTML = STATUSES.map(s =>
+    `<div class="s-opt" onclick="pickStatus('${s.id}')"><div class="s-opt-dot" style="background:${s.color}"></div>${s.emoji} ${s.label}</div>`
+  ).join('');
   document.getElementById('s-overlay').classList.add('open');
 }
 
@@ -1208,163 +1349,550 @@ function pickStatus(stId) {
   if (!pickerTarget) return;
   saveStatus(pickerTarget, stId);
   document.getElementById('s-overlay').classList.remove('open');
-  // Refresh status cards
   const el = document.getElementById('status-slide');
   if (el && cfg?.team) renderStatusCards(cfg.team, el);
 }
 
-function overlayClose(e) {
-  if (e.target.id === 's-overlay') document.getElementById('s-overlay').classList.remove('open');
-}
+function overlayClose(e) { if (e.target.id==='s-overlay') document.getElementById('s-overlay').classList.remove('open'); }
 
-// ── Leaderboard ──
-function leaderboardSlide(board) {
-  const el = div('slide');
-  el.id = 'lb-slide';
-
-  const sorted = [...board].sort((a, b) => b.points - a.points);
-  const max    = sorted[0]?.points || 1;
-  const medals = ['🥇','🥈','🥉'];
-
-  const rows = sorted.map((p, i) => {
-    const rank   = i + 1;
-    const rankCls= rank <= 3 ? `rank-${rank}` : '';
-    const medal  = medals[i] || '';
-    const barPct = Math.round((p.points / max) * 100);
-    const chg    = p.change > 0 ? `up` : p.change < 0 ? `down` : `same`;
-    const chgTxt = p.change > 0 ? `▲ +${p.change}` : p.change < 0 ? `▼ ${p.change}` : `—`;
-    return `
-      <div class="lb-row ${rankCls}" data-pct="${barPct}">
-        <div class="lb-bar" style="width:0%"></div>
-        <div class="lb-rank">${rank}</div>
-        <div class="lb-medal">${medal}</div>
-        <div class="lb-info">
-          <div class="lb-name">${esc(p.name)}</div>
-          ${p.title ? `<div class="lb-title">${esc(p.title)}</div>` : ''}
-        </div>
-        <div style="text-align:right">
-          <div class="lb-score">${p.points}</div>
-          <div class="lb-pts">pts</div>
-          <div class="lb-change ${chg}">${chgTxt}</div>
-        </div>
-      </div>`;
-  }).join('');
-
+// ── Tasks ──
+function tasksSlide(tasks) {
+  const el = mkSlide('slide-left');
   el.innerHTML = `
-    <div class="slide-hdr">
-      <span class="slide-icon">🏅</span>
-      <span class="slide-title">Team Leaderboard</span>
-      <span class="slide-tag" style="background:rgba(251,191,36,.15);color:var(--amber)">${sorted[0]?.name || ''} leads!</span>
-    </div>
-    <div class="lb-wrap">${rows}</div>`;
-
-  // Animate bars when slide becomes active
-  el._animateBars = () => {
-    el.querySelectorAll('.lb-row').forEach(row => {
-      const pct = row.dataset.pct;
-      const bar = row.querySelector('.lb-bar');
-      bar.style.width = '0%';
-      requestAnimationFrame(() => requestAnimationFrame(() => {
-        bar.style.transition = 'width 1.2s cubic-bezier(.4,0,.2,1)';
-        bar.style.width = pct + '%';
-      }));
-    });
-  };
-
-  return el;
-}
-
-function jumpToLeaderboard() {
-  if (lbSlideIndex < 0) return;
-  clearInterval(timer);
-  show(lbSlideIndex);
-  startPlay();
-  // Animate the bars
-  setTimeout(() => slides[lbSlideIndex]?._animateBars?.(), 100);
-}
-
-// ── Meme / GIF ──
-function memeSlide(m) {
-  const el = div('slide');
-  el.innerHTML = `
-    <div class="slide-hdr">
-      <span class="slide-icon">😂</span>
-      <span class="slide-title">Meme of the Day</span>
-    </div>
-    <div class="meme-wrap">
-      <div class="meme-tag">Today's mood 👇</div>
-      <img class="meme-img" src="${esc(m.url)}" alt="meme"
-           onerror="this.src='';this.alt='Could not load image — check the URL in data.json'"/>
-      ${m.caption ? `<div class="meme-caption">${esc(m.caption)}</div>` : ''}
+    <div class="slide-hdr"><span class="slide-icon">✅</span><span class="slide-title">Team Tasks</span></div>
+    <div class="tasks-grid">
+      ${tasks.map(t=>`<div class="task-card ${t.priority||'medium'}">
+        <div class="task-text">${esc(t.text)}</div>
+        <div class="task-meta">
+          ${t.assignee?`<span class="task-who">👤 ${esc(t.assignee)}</span>`:''}
+          <span class="task-pri">${t.priority||'medium'}</span>
+        </div>
+      </div>`).join('')}
     </div>`;
   return el;
 }
 
+// ── Meme ──
+function memeSlide(m) {
+  const el = mkSlide('flip');
+  el.innerHTML = `
+    <div class="slide-hdr"><span class="slide-icon">😂</span><span class="slide-title">Meme of the Day</span></div>
+    <div class="meme-wrap">
+      <img class="meme-img" src="${esc(m.url)}" alt="meme" onerror="this.alt='Could not load — check the URL in data.json'"/>
+      ${m.caption?`<div class="meme-caption">${esc(m.caption)}</div>`:''}
+    </div>`;
+  return el;
+}
 
-let newsItems = [];
+// ══════════════════════════════════════════
+// SLIDESHOW
+// ══════════════════════════════════════════
+function mkSlide(trans = 'fade') {
+  const el = document.createElement('div');
+  el.className = 'slide';
+  el.dataset.trans = trans;
+  return el;
+}
+
+function show(i) {
+  slides.forEach((s, idx) => s.classList.toggle('active', idx === i));
+  cur = i; updateDots(); animProg();
+  if (i === lbSlideIndex) setTimeout(() => slides[i]?._animateBars?.(), 300);
+}
+
+function next() { show((cur + 1) % slides.length); }
+
+function startPlay() {
+  if (timer) clearInterval(timer);
+  const dur = (cfg?.slide_duration || 10) * 1000;
+  timer = setInterval(next, dur);
+}
+
+function animProg() {
+  const fill = document.getElementById('prog-fill');
+  const dur  = (cfg?.slide_duration || 10) * 1000;
+  fill.style.transition = 'none'; fill.style.width = '0%';
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    fill.style.transition = `width ${dur}ms linear`; fill.style.width = '100%';
+  }));
+}
+
+function makeDots() {
+  document.getElementById('slide-dots').innerHTML =
+    slides.map((_,i)=>`<div class="dot${i===0?' active':''}" onclick="jump(${i})"></div>`).join('');
+}
+
+function updateDots() {
+  document.querySelectorAll('.dot').forEach((d,i) => d.classList.toggle('active', i===cur));
+}
+
+function jump(i) { clearInterval(timer); show(i); startPlay(); }
+
+// ── Image Slide ──
+function imgSlide(img) {
+  const el = mkSlide('zoom');
+  el.innerHTML = `
+    <div class="slide-hdr">
+      <span class="slide-icon">🖼️</span>
+      <span class="slide-title">${esc(img.title || 'Photo')}</span>
+    </div>
+    <div class="img-slide-wrap">
+      <div class="img-slide-bg" style="background-image:url('${esc(img.url)}')"></div>
+      <img class="img-slide-img" src="${esc(img.url)}" alt="${esc(img.caption||img.title||'')}"
+           onerror="this.style.display='none'"/>
+      ${img.caption ? `<div class="img-slide-caption">${esc(img.caption)}</div>` : ''}
+    </div>`;
+  return el;
+}
+
+// ══════════════════════════════════════════
+// PIN SYSTEM
+// ══════════════════════════════════════════
+const PIN_KEY = 'nb_admin_pin';
+let pinBuffer = '';
+let clockHoldTimer = null;
+
+function getPin() { return localStorage.getItem(PIN_KEY) || '1234'; }
+
+// Hold clock for 3 seconds
+document.getElementById('clock-block').addEventListener('mousedown', startHold);
+document.getElementById('clock-block').addEventListener('touchstart', startHold, {passive:true});
+document.getElementById('clock-block').addEventListener('mouseup', cancelHold);
+document.getElementById('clock-block').addEventListener('touchend', cancelHold);
+document.getElementById('clock-block').addEventListener('mouseleave', cancelHold);
+
+function startHold(e) {
+  clockHoldTimer = setTimeout(() => { openPinScreen(); }, 3000);
+}
+function cancelHold() {
+  if (clockHoldTimer) { clearTimeout(clockHoldTimer); clockHoldTimer = null; }
+}
+
+function openPinScreen() {
+  pinBuffer = '';
+  updatePinDots();
+  document.getElementById('pin-error').textContent = '';
+  document.getElementById('pin-screen').classList.add('open');
+}
+
+function closePinScreen() {
+  pinBuffer = '';
+  document.getElementById('pin-screen').classList.remove('open');
+}
+
+function pinKey(d) {
+  if (pinBuffer.length >= 4) return;
+  pinBuffer += d;
+  updatePinDots();
+  if (pinBuffer.length === 4) setTimeout(checkPin, 120);
+}
+
+function pinBack() {
+  pinBuffer = pinBuffer.slice(0, -1);
+  updatePinDots();
+}
+
+function updatePinDots(state) {
+  for (let i = 0; i < 4; i++) {
+    const dot = document.getElementById('pd' + i);
+    dot.classList.toggle('filled', i < pinBuffer.length);
+    dot.classList.toggle('error', state === 'error');
+  }
+}
+
+function checkPin() {
+  if (pinBuffer === getPin()) {
+    closePinScreen();
+    openAdmin();
+  } else {
+    updatePinDots('error');
+    document.getElementById('pin-error').textContent = 'Incorrect PIN';
+    setTimeout(() => { pinBuffer = ''; updatePinDots(); document.getElementById('pin-error').textContent=''; }, 900);
+  }
+}
+
+function changePin() {
+  const cur = document.getElementById('pin-current').value;
+  const nw  = document.getElementById('pin-new').value;
+  const cnf = document.getElementById('pin-confirm').value;
+  const msg = document.getElementById('pin-change-msg');
+  if (cur !== getPin()) { msg.style.color='var(--red)'; msg.textContent='Current PIN is incorrect.'; return; }
+  if (nw.length !== 4 || !/^\d{4}$/.test(nw)) { msg.style.color='var(--red)'; msg.textContent='New PIN must be exactly 4 digits.'; return; }
+  if (nw !== cnf) { msg.style.color='var(--red)'; msg.textContent='PINs do not match.'; return; }
+  localStorage.setItem(PIN_KEY, nw);
+  msg.style.color='var(--green)'; msg.textContent='PIN updated successfully!';
+  ['pin-current','pin-new','pin-confirm'].forEach(id => document.getElementById(id).value='');
+}
+
+// ══════════════════════════════════════════
+// ADMIN PANEL
+// ══════════════════════════════════════════
+function openAdmin() {
+  populateAdmin();
+  document.getElementById('admin-overlay').classList.add('open');
+  // Pause slideshow
+  clearInterval(timer);
+}
+
+function closeAdmin() {
+  document.getElementById('admin-overlay').classList.remove('open');
+  startPlay();
+}
+
+function admTab(name) {
+  document.querySelectorAll('.adm-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.adm-panel').forEach(p => p.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('panel-' + name).classList.add('active');
+}
+
+// ── Populate all fields from cfg ──
+function populateAdmin() {
+  if (!cfg) return;
+
+  // General
+  setV('g-company', cfg.company_name || '');
+  setV('g-city',    cfg.weather_city || '');
+  setV('g-dur',     cfg.slide_duration || 10);
+  setV('g-rss',     cfg.news_rss || '');
+
+  // Announcements
+  renderRepeater('ann-list', cfg.announcements || [], annCard);
+
+  // KPIs
+  renderRepeater('kpi-list', cfg.kpis || [], kpiCard);
+
+  // Target
+  const t = cfg.target || {};
+  setV('t-label', t.label||''); setV('t-current', t.current||'');
+  setV('t-target', t.target||''); setV('t-unit', t.unit||''); setV('t-msg', t.message||'');
+
+  // Leaderboard
+  renderRepeater('lb-list', cfg.leaderboard || [], lbCard);
+
+  // Tasks
+  renderRepeater('task-list', cfg.tasks || [], taskCard);
+
+  // Rota
+  setV('rota-week', cfg.rota?.week || '');
+  renderRepeater('rota-list', cfg.rota?.entries || [], rotaCard);
+
+  // Countdowns
+  renderRepeater('cd-list', cfg.countdowns || [], cdCard);
+
+  // Birthdays
+  renderRepeater('bday-list', cfg.birthdays || [], bdayCard);
+
+  // Team
+  renderRepeater('team-list', cfg.team || [], teamCard);
+
+  // Image slides
+  renderRepeater('img-list', cfg.image_slides || [], imgCard);
+
+  // Meme
+  setV('meme-url',     cfg.meme?.url     || '');
+  setV('meme-caption', cfg.meme?.caption || '');
+
+  // Win
+  setV('win-headline', cfg.weekly_win?.headline || '');
+  setV('win-detail',   cfg.weekly_win?.detail   || '');
+  setV('win-who',      cfg.weekly_win?.who       || '');
+
+  // Ticker
+  renderRepeater('ticker-list', (cfg.ticker||[]).map(t=>({text:t})), tickerCard);
+}
+
+function setV(id, val) { const el=document.getElementById(id); if(el) el.value=val; }
+function getV(id) { const el=document.getElementById(id); return el?el.value.trim():''; }
+
+function renderRepeater(containerId, items, cardFn) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  el.innerHTML = '';
+  items.forEach((item, i) => {
+    const card = document.createElement('div');
+    card.className = 'adm-card';
+    card.dataset.idx = i;
+    card.innerHTML = cardFn(item, i) +
+      `<button class="adm-card-del" onclick="this.parentElement.remove()">✕</button>`;
+    el.appendChild(card);
+  });
+}
+
+// ── Card templates ──
+function annCard(a) { return `
+  <div class="adm-row">
+    <div class="adm-field" style="grid-column:span 2"><label class="adm-label">Title</label><input class="adm-input ann-title" value="${esc(a.title||'')}"></div>
+    <div class="adm-field"><label class="adm-label">Priority</label>
+      <select class="adm-select ann-pri">
+        <option value="normal" ${a.priority==='normal'?'selected':''}>Normal</option>
+        <option value="important" ${a.priority==='important'?'selected':''}>Important</option>
+        <option value="urgent" ${a.priority==='urgent'?'selected':''}>Urgent</option>
+      </select>
+    </div>
+  </div>
+  <div class="adm-field"><label class="adm-label">Body</label><textarea class="adm-textarea ann-body">${esc(a.body||'')}</textarea></div>`; }
+
+function kpiCard(k) { return `
+  <div class="adm-row">
+    <div class="adm-field"><label class="adm-label">Label</label><input class="adm-input kpi-label" value="${esc(k.label||'')}"></div>
+    <div class="adm-field"><label class="adm-label">Value</label><input class="adm-input kpi-value" value="${esc(k.value||'')}"></div>
+    <div class="adm-field"><label class="adm-label">Change</label><input class="adm-input kpi-change" value="${esc(k.change||'')}"></div>
+    <div class="adm-field"><label class="adm-label">Trend</label>
+      <select class="adm-select kpi-trend">
+        <option value="up" ${k.trend==='up'?'selected':''}>↑ Up</option>
+        <option value="down" ${k.trend==='down'?'selected':''}>↓ Down</option>
+        <option value="neutral" ${k.trend==='neutral'?'selected':''}>→ Neutral</option>
+      </select>
+    </div>
+  </div>`; }
+
+function lbCard(p) { return `
+  <div class="adm-row">
+    <div class="adm-field"><label class="adm-label">Name</label><input class="adm-input lb-name" value="${esc(p.name||'')}"></div>
+    <div class="adm-field"><label class="adm-label">Title / Role</label><input class="adm-input lb-title" value="${esc(p.title||'')}"></div>
+    <div class="adm-field"><label class="adm-label">Points</label><input class="adm-input lb-points" type="number" value="${p.points||0}"></div>
+    <div class="adm-field"><label class="adm-label">Change (+/-)</label><input class="adm-input lb-change" type="number" value="${p.change||0}"></div>
+  </div>`; }
+
+function taskCard(t) { return `
+  <div class="adm-row">
+    <div class="adm-field" style="grid-column:span 2"><label class="adm-label">Task</label><input class="adm-input task-text" value="${esc(t.text||'')}"></div>
+    <div class="adm-field"><label class="adm-label">Assignee</label><input class="adm-input task-assignee" value="${esc(t.assignee||'')}"></div>
+    <div class="adm-field"><label class="adm-label">Priority</label>
+      <select class="adm-select task-pri">
+        <option value="high" ${t.priority==='high'?'selected':''}>🔴 High</option>
+        <option value="medium" ${t.priority==='medium'?'selected':''}>🟡 Medium</option>
+        <option value="low" ${t.priority==='low'?'selected':''}>🟢 Low</option>
+      </select>
+    </div>
+  </div>`; }
+
+function rotaCard(e) {
+  const days=['monday','tuesday','wednesday','thursday','friday'];
+  const opts=['Office','Remote','Leave','Off',''];
+  return `
+  <div class="adm-row" style="grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr">
+    <div class="adm-field"><label class="adm-label">Name</label><input class="adm-input rota-name" value="${esc(e.name||'')}"></div>
+    ${days.map(d=>`
+    <div class="adm-field"><label class="adm-label">${d[0].toUpperCase()+d.slice(1,3)}</label>
+      <select class="adm-select rota-${d}">
+        ${opts.map(o=>`<option value="${o}" ${e[d]===o?'selected':''}>${o||'—'}</option>`).join('')}
+      </select>
+    </div>`).join('')}
+  </div>`; }
+
+function cdCard(c) { return `
+  <div class="adm-row">
+    <div class="adm-field" style="grid-column:span 2"><label class="adm-label">Label</label><input class="adm-input cd-label" value="${esc(c.label||'')}"></div>
+    <div class="adm-field"><label class="adm-label">Date (YYYY-MM-DD)</label><input class="adm-input cd-date" type="date" value="${esc(c.date||'')}"></div>
+  </div>`; }
+
+function bdayCard(b) { return `
+  <div class="adm-row">
+    <div class="adm-field"><label class="adm-label">Name</label><input class="adm-input bd-name" value="${esc(b.name||'')}"></div>
+    <div class="adm-field"><label class="adm-label">Date (MM-DD)</label><input class="adm-input bd-date" value="${esc(b.date||'')}" placeholder="04-15"></div>
+    <div class="adm-field"><label class="adm-label">Type</label>
+      <select class="adm-select bd-type">
+        <option value="birthday" ${b.type==='birthday'?'selected':''}>🎂 Birthday</option>
+        <option value="anniversary" ${b.type==='anniversary'?'selected':''}>🎊 Anniversary</option>
+      </select>
+    </div>
+    <div class="adm-field"><label class="adm-label">Years (anniversary)</label><input class="adm-input bd-years" type="number" value="${b.years||''}"></div>
+  </div>`; }
+
+function teamCard(m) { return `
+  <div class="adm-row">
+    <div class="adm-field" style="grid-column:span 2"><label class="adm-label">Name</label><input class="adm-input tm-name" value="${esc(m.name||'')}"></div>
+    <div class="adm-field"><label class="adm-label">Default Status</label>
+      <select class="adm-select tm-status">
+        <option value="in" ${m.default_status==='in'?'selected':''}>🏢 In Office</option>
+        <option value="remote" ${m.default_status==='remote'?'selected':''}>🏠 Remote</option>
+        <option value="away" ${m.default_status==='away'?'selected':''}>⏸️ Away</option>
+        <option value="meeting" ${m.default_status==='meeting'?'selected':''}>📞 In Meeting</option>
+        <option value="off" ${m.default_status==='off'?'selected':''}>🌙 Off Today</option>
+      </select>
+    </div>
+  </div>`; }
+
+function imgCard(img) { return `
+  <div class="adm-row">
+    <div class="adm-field"><label class="adm-label">Slide Title</label><input class="adm-input img-title" value="${esc(img.title||'')}"></div>
+    <div class="adm-field" style="grid-column:span 2"><label class="adm-label">Image URL</label><input class="adm-input img-url" value="${esc(img.url||'')}" placeholder="https://..."></div>
+    <div class="adm-field"><label class="adm-label">Caption (optional)</label><input class="adm-input img-caption" value="${esc(img.caption||'')}"></div>
+  </div>`; }
+
+function tickerCard(t) { return `
+  <div class="adm-field"><input class="adm-input ticker-text" value="${esc(t.text||'')}"></div>`; }
+
+// ── Add buttons ──
+function annAdd()    { addCard('ann-list',    annCard({})); }
+function kpiAdd()    { addCard('kpi-list',    kpiCard({})); }
+function lbAdd()     { addCard('lb-list',     lbCard({})); }
+function taskAdd()   { addCard('task-list',   taskCard({})); }
+function rotaAdd()   { addCard('rota-list',   rotaCard({})); }
+function cdAdd()     { addCard('cd-list',     cdCard({})); }
+function bdayAdd()   { addCard('bday-list',   bdayCard({})); }
+function teamAdd()   { addCard('team-list',   teamCard({})); }
+function imgAdd()    { addCard('img-list',    imgCard({})); }
+function tickerAdd() { addCard('ticker-list', tickerCard({})); }
+
+function addCard(listId, html) {
+  const el = document.getElementById(listId);
+  const card = document.createElement('div');
+  card.className = 'adm-card';
+  card.innerHTML = html + `<button class="adm-card-del" onclick="this.parentElement.remove()">✕</button>`;
+  el.appendChild(card);
+}
+
+// ── Read all fields into a cfg object ──
+function readAdmin() {
+  const out = {};
+
+  out.company_name   = getV('g-company');
+  out.weather_city   = getV('g-city');
+  out.slide_duration = parseInt(getV('g-dur')) || 10;
+  out.news_rss       = getV('g-rss') || undefined;
+
+  // Announcements
+  out.announcements = [...document.querySelectorAll('#ann-list .adm-card')].map(c => ({
+    title:    c.querySelector('.ann-title')?.value.trim() || '',
+    body:     c.querySelector('.ann-body')?.value.trim()  || '',
+    priority: c.querySelector('.ann-pri')?.value          || 'normal',
+  })).filter(a => a.title);
+
+  // KPIs
+  out.kpis = [...document.querySelectorAll('#kpi-list .adm-card')].map(c => ({
+    label:  c.querySelector('.kpi-label')?.value.trim()  || '',
+    value:  c.querySelector('.kpi-value')?.value.trim()  || '',
+    change: c.querySelector('.kpi-change')?.value.trim() || '',
+    trend:  c.querySelector('.kpi-trend')?.value         || 'neutral',
+  })).filter(k => k.label);
+
+  // Target
+  const tc = parseFloat(getV('t-current')), tt = parseFloat(getV('t-target'));
+  if (getV('t-label') && !isNaN(tc) && !isNaN(tt)) {
+    out.target = { label:getV('t-label'), current:tc, target:tt, unit:getV('t-unit'), message:getV('t-msg') };
+  }
+
+  // Leaderboard
+  out.leaderboard = [...document.querySelectorAll('#lb-list .adm-card')].map(c => ({
+    name:   c.querySelector('.lb-name')?.value.trim()   || '',
+    title:  c.querySelector('.lb-title')?.value.trim()  || '',
+    points: parseInt(c.querySelector('.lb-points')?.value) || 0,
+    change: parseInt(c.querySelector('.lb-change')?.value) || 0,
+  })).filter(p => p.name);
+
+  // Tasks
+  out.tasks = [...document.querySelectorAll('#task-list .adm-card')].map(c => ({
+    text:     c.querySelector('.task-text')?.value.trim()     || '',
+    assignee: c.querySelector('.task-assignee')?.value.trim() || '',
+    priority: c.querySelector('.task-pri')?.value             || 'medium',
+  })).filter(t => t.text);
+
+  // Rota
+  const days=['monday','tuesday','wednesday','thursday','friday'];
+  const rotaEntries = [...document.querySelectorAll('#rota-list .adm-card')].map(c => {
+    const entry = { name: c.querySelector('.rota-name')?.value.trim() || '' };
+    days.forEach(d => { entry[d] = c.querySelector('.rota-'+d)?.value || ''; });
+    return entry;
+  }).filter(e => e.name);
+  if (rotaEntries.length) out.rota = { week: getV('rota-week'), entries: rotaEntries };
+
+  // Countdowns
+  out.countdowns = [...document.querySelectorAll('#cd-list .adm-card')].map(c => ({
+    label: c.querySelector('.cd-label')?.value.trim() || '',
+    date:  c.querySelector('.cd-date')?.value         || '',
+  })).filter(c => c.label && c.date);
+
+  // Birthdays
+  out.birthdays = [...document.querySelectorAll('#bday-list .adm-card')].map(c => {
+    const yrs = parseInt(c.querySelector('.bd-years')?.value);
+    return {
+      name: c.querySelector('.bd-name')?.value.trim() || '',
+      date: c.querySelector('.bd-date')?.value.trim() || '',
+      type: c.querySelector('.bd-type')?.value        || 'birthday',
+      ...(yrs ? { years: yrs } : {})
+    };
+  }).filter(b => b.name && b.date);
+
+  // Team
+  out.team = [...document.querySelectorAll('#team-list .adm-card')].map(c => ({
+    name:           c.querySelector('.tm-name')?.value.trim() || '',
+    default_status: c.querySelector('.tm-status')?.value      || 'in',
+  })).filter(m => m.name);
+
+  // Image slides
+  out.image_slides = [...document.querySelectorAll('#img-list .adm-card')].map(c => ({
+    title:   c.querySelector('.img-title')?.value.trim()   || 'Photo',
+    url:     c.querySelector('.img-url')?.value.trim()     || '',
+    caption: c.querySelector('.img-caption')?.value.trim() || '',
+  })).filter(i => i.url);
+
+  // Meme
+  const mu = getV('meme-url');
+  if (mu) out.meme = { url: mu, caption: getV('meme-caption') };
+
+  // Weekly win
+  const wh = getV('win-headline');
+  if (wh) out.weekly_win = { headline: wh, detail: getV('win-detail'), who: getV('win-who') };
+
+  // Ticker
+  out.ticker = [...document.querySelectorAll('#ticker-list .adm-card')].map(c =>
+    c.querySelector('.ticker-text')?.value.trim()
+  ).filter(Boolean);
+
+  return out;
+}
+
+// ── Export ──
+function exportJSON() {
+  const data = readAdmin();
+  // Update live cfg too
+  cfg = data;
+  buildSlides();
+  buildTicker();
+
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type:'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'data.json';
+  a.click();
+  URL.revokeObjectURL(a.href);
+
+  const toast = document.getElementById('export-toast');
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 3000);
+}
+
 
 function buildTicker() {
   rebuildTickerTrack();
-  const dur = Math.max(30, ((cfg?.ticker?.length||0) + newsItems.length) * 7);
-  document.getElementById('ticker-track').style.animationDuration = dur + 's';
+  document.getElementById('ticker-track').style.animationDuration =
+    Math.max(30, ((cfg?.ticker?.length||0) + newsItems.length) * 7) + 's';
 }
 
 function rebuildTickerTrack() {
   const manual = cfg?.ticker || [];
-  const all    = [...manual, ...newsItems, ...manual, ...newsItems];
-  if (!all.length) return;
+  const all = [...manual, ...newsItems, ...manual, ...newsItems];
   document.getElementById('ticker-track').innerHTML =
-    all.map((t, i) => {
-      const isNews = i >= manual.length && i < manual.length + newsItems.length ||
-                     i >= manual.length*2 + newsItems.length;
+    all.map((t,i) => {
+      const isNews = (i>=manual.length && i<manual.length+newsItems.length) || i>=manual.length*2+newsItems.length;
       return `<span class="tick-item${isNews?' tick-news':''}">${esc(t)}</span>`;
     }).join('');
 }
 
 async function loadNews(rssUrl) {
   try {
-    const api = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}&count=6`;
-    const r   = await fetch(api);
-    const d   = await r.json();
-    if (d.status === 'ok' && d.items?.length) {
-      newsItems = d.items.map(i => `📰 ${i.title}`);
+    const r = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}&count=6`);
+    const d = await r.json();
+    if (d.status==='ok' && d.items?.length) {
+      newsItems = d.items.map(i => '📰 ' + i.title);
       rebuildTickerTrack();
     }
-  } catch { /* news unavailable */ }
+  } catch {}
   setInterval(() => loadNews(rssUrl), 20 * 60 * 1000);
 }
-
-// ══════════════════════════════════════════
-// SLIDESHOW
-// ══════════════════════════════════════════
-function show(i) {
-  slides.forEach((s,idx) => s.classList.toggle('active', idx===i));
-  cur = i; updateDots(); animProg();
-  // Animate leaderboard bars if jumping to that slide
-  if (i === lbSlideIndex) setTimeout(() => slides[i]?._animateBars?.(), 300);
-}
-function next() { show((cur+1) % slides.length); }
-function startPlay() {
-  if (timer) clearInterval(timer);
-  const dur = (cfg?.slide_duration || 10) * 1000;
-  timer = setInterval(next, dur);
-}
-function animProg() {
-  const fill = document.getElementById('prog-fill');
-  const dur  = (cfg?.slide_duration || 10) * 1000;
-  fill.style.transition = 'none'; fill.style.width = '0%';
-  requestAnimationFrame(()=>requestAnimationFrame(()=>{
-    fill.style.transition = `width ${dur}ms linear`; fill.style.width = '100%';
-  }));
-}
-function makeDots() {
-  document.getElementById('slide-dots').innerHTML =
-    slides.map((_,i)=>`<div class="dot${i===0?' active':''}" onclick="jump(${i})"></div>`).join('');
-}
-function updateDots() {
-  document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===cur));
-}
-function jump(i) { clearInterval(timer); show(i); startPlay(); }
 
 // ══════════════════════════════════════════
 // WEATHER
@@ -1379,7 +1907,7 @@ async function getWeather(city) {
     document.getElementById('w-desc').textContent = (c.weatherDesc?.[0]?.value||'').toLowerCase();
   } catch {}
 }
-setInterval(()=>{ if(cfg?.weather_city) getWeather(cfg.weather_city); }, 30*60*1000);
+setInterval(() => { if(cfg?.weather_city) getWeather(cfg.weather_city); }, 30*60*1000);
 
 // ══════════════════════════════════════════
 // CLOCK
@@ -1394,7 +1922,6 @@ tick(); setInterval(tick, 1000);
 // ══════════════════════════════════════════
 // UTILS
 // ══════════════════════════════════════════
-function div(cls) { const el=document.createElement('div'); el.className=cls; return el; }
 function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 function rotaPill(v) {
   if(!v) return '';
@@ -1402,7 +1929,7 @@ function rotaPill(v) {
   const cls=lv==='office'?'pill-office':lv==='remote'?'pill-remote':lv==='leave'?'pill-leave':'pill-off';
   return `<span class="pill ${cls}">${esc(v)}</span>`;
 }
-function pc(pri,a) {
+function pc(pri, a) {
   const m={urgent:'248,113,113',important:'251,191,36',normal:'56,189,248'};
   const rgb=m[pri]||m.normal;
   return a?`rgba(${rgb},${a})`:`rgb(${rgb})`;
