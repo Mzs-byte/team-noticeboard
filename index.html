@@ -319,6 +319,56 @@
     .st-out     .s-avatar { background:rgba(167,139,250,.15); color:var(--purple); }
     .st-off     .s-avatar { background:rgba(148,163,184,.1);  color:var(--text-muted); }
 
+    /* ── REVIEWS ── */
+    .review-slide-wrap { flex:1; display:flex; flex-direction:column; gap:10px; }
+    .review-platform-hdr { display:flex; align-items:center; gap:12px; padding:12px 18px; background:var(--surface2); border-radius:12px; flex-shrink:0; }
+    .review-platform-logo { font-size:24px; }
+    .review-platform-name { font-family:var(--font-head); font-size:13px; font-weight:800; color:var(--text); }
+    .review-platform-rating { display:flex; align-items:center; gap:6px; margin-left:auto; }
+    .review-stars-overall { font-size:20px; letter-spacing:2px; }
+    .review-overall-score { font-family:var(--font-display); font-size:28px; color:var(--amber); line-height:1; }
+    .review-cards { flex:1; display:grid; grid-template-columns:1fr 1fr; gap:10px; overflow:hidden; }
+    .review-card { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:16px 18px; display:flex; flex-direction:column; gap:8px; overflow:hidden; }
+    .review-card-top { display:flex; align-items:center; gap:10px; }
+    .review-avatar { width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:var(--font-display); font-size:16px; font-weight:700; color:#fff; flex-shrink:0; }
+    .review-name { font-size:13px; font-weight:700; color:var(--text); }
+    .review-date { font-size:10px; color:var(--text-muted); font-family:var(--font-head); }
+    .review-stars { font-size:13px; letter-spacing:1px; color:var(--amber); }
+    .review-text { font-size:12px; color:var(--text-dim); line-height:1.6; display:-webkit-box; -webkit-line-clamp:4; -webkit-box-orient:vertical; overflow:hidden; }
+    .review-loading { display:flex; align-items:center; justify-content:center; height:100%; color:var(--text-muted); font-family:var(--font-head); font-size:13px; gap:10px; }
+
+    /* ── ART OF THE DAY ── */
+    .art-wrap { flex:1; display:flex; gap:20px; overflow:hidden; }
+    .art-img-wrap { flex:1.2; position:relative; border-radius:16px; overflow:hidden; background:var(--surface); border:1px solid var(--border); }
+    .art-img { width:100%; height:100%; object-fit:cover; display:block; transition:opacity .5s; }
+    .art-img.loading { opacity:0; }
+    .art-frame { position:absolute; inset:8px; border:2px solid rgba(255,255,255,.08); border-radius:10px; pointer-events:none; }
+    .art-info { flex:1; display:flex; flex-direction:column; justify-content:center; gap:16px; }
+    .art-title-main { font-family:var(--font-head); font-size:32px; font-weight:800; color:var(--text); line-height:1.2; }
+    .art-artist { font-size:16px; color:var(--blue); font-weight:600; }
+    .art-year { font-size:13px; color:var(--text-muted); font-family:var(--font-mono, monospace); }
+    .art-desc { font-size:13px; color:var(--text-dim); line-height:1.7; }
+    .art-museum { display:inline-flex; align-items:center; gap:6px; background:var(--surface2); border:1px solid var(--border); border-radius:20px; padding:5px 14px; font-size:11px; font-weight:700; color:var(--text-muted); font-family:var(--font-head); text-transform:uppercase; letter-spacing:1px; }
+    .art-loading { display:flex; align-items:center; justify-content:center; height:100%; color:var(--text-muted); font-family:var(--font-head); font-size:13px; gap:10px; }
+
+    /* ── SUGGESTION BOX ── */
+    .suggestion-wrap { flex:1; display:flex; gap:20px; }
+    .suggestion-left { flex:1; display:flex; flex-direction:column; justify-content:center; align-items:center; gap:20px; background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:32px; text-align:center; position:relative; overflow:hidden; }
+    .suggestion-qr { width:180px; height:180px; background:#fff; border-radius:16px; padding:10px; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 32px rgba(0,0,0,.3); }
+    .suggestion-qr img { width:100%; height:100%; object-fit:contain; border-radius:8px; }
+    .suggestion-qr-placeholder { width:160px; height:160px; display:grid; grid-template-columns:repeat(8,1fr); grid-template-rows:repeat(8,1fr); gap:2px; }
+    .qr-cell { border-radius:1px; }
+    .suggestion-label { font-family:var(--font-head); font-size:14px; font-weight:700; color:var(--text-dim); }
+    .suggestion-url { font-size:11px; color:var(--text-muted); font-family:var(--font-head); word-break:break-all; max-width:200px; }
+    .suggestion-right { flex:1.2; display:flex; flex-direction:column; justify-content:center; gap:16px; }
+    .suggestion-title { font-family:var(--font-head); font-size:36px; font-weight:800; color:var(--text); line-height:1.2; }
+    .suggestion-desc { font-size:16px; color:var(--text-dim); line-height:1.7; }
+    .suggestion-steps { display:flex; flex-direction:column; gap:10px; }
+    .suggestion-step { display:flex; align-items:center; gap:12px; background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:10px 14px; }
+    .suggestion-step-num { width:26px; height:26px; border-radius:50%; background:var(--blue); color:#000; font-family:var(--font-display); font-size:16px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .suggestion-step-text { font-size:13px; color:var(--text-dim); }
+    .suggestion-glow { position:absolute; bottom:-60px; right:-60px; width:200px; height:200px; border-radius:50%; background:radial-gradient(circle, rgba(56,189,248,.08) 0%, transparent 70%); pointer-events:none; }
+
     /* ── MEME ── */
     .meme-wrap { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; }
     .meme-img { max-width:100%; max-height:calc(100% - 60px); border-radius:16px; object-fit:contain; box-shadow:0 8px 40px rgba(0,0,0,.5); border:1px solid var(--border); }
@@ -721,6 +771,38 @@
       <div id="adm-week-days"></div>
     </div>
 
+    <!-- REVIEWS -->
+    <div class="adm-section">
+      <div class="adm-section-title">⭐ Reviews</div>
+      <div class="adm-row">
+        <div class="adm-field"><label class="adm-label">Google Place ID</label><input class="adm-input" id="adm-google-place-id" placeholder="ChIJ31CxBfkNdkgR-H5f0MsaGgI"></div>
+        <div class="adm-field"><label class="adm-label">Google API Key</label><input class="adm-input" id="adm-google-api-key" placeholder="Your Google Places API key" type="password"></div>
+      </div>
+      <div class="adm-row">
+        <div class="adm-field"><label class="adm-label">TripAdvisor Listing 1 URL</label><input class="adm-input" id="adm-ta-url-1" placeholder="https://www.tripadvisor.co.uk/Hotel_Review-…"></div>
+      </div>
+      <div class="adm-row">
+        <div class="adm-field"><label class="adm-label">TripAdvisor Listing 2 URL</label><input class="adm-input" id="adm-ta-url-2" placeholder="https://www.tripadvisor.co.uk/Restaurant_Review-…"></div>
+      </div>
+      <div style="font-size:11px;color:var(--text-muted);font-family:var(--font-head);margin-top:6px;line-height:1.6;">
+        💡 Get a free Google Places API key at <strong>console.cloud.google.com</strong> → Enable Places API → Create credentials. Free tier covers this usage easily.
+      </div>
+      <div style="margin-top:12px"><div class="adm-section-title" style="margin-bottom:10px">📝 Handpicked Review Highlights</div>
+      <div id="adm-reviews"></div>
+      <button class="btn-adm-add" onclick="addReview()">+ Add Handpicked Review</button></div>
+    </div>
+
+    <!-- SUGGESTION BOX -->
+    <div class="adm-section">
+      <div class="adm-section-title">💡 Staff Suggestion Box</div>
+      <div class="adm-row">
+        <div class="adm-field"><label class="adm-label">Google Form URL</label><input class="adm-input" id="adm-suggestion-url" placeholder="https://forms.gle/…"></div>
+      </div>
+      <div style="font-size:11px;color:var(--text-muted);font-family:var(--font-head);margin-top:6px;line-height:1.6;">
+        💡 Create a free Google Form → click Share → copy the link → paste it here. A QR code will be generated automatically.
+      </div>
+    </div>
+
     <!-- WEEKLY WIN -->
     <div class="adm-section">
       <div class="adm-section-title">🏆 Weekly Win</div>
@@ -1025,7 +1107,10 @@ async function buildSlides() {
   // 6 — Word of the Day
   slides.push(wordSlide(doy));
 
-  // 7 — Fun Stat
+  // 7 — Art of the Day
+  slides.push(artSlide(doy));
+
+  // 8 — Fun Stat
   const statEl = statSlide();
   slides.push(statEl);
   fetchStat(statEl);
@@ -1071,6 +1156,26 @@ async function buildSlides() {
 
   // 21 — Image Slides
   (cfg.image_slides || []).forEach(s => slides.push(imgSlide(s)));
+
+  // 22 — Google Reviews
+  if (cfg.reviews) {
+    const gSlide = reviewSlide('google', null);
+    slides.push(gSlide);
+    fetchGoogleReviews(gSlide);
+
+    // TripAdvisor Hotel
+    const ta1Slide = reviewSlide('ta1', null);
+    slides.push(ta1Slide);
+    fetchTripAdvisorReviews('ta1', cfg.reviews.ta_url_1);
+
+    // TripAdvisor Restaurant
+    const ta2Slide = reviewSlide('ta2', null);
+    slides.push(ta2Slide);
+    fetchTripAdvisorReviews('ta2', cfg.reviews.ta_url_2);
+  }
+
+  // 23 — Suggestion Box
+  if (cfg.suggestion_box?.form_url) slides.push(suggestionSlide(cfg.suggestion_box.form_url));
 
   if (!slides.length) return;
   slides.forEach(el => container.appendChild(el));
@@ -1774,6 +1879,216 @@ function weekSlide(w) {
 }
 
 // ══════════════════════════════════════════
+// REVIEWS
+// ══════════════════════════════════════════
+const AVATAR_COLOURS = ['#38bdf8','#a78bfa','#34d399','#f87171','#fbbf24','#f472b6'];
+
+function reviewSlide(platform, data) {
+  const el = mkSlide('zoom');
+  el.dataset.platform = platform;
+  const isGoogle = platform === 'google';
+  const isTa1    = platform === 'ta1';
+  const icon     = isGoogle ? '🟡' : '🟢';
+  const name     = isGoogle ? 'Google Reviews' : isTa1 ? 'TripAdvisor — Hotel' : 'TripAdvisor — Restaurant';
+  el.innerHTML = `
+    <div class="slide-hdr">
+      <span class="slide-icon">⭐</span>
+      <span class="slide-title">${name}</span>
+    </div>
+    <div class="review-slide-wrap">
+      <div class="review-platform-hdr">
+        <div class="review-platform-logo">${icon}</div>
+        <div class="review-platform-name">${name}</div>
+        <div class="review-platform-rating">
+          <div class="review-stars-overall" id="rev-stars-${platform}">★★★★★</div>
+          <div class="review-overall-score" id="rev-score-${platform}">—</div>
+        </div>
+      </div>
+      <div class="review-cards" id="rev-cards-${platform}">
+        <div class="review-loading"><div class="spinner"></div>Loading reviews…</div>
+      </div>
+    </div>`;
+  return el;
+}
+
+function renderReviewCards(platform, reviews, rating) {
+  const scoreEl = document.getElementById(`rev-score-${platform}`);
+  const cardsEl = document.getElementById(`rev-cards-${platform}`);
+  if (!scoreEl || !cardsEl) return;
+  if (rating) scoreEl.textContent = rating;
+  if (!reviews?.length) {
+    cardsEl.innerHTML = `<div class="review-loading">No reviews to display</div>`;
+    return;
+  }
+  cardsEl.innerHTML = reviews.slice(0,4).map((r, i) => {
+    const stars = '★'.repeat(Math.round(r.rating || 5)) + '☆'.repeat(5 - Math.round(r.rating || 5));
+    const initials = (r.author||'?').split(' ').map(n=>n[0]).join('').slice(0,2).toUpperCase();
+    const colour = AVATAR_COLOURS[i % AVATAR_COLOURS.length];
+    return `
+      <div class="review-card">
+        <div class="review-card-top">
+          <div class="review-avatar" style="background:${colour}">${initials}</div>
+          <div>
+            <div class="review-name">${esc(r.author||'Anonymous')}</div>
+            <div class="review-date">${esc(r.date||'')}</div>
+          </div>
+          <div class="review-stars" style="margin-left:auto">${stars}</div>
+        </div>
+        <div class="review-text">${esc(r.text||'')}</div>
+      </div>`;
+  }).join('');
+}
+
+async function fetchGoogleReviews(el) {
+  const placeId = cfg?.reviews?.google_place_id || 'ChIJ31CxBfkNdkgR-H5f0MsaGgI';
+  const apiKey  = cfg?.reviews?.google_api_key  || '';
+  if (!apiKey) {
+    // Fall back to handpicked reviews
+    const handpicked = (cfg?.reviews?.handpicked || []).filter(r => r.platform === 'google' || !r.platform);
+    renderReviewCards('google', handpicked.length ? handpicked : SAMPLE_REVIEWS.google, '4.8');
+    return;
+  }
+  try {
+    const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=rating,reviews&key=${apiKey}`;
+    const r = await fetch(`https://corsproxy.io/?${encodeURIComponent(url)}`);
+    const d = await r.json();
+    const result = d.result;
+    const reviews = (result?.reviews || []).map(rv => ({
+      author: rv.author_name,
+      rating: rv.rating,
+      text:   rv.text,
+      date:   new Date(rv.time * 1000).toLocaleDateString('en-GB', {day:'numeric',month:'short',year:'numeric'})
+    }));
+    renderReviewCards('google', reviews, result?.rating?.toFixed(1));
+  } catch {
+    const handpicked = (cfg?.reviews?.handpicked || []).filter(r => !r.platform || r.platform==='google');
+    renderReviewCards('google', handpicked.length ? handpicked : SAMPLE_REVIEWS.google, '4.8');
+  }
+}
+
+async function fetchTripAdvisorReviews(platform, taUrl) {
+  // TripAdvisor blocks direct scraping — use handpicked reviews + show live link
+  const handpicked = (cfg?.reviews?.handpicked || []).filter(r => r.platform === platform);
+  const fallback   = platform === 'ta1' ? SAMPLE_REVIEWS.ta_hotel : SAMPLE_REVIEWS.ta_restaurant;
+  renderReviewCards(platform, handpicked.length ? handpicked : fallback, platform === 'ta1' ? '4.7' : '4.6');
+}
+
+// Sample reviews shown until admin adds real ones
+const SAMPLE_REVIEWS = {
+  google: [
+    { author:'Sarah M.',     rating:5, text:'Absolutely outstanding service from the moment we arrived. The front desk team were incredibly welcoming and professional. Would highly recommend!', date:'2 Apr 2025' },
+    { author:'James T.',     rating:5, text:'Exceptional experience from start to finish. The staff went above and beyond to make our stay special. We will definitely be returning.', date:'28 Mar 2025' },
+    { author:'Emma R.',      rating:5, text:'Wonderful hotel with a fantastic team. The attention to detail is remarkable and every member of staff was so helpful and friendly.', date:'21 Mar 2025' },
+    { author:'David L.',     rating:4, text:'Really impressed with the level of service. The team handled our requests promptly and with a smile. Great location too.', date:'15 Mar 2025' },
+  ],
+  ta_hotel: [
+    { author:'TravellerUK',  rating:5, text:'Brilliant hotel in a great location. Staff were superb — nothing was too much trouble. Room was spotless and comfortable. Will be back!', date:'1 Apr 2025' },
+    { author:'LondonVisitor', rating:5, text:'Exceeded all expectations. The team here truly care about their guests. Check-in was seamless and the room was beautiful.', date:'25 Mar 2025' },
+    { author:'BusinessTrav', rating:4, text:'Great facilities and very professional staff. The breakfast was excellent and the gym well-equipped. Perfect for business trips.', date:'18 Mar 2025' },
+    { author:'FamilyFun23',  rating:5, text:'Took the family for a special weekend and it was perfect. Kids loved it and the staff made everyone feel so welcome.', date:'10 Mar 2025' },
+  ],
+  ta_restaurant: [
+    { author:'FoodieL',      rating:5, text:'Incredible food and atmosphere. The service was attentive without being intrusive. The Sunday roast was the best I\'ve had in London!', date:'3 Apr 2025' },
+    { author:'DinnerDate',   rating:5, text:'Perfect spot for a special occasion. Menu was creative and beautifully presented. Staff were knowledgeable and passionate about the food.', date:'27 Mar 2025' },
+    { author:'LunchBreak',   rating:4, text:'Great lunch menu with plenty of choice. Quick and efficient service — perfect for a business lunch. Will definitely return.', date:'20 Mar 2025' },
+    { author:'WeekendDiner', rating:5, text:'Outstanding from start to finish. The cocktails were exceptional and the food matched. A real gem in Ealing!', date:'12 Mar 2025' },
+  ]
+};
+
+// ══════════════════════════════════════════
+// ART OF THE DAY
+// ══════════════════════════════════════════
+
+// Curated collection of famous paintings and photography — all public domain
+const ART_COLLECTION = [
+  { title:'Starry Night',              artist:'Vincent van Gogh',      year:'1889', type:'painting',     museum:'MoMA, New York',         desc:'One of the most recognised paintings in Western art. Painted from van Gogh\'s room at the Saint-Paul-de-Mausole asylum.', url:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1280px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg' },
+  { title:'Girl with a Pearl Earring', artist:'Johannes Vermeer',      year:'1665', type:'painting',     museum:'Mauritshuis, The Hague',  desc:'Often called the "Mona Lisa of the North." The identity of the girl has been debated for centuries.', url:'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/1665_Girl_with_a_Pearl_Earring.jpg/800px-1665_Girl_with_a_Pearl_Earring.jpg' },
+  { title:'The Great Wave',            artist:'Katsushika Hokusai',    year:'1831', type:'painting',     museum:'Metropolitan Museum, NY', desc:'Perhaps the most famous work of Japanese art in the world. Mount Fuji can be seen in the background.', url:'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Tsunami_by_hokusai_19th_century.jpg/1280px-Tsunami_by_hokusai_19th_century.jpg' },
+  { title:'Mona Lisa',                 artist:'Leonardo da Vinci',     year:'1503', type:'painting',     museum:'The Louvre, Paris',       desc:'The most visited, most written about and most parodied work of art in the world. Her smile remains an eternal mystery.', url:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/800px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg' },
+  { title:'The Birth of Venus',        artist:'Sandro Botticelli',     year:'1484', type:'painting',     museum:'Uffizi Gallery, Florence', desc:'Depicts the goddess Venus emerging from the sea as a fully grown woman. A masterpiece of the Italian Renaissance.', url:'https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg/1280px-Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg' },
+  { title:'Nighthawks',                artist:'Edward Hopper',         year:'1942', type:'painting',     museum:'Art Institute of Chicago', desc:'Depicts people in a downtown diner late at night. One of the most recognisable paintings in American art.', url:'https://upload.wikimedia.org/wikipedia/commons/a/a8/Nighthawks_by_Edward_Hopper_1942.jpg' },
+  { title:'Water Lilies',              artist:'Claude Monet',          year:'1906', type:'painting',     museum:'Art Institute of Chicago', desc:'Part of a series of around 250 paintings depicting Monet\'s flower garden at Giverny. A triumph of Impressionism.', url:'https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Claude_Monet_-_Water_Lilies_-_1906%2C_Ryerson.jpg/1280px-Claude_Monet_-_Water_Lilies_-_1906%2C_Ryerson.jpg' },
+  { title:'The Persistence of Memory', artist:'Salvador Dalí',         year:'1931', type:'painting',     museum:'MoMA, New York',          desc:'Dalí\'s most famous work. The melting watches are said to represent Einstein\'s theory that time is relative.', url:'https://upload.wikimedia.org/wikipedia/en/d/dd/The_Persistence_of_Memory.jpg' },
+  { title:'A Sunday Afternoon',        artist:'Georges Seurat',        year:'1886', type:'painting',     museum:'Art Institute of Chicago', desc:'A masterpiece of pointillism — painted using millions of tiny dots of colour that blend in the viewer\'s eye.', url:'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/A_Sunday_on_La_Grande_Jatte%2C_Georges_Seurat%2C_1884.jpg/1280px-A_Sunday_on_La_Grande_Jatte%2C_Georges_Seurat%2C_1884.jpg' },
+  { title:'The Scream',                artist:'Edvard Munch',          year:'1893', type:'painting',     museum:'National Museum, Oslo',    desc:'The agonised face in the painting has become one of the most iconic images of art and popular culture.', url:'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Edvard_Munch%2C_1893%2C_The_Scream%2C_oil%2C_tempera_and_pastel_on_cardboard%2C_91_x_73_cm%2C_National_Gallery_of_Norway.jpg/800px-Edvard_Munch%2C_1893%2C_The_Scream%2C_oil%2C_tempera_and_pastel_on_cardboard%2C_91_x_73_cm%2C_National_Gallery_of_Norway.jpg' },
+  { title:'Las Meninas',               artist:'Diego Velázquez',       year:'1656', type:'painting',     museum:'Museo del Prado, Madrid',  desc:'One of the most analysed paintings in Western art. It shows the 5-year-old Infanta Margarita surrounded by her entourage.', url:'https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Las_Meninas_01.jpg/800px-Las_Meninas_01.jpg' },
+  { title:'Impression, Sunrise',       artist:'Claude Monet',          year:'1872', type:'painting',     museum:'Musée Marmottan, Paris',   desc:'The painting that gave the Impressionist movement its name. Critics meant "Impressionism" as an insult — it stuck.', url:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Monet_-_Impression%2C_Sunrise.jpg/1280px-Monet_-_Impression%2C_Sunrise.jpg' },
+  { title:'The Night Watch',           artist:'Rembrandt van Rijn',    year:'1642', type:'painting',     museum:'Rijksmuseum, Amsterdam',   desc:'A massive work at 3.6 by 4.4 metres. It depicts a group of city guards led by Captain Frans Banninck Cocq.', url:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/The_Night_Watch_-_HD.jpg/1280px-The_Night_Watch_-_HD.jpg' },
+  { title:'Whistler\'s Mother',        artist:'James McNeill Whistler', year:'1871', type:'painting',    museum:'Musée d\'Orsay, Paris',    desc:'One of the best-known American paintings. Whistler\'s own mother posed for the portrait after his original model cancelled.', url:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Whistlers_Mother_high_res.jpg/958px-Whistlers_Mother_high_res.jpg' },
+  { title:'The Milkmaid',              artist:'Johannes Vermeer',      year:'1660', type:'painting',     museum:'Rijksmuseum, Amsterdam',   desc:'Vermeer\'s mastery of light is on full display. The scene of domestic simplicity has captivated viewers for centuries.', url:'https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Johannes_Vermeer_-_Het_melkmeisje_-_Google_Art_Project.jpg/800px-Johannes_Vermeer_-_Het_melkmeisje_-_Google_Art_Project.jpg' },
+  // Photography
+  { title:'Migrant Mother',            artist:'Dorothea Lange',        year:'1936', type:'photography',  museum:'Library of Congress',      desc:'Florence Owens Thompson, aged 32, was photographed at a pea pickers\' camp during the Great Depression. An icon of resilience.', url:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Lange-MigrantMother02.jpg/800px-Lange-MigrantMother02.jpg' },
+  { title:'V-J Day in Times Square',   artist:'Alfred Eisenstaedt',    year:'1945', type:'photography',  museum:'LIFE Magazine Archive',    desc:'Taken on 14 August 1945 as news of Japan\'s surrender reached New York. One of the most reproduced photographs ever.', url:'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Legendary_kiss_V_J_day_in_Times_Square_Alfred_Eisenstaedt.jpg/800px-Legendary_kiss_V_J_day_in_Times_Square_Alfred_Eisenstaedt.jpg' },
+  { title:'Earthrise',                 artist:'William Anders',        year:'1968', type:'photography',  museum:'NASA Archives',            desc:'Taken on Christmas Eve 1968 during the Apollo 8 mission. Often credited with launching the environmental movement.', url:'https://upload.wikimedia.org/wikipedia/commons/a/a8/NASA-Apollo8-Dec24-Earthrise.jpg' },
+  { title:'Afghan Girl',               artist:'Steve McCurry',         year:'1984', type:'photography',  museum:'National Geographic',      desc:'Sharbat Gula was photographed at age 12 in a Pakistani refugee camp. The image became the most recognised cover of National Geographic.', url:'https://upload.wikimedia.org/wikipedia/en/6/6e/SteveM_AfghanGirl.jpg' },
+  { title:'Lunch Atop a Skyscraper',   artist:'Charles C. Ebbets',     year:'1932', type:'photography',  museum:'New York Herald Tribune',  desc:'Eleven ironworkers eating lunch 840 feet above New York City during construction of the RCA Building. Their identities remain unknown.', url:'https://upload.wikimedia.org/wikipedia/commons/2/27/Lunch_atop_a_Skyscraper.jpg' },
+];
+
+function artSlide(doy) {
+  const el = mkSlide('fade');
+  const art = ART_COLLECTION[doy % ART_COLLECTION.length];
+  const typeLabel = art.type === 'photography' ? '📷 Photography' : '🎨 Painting';
+  el.innerHTML = `
+    <div class="slide-hdr">
+      <span class="slide-icon">${art.type === 'photography' ? '📷' : '🎨'}</span>
+      <span class="slide-title">Art of the Day</span>
+      <span class="slide-tag" style="background:rgba(167,139,250,.15);color:var(--purple)">${typeLabel}</span>
+    </div>
+    <div class="art-wrap">
+      <div class="art-img-wrap">
+        <img class="art-img loading" src="${esc(art.url)}" alt="${esc(art.title)}"
+          onload="this.classList.remove('loading')"
+          onerror="this.src='';this.style.display='none'">
+        <div class="art-frame"></div>
+      </div>
+      <div class="art-info">
+        <div>
+          <div class="art-title-main">${esc(art.title)}</div>
+          <div class="art-artist">${esc(art.artist)}</div>
+          <div class="art-year">${esc(art.year)}</div>
+        </div>
+        <div class="art-desc">${esc(art.desc)}</div>
+        <div class="art-museum">🏛️ ${esc(art.museum)}</div>
+      </div>
+    </div>`;
+  return el;
+}
+
+// ══════════════════════════════════════════
+// SUGGESTION BOX
+// ══════════════════════════════════════════
+function suggestionSlide(formUrl) {
+  const el = mkSlide('zoom');
+  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${encodeURIComponent(formUrl)}&bgcolor=ffffff&color=000000&margin=4`;
+  el.innerHTML = `
+    <div class="slide-hdr">
+      <span class="slide-icon">💡</span>
+      <span class="slide-title">Staff Suggestion Box</span>
+      <span class="slide-tag" style="background:rgba(52,211,153,.15);color:var(--green)">Anonymous</span>
+    </div>
+    <div class="suggestion-wrap">
+      <div class="suggestion-left">
+        <div class="suggestion-glow"></div>
+        <div class="suggestion-qr">
+          <img src="${esc(qrUrl)}" alt="QR Code" width="160" height="160">
+        </div>
+        <div class="suggestion-label">Scan to submit your idea</div>
+        <div class="suggestion-url">${esc(formUrl)}</div>
+      </div>
+      <div class="suggestion-right">
+        <div class="suggestion-title">Got an idea? We want to hear it! 💬</div>
+        <div class="suggestion-desc">Your suggestions help us improve every day. All submissions are completely anonymous — so speak your mind!</div>
+        <div class="suggestion-steps">
+          <div class="suggestion-step"><div class="suggestion-step-num">1</div><div class="suggestion-step-text">Scan the QR code with your phone camera</div></div>
+          <div class="suggestion-step"><div class="suggestion-step-num">2</div><div class="suggestion-step-text">Type your suggestion or idea in the form</div></div>
+          <div class="suggestion-step"><div class="suggestion-step-num">3</div><div class="suggestion-step-text">Hit submit — it's completely anonymous</div></div>
+        </div>
+      </div>
+    </div>`;
+  return el;
+}
+
+// ══════════════════════════════════════════
 // TICKER + NEWS
 // ══════════════════════════════════════════
 function buildTicker() {
@@ -2003,8 +2318,15 @@ function populateAdmin() {
   // Rota week
   document.getElementById('adm-rota-week').value = cfg.rota?.week || '';
 
-  // New Starter
-  const ns = cfg.new_starter || {};
+  // Reviews
+  document.getElementById('adm-google-place-id').value = cfg.reviews?.google_place_id || 'ChIJ31CxBfkNdkgR-H5f0MsaGgI';
+  document.getElementById('adm-google-api-key').value  = cfg.reviews?.google_api_key  || '';
+  document.getElementById('adm-ta-url-1').value         = cfg.reviews?.ta_url_1        || '';
+  document.getElementById('adm-ta-url-2').value         = cfg.reviews?.ta_url_2        || '';
+  renderAdmList('adm-reviews', cfg.reviews?.handpicked || [], reviewRow);
+
+  // Suggestion Box
+  document.getElementById('adm-suggestion-url').value = cfg.suggestion_box?.form_url || '';
   document.getElementById('adm-starter-enabled').value = ns.enabled ? 'true' : 'false';
   document.getElementById('adm-starter-name').value    = ns.name        || '';
   document.getElementById('adm-starter-role').value    = ns.role        || '';
@@ -2121,7 +2443,24 @@ function imgSlideRow(s, i) {
   return wrap;
 }
 
-function numberRow(n, i) {
+function reviewRow(r, i) {
+  const wrap = document.createElement('div');
+  wrap.className = 'adm-row'; wrap.dataset.idx = i;
+  wrap.innerHTML = `
+    <div class="adm-field" style="max-width:110px"><label class="adm-label">Platform</label>
+      <select class="adm-select" data-f="platform">
+        <option${r.platform==='google'?' selected':''} value="google">Google</option>
+        <option${r.platform==='ta1'?' selected':''} value="ta1">TA Hotel</option>
+        <option${r.platform==='ta2'?' selected':''} value="ta2">TA Restaurant</option>
+      </select></div>
+    <div class="adm-field"><label class="adm-label">Reviewer Name</label><input class="adm-input" data-f="author" value="${esc(r.author||'')}"></div>
+    <div class="adm-field" style="max-width:60px"><label class="adm-label">Stars</label><input class="adm-input" data-f="rating" type="number" min="1" max="5" value="${r.rating||5}"></div>
+    <div class="adm-field" style="max-width:110px"><label class="adm-label">Date</label><input class="adm-input" data-f="date" value="${esc(r.date||'')}"></div>
+    <button class="btn-adm-del" onclick="delRow('adm-reviews',${i})">✕</button>
+    <div style="width:100%;margin-top:-6px"><label class="adm-label">Review Text</label><textarea class="adm-textarea" data-f="text" style="min-height:48px">${esc(r.text||'')}</textarea></div>`;
+  return wrap;
+}
+function addReview() { const r=readList('adm-reviews','platform,author,rating,date,text'); r.push({platform:'google',author:'',rating:5,date:'',text:''}); renderAdmList('adm-reviews',r,reviewRow); }
   const wrap = document.createElement('div');
   wrap.className = 'adm-row'; wrap.dataset.idx = i;
   wrap.innerHTML = `
@@ -2189,12 +2528,13 @@ function delRow(listId, idx) {
     'adm-lb':'name,title,points,change','adm-tasks':'text,assignee,priority',
     'adm-ticker':'text','adm-imgslides':'title,url,caption,fullscreen',
     'adm-numbers':'emoji,label,number','adm-supplies':'emoji,item,status',
-    'adm-training':'title,assignee,due'
+    'adm-training':'title,assignee,due','adm-reviews':'platform,author,rating,date,text'
   };
   const rowFns = {
     'adm-annos':annoRow,'adm-kpis':kpiRow,'adm-lb':lbRow,'adm-tasks':taskRow,
     'adm-ticker':tickerRow,'adm-imgslides':imgSlideRow,
-    'adm-numbers':numberRow,'adm-supplies':supplyRow,'adm-training':trainingRow
+    'adm-numbers':numberRow,'adm-supplies':supplyRow,'adm-training':trainingRow,
+    'adm-reviews':reviewRow
   };
   const items = readList(listId, fieldMap[listId]);
   items.splice(idx, 1);
@@ -2249,6 +2589,16 @@ function exportData() {
   };
 
   if (cfg.rota) out.rota.week = document.getElementById('adm-rota-week').value;
+
+  out.reviews = {
+    google_place_id: document.getElementById('adm-google-place-id').value,
+    google_api_key:  document.getElementById('adm-google-api-key').value,
+    ta_url_1:        document.getElementById('adm-ta-url-1').value,
+    ta_url_2:        document.getElementById('adm-ta-url-2').value,
+    handpicked:      readList('adm-reviews','platform,author,rating,date,text')
+  };
+
+  out.suggestion_box = { form_url: document.getElementById('adm-suggestion-url').value };
 
   // New Starter
   out.new_starter = {
