@@ -343,14 +343,109 @@
       }
     ]
   },
-  "reviews": {
-    "google_place_id": "ChIJ31CxBfkNdkgR-H5f0MsaGgI",
-    "google_api_key": "",
-    "ta_url_1": "https://www.tripadvisor.co.uk/Hotel_Review-g186338-d195210-Reviews-DoubleTree_by_Hilton_Hotel_London_Ealing-London_England.html",
-    "ta_url_2": "https://www.tripadvisor.co.uk/Restaurant_Review-g186338-d7103139-Reviews-W5_Bar_and_Kitchen-London_England.html",
-    "handpicked": []
-  },
   "suggestion_box": {
     "form_url": "https://forms.gle/your-form-link-here"
-  }
+  },
+  "reviews_hotel": [
+    {
+      "author": "TravellerUK",
+      "rating": 5,
+      "text": "Brilliant hotel in a great location. Staff were superb \u2014 nothing was too much trouble. Room was spotless and comfortable. Will be back!",
+      "date": "1 Apr 2025"
+    },
+    {
+      "author": "LondonVisitor",
+      "rating": 5,
+      "text": "Exceeded all expectations. The team here truly care about their guests. Check-in was seamless and the room was beautiful.",
+      "date": "25 Mar 2025"
+    },
+    {
+      "author": "BusinessTrav",
+      "rating": 4,
+      "text": "Great facilities and very professional staff. The breakfast was excellent and the gym well-equipped. Perfect for business trips.",
+      "date": "18 Mar 2025"
+    },
+    {
+      "author": "FamilyFun23",
+      "rating": 5,
+      "text": "Took the family for a special weekend and it was perfect. Kids loved it and the staff made everyone feel so welcome.",
+      "date": "10 Mar 2025"
+    }
+  ],
+  "reviews_restaurant": [
+    {
+      "author": "FoodieL",
+      "rating": 5,
+      "text": "Incredible food and atmosphere. The service was attentive without being intrusive. The Sunday roast was the best I have had in London!",
+      "date": "3 Apr 2025"
+    },
+    {
+      "author": "DinnerDate",
+      "rating": 5,
+      "text": "Perfect spot for a special occasion. Menu was creative and beautifully presented. Staff were knowledgeable and passionate about the food.",
+      "date": "27 Mar 2025"
+    },
+    {
+      "author": "LunchBreak",
+      "rating": 4,
+      "text": "Great lunch menu with plenty of choice. Quick and efficient service \u2014 perfect for a business lunch. Will definitely return.",
+      "date": "20 Mar 2025"
+    },
+    {
+      "author": "WeekendDiner",
+      "rating": 5,
+      "text": "Outstanding from start to finish. The cocktails were exceptional and the food matched. A real gem in Ealing!",
+      "date": "12 Mar 2025"
+    }
+  ],
+  "emergency_contacts": [
+    {
+      "emoji": "\ud83d\ude92",
+      "label": "Fire Brigade",
+      "number": "999",
+      "name": "Emergency Services"
+    },
+    {
+      "emoji": "\ud83d\ude91",
+      "label": "Ambulance",
+      "number": "999",
+      "name": "Emergency Services"
+    },
+    {
+      "emoji": "\ud83d\udc6e",
+      "label": "Police",
+      "number": "999",
+      "name": "Emergency Services"
+    },
+    {
+      "emoji": "\ud83c\udfe5",
+      "label": "First Aider",
+      "number": "Ext. 101",
+      "name": "On Duty Today"
+    },
+    {
+      "emoji": "\ud83d\udd25",
+      "label": "Fire Marshal",
+      "number": "Ext. 102",
+      "name": "On Duty Today"
+    },
+    {
+      "emoji": "\ud83d\udd12",
+      "label": "Security",
+      "number": "Ext. 103",
+      "name": "24hr Security Desk"
+    },
+    {
+      "emoji": "\ud83c\udfe2",
+      "label": "Building Manager",
+      "number": "Ext. 200",
+      "name": ""
+    },
+    {
+      "emoji": "\ud83d\udee0\ufe0f",
+      "label": "Maintenance",
+      "number": "Ext. 201",
+      "name": ""
+    }
+  ]
 }

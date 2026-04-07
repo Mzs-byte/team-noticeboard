@@ -1,4 +1,4 @@
-const CACHE = 'noticeboard-v2';
+const CACHE = 'noticeboard-v8';
 const ASSETS = ['/team-noticeboard/', '/team-noticeboard/index.html', '/team-noticeboard/manifest.json'];
 
 self.addEventListener('install', e => {
