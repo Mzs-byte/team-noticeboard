@@ -102,20 +102,20 @@
   },
   "countdowns": [
     {
-      "label": "All-Hands Meeting",
-      "date": "2025-04-11"
-    },
-    {
       "label": "End of Quarter",
-      "date": "2025-06-30"
+      "date": "2026-06-30"
     },
     {
       "label": "Team Away Day",
-      "date": "2025-05-15"
+      "date": "2026-05-15"
     },
     {
       "label": "Annual Review Deadline",
-      "date": "2025-04-30"
+      "date": "2026-04-30"
+    },
+    {
+      "label": "Summer Bank Holiday",
+      "date": "2026-08-31"
     }
   ],
   "birthdays": [
@@ -252,24 +252,24 @@
     "enabled": true,
     "name": "Jamie Collins",
     "role": "Front Office Coordinator",
-    "start_date": "Monday 7 April 2025",
+    "start_date": "Monday 6 April 2026",
     "fun_fact": "Jamie has visited 32 countries and speaks three languages!",
     "welcome_msg": "Please give Jamie a warm welcome to the team!"
   },
   "training_reminders": [
     {
       "title": "Fire Safety Refresher",
-      "due": "2025-04-18",
+      "due": "2026-04-18",
       "assignee": "All Staff"
     },
     {
       "title": "GDPR Annual Training",
-      "due": "2025-04-30",
+      "due": "2026-04-30",
       "assignee": "All Staff"
     },
     {
       "title": "First Aid Recertification",
-      "due": "2025-05-10",
+      "due": "2026-05-10",
       "assignee": "Alice, Bob"
     }
   ],
@@ -306,7 +306,7 @@
     }
   ],
   "week_at_a_glance": {
-    "week": "Week of 7 Apr 2025",
+    "week": "Week of 6 Apr 2026",
     "days": [
       {
         "day": "Mon",
@@ -348,54 +348,54 @@
   },
   "reviews_hotel": [
     {
-      "author": "TravellerUK",
+      "author": "Frequent Traveller",
       "rating": 5,
-      "text": "Brilliant hotel in a great location. Staff were superb \u2014 nothing was too much trouble. Room was spotless and comfortable. Will be back!",
-      "date": "1 Apr 2025"
+      "date": "14 Mar 2026",
+      "text": "A jewel of a hotel with always wonderful staff. Hawa at check-in was very polite, efficient and professional. She really cared about her guests and made me feel recognised and at home. My room was modern, cosy and the bed was incredibly comfortable."
     },
     {
-      "author": "LondonVisitor",
+      "author": "Business Guest",
       "rating": 5,
-      "text": "Exceeded all expectations. The team here truly care about their guests. Check-in was seamless and the room was beautiful.",
-      "date": "25 Mar 2025"
+      "date": "2 Mar 2026",
+      "text": "We had a great experience for our business event held here. From organising right through to the end it was fantastic. All guests were very happy. Thanks to Hawa, Rohan, Aron and Anna \u2014 we highly recommend this hotel."
     },
     {
-      "author": "BusinessTrav",
-      "rating": 4,
-      "text": "Great facilities and very professional staff. The breakfast was excellent and the gym well-equipped. Perfect for business trips.",
-      "date": "18 Mar 2025"
+      "author": "London Visitor",
+      "rating": 5,
+      "date": "18 Feb 2026",
+      "text": "Without exception, the staff were kind, polite and efficient. All the staff \u2014 even those you passed in the corridor \u2014 were genuinely friendly and smiled every time. The hotel is clean, modern, and comfortable with good transport links. Definitely recommend."
     },
     {
-      "author": "FamilyFun23",
+      "author": "Weekend Stay",
       "rating": 5,
-      "text": "Took the family for a special weekend and it was perfect. Kids loved it and the staff made everyone feel so welcome.",
-      "date": "10 Mar 2025"
+      "date": "8 Feb 2026",
+      "text": "From the minute we walked in, Lucia on reception set the bar. She was friendly, helpful and full of energy. The room was clean, modern and well-furnished. Linen and towels were of excellent quality. Will stay again without hesitation."
     }
   ],
   "reviews_restaurant": [
     {
-      "author": "FoodieL",
+      "author": "Karen M.",
       "rating": 5,
-      "text": "Incredible food and atmosphere. The service was attentive without being intrusive. The Sunday roast was the best I have had in London!",
-      "date": "3 Apr 2025"
+      "date": "22 Mar 2026",
+      "text": "I spent 5 days at the DoubleTree and the best part of every day was seeing Syuzanna's smiling face at breakfast. Nora was also a joy \u2014 always ready to help. The food was excellent throughout. I highly recommend eating here, you won't regret it."
     },
     {
-      "author": "DinnerDate",
+      "author": "Donna R.",
       "rating": 5,
-      "text": "Perfect spot for a special occasion. Menu was creative and beautifully presented. Staff were knowledgeable and passionate about the food.",
-      "date": "27 Mar 2025"
+      "date": "10 Mar 2026",
+      "text": "Third time stopping here and a great hotel. Kante who works in the bar and restaurant is always smiling, polite and happy to help wherever he can. A real credit to the hotel \u2014 consistently wonderful service every single visit."
     },
     {
-      "author": "LunchBreak",
-      "rating": 4,
-      "text": "Great lunch menu with plenty of choice. Quick and efficient service \u2014 perfect for a business lunch. Will definitely return.",
-      "date": "20 Mar 2025"
+      "author": "Elizabeth S.",
+      "rating": 5,
+      "date": "28 Feb 2026",
+      "text": "Fast, attentive and friendly service with great food! Kante was absolutely fantastic \u2014 the pizza was delicious and came quickly even for our group of 7 at a busy time. Easy five stars. Will be back very soon."
     },
     {
-      "author": "WeekendDiner",
+      "author": "Nazmul H.",
       "rating": 5,
-      "text": "Outstanding from start to finish. The cocktails were exceptional and the food matched. A real gem in Ealing!",
-      "date": "12 Mar 2025"
+      "date": "15 Feb 2026",
+      "text": "Sakshi was friendly and helpful throughout our visit. Service was excellent, atmosphere was great and the ambience was clean and tidy. A wonderful dining experience in a lovely setting. Will definitely return for dinner again."
     }
   ],
   "emergency_contacts": [
