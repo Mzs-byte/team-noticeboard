@@ -1,5 +1,5 @@
 {
-  "company_name": "Your Team Name",
+  "company_name": "DoubleTree by Hilton London Ealing",
   "weather_city": "London",
   "slide_duration": 10,
   "news_rss": "https://feeds.bbci.co.uk/news/business/rss.xml",
@@ -26,127 +26,280 @@
     "intlday": true,
     "quote": true,
     "word": true,
-    "art": true,
+    "art": false,
     "funstat": true,
-    "weeklywin": true,
-    "weekglance": true,
+    "weeklywin": false,
+    "weekglance": false,
     "kpis": true,
     "thermometer": true,
-    "numbers": true,
-    "supplies": true,
+    "numbers": false,
+    "supplies": false,
     "training": true,
     "countdowns": true,
     "leaderboard": true,
-    "status": true,
+    "status": false,
     "tasks": true,
-    "meme": true,
+    "meme": false,
     "reviews": true,
-    "suggestionbox": true,
-    "tipofday": true
+    "suggestionbox": false,
+    "instagram": true,
+    "songofday": false,
+    "tipofday": false,
+    "teamphoto": false,
+    "worldclock": true,
+    "monthlyaward": true,
+    "milestones": true,
+    "deptspotlight": false
   },
   "daily_tips": [
-    {"emoji": "💡", "tip": "Take a 5-minute break every hour to stay fresh and focused."},
-    {"emoji": "🌱", "tip": "Keep a plant on your desk — it improves air quality and mood."},
-    {"emoji": "💧", "tip": "Drink a glass of water first thing in the morning to kickstart your metabolism."},
-    {"emoji": "📝", "tip": "Write your to-do list the night before to start the day with clarity."},
-    {"emoji": "🚶", "tip": "Take the stairs instead of the lift for a quick energy boost."},
-    {"emoji": "🧘", "tip": "Practice deep breathing for 2 minutes to reduce stress instantly."},
-    {"emoji": "☀️", "tip": "Get natural sunlight within the first hour of waking up."},
-    {"emoji": "📱", "tip": "Turn off notifications during deep work sessions."},
-    {"emoji": "🥗", "tip": "Prep your lunch the night before to save time and eat healthier."},
-    {"emoji": "😊", "tip": "Smile at three people today — it's contagious!"},
-    {"emoji": "🎯", "tip": "Focus on one task at a time for better productivity."},
-    {"emoji": "⏰", "tip": "Use the Pomodoro technique: 25 min work, 5 min break."},
-    {"emoji": "🧠", "tip": "Your brain works best in the first 2 hours after waking."},
-    {"emoji": "📵", "tip": "Keep your phone in another room while sleeping."},
-    {"emoji": "🏃", "tip": "A 10-minute walk after lunch improves afternoon focus."},
-    {"emoji": "🎨", "tip": "Decorate your workspace with items that inspire you."},
-    {"emoji": "🧊", "tip": "Drink cold water to boost alertness and metabolism."},
-    {"emoji": "📚", "tip": "Read for 15 minutes before bed to improve sleep quality."},
-    {"emoji": "🗣️", "tip": "Say good morning to your colleagues — it builds rapport."},
-    {"emoji": "✍️", "tip": "Keep a gratitude journal to boost your mood."}
+    {
+      "emoji": "💡",
+      "tip": "Take a 5-minute break every hour to stay fresh and focused."
+    },
+    {
+      "emoji": "🌱",
+      "tip": "Keep a plant on your desk — it improves air quality and mood."
+    },
+    {
+      "emoji": "💧",
+      "tip": "Drink a glass of water first thing in the morning to kickstart your metabolism."
+    },
+    {
+      "emoji": "📝",
+      "tip": "Write your to-do list the night before to start the day with clarity."
+    },
+    {
+      "emoji": "🚶",
+      "tip": "Take the stairs instead of the lift for a quick energy boost."
+    },
+    {
+      "emoji": "🧘",
+      "tip": "Practice deep breathing for 2 minutes to reduce stress instantly."
+    },
+    {
+      "emoji": "☀️",
+      "tip": "Get natural sunlight within the first hour of waking up."
+    },
+    {
+      "emoji": "📱",
+      "tip": "Turn off notifications during deep work sessions."
+    },
+    {
+      "emoji": "🥗",
+      "tip": "Prep your lunch the night before to save time and eat healthier."
+    },
+    {
+      "emoji": "😊",
+      "tip": "Smile at three people today — it's contagious!"
+    },
+    {
+      "emoji": "🎯",
+      "tip": "Focus on one task at a time for better productivity."
+    },
+    {
+      "emoji": "⏰",
+      "tip": "Use the Pomodoro technique: 25 min work, 5 min break."
+    },
+    {
+      "emoji": "🧠",
+      "tip": "Your brain works best in the first 2 hours after waking."
+    },
+    {
+      "emoji": "📵",
+      "tip": "Keep your phone in another room while sleeping."
+    },
+    {
+      "emoji": "🏃",
+      "tip": "A 10-minute walk after lunch improves afternoon focus."
+    },
+    {
+      "emoji": "🎨",
+      "tip": "Decorate your workspace with items that inspire you."
+    },
+    {
+      "emoji": "🧊",
+      "tip": "Drink cold water to boost alertness and metabolism."
+    },
+    {
+      "emoji": "📚",
+      "tip": "Read for 15 minutes before bed to improve sleep quality."
+    },
+    {
+      "emoji": "🗣️",
+      "tip": "Say good morning to your colleagues — it builds rapport."
+    },
+    {
+      "emoji": "✍️",
+      "tip": "Keep a gratitude journal to boost your mood."
+    }
   ],
   "meme": {
     "url": "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDd3bXN6aXM3NTFvbm8xZnZxNHpicHo4NXgydHgwNHB2dHhtM2FiNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7abKhOpu0NwenH3O/giphy.gif",
     "caption": "Us on a Friday afternoon ☕"
   },
   "leaderboard": [
-    {"name": "Alice Johnson", "title": "Sales Lead", "points": 340, "change": 20},
-    {"name": "Bob Smith", "title": "Account Manager", "points": 290, "change": -10},
-    {"name": "Carmen Diaz", "title": "Customer Success", "points": 275, "change": 35},
-    {"name": "David Lee", "title": "Developer", "points": 210, "change": 0},
-    {"name": "Evie Turner", "title": "Marketing", "points": 185, "change": 15},
-    {"name": "Frank Webb", "title": "Operations", "points": 140, "change": -5}
+    {
+      "name": "Fatima",
+      "title": "",
+      "points": 0,
+      "change": 0
+    },
+    {
+      "name": "Gifty",
+      "title": "",
+      "points": 0,
+      "change": 0
+    },
+    {
+      "name": "Hawa",
+      "title": "",
+      "points": 0,
+      "change": 0
+    },
+    {
+      "name": "Lily",
+      "title": "",
+      "points": 0,
+      "change": 0
+    },
+    {
+      "name": "Lucia",
+      "title": "",
+      "points": 0,
+      "change": 0
+    },
+    {
+      "name": "Valenky",
+      "title": "",
+      "points": 0,
+      "change": 0
+    },
+    {
+      "name": "Sergio",
+      "title": "",
+      "points": 0,
+      "change": 0
+    },
+    {
+      "name": "Kwai",
+      "title": "",
+      "points": 0,
+      "change": 0
+    },
+    {
+      "name": "Mahesh",
+      "title": "",
+      "points": 0,
+      "change": 0
+    },
+    {
+      "name": "Jordan",
+      "title": "",
+      "points": 0,
+      "change": 0
+    },
+    {
+      "name": "Saul",
+      "title": "",
+      "points": 0,
+      "change": 0
+    }
   ],
   "weekly_win": {
     "headline": "Landed the Henderson Account!",
     "detail": "After three months of hard work and outstanding collaboration, we have officially signed one of our biggest clients to date.",
     "who": "Sarah and the Sales Team"
   },
-  "announcements": [
-    {
-      "title": "Welcome to the Team Noticeboard!",
-      "body": "Everything you see here is controlled by editing data.json on GitHub. Change anything and push — it updates within minutes.",
-      "priority": "normal"
-    },
-    {
-      "title": "All-Hands Meeting This Friday",
-      "body": "Please join the all-hands call at 10am sharp. Dial-in details have been sent via email. Attendance is mandatory.",
-      "priority": "important"
-    }
-  ],
-  "kpis": [
-    {"label": "Sales This Month", "value": "24k", "change": "+12% vs last month", "trend": "up"},
-    {"label": "Open Tickets", "value": "8", "change": "-3 this week", "trend": "down"},
-    {"label": "Team Members", "value": "12", "change": "1 joining next week", "trend": "neutral"},
-    {"label": "Target Progress", "value": "74%", "change": "On track", "trend": "up"}
-  ],
+  "announcements": [],
+  "kpis": [],
   "target": {
-    "label": "Monthly Sales Target",
-    "current": 24000,
-    "target": 35000,
-    "unit": "GBP",
-    "message": "Keep pushing — we are on track for a strong finish!"
+    "label": "HH Enrollments",
+    "current": 0,
+    "target": 125,
+    "unit": "Enrollments",
+    "message": "Need to pick this up ! "
   },
   "countdowns": [
-    {"label": "All-Hands Meeting", "date": "2025-06-15"},
-    {"label": "End of Quarter", "date": "2025-06-30"},
-    {"label": "Team Away Day", "date": "2025-07-15"},
-    {"label": "Annual Review Deadline", "date": "2025-06-30"}
+    {
+      "label": "All-Hands Meeting",
+      "date": "2025-06-15"
+    },
+    {
+      "label": "End of Quarter",
+      "date": "2025-06-30"
+    },
+    {
+      "label": "Team Away Day",
+      "date": "2025-07-15"
+    },
+    {
+      "label": "Annual Review Deadline",
+      "date": "2025-06-30"
+    }
   ],
   "birthdays": [
-    {"name": "Alice Johnson", "date": "06-04", "type": "birthday"},
-    {"name": "Bob Smith", "date": "06-15", "type": "birthday"},
-    {"name": "Carmen Diaz", "date": "06-04", "type": "anniversary", "years": 3},
-    {"name": "David Lee", "date": "07-01", "type": "birthday"}
+    {
+      "name": "Alice Johnson",
+      "date": "06-04",
+      "type": "birthday"
+    },
+    {
+      "name": "Bob Smith",
+      "date": "06-15",
+      "type": "birthday"
+    },
+    {
+      "name": "Carmen Diaz",
+      "date": "06-04",
+      "type": "anniversary",
+      "years": 3
+    },
+    {
+      "name": "David Lee",
+      "date": "07-01",
+      "type": "birthday"
+    }
   ],
   "team": [
-    {"name": "Alice Johnson", "default_status": "in"},
-    {"name": "Bob Smith", "default_status": "in"},
-    {"name": "Carmen Diaz", "default_status": "in"},
-    {"name": "David Lee", "default_status": "meeting"},
-    {"name": "Evie Turner", "default_status": "away"},
-    {"name": "Frank Webb", "default_status": "off"}
+    {
+      "name": "Alice Johnson",
+      "default_status": "in"
+    },
+    {
+      "name": "Bob Smith",
+      "default_status": "in"
+    },
+    {
+      "name": "Carmen Diaz",
+      "default_status": "in"
+    },
+    {
+      "name": "David Lee",
+      "default_status": "meeting"
+    },
+    {
+      "name": "Evie Turner",
+      "default_status": "away"
+    },
+    {
+      "name": "Frank Webb",
+      "default_status": "off"
+    }
   ],
   "tasks": [
-    {"text": "Submit Q1 expense reports", "assignee": "All Staff", "priority": "high"},
-    {"text": "Update client onboarding docs", "assignee": "Alice", "priority": "medium"},
-    {"text": "Review new supplier contracts", "assignee": "Bob", "priority": "high"},
-    {"text": "Book team lunch for end of month", "assignee": "Carmen", "priority": "low"}
+    {
+      "text": "Ensure all outstanding Training is completed! ",
+      "assignee": "Everyone who is on the list",
+      "priority": "high"
+    }
   ],
   "ticker": [
-    "Welcome to the new and improved team noticeboard!",
-    "All-Hands meeting this Friday at 10am — do not forget!",
-    "Q1 expense reports are due by end of week",
-    "Big shoutout to Sarah for landing the Henderson account!",
-    "We are at 74% of our monthly target — let's finish strong!"
+    "Welcome to the new digital team noticeboard!",
+    "HR Trainings to be finished YESTERDAY ! make sure we are all done with them.",
+    "Enrollments are still an issue, lets get this under control and start enrolling people 😬"
   ],
   "image_slides": [],
-  "important_numbers": [
-    {"label": "IT Helpdesk", "number": "0800 123 456", "emoji": "💻"},
-    {"label": "Building Manager", "number": "0800 234 567", "emoji": "🏢"},
-    {"label": "Fire Marshal", "number": "0800 345 678", "emoji": "🔥"}
-  ],
+  "important_numbers": [],
   "new_starter": {
     "enabled": false,
     "name": "Jamie Collins",
@@ -156,30 +309,48 @@
     "welcome_msg": "Please give Jamie a warm welcome to the team!"
   },
   "training_reminders": [
-    {"title": "Fire Safety Refresher", "due": "2025-06-18", "assignee": "All Staff"},
-    {"title": "GDPR Annual Training", "due": "2025-06-30", "assignee": "All Staff"}
+    {
+      "title": "Fire Safety Refresher",
+      "assignee": "All Staff",
+      "due": "2025-06-18"
+    },
+    {
+      "title": "GDPR Annual Training",
+      "assignee": "All Staff",
+      "due": "2025-06-30"
+    }
   ],
-  "supplies": [
-    {"item": "Printer Paper (A4)", "status": "low", "emoji": "📄"},
-    {"item": "Hand Sanitiser", "status": "low", "emoji": "🧴"},
-    {"item": "Coffee Pods", "status": "critical", "emoji": "☕"},
-    {"item": "Toner Cartridge", "status": "ok", "emoji": "🖨️"}
-  ],
+  "supplies": [],
   "week_at_a_glance": {
-    "week": "Week of 9 Jun 2025",
+    "week": "",
     "days": [
-      {"day": "Mon", "events": ["Team standup 9am", "Client visit 2pm"]},
-      {"day": "Tue", "events": ["Finance review 10am"]},
-      {"day": "Wed", "events": ["All-hands 10am", "Fire drill 3pm"]},
-      {"day": "Thu", "events": []},
-      {"day": "Fri", "events": ["Early finish 4pm", "Team drinks 5pm"]}
+      {
+        "day": "Mon",
+        "events": []
+      },
+      {
+        "day": "Tue",
+        "events": []
+      },
+      {
+        "day": "Wed",
+        "events": []
+      },
+      {
+        "day": "Thu",
+        "events": []
+      },
+      {
+        "day": "Fri",
+        "events": []
+      }
     ]
   },
   "reviews": {
     "google_place_id": "",
     "google_api_key": "",
-    "ta_url_1": "",
-    "ta_url_2": "",
+    "ta_url_1": "https://www.tripadvisor.co.uk/Hotel_Review-g186338-d195210-Reviews-DoubleTree_by_Hilton_Hotel_London_Ealing-London_England.html",
+    "ta_url_2": "https://www.tripadvisor.co.uk/Restaurant_Review-g186338-d7103139-Reviews-W5_Bar_and_Kitchen-London_England.html",
     "handpicked": []
   },
   "suggestion_box": {
