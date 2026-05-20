@@ -1,86 +1,71 @@
 {
-  "company_name": "DoubleTree by Hilton London Ealing",
+  "company_name": "Your Team Name",
   "weather_city": "London",
   "slide_duration": 10,
   "news_rss": "https://feeds.bbci.co.uk/news/business/rss.xml",
+  "slide_toggles": {
+    "onthisday": true,
+    "intlday": true,
+    "quote": true,
+    "word": true,
+    "art": true,
+    "funstat": true,
+    "weeklywin": true,
+    "weekglance": true,
+    "kpis": true,
+    "thermometer": true,
+    "numbers": true,
+    "supplies": true,
+    "training": true,
+    "countdowns": true,
+    "leaderboard": true,
+    "status": true,
+    "tasks": true,
+    "meme": true,
+    "reviews": true,
+    "suggestionbox": true
+  },
   "meme": {
     "url": "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDd3bXN6aXM3NTFvbm8xZnZxNHpicHo4NXgydHgwNHB2dHhtM2FiNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7abKhOpu0NwenH3O/giphy.gif",
     "caption": "Us on a Friday afternoon \u2615"
   },
   "leaderboard": [
     {
-      "name": "Fatima",
-      "title": "Front Office",
-      "points": 0,
+      "name": "Alice Johnson",
+      "title": "Sales Lead",
+      "points": 340,
+      "change": 20
+    },
+    {
+      "name": "Bob Smith",
+      "title": "Account Manager",
+      "points": 290,
+      "change": -10
+    },
+    {
+      "name": "Carmen Diaz",
+      "title": "Customer Success",
+      "points": 275,
+      "change": 35
+    },
+    {
+      "name": "David Lee",
+      "title": "Developer",
+      "points": 210,
       "change": 0
     },
     {
-      "name": "Gifty",
-      "title": "",
-      "points": 0,
-      "change": 0
+      "name": "Evie Turner",
+      "title": "Marketing",
+      "points": 185,
+      "change": 15
     },
     {
-      "name": "Hawa",
-      "title": "",
-      "points": 0,
-      "change": 0
-    },
-    {
-      "name": "Jordan",
-      "title": "",
-      "points": 0,
-      "change": 0
-    },
-    {
-      "name": "K.D.",
-      "title": "",
-      "points": 0,
-      "change": 0
-    },
-    {
-      "name": "Lily",
-      "title": "",
-      "points": 0,
-      "change": 0
+      "name": "Frank Webb",
+      "title": "Operations",
+      "points": 140,
+      "change": -5
     }
-     {
-      "name": "Lucia",
-      "title": "",
-      "points": 0,
-      "change": 0
-    }
-     {
-      "name": "Mahesh",
-      "title": "",
-      "points": 0,
-      "change": 0
-    }
-     {
-      "name": "Raul",
-      "title": "",
-      "points": 0,
-      "change": 0
-    }
-     {
-      "name": "Saul",
-      "title": "",
-      "points": 0,
-      "change": 0
-    }
-     {
-      "name": "Sergio",
-      "title": "",
-      "points": 0,
-      "change": 0
-    }
-     {
-      "name": "Valenky",
-      "title": "",
-      "points": 0,
-      "change": 0
-    }
-    
   ],
   "weekly_win": {
     "headline": "Landed the Henderson Account!",
@@ -131,28 +116,28 @@
     }
   ],
   "target": {
-    "label": "Monthly Enrollment Target",
-    "current": ,
-    "target": 125,
+    "label": "Monthly Sales Target",
+    "current": 24000,
+    "target": 35000,
     "unit": "GBP",
-    "message": "We need a Serious push to be reaching this. lets aim for 1 enrollment / shift / person"
+    "message": "Keep pushing \u2014 we are on track for a strong finish!"
   },
   "countdowns": [
     {
+      "label": "All-Hands Meeting",
+      "date": "2025-04-11"
+    },
+    {
       "label": "End of Quarter",
-      "date": "2026-06-30"
+      "date": "2025-06-30"
     },
     {
       "label": "Team Away Day",
-      "date": "2026-05-15"
+      "date": "2025-05-15"
     },
     {
       "label": "Annual Review Deadline",
-      "date": "2026-04-30"
-    },
-    {
-      "label": "Summer Bank Holiday",
-      "date": "2026-08-31"
+      "date": "2025-04-30"
     }
   ],
   "birthdays": [
@@ -255,47 +240,58 @@
   ],
   "important_numbers": [
     {
-      "label": "IT Helpdesk - Cardonet ",
-      "number": "02078372444",
+      "label": "IT Helpdesk",
+      "number": "0800 123 456",
       "emoji": "\ud83d\udcbb"
     },
     {
-      "label": "HR",
-      "number": "",
+      "label": "Building Manager",
+      "number": "0800 234 567",
       "emoji": "\ud83c\udfe2"
     },
     {
-      "label": "Maintenance",
+      "label": "Fire Marshal",
       "number": "0800 345 678",
       "emoji": "\ud83d\udd25"
     },
     {
       "label": "Main Reception",
-      "number": "02088968400",
+      "number": "0800 456 789",
       "emoji": "\ud83d\udcde"
     },
     {
-      "label": "F&B",
+      "label": "Security",
       "number": "0800 567 890",
       "emoji": "\ud83d\udd12"
     },
-   
+    {
+      "label": "Taxi (Local)",
+      "number": "0800 678 901",
+      "emoji": "\ud83d\ude95"
+    }
   ],
- 
+  "new_starter": {
+    "enabled": true,
+    "name": "Jamie Collins",
+    "role": "Front Office Coordinator",
+    "start_date": "Monday 7 April 2025",
+    "fun_fact": "Jamie has visited 32 countries and speaks three languages!",
+    "welcome_msg": "Please give Jamie a warm welcome to the team!"
+  },
   "training_reminders": [
     {
       "title": "Fire Safety Refresher",
-      "due": "2026-04-18",
+      "due": "2025-04-18",
       "assignee": "All Staff"
     },
     {
       "title": "GDPR Annual Training",
-      "due": "2026-04-30",
+      "due": "2025-04-30",
       "assignee": "All Staff"
     },
     {
       "title": "First Aid Recertification",
-      "due": "2026-05-10",
+      "due": "2025-05-10",
       "assignee": "Alice, Bob"
     }
   ],
@@ -332,7 +328,7 @@
     }
   ],
   "week_at_a_glance": {
-    "week": "Week of 6 Apr 2026",
+    "week": "Week of 7 Apr 2025",
     "days": [
       {
         "day": "Mon",
@@ -369,109 +365,14 @@
       }
     ]
   },
+  "reviews": {
+    "google_place_id": "ChIJ31CxBfkNdkgR-H5f0MsaGgI",
+    "google_api_key": "",
+    "ta_url_1": "https://www.tripadvisor.co.uk/Hotel_Review-g186338-d195210-Reviews-DoubleTree_by_Hilton_Hotel_London_Ealing-London_England.html",
+    "ta_url_2": "https://www.tripadvisor.co.uk/Restaurant_Review-g186338-d7103139-Reviews-W5_Bar_and_Kitchen-London_England.html",
+    "handpicked": []
+  },
   "suggestion_box": {
     "form_url": "https://forms.gle/your-form-link-here"
-  },
-  "reviews_hotel": [
-    {
-      "author": "Frequent Traveller",
-      "rating": 5,
-      "date": "14 Mar 2026",
-      "text": "A jewel of a hotel with always wonderful staff. Hawa at check-in was very polite, efficient and professional. She really cared about her guests and made me feel recognised and at home. My room was modern, cosy and the bed was incredibly comfortable."
-    },
-    {
-      "author": "Business Guest",
-      "rating": 5,
-      "date": "2 Mar 2026",
-      "text": "We had a great experience for our business event held here. From organising right through to the end it was fantastic. All guests were very happy. Thanks to Hawa, Rohan, Aron and Anna \u2014 we highly recommend this hotel."
-    },
-    {
-      "author": "London Visitor",
-      "rating": 5,
-      "date": "18 Feb 2026",
-      "text": "Without exception, the staff were kind, polite and efficient. All the staff \u2014 even those you passed in the corridor \u2014 were genuinely friendly and smiled every time. The hotel is clean, modern, and comfortable with good transport links. Definitely recommend."
-    },
-    {
-      "author": "Weekend Stay",
-      "rating": 5,
-      "date": "8 Feb 2026",
-      "text": "From the minute we walked in, Lucia on reception set the bar. She was friendly, helpful and full of energy. The room was clean, modern and well-furnished. Linen and towels were of excellent quality. Will stay again without hesitation."
-    }
-  ],
-  "reviews_restaurant": [
-    {
-      "author": "Karen M.",
-      "rating": 5,
-      "date": "22 Mar 2026",
-      "text": "I spent 5 days at the DoubleTree and the best part of every day was seeing Syuzanna's smiling face at breakfast. Nora was also a joy \u2014 always ready to help. The food was excellent throughout. I highly recommend eating here, you won't regret it."
-    },
-    {
-      "author": "Donna R.",
-      "rating": 5,
-      "date": "10 Mar 2026",
-      "text": "Third time stopping here and a great hotel. Kante who works in the bar and restaurant is always smiling, polite and happy to help wherever he can. A real credit to the hotel \u2014 consistently wonderful service every single visit."
-    },
-    {
-      "author": "Elizabeth S.",
-      "rating": 5,
-      "date": "28 Feb 2026",
-      "text": "Fast, attentive and friendly service with great food! Kante was absolutely fantastic \u2014 the pizza was delicious and came quickly even for our group of 7 at a busy time. Easy five stars. Will be back very soon."
-    },
-    {
-      "author": "Nazmul H.",
-      "rating": 5,
-      "date": "15 Feb 2026",
-      "text": "Sakshi was friendly and helpful throughout our visit. Service was excellent, atmosphere was great and the ambience was clean and tidy. A wonderful dining experience in a lovely setting. Will definitely return for dinner again."
-    }
-  ],
-  "emergency_contacts": [
-    {
-      "emoji": "\ud83d\ude92",
-      "label": "Fire Brigade",
-      "number": "999",
-      "name": "Emergency Services"
-    },
-    {
-      "emoji": "\ud83d\ude91",
-      "label": "Ambulance",
-      "number": "999",
-      "name": "Emergency Services"
-    },
-    {
-      "emoji": "\ud83d\udc6e",
-      "label": "Police",
-      "number": "999",
-      "name": "Emergency Services"
-    },
-    {
-      "emoji": "\ud83c\udfe5",
-      "label": "First Aider",
-      "number": "Ext. 101",
-      "name": "On Duty Today"
-    },
-    {
-      "emoji": "\ud83d\udd25",
-      "label": "Fire Marshal",
-      "number": "Ext. 102",
-      "name": "On Duty Today"
-    },
-    {
-      "emoji": "\ud83d\udd12",
-      "label": "Security",
-      "number": "Ext. 103",
-      "name": "24hr Security Desk"
-    },
-    {
-      "emoji": "\ud83c\udfe2",
-      "label": "Building Manager",
-      "number": "Ext. 200",
-      "name": ""
-    },
-    {
-      "emoji": "\ud83d\udee0\ufe0f",
-      "label": "Maintenance",
-      "number": "Ext. 201",
-      "name": ""
-    }
-  ]
+  }
 }
