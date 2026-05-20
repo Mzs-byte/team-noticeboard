@@ -343,6 +343,108 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;background:ra
 .suggest-step-txt{font-size:13px;color:var(--text-dim);}
 .suggest-glow{position:absolute;bottom:-60px;right:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(56,189,248,.08) 0%,transparent 70%);pointer-events:none;}
 
+/* NEWS HEADLINES */
+.news-wrap{flex:1;display:flex;flex-direction:column;gap:8px;overflow-y:auto;}
+.news-card{display:flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 18px;}
+.news-num{width:32px;height:32px;border-radius:50%;background:var(--blue);color:#000;font-family:var(--font-d);font-size:18px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.news-content{flex:1;}
+.news-headline{font-size:15px;font-weight:700;color:var(--text);line-height:1.4;margin-bottom:6px;}
+.news-meta{display:flex;gap:16px;font-size:11px;color:var(--text-muted);font-family:var(--font-h);}
+.news-source,.news-time{display:flex;align-items:center;gap:4px;}
+
+/* BANK HOLIDAYS */
+.bankhols-wrap{flex:1;display:flex;flex-direction:column;gap:10px;}
+.bankh-card{display:flex;align-items:center;gap:16px;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px 20px;}
+.bankh-icon{font-size:32px;flex-shrink:0;}
+.bankh-info{flex:1;}
+.bankh-name{font-size:16px;font-weight:700;color:var(--text);margin-bottom:4px;}
+.bankh-date{font-size:12px;color:var(--text-dim);font-family:var(--font-h);}
+.bankh-countdown{text-align:right;}
+.bankh-days{font-family:var(--font-d);font-size:40px;color:var(--green);line-height:1;}
+.bankh-days-lbl{font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;font-family:var(--font-h);}
+
+/* WEEK WEATHER */
+.weekweather-wrap{flex:1;display:grid;grid-template-columns:repeat(5,1fr);gap:10px;}
+.ww-day{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px 14px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;}
+.ww-day-name{font-family:var(--font-h);font-size:12px;font-weight:700;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;}
+.ww-icon{font-size:36px;}
+.ww-temp{display:flex;gap:8px;font-family:var(--font-d);font-size:24px;}
+.ww-high{color:var(--text);}
+.ww-low{color:var(--text-muted);}
+.ww-desc{font-size:11px;color:var(--text-dim);line-height:1.3;}
+
+/* UPCOMING BIRTHDAYS */
+.upbdays-wrap{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:10px;overflow-y:auto;}
+.upbday-card{display:flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 16px;}
+.upbday-emoji{font-size:28px;flex-shrink:0;}
+.upbday-info{flex:1;}
+.upbday-name{font-size:14px;font-weight:700;color:var(--text);margin-bottom:2px;}
+.upbday-type{font-size:11px;color:var(--text-muted);font-family:var(--font-h);}
+.upbday-when{text-align:right;}
+.upbday-date{font-size:11px;color:var(--blue);font-weight:600;margin-bottom:2px;}
+.upbday-days{font-size:10px;color:var(--text-muted);}
+
+/* INSTAGRAM */
+.insta-wrap{flex:1;display:flex;align-items:center;justify-content:center;}
+.insta-main{position:relative;max-width:90%;max-height:90%;border-radius:16px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.5);}
+.insta-img{width:100%;height:100%;object-fit:cover;display:block;}
+.insta-overlay{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,.85),transparent);padding:20px;color:#fff;}
+.insta-user{font-family:var(--font-h);font-size:14px;font-weight:700;margin-bottom:8px;}
+.insta-caption{font-size:13px;line-height:1.5;margin-bottom:8px;}
+.insta-likes{font-size:12px;opacity:.9;}
+
+/* SONG OF THE DAY */
+.song-card{flex:1;display:flex;align-items:center;justify-content:center;gap:32px;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:40px;}
+.song-vinyl{font-size:120px;animation:spin-slow 20s linear infinite;}
+@keyframes spin-slow{to{transform:rotate(360deg);}}
+.song-info{flex:1;max-width:400px;}
+.song-title{font-family:var(--font-h);font-size:36px;font-weight:800;color:var(--text);line-height:1.2;margin-bottom:8px;}
+.song-artist{font-size:20px;color:var(--blue);font-weight:600;margin-bottom:12px;}
+.song-album{font-size:14px;color:var(--text-dim);}
+
+/* TIP OF THE DAY */
+.tip-card{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:48px;text-align:center;}
+.tip-emoji{font-size:72px;}
+.tip-text{font-family:var(--font-h);font-size:28px;font-weight:700;color:var(--text);line-height:1.5;max-width:80%;}
+
+/* TEAM PHOTO */
+.teamphoto-wrap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:24px;}
+.teamphoto-img{max-width:90%;max-height:calc(100% - 80px);border-radius:12px;object-fit:contain;box-shadow:0 8px 40px rgba(0,0,0,.5);}
+.teamphoto-caption{font-size:16px;color:var(--text-dim);text-align:center;font-family:var(--font-h);}
+
+/* WORLD CLOCK */
+.wc-grid{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.wc-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px 24px;display:flex;align-items:center;gap:16px;}
+.wc-flag{font-size:40px;flex-shrink:0;}
+.wc-info{flex:1;}
+.wc-city{font-family:var(--font-h);font-size:14px;font-weight:700;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;}
+.wc-time{font-family:var(--font-d);font-size:40px;color:var(--text);line-height:1;}
+.wc-date{font-size:12px;color:var(--text-muted);margin-top:2px;}
+
+/* MONTHLY AWARD */
+.award-card{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:48px;position:relative;overflow:hidden;text-align:center;}
+.award-glow{position:absolute;top:-80px;right:-80px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(251,191,36,.12) 0%,transparent 70%);pointer-events:none;}
+.award-trophy{font-size:64px;animation:bounce 1.5s ease-in-out infinite alternate;}
+.award-avatar{width:100px;height:100px;border-radius:50%;background:linear-gradient(135deg,var(--amber),var(--blue));display:flex;align-items:center;justify-content:center;font-family:var(--font-d);font-size:36px;color:#fff;border:3px solid var(--amber);box-shadow:0 0 30px rgba(251,191,36,.3);}
+.award-name{font-family:var(--font-h);font-size:40px;font-weight:800;color:var(--text);line-height:1;}
+.award-title{font-size:18px;color:var(--blue);font-weight:600;}
+.award-reason{font-size:16px;color:var(--text-dim);line-height:1.6;max-width:70%;}
+
+/* MILESTONES */
+.milestones-grid{flex:1;display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+.milestone-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;}
+.milestone-emoji{font-size:36px;}
+.milestone-label{font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;font-family:var(--font-h);}
+.milestone-value{font-family:var(--font-d);font-size:36px;color:var(--blue);letter-spacing:1px;}
+
+/* DEPARTMENT SPOTLIGHT */
+.dept-card{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:40px;text-align:center;}
+.dept-icon{font-size:64px;}
+.dept-name{font-family:var(--font-h);font-size:36px;font-weight:800;color:var(--text);line-height:1.2;}
+.dept-desc{font-size:16px;color:var(--text-dim);line-height:1.6;max-width:75%;}
+.dept-members{font-size:14px;color:var(--text);background:var(--surface2);padding:12px 20px;border-radius:10px;max-width:80%;}
+.dept-fact{font-size:13px;color:var(--amber);font-style:italic;}
+
 /* TICKER */
 #ticker-bar{position:fixed;bottom:0;left:0;right:0;height:44px;background:rgba(7,13,26,.97);border-top:1px solid var(--border);display:flex;align-items:center;overflow:hidden;z-index:50;}
 #ticker-label{flex-shrink:0;font-family:var(--font-h);font-size:10px;font-weight:800;color:#000;background:var(--blue);padding:0 14px;height:100%;display:flex;align-items:center;letter-spacing:2px;text-transform:uppercase;transition:background 2s;}
@@ -488,6 +590,22 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;background:ra
       <p class="adm-hint" style="margin-bottom:14px">Toggle individual slides on or off. Disabled slides will not appear in the rotation.</p>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
         <div style="display:flex;align-items:center;gap:8px;background:var(--surface2);border-radius:8px;padding:8px 12px;">
+          <input type="checkbox" id="toggle-newsheadlines" style="width:18px;height:18px;cursor:pointer;">
+          <label for="toggle-newsheadlines" style="cursor:pointer;font-size:13px;color:var(--text);">📰 News Headlines</label>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;background:var(--surface2);border-radius:8px;padding:8px 12px;">
+          <input type="checkbox" id="toggle-bankholidays" style="width:18px;height:18px;cursor:pointer;">
+          <label for="toggle-bankholidays" style="cursor:pointer;font-size:13px;color:var(--text);">📅 Bank Holidays</label>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;background:var(--surface2);border-radius:8px;padding:8px 12px;">
+          <input type="checkbox" id="toggle-weekweather" style="width:18px;height:18px;cursor:pointer;">
+          <label for="toggle-weekweather" style="cursor:pointer;font-size:13px;color:var(--text);">🌤️ Week Weather</label>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;background:var(--surface2);border-radius:8px;padding:8px 12px;">
+          <input type="checkbox" id="toggle-upcomingbirthdays" style="width:18px;height:18px;cursor:pointer;">
+          <label for="toggle-upcomingbirthdays" style="cursor:pointer;font-size:13px;color:var(--text);">🎂 Upcoming Birthdays</label>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;background:var(--surface2);border-radius:8px;padding:8px 12px;">
           <input type="checkbox" id="toggle-onthisday" style="width:18px;height:18px;cursor:pointer;">
           <label for="toggle-onthisday" style="cursor:pointer;font-size:13px;color:var(--text);">📅 On This Day</label>
         </div>
@@ -566,6 +684,38 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;background:ra
         <div style="display:flex;align-items:center;gap:8px;background:var(--surface2);border-radius:8px;padding:8px 12px;">
           <input type="checkbox" id="toggle-suggestionbox" style="width:18px;height:18px;cursor:pointer;">
           <label for="toggle-suggestionbox" style="cursor:pointer;font-size:13px;color:var(--text);">💡 Suggestion Box</label>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;background:var(--surface2);border-radius:8px;padding:8px 12px;">
+          <input type="checkbox" id="toggle-instagram" style="width:18px;height:18px;cursor:pointer;">
+          <label for="toggle-instagram" style="cursor:pointer;font-size:13px;color:var(--text);">📸 Instagram Feed</label>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;background:var(--surface2);border-radius:8px;padding:8px 12px;">
+          <input type="checkbox" id="toggle-songofday" style="width:18px;height:18px;cursor:pointer;">
+          <label for="toggle-songofday" style="cursor:pointer;font-size:13px;color:var(--text);">🎵 Song of the Day</label>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;background:var(--surface2);border-radius:8px;padding:8px 12px;">
+          <input type="checkbox" id="toggle-tipofday" style="width:18px;height:18px;cursor:pointer;">
+          <label for="toggle-tipofday" style="cursor:pointer;font-size:13px;color:var(--text);">💡 Tip of the Day</label>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;background:var(--surface2);border-radius:8px;padding:8px 12px;">
+          <input type="checkbox" id="toggle-teamphoto" style="width:18px;height:18px;cursor:pointer;">
+          <label for="toggle-teamphoto" style="cursor:pointer;font-size:13px;color:var(--text);">📸 Team Photos</label>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;background:var(--surface2);border-radius:8px;padding:8px 12px;">
+          <input type="checkbox" id="toggle-worldclock" style="width:18px;height:18px;cursor:pointer;">
+          <label for="toggle-worldclock" style="cursor:pointer;font-size:13px;color:var(--text);">🌍 World Clock</label>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;background:var(--surface2);border-radius:8px;padding:8px 12px;">
+          <input type="checkbox" id="toggle-monthlyaward" style="width:18px;height:18px;cursor:pointer;">
+          <label for="toggle-monthlyaward" style="cursor:pointer;font-size:13px;color:var(--text);">🏆 Monthly Award</label>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;background:var(--surface2);border-radius:8px;padding:8px 12px;">
+          <input type="checkbox" id="toggle-milestones" style="width:18px;height:18px;cursor:pointer;">
+          <label for="toggle-milestones" style="cursor:pointer;font-size:13px;color:var(--text);">📈 Milestones</label>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;background:var(--surface2);border-radius:8px;padding:8px 12px;">
+          <input type="checkbox" id="toggle-deptspotlight" style="width:18px;height:18px;cursor:pointer;">
+          <label for="toggle-deptspotlight" style="cursor:pointer;font-size:13px;color:var(--text);">🎯 Dept Spotlight</label>
         </div>
       </div>
     </div>
@@ -680,6 +830,50 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;background:ra
       <div class="adm-sec-title">💡 Staff Suggestion Box</div>
       <div class="adm-row"><div class="adm-field"><label class="adm-label">Google Form URL</label><input class="adm-input" id="adm-suggest-url" placeholder="https://forms.gle/…"></div></div>
       <p class="adm-hint">💡 Create a free Google Form → Share → Link → paste it here. QR code is generated automatically.</p>
+    </div>
+
+    <div class="adm-section">
+      <div class="adm-sec-title">📸 Instagram Integration</div>
+      <div class="adm-row"><div class="adm-field"><label class="adm-label">Instagram Username</label><input class="adm-input" id="adm-insta-user" placeholder="yourcompany"></div></div>
+      <p class="adm-hint">💡 Enter your Instagram username (without @). Latest post will display automatically.</p>
+    </div>
+
+    <div class="adm-section">
+      <div class="adm-sec-title">🏆 Employee of the Month</div>
+      <div class="adm-row">
+        <div class="adm-field"><label class="adm-label">Employee Name</label><input class="adm-input" id="adm-award-name" placeholder="Sarah Johnson"></div>
+        <div class="adm-field"><label class="adm-label">Job Title</label><input class="adm-input" id="adm-award-title" placeholder="Sales Manager"></div>
+        <div class="adm-field" style="max-width:140px"><label class="adm-label">Month</label><input class="adm-input" id="adm-award-month" placeholder="April 2025"></div>
+      </div>
+      <div class="adm-row"><div class="adm-field"><label class="adm-label">Reason for Award</label><input class="adm-input" id="adm-award-reason" placeholder="Outstanding customer service and team leadership"></div></div>
+    </div>
+
+    <div class="adm-section">
+      <div class="adm-sec-title">📈 Company Milestones</div>
+      <div id="adm-milestones"></div>
+      <button class="btn-adm-add" onclick="addRow('adm-milestones',{emoji:'📈',label:'',value:0,auto_increment:false,start_date:'',start_value:0},milestoneRow)">+ Add Milestone</button>
+      <p class="adm-hint">💡 Auto-increment: Enable for "Days since..." type milestones that count up automatically.</p>
+    </div>
+
+    <div class="adm-section">
+      <div class="adm-sec-title">🎯 Department Spotlights</div>
+      <div id="adm-departments"></div>
+      <button class="btn-adm-add" onclick="addRow('adm-departments',{emoji:'👥',name:'',description:'',members:[],fun_fact:''},deptRow)">+ Add Department</button>
+      <p class="adm-hint">💡 Each department shows for one week in rotation. Add 12 departments for year-round coverage.</p>
+    </div>
+
+    <div class="adm-section">
+      <div class="adm-sec-title">📸 Team Photo Gallery</div>
+      <div id="adm-teamphotos"></div>
+      <button class="btn-adm-add" onclick="addRow('adm-teamphotos',{url:'',caption:''},teamPhotoRow)">+ Add Photo</button>
+      <p class="adm-hint">💡 Upload photos to a public URL (Imgur, Google Photos, etc) and paste the link here.</p>
+    </div>
+
+    <div class="adm-section">
+      <div class="adm-sec-title">🌍 World Clock</div>
+      <div id="adm-worldclock"></div>
+      <button class="btn-adm-add" onclick="addRow('adm-worldclock',{city:'',tz:'',flag:'🌍'},worldClockRow)">+ Add Timezone</button>
+      <p class="adm-hint">💡 Timezone format: Europe/London, America/New_York, Asia/Tokyo, etc.</p>
     </div>
 
     <div class="adm-section">
@@ -982,7 +1176,34 @@ function buildSlides() {
   var toggles = cfg.slide_toggles || {};
   function isEnabled(key) { return toggles[key] !== false; }
 
-  // 1 — On This Day
+  // 1 — News Headlines
+  if (isEnabled('newsheadlines') && newsItems.length) {
+    var newsEl = newsSlide();
+    slides.push(newsEl);
+    renderNewsHeadlines(newsItems.map(function(n){ return {title:n.replace(/^📰 /,""),pubDate:new Date(),source:"News"}; }));
+  }
+
+  // 2 — Bank Holidays
+  if (isEnabled('bankholidays')) {
+    var bhEl = bankHolsSlide();
+    slides.push(bhEl);
+    fetchBankHolidays(bhEl);
+  }
+
+  // 3 — Week Weather Forecast
+  if (isEnabled('weekweather')) {
+    var wwEl = weekWeatherSlide();
+    slides.push(wwEl);
+    fetchWeekWeather(wwEl);
+  }
+
+  // 4 — Upcoming Birthdays This Month
+  if (isEnabled('upcomingbirthdays')) {
+    var ubEl = upcomingBdaysSlide();
+    if (ubEl) slides.push(ubEl);
+  }
+
+  // 5 — On This Day
   if (isEnabled('onthisday')) {
     var otdEl = mkOTD();
     slides.push(otdEl);
@@ -1105,6 +1326,52 @@ function buildSlides() {
   // 24 — Suggestion Box
   if (isEnabled('suggestionbox') && cfg.suggestion_box && cfg.suggestion_box.form_url) {
     slides.push(suggestionSlide(cfg.suggestion_box.form_url));
+  }
+
+  // 25 — Instagram Feed
+  if (isEnabled('instagram') && cfg.instagram && cfg.instagram.username) {
+    var instaEl = instaSlide();
+    slides.push(instaEl);
+    fetchInstagram(instaEl);
+  }
+
+  // 26 — Song of the Day
+  if (isEnabled('songofday')) {
+    slides.push(songSlide());
+  }
+
+  // 27 — Tip of the Day
+  if (isEnabled('tipofday')) {
+    slides.push(tipSlide());
+  }
+
+  // 28 — Team Photo Rotation
+  if (isEnabled('teamphoto') && cfg.team_photos && cfg.team_photos.length) {
+    var tpEl = teamPhotoSlide();
+    if (tpEl) slides.push(tpEl);
+  }
+
+  // 29 — World Clock
+  if (isEnabled('worldclock') && cfg.world_clock && cfg.world_clock.length) {
+    slides.push(worldClockSlide());
+  }
+
+  // 30 — Monthly Award
+  if (isEnabled('monthlyaward') && cfg.monthly_award && cfg.monthly_award.name) {
+    var maEl = monthlyAwardSlide();
+    if (maEl) slides.push(maEl);
+  }
+
+  // 31 — Company Milestones
+  if (isEnabled('milestones') && cfg.milestones && cfg.milestones.length) {
+    var msEl = milestonesSlide();
+    if (msEl) slides.push(msEl);
+  }
+
+  // 32 — Department Spotlight
+  if (isEnabled('deptspotlight') && cfg.departments && cfg.departments.length) {
+    var dsEl = deptSpotlightSlide();
+    if (dsEl) slides.push(dsEl);
   }
 
   if (!slides.length) return;
@@ -1638,6 +1905,273 @@ function suggestionSlide(formUrl) {
   return el;
 }
 
+// ── NEWS HEADLINES ──
+function newsSlide() {
+  var el = mkSlide("slide-left");
+  el.id = "news-slide";
+  el.innerHTML = '<div class="slide-hdr"><span class="slide-icon">📰</span><span class="slide-title">Latest News Headlines</span></div><div class="news-wrap"><div class="loading-msg"><div class="spinner"></div>Loading headlines…</div></div>';
+  return el;
+}
+
+function renderNewsHeadlines(items) {
+  var el = document.getElementById("news-slide");
+  if (!el) return;
+  var wrap = el.querySelector(".news-wrap");
+  if (!wrap) return;
+  var cards = items.slice(0,5).map(function(item,i){
+    var ago = timeSince(new Date(item.pubDate));
+    return '<div class="news-card"><div class="news-num">' + (i+1) + '</div><div class="news-content"><div class="news-headline">' + esc(item.title) + '</div><div class="news-meta"><span class="news-source">📰 ' + esc(item.source||"News") + '</span><span class="news-time">🕐 ' + ago + '</span></div></div></div>';
+  }).join("");
+  wrap.innerHTML = cards || '<div class="loading-msg">No headlines available</div>';
+}
+
+function timeSince(date) {
+  var seconds = Math.floor((new Date() - date) / 1000);
+  var interval = Math.floor(seconds / 3600);
+  if (interval >= 24) return Math.floor(interval/24) + "d ago";
+  if (interval >= 1) return interval + "h ago";
+  return Math.floor(seconds/60) + "m ago";
+}
+
+// ── BANK HOLIDAYS ──
+function bankHolsSlide() {
+  var el = mkSlide("zoom");
+  el.id = "bankhols-slide";
+  el.innerHTML = '<div class="slide-hdr"><span class="slide-icon">📅</span><span class="slide-title">Upcoming UK Bank Holidays</span></div><div class="bankhols-wrap"><div class="loading-msg"><div class="spinner"></div>Loading holidays…</div></div>';
+  return el;
+}
+
+function fetchBankHolidays(el) {
+  fetch("https://www.gov.uk/bank-holidays.json")
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      var events = d["england-and-wales"].events || [];
+      var now = new Date();
+      var upcoming = events.filter(function(e){ return new Date(e.date) > now; }).slice(0,4);
+      if (!upcoming.length) { el.querySelector(".bankhols-wrap").innerHTML = '<div class="loading-msg">No upcoming holidays</div>'; return; }
+      var cards = upcoming.map(function(h){
+        var hdate = new Date(h.date);
+        var days = Math.ceil((hdate - now) / 86400000);
+        var dateStr = hdate.toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"});
+        return '<div class="bankh-card"><div class="bankh-icon">🎉</div><div class="bankh-info"><div class="bankh-name">' + esc(h.title) + '</div><div class="bankh-date">📅 ' + dateStr + '</div></div><div class="bankh-countdown"><div class="bankh-days">' + days + '</div><div class="bankh-days-lbl">days</div></div></div>';
+      }).join("");
+      el.querySelector(".bankhols-wrap").innerHTML = cards;
+    }).catch(function(){
+      el.querySelector(".bankhols-wrap").innerHTML = '<div class="loading-msg">Could not load holidays</div>';
+    });
+}
+
+// ── WEEK WEATHER FORECAST ──
+function weekWeatherSlide() {
+  var el = mkSlide("slide-up");
+  el.id = "weekweather-slide";
+  el.innerHTML = '<div class="slide-hdr"><span class="slide-icon">🌤️</span><span class="slide-title">5-Day Weather Forecast</span></div><div class="weekweather-wrap"><div class="loading-msg"><div class="spinner"></div>Loading forecast…</div></div>';
+  return el;
+}
+
+function fetchWeekWeather(el) {
+  var city = (cfg && cfg.weather_city) ? cfg.weather_city : "London";
+  fetch("https://wttr.in/" + encodeURIComponent(city) + "?format=j1")
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      var forecast = d.weather || [];
+      if (!forecast.length) { el.querySelector(".weekweather-wrap").innerHTML = '<div class="loading-msg">No forecast available</div>'; return; }
+      var cards = forecast.slice(0,5).map(function(day,i){
+        var date = new Date(day.date);
+        var dayName = i === 0 ? "Today" : date.toLocaleDateString("en-GB",{weekday:"short"});
+        var icon = getWeatherIcon(day.hourly[4].weatherCode);
+        var high = day.maxtempC;
+        var low = day.mintempC;
+        return '<div class="ww-day"><div class="ww-day-name">' + dayName + '</div><div class="ww-icon">' + icon + '</div><div class="ww-temp"><span class="ww-high">' + high + '°</span><span class="ww-low">' + low + '°</span></div><div class="ww-desc">' + esc(day.hourly[4].weatherDesc[0].value) + '</div></div>';
+      }).join("");
+      el.querySelector(".weekweather-wrap").innerHTML = cards;
+    }).catch(function(){
+      el.querySelector(".weekweather-wrap").innerHTML = '<div class="loading-msg">Could not load forecast</div>';
+    });
+}
+
+function getWeatherIcon(code) {
+  var c = String(code);
+  if (c === "113") return "☀️";
+  if (c === "116") return "⛅";
+  if (c === "119" || c === "122") return "☁️";
+  if (c.startsWith("1")) return "🌤️";
+  if (c.startsWith("2") || c.startsWith("3")) return "🌧️";
+  if (c.startsWith("4")) return "❄️";
+  return "🌥️";
+}
+
+// ── UPCOMING BIRTHDAYS THIS MONTH ──
+function upcomingBdaysSlide() {
+  var el = mkSlide("zoom");
+  var now = new Date();
+  var thisMonth = String(now.getMonth() + 1).padStart(2,"0");
+  var bdays = (cfg.birthdays || []).filter(function(b){
+    return b.date.startsWith(thisMonth + "-");
+  }).map(function(b){
+    var parts = b.date.split("-");
+    var bday = new Date(now.getFullYear(), parseInt(parts[0])-1, parseInt(parts[1]));
+    if (bday < now) bday.setFullYear(now.getFullYear()+1);
+    return {name:b.name, type:b.type, date:bday, day:parseInt(parts[1])};
+  }).sort(function(a,b){ return a.date - b.date; });
+  
+  var cards = bdays.slice(0,6).map(function(b){
+    var days = Math.ceil((b.date - now) / 86400000);
+    var dateStr = b.date.toLocaleDateString("en-GB",{day:"numeric",month:"short"});
+    var emoji = b.type === "anniversary" ? "🎊" : "🎂";
+    var typeStr = b.type === "anniversary" ? "Work Anniversary" : "Birthday";
+    return '<div class="upbday-card"><div class="upbday-emoji">' + emoji + '</div><div class="upbday-info"><div class="upbday-name">' + esc(b.name) + '</div><div class="upbday-type">' + typeStr + '</div></div><div class="upbday-when"><div class="upbday-date">' + dateStr + '</div><div class="upbday-days">' + (days === 0 ? "Today!" : "in " + days + " days") + '</div></div></div>';
+  }).join("");
+  
+  el.innerHTML = '<div class="slide-hdr"><span class="slide-icon">🎂</span><span class="slide-title">Upcoming Birthdays & Anniversaries</span></div><div class="upbdays-wrap">' + (cards || '<div style="text-align:center;color:var(--text-muted);padding:40px">No upcoming birthdays this month</div>') + '</div>';
+  return el;
+}
+
+// ── INSTAGRAM FEED ──
+function instaSlide() {
+  var el = mkSlide("fade");
+  el.id = "insta-slide";
+  el.innerHTML = '<div class="slide-hdr"><span class="slide-icon">📸</span><span class="slide-title">Latest from Instagram</span></div><div class="insta-wrap"><div class="loading-msg"><div class="spinner"></div>Loading posts…</div></div>';
+  return el;
+}
+
+function fetchInstagram(el) {
+  var username = (cfg.instagram && cfg.instagram.username) || "";
+  if (!username) { el.querySelector(".insta-wrap").innerHTML = '<div class="loading-msg">Instagram username not configured</div>'; return; }
+  // Note: Instagram requires API token. Using a proxy service or you'd need to set up Instagram Basic Display API
+  var url = "https://instagram.com/" + username + "/?__a=1";
+  fetch(url)
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      var posts = (d.graphql && d.graphql.user && d.graphql.user.edge_owner_to_timeline_media.edges) || [];
+      if (!posts.length) { el.querySelector(".insta-wrap").innerHTML = '<div class="loading-msg">No posts found</div>'; return; }
+      var latest = posts[0].node;
+      var imgUrl = latest.display_url;
+      var caption = (latest.edge_media_to_caption.edges[0] && latest.edge_media_to_caption.edges[0].node.text) || "";
+      var likes = latest.edge_liked_by.count;
+      el.querySelector(".insta-wrap").innerHTML = 
+        '<div class="insta-main"><img class="insta-img" src="' + esc(imgUrl) + '" alt="Instagram post" onerror="this.style.display=\'none\'"><div class="insta-overlay"><div class="insta-user">@' + esc(username) + '</div><div class="insta-caption">' + esc(caption.slice(0,120)) + (caption.length > 120 ? "…" : "") + '</div><div class="insta-likes">❤️ ' + likes.toLocaleString() + ' likes</div></div></div>';
+    }).catch(function(){
+      el.querySelector(".insta-wrap").innerHTML = '<div class="loading-msg">Could not load Instagram posts. Try adding an access token in settings.</div>';
+    });
+}
+
+// ── SONG OF THE DAY ──
+function songSlide() {
+  var el = mkSlide("zoom");
+  var songs = cfg.songs || [
+    {title:"Don't Stop Me Now",artist:"Queen",album:"Jazz",year:"1978"},
+    {title:"Mr. Blue Sky",artist:"Electric Light Orchestra",album:"Out of the Blue",year:"1977"},
+    {title:"Walking on Sunshine",artist:"Katrina and the Waves",album:"Walking on Sunshine",year:"1985"},
+    {title:"Good Vibrations",artist:"The Beach Boys",album:"Smiley Smile",year:"1966"},
+    {title:"Lovely Day",artist:"Bill Withers",album:"Menagerie",year:"1977"}
+  ];
+  var doy = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / 86400000);
+  var song = songs[doy % songs.length];
+  el.innerHTML = 
+    '<div class="slide-hdr"><span class="slide-icon">🎵</span><span class="slide-title">Song of the Day</span></div>' +
+    '<div class="song-card"><div class="song-vinyl">💿</div><div class="song-info"><div class="song-title">' + esc(song.title) + '</div><div class="song-artist">' + esc(song.artist) + '</div><div class="song-album">Album: ' + esc(song.album) + ' (' + song.year + ')</div></div></div>';
+  return el;
+}
+
+// ── TIP OF THE DAY ──
+function tipSlide() {
+  var el = mkSlide("zoom");
+  var tips = cfg.daily_tips || [
+    {emoji:"💡",tip:"Take a 5-minute break every hour to stay fresh and focused."},
+    {emoji:"🌱",tip:"Keep a plant on your desk — it improves air quality and mood."},
+    {emoji:"💧",tip:"Drink a glass of water first thing in the morning to kickstart your metabolism."},
+    {emoji:"📝",tip:"Write your to-do list the night before to start the day with clarity."},
+    {emoji:"🚶",tip:"Take the stairs instead of the lift for a quick energy boost."},
+    {emoji:"🧘",tip:"Practice deep breathing for 2 minutes to reduce stress instantly."},
+    {emoji:"☀️",tip:"Get natural sunlight within the first hour of waking up."},
+    {emoji:"📱",tip:"Turn off notifications during deep work sessions."},
+    {emoji:"🥗",tip:"Prep your lunch the night before to save time and eat healthier."},
+    {emoji:"😊",tip:"Smile at three people today — it's contagious!"}
+  ];
+  var doy = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / 86400000);
+  var tip = tips[doy % tips.length];
+  el.innerHTML = 
+    '<div class="slide-hdr"><span class="slide-icon">💡</span><span class="slide-title">Tip of the Day</span></div>' +
+    '<div class="tip-card"><div class="tip-emoji">' + tip.emoji + '</div><div class="tip-text">' + esc(tip.tip) + '</div></div>';
+  return el;
+}
+
+// ── TEAM PHOTO ROTATION ──
+function teamPhotoSlide() {
+  var el = mkSlide("fade");
+  var photos = cfg.team_photos || [];
+  if (!photos.length) return null;
+  var doy = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / 86400000);
+  var photo = photos[doy % photos.length];
+  el.innerHTML = 
+    '<div class="slide-hdr"><span class="slide-icon">📸</span><span class="slide-title">Team Moments</span></div>' +
+    '<div class="teamphoto-wrap"><img class="teamphoto-img" src="' + esc(photo.url) + '" alt="Team photo" onerror="this.style.display=\'none\'"><div class="teamphoto-caption">' + esc(photo.caption||"") + '</div></div>';
+  return el;
+}
+
+// ── WORLD CLOCK ──
+function worldClockSlide() {
+  var el = mkSlide("slide-up");
+  var zones = cfg.world_clock || [
+    {city:"London",tz:"Europe/London",flag:"🇬🇧"},
+    {city:"New York",tz:"America/New_York",flag:"🇺🇸"},
+    {city:"Tokyo",tz:"Asia/Tokyo",flag:"🇯🇵"},
+    {city:"Sydney",tz:"Australia/Sydney",flag:"🇦🇺"}
+  ];
+  var cards = zones.map(function(z){
+    var time = new Date().toLocaleTimeString("en-GB",{timeZone:z.tz,hour:"2-digit",minute:"2-digit"});
+    var date = new Date().toLocaleDateString("en-GB",{timeZone:z.tz,month:"short",day:"numeric"});
+    return '<div class="wc-card"><div class="wc-flag">' + z.flag + '</div><div class="wc-info"><div class="wc-city">' + esc(z.city) + '</div><div class="wc-time">' + time + '</div><div class="wc-date">' + date + '</div></div></div>';
+  }).join("");
+  el.innerHTML = '<div class="slide-hdr"><span class="slide-icon">🌍</span><span class="slide-title">World Clock</span></div><div class="wc-grid">' + cards + '</div>';
+  return el;
+}
+
+// ── MONTHLY AWARDS ──
+function monthlyAwardSlide() {
+  var el = mkSlide("zoom");
+  var award = cfg.monthly_award || {name:"",title:"",reason:"",month:""};
+  if (!award.name) return null;
+  var init = award.name.split(" ").map(function(n){ return n[0]; }).join("").slice(0,2).toUpperCase();
+  el.innerHTML = 
+    '<div class="slide-hdr"><span class="slide-icon">🏆</span><span class="slide-title">Employee of the Month</span><span class="slide-tag" style="background:rgba(251,191,36,.15);color:var(--amber)">' + esc(award.month||"") + '</span></div>' +
+    '<div class="award-card"><div class="confetti-wrap">' + confetti(20) + '</div><div class="award-glow"></div><div class="award-trophy">🏆</div><div class="award-avatar">' + init + '</div><div class="award-name">' + esc(award.name) + '</div><div class="award-title">' + esc(award.title) + '</div><div class="award-reason">' + esc(award.reason) + '</div></div>';
+  return el;
+}
+
+// ── COMPANY MILESTONES ──
+function milestonesSlide() {
+  var el = mkSlide("slide-up");
+  var milestones = cfg.milestones || [];
+  if (!milestones.length) return null;
+  var cards = milestones.map(function(m){
+    var value = m.value;
+    if (m.auto_increment && m.start_date) {
+      var start = new Date(m.start_date);
+      var days = Math.floor((new Date() - start) / 86400000);
+      value = m.start_value + days;
+    }
+    return '<div class="milestone-card"><div class="milestone-emoji">' + (m.emoji||"📈") + '</div><div class="milestone-label">' + esc(m.label) + '</div><div class="milestone-value">' + value.toLocaleString() + '</div></div>';
+  }).join("");
+  el.innerHTML = '<div class="slide-hdr"><span class="slide-icon">📈</span><span class="slide-title">Company Milestones</span></div><div class="milestones-grid">' + cards + '</div>';
+  return el;
+}
+
+// ── DEPARTMENT SPOTLIGHT ──
+function deptSpotlightSlide() {
+  var el = mkSlide("zoom");
+  var depts = cfg.departments || [];
+  if (!depts.length) return null;
+  var weekNum = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 1)) / 604800000);
+  var dept = depts[weekNum % depts.length];
+  var members = (dept.members || []).map(function(m){ return esc(m); }).join(", ");
+  el.innerHTML = 
+    '<div class="slide-hdr"><span class="slide-icon">🎯</span><span class="slide-title">Department Spotlight</span><span class="slide-tag" style="background:rgba(56,189,248,.15);color:var(--blue)">This Week</span></div>' +
+    '<div class="dept-card"><div class="dept-icon">' + (dept.emoji||"👥") + '</div><div class="dept-name">' + esc(dept.name) + '</div><div class="dept-desc">' + esc(dept.description) + '</div><div class="dept-members"><strong>Team:</strong> ' + members + '</div><div class="dept-fact">💡 ' + esc(dept.fun_fact||"") + '</div></div>';
+  return el;
+}
+
 // ═══════════════════════════════════════════════════════════
 // SLIDESHOW
 // ═══════════════════════════════════════════════════════════
@@ -1806,7 +2340,7 @@ function populateAdmin() {
   document.getElementById("adm-dur").value      = cfg.slide_duration || 10;
   // Slide Toggles (default all enabled)
   var toggles = cfg.slide_toggles || {};
-  var toggleIds = ['onthisday','intlday','quote','word','art','funstat','weeklywin','weekglance','kpis','thermometer','numbers','supplies','training','countdowns','leaderboard','status','tasks','meme','reviews','suggestionbox'];
+  var toggleIds = ['newsheadlines','bankholidays','weekweather','upcomingbirthdays','onthisday','intlday','quote','word','art','funstat','weeklywin','weekglance','kpis','thermometer','numbers','supplies','training','countdowns','leaderboard','status','tasks','meme','reviews','suggestionbox','instagram','songofday','tipofday','teamphoto','worldclock','monthlyaward','milestones','deptspotlight'];
   toggleIds.forEach(function(id){
     var el = document.getElementById('toggle-' + id);
     if (el) el.checked = toggles[id] !== false;
@@ -1947,7 +2481,7 @@ function exportData() {
   out.slide_duration = Number(document.getElementById("adm-dur").value) || 10;
   // Slide Toggles
   out.slide_toggles = {};
-  var toggleIds = ['onthisday','intlday','quote','word','art','funstat','weeklywin','weekglance','kpis','thermometer','numbers','supplies','training','countdowns','leaderboard','status','tasks','meme','reviews','suggestionbox'];
+  var toggleIds = ['newsheadlines','bankholidays','weekweather','upcomingbirthdays','onthisday','intlday','quote','word','art','funstat','weeklywin','weekglance','kpis','thermometer','numbers','supplies','training','countdowns','leaderboard','status','tasks','meme','reviews','suggestionbox','instagram','songofday','tipofday','teamphoto','worldclock','monthlyaward','milestones','deptspotlight'];
   toggleIds.forEach(function(id){
     var el = document.getElementById('toggle-' + id);
     if (el) out.slide_toggles[id] = el.checked;
