@@ -1,5 +1,5 @@
 {
-  "company_name": "Your Team Name",
+  "company_name": "DoubleTree by Hilton London Ealing",
   "weather_city": "London",
   "slide_duration": 10,
   "news_rss": "https://feeds.bbci.co.uk/news/business/rss.xml",
@@ -9,41 +9,78 @@
   },
   "leaderboard": [
     {
-      "name": "Alice Johnson",
-      "title": "Sales Lead",
-      "points": 340,
-      "change": 20
-    },
-    {
-      "name": "Bob Smith",
-      "title": "Account Manager",
-      "points": 290,
-      "change": -10
-    },
-    {
-      "name": "Carmen Diaz",
-      "title": "Customer Success",
-      "points": 275,
-      "change": 35
-    },
-    {
-      "name": "David Lee",
-      "title": "Developer",
-      "points": 210,
+      "name": "Fatima",
+      "title": "Front Office",
+      "points": 0,
       "change": 0
     },
     {
-      "name": "Evie Turner",
-      "title": "Marketing",
-      "points": 185,
-      "change": 15
+      "name": "Gifty",
+      "title": "",
+      "points": 0,
+      "change": 0
     },
     {
-      "name": "Frank Webb",
-      "title": "Operations",
-      "points": 140,
-      "change": -5
+      "name": "Hawa",
+      "title": "",
+      "points": 0,
+      "change": 0
+    },
+    {
+      "name": "Jordan",
+      "title": "",
+      "points": 0,
+      "change": 0
+    },
+    {
+      "name": "K.D.",
+      "title": "",
+      "points": 0,
+      "change": 0
+    },
+    {
+      "name": "Lily",
+      "title": "",
+      "points": 0,
+      "change": 0
     }
+     {
+      "name": "Lucia",
+      "title": "",
+      "points": 0,
+      "change": 0
+    }
+     {
+      "name": "Mahesh",
+      "title": "",
+      "points": 0,
+      "change": 0
+    }
+     {
+      "name": "Raul",
+      "title": "",
+      "points": 0,
+      "change": 0
+    }
+     {
+      "name": "Saul",
+      "title": "",
+      "points": 0,
+      "change": 0
+    }
+     {
+      "name": "Sergio",
+      "title": "",
+      "points": 0,
+      "change": 0
+    }
+     {
+      "name": "Valenky",
+      "title": "",
+      "points": 0,
+      "change": 0
+    }
+    
   ],
   "weekly_win": {
     "headline": "Landed the Henderson Account!",
@@ -94,11 +131,11 @@
     }
   ],
   "target": {
-    "label": "Monthly Sales Target",
-    "current": 24000,
-    "target": 35000,
+    "label": "Monthly Enrollment Target",
+    "current": ,
+    "target": 125,
     "unit": "GBP",
-    "message": "Keep pushing \u2014 we are on track for a strong finish!"
+    "message": "We need a Serious push to be reaching this. lets aim for 1 enrollment / shift / person"
   },
   "countdowns": [
     {
@@ -218,44 +255,33 @@
   ],
   "important_numbers": [
     {
-      "label": "IT Helpdesk",
-      "number": "0800 123 456",
+      "label": "IT Helpdesk - Cardonet ",
+      "number": "02078372444",
       "emoji": "\ud83d\udcbb"
     },
     {
-      "label": "Building Manager",
-      "number": "0800 234 567",
+      "label": "HR",
+      "number": "",
       "emoji": "\ud83c\udfe2"
     },
     {
-      "label": "Fire Marshal",
+      "label": "Maintenance",
       "number": "0800 345 678",
       "emoji": "\ud83d\udd25"
     },
     {
       "label": "Main Reception",
-      "number": "0800 456 789",
+      "number": "02088968400",
       "emoji": "\ud83d\udcde"
     },
     {
-      "label": "Security",
+      "label": "F&B",
       "number": "0800 567 890",
       "emoji": "\ud83d\udd12"
     },
-    {
-      "label": "Taxi (Local)",
-      "number": "0800 678 901",
-      "emoji": "\ud83d\ude95"
-    }
+   
   ],
-  "new_starter": {
-    "enabled": true,
-    "name": "Jamie Collins",
-    "role": "Front Office Coordinator",
-    "start_date": "Monday 6 April 2026",
-    "fun_fact": "Jamie has visited 32 countries and speaks three languages!",
-    "welcome_msg": "Please give Jamie a warm welcome to the team!"
-  },
+ 
   "training_reminders": [
     {
       "title": "Fire Safety Refresher",
