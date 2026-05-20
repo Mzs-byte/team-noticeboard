@@ -364,7 +364,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;background:ra
 .bankh-days-lbl{font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;font-family:var(--font-h);}
 
 /* WEEK WEATHER */
-.weekweather-wrap{flex:1;display:grid;grid-template-columns:repeat(5,1fr);gap:10px;}
+.weekweather-wrap{flex:1;display:grid;grid-template-columns:repeat(7,1fr);gap:10px;}
 .ww-day{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px 14px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;}
 .ww-day-name{font-family:var(--font-h);font-size:12px;font-weight:700;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;}
 .ww-icon{font-size:36px;}
@@ -482,6 +482,15 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;background:ra
 /* ADMIN */
 #admin-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.85);backdrop-filter:blur(12px);overflow-y:auto;}
 #admin-overlay.open{display:block;}
+#reorder-overlay{display:none;position:fixed;inset:0;z-index:600;background:rgba(0,0,0,.85);backdrop-filter:blur(12px);overflow-y:auto;}
+#reorder-overlay.open{display:block;}
+#reorder-panel{max-width:560px;margin:24px auto 60px;padding:0 16px;}
+.reorder-item{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:12px 16px;margin-bottom:8px;cursor:move;display:flex;align-items:center;gap:12px;transition:all .2s;}
+.reorder-item:hover{border-color:var(--blue);transform:translateY(-1px);}
+.reorder-item.dragging{opacity:0.5;}
+.reorder-drag-icon{font-size:18px;color:var(--text-dim);}
+.reorder-slide-name{flex:1;font-family:var(--font-h);font-size:14px;color:var(--text);}
+
 #admin-panel{max-width:720px;margin:24px auto 60px;padding:0 16px;}
 .adm-header{display:flex;align-items:center;gap:14px;padding:20px 0 16px;border-bottom:1px solid var(--border);margin-bottom:20px;}
 .adm-title{font-family:var(--font-d);font-size:32px;color:var(--blue);flex:1;}
@@ -563,7 +572,10 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;background:ra
   <div id="admin-panel">
     <div class="adm-header">
       <div class="adm-title">⚙️ Admin Panel</div>
-      <button class="adm-close" onclick="closeAdmin()">✕ Close</button>
+      <div style="display:flex;gap:8px;">
+        <button class="adm-close" onclick="openReorder()" style="background:var(--blue);color:white;">🔀 Reorder Slides</button>
+        <button class="adm-close" onclick="closeAdmin()">✕ Close</button>
+      </div>
     </div>
 
     <div class="adm-section">
@@ -887,6 +899,23 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;background:ra
   <div class="adm-export-bar">
     <div class="adm-export-hint">Download updated <strong>data.json</strong><br>then upload to GitHub</div>
     <button class="btn-export" onclick="exportData()">⬇ Download data.json</button>
+  </div>
+</div>
+
+<div id="reorder-overlay">
+  <div id="reorder-panel">
+    <div class="adm-header">
+      <div class="adm-title">🔀 Reorder Slides</div>
+      <button class="adm-close" onclick="closeReorder()">✕ Close</button>
+    </div>
+    <div class="adm-section">
+      <p class="adm-hint" style="margin-bottom:14px">Drag slides to reorder them. Only enabled slides are shown.</p>
+      <div id="reorder-list"></div>
+    </div>
+    <div class="adm-export-bar">
+      <div class="adm-export-hint">Reorder complete? Download and upload to GitHub</div>
+      <button class="btn-export" onclick="saveReorderAndExport()">💾 Save & Download data.json</button>
+    </div>
   </div>
 </div>
 
@@ -1316,9 +1345,8 @@ function buildSlides() {
   // 22 — Image Slides
   (cfg.image_slides || []).forEach(function(s){ slides.push(imgSlide(s)); });
 
-  // 23 — Reviews
+  // 23 — Reviews (TripAdvisor only)
   if (isEnabled('reviews') && cfg.reviews) {
-    var gEl  = reviewSlide("google");  slides.push(gEl);  fetchGoogleReviews(gEl);
     var ta1  = reviewSlide("ta1");     slides.push(ta1);  renderReviews("ta1",  (cfg.reviews.handpicked||[]).filter(function(r){ return r.platform==="ta1"; })  || SAMPLE_REVIEWS.ta1, "4.7");
     var ta2  = reviewSlide("ta2");     slides.push(ta2);  renderReviews("ta2",  (cfg.reviews.handpicked||[]).filter(function(r){ return r.platform==="ta2"; })  || SAMPLE_REVIEWS.ta2, "4.6");
   }
@@ -1856,30 +1884,6 @@ function renderReviews(platform, reviews, rating) {
   }).join("");
 }
 
-function fetchGoogleReviews(el) {
-  var placeId = cfg && cfg.reviews && cfg.reviews.google_place_id || "ChIJ31CxBfkNdkgR-H5f0MsaGgI";
-  var apiKey  = cfg && cfg.reviews && cfg.reviews.google_api_key  || "";
-  var platform = "google";
-  if (!apiKey) {
-    var hp = (cfg && cfg.reviews && cfg.reviews.handpicked || []).filter(function(r){ return !r.platform || r.platform === "google"; });
-    renderReviews(platform, hp.length ? hp : SAMPLE_REVIEWS.google, "4.8");
-    return;
-  }
-  var url = "https://maps.googleapis.com/maps/api/place/details/json?place_id=" + placeId + "&fields=rating,reviews&key=" + apiKey;
-  fetch("https://corsproxy.io/?" + encodeURIComponent(url))
-    .then(function(r){ return r.json(); })
-    .then(function(d){
-      var result  = d.result || {};
-      var reviews = (result.reviews || []).map(function(rv){
-        return {author:rv.author_name, rating:rv.rating, text:rv.text, date:new Date(rv.time*1000).toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"})};
-      });
-      renderReviews(platform, reviews.length ? reviews : SAMPLE_REVIEWS.google, result.rating ? result.rating.toFixed(1) : "4.8");
-    }).catch(function(){
-      var hp = (cfg && cfg.reviews && cfg.reviews.handpicked || []).filter(function(r){ return !r.platform || r.platform === "google"; });
-      renderReviews(platform, hp.length ? hp : SAMPLE_REVIEWS.google, "4.8");
-    });
-}
-
 function suggestionSlide(formUrl) {
   var el = mkSlide("zoom");
   var qrUrl = "https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=" + encodeURIComponent(formUrl) + "&bgcolor=ffffff&color=000000&margin=4";
@@ -1965,7 +1969,7 @@ function fetchBankHolidays(el) {
 function weekWeatherSlide() {
   var el = mkSlide("slide-up");
   el.id = "weekweather-slide";
-  el.innerHTML = '<div class="slide-hdr"><span class="slide-icon">🌤️</span><span class="slide-title">5-Day Weather Forecast</span></div><div class="weekweather-wrap"><div class="loading-msg"><div class="spinner"></div>Loading forecast…</div></div>';
+  el.innerHTML = '<div class="slide-hdr"><span class="slide-icon">🌤️</span><span class="slide-title">7-Day Weather Forecast</span></div><div class="weekweather-wrap"><div class="loading-msg"><div class="spinner"></div>Loading forecast…</div></div>';
   return el;
 }
 
@@ -1976,7 +1980,7 @@ function fetchWeekWeather(el) {
     .then(function(d){
       var forecast = d.weather || [];
       if (!forecast.length) { el.querySelector(".weekweather-wrap").innerHTML = '<div class="loading-msg">No forecast available</div>'; return; }
-      var cards = forecast.slice(0,5).map(function(day,i){
+      var cards = forecast.slice(0,7).map(function(day,i){
         var date = new Date(day.date);
         var dayName = i === 0 ? "Today" : date.toLocaleDateString("en-GB",{weekday:"short"});
         var icon = getWeatherIcon(day.hourly[4].weatherCode);
@@ -2332,6 +2336,115 @@ function closeAdmin() {
   document.getElementById("admin-overlay").classList.remove("open");
   startPlay();
 }
+
+// ── REORDER OVERLAY ──
+var draggedItem = null;
+
+function openReorder() {
+  renderSlideOrder();
+  document.getElementById("reorder-overlay").classList.add("open");
+  document.getElementById("admin-overlay").classList.remove("open");
+}
+
+function closeReorder() {
+  document.getElementById("reorder-overlay").classList.remove("open");
+  startPlay();
+}
+
+function renderSlideOrder() {
+  var slideNames = {
+    newsheadlines: "📰 News Headlines",
+    bankholidays: "📅 Bank Holidays",
+    weekweather: "🌤️ Week Weather",
+    upcomingbirthdays: "🎂 Upcoming Birthdays",
+    onthisday: "📅 On This Day",
+    intlday: "🌍 International Day",
+    quote: "💭 Quote of the Day",
+    word: "📖 Word of the Day",
+    art: "🎨 Art of the Day",
+    funstat: "🎲 Fun Stat",
+    weeklywin: "🏆 Weekly Win",
+    weekglance: "🗓️ Week at a Glance",
+    kpis: "📊 Key Metrics",
+    thermometer: "🎯 Team Target",
+    numbers: "📞 Important Numbers",
+    supplies: "🧴 Supplies Status",
+    training: "🎓 Training Reminders",
+    countdowns: "⏰ Countdowns",
+    leaderboard: "🏅 Leaderboard",
+    status: "🚦 Team Status",
+    tasks: "✅ Team Tasks",
+    meme: "😂 Meme of the Day",
+    reviews: "⭐ Reviews",
+    suggestionbox: "💡 Suggestion Box",
+    instagram: "📸 Instagram Feed",
+    songofday: "🎵 Song of the Day",
+    tipofday: "💡 Tip of the Day",
+    teamphoto: "📸 Team Photo",
+    worldclock: "🌍 World Clock",
+    monthlyaward: "🏆 Employee of the Month",
+    milestones: "🎯 Company Milestones",
+    deptspotlight: "💼 Department Spotlight"
+  };
+  
+  var toggles = cfg.slide_toggles || {};
+  var order = cfg.slide_order || Object.keys(slideNames);
+  
+  // Only show enabled slides
+  var enabledSlides = order.filter(function(key){ return toggles[key] !== false; });
+  
+  var html = enabledSlides.map(function(key){
+    return '<div class="reorder-item" draggable="true" data-slide="' + key + '" ondragstart="handleDragStart(event)" ondragover="handleDragOver(event)" ondrop="handleDrop(event)" ondragend="handleDragEnd(event)"><div class="reorder-drag-icon">⋮⋮</div><div class="reorder-slide-name">' + esc(slideNames[key] || key) + '</div></div>';
+  }).join("");
+  
+  document.getElementById("reorder-list").innerHTML = html || '<p style="color:var(--text-dim)">No slides enabled</p>';
+}
+
+function handleDragStart(e) {
+  draggedItem = e.target;
+  e.target.classList.add('dragging');
+  e.dataTransfer.effectAllowed = 'move';
+}
+
+function handleDragOver(e) {
+  if (e.preventDefault) e.preventDefault();
+  e.dataTransfer.dropEffect = 'move';
+  var target = e.target.closest('.reorder-item');
+  if (target && target !== draggedItem) {
+    var rect = target.getBoundingClientRect();
+    var midpoint = rect.top + rect.height / 2;
+    if (e.clientY < midpoint) {
+      target.parentNode.insertBefore(draggedItem, target);
+    } else {
+      target.parentNode.insertBefore(draggedItem, target.nextSibling);
+    }
+  }
+  return false;
+}
+
+function handleDrop(e) {
+  if (e.stopPropagation) e.stopPropagation();
+  return false;
+}
+
+function handleDragEnd(e) {
+  e.target.classList.remove('dragging');
+  draggedItem = null;
+}
+
+function getSlideOrder() {
+  var items = document.querySelectorAll('#reorder-list .reorder-item');
+  var order = [];
+  items.forEach(function(item){ order.push(item.getAttribute('data-slide')); });
+  return order;
+}
+
+function saveReorderAndExport() {
+  cfg.slide_order = getSlideOrder();
+  exportData();
+  closeReorder();
+}
+
 function populateAdmin() {
   if (!cfg) return;
   // Settings
