@@ -1,5 +1,5 @@
 {
-  "company_name": "Your Team Name",
+  "company_name": "DoubleTree by Hilton London Ealing ",
   "weather_city": "London",
   "slide_duration": 10,
   "news_rss": "https://feeds.bbci.co.uk/news/business/rss.xml",
@@ -37,7 +37,7 @@
     "status": false,
     "tasks": false,
     "meme": false,
-    "reviews": false,
+    "reviews": true,
     "suggestionbox": false,
     "instagram": false,
     "songofday": false,
@@ -55,83 +55,83 @@
   },
   "daily_tips": [
     {
-      "emoji": "\ud83d\udca1",
+      "emoji": "💡",
       "tip": "Take a 5-minute break every hour to stay fresh and focused."
     },
     {
-      "emoji": "\ud83c\udf31",
-      "tip": "Keep a plant on your desk \u2014 it improves air quality and mood."
+      "emoji": "🌱",
+      "tip": "Keep a plant on your desk — it improves air quality and mood."
     },
     {
-      "emoji": "\ud83d\udca7",
+      "emoji": "💧",
       "tip": "Drink a glass of water first thing in the morning to kickstart your metabolism."
     },
     {
-      "emoji": "\ud83d\udcdd",
+      "emoji": "📝",
       "tip": "Write your to-do list the night before to start the day with clarity."
     },
     {
-      "emoji": "\ud83d\udeb6",
+      "emoji": "🚶",
       "tip": "Take the stairs instead of the lift for a quick energy boost."
     },
     {
-      "emoji": "\ud83e\uddd8",
+      "emoji": "🧘",
       "tip": "Practice deep breathing for 2 minutes to reduce stress instantly."
     },
     {
-      "emoji": "\u2600\ufe0f",
+      "emoji": "☀️",
       "tip": "Get natural sunlight within the first hour of waking up."
     },
     {
-      "emoji": "\ud83d\udcf1",
+      "emoji": "📱",
       "tip": "Turn off notifications during deep work sessions."
     },
     {
-      "emoji": "\ud83e\udd57",
+      "emoji": "🥗",
       "tip": "Prep your lunch the night before to save time and eat healthier."
     },
     {
-      "emoji": "\ud83d\ude0a",
-      "tip": "Smile at three people today \u2014 it's contagious!"
+      "emoji": "😊",
+      "tip": "Smile at three people today — it's contagious!"
     },
     {
-      "emoji": "\ud83c\udfaf",
+      "emoji": "🎯",
       "tip": "Focus on one task at a time for better productivity."
     },
     {
-      "emoji": "\u23f0",
+      "emoji": "⏰",
       "tip": "Use the Pomodoro technique: 25 min work, 5 min break."
     },
     {
-      "emoji": "\ud83e\udde0",
+      "emoji": "🧠",
       "tip": "Your brain works best in the first 2 hours after waking."
     },
     {
-      "emoji": "\ud83d\udcf5",
+      "emoji": "📵",
       "tip": "Keep your phone in another room while sleeping."
     },
     {
-      "emoji": "\ud83c\udfc3",
+      "emoji": "🏃",
       "tip": "A 10-minute walk after lunch improves afternoon focus."
     },
     {
-      "emoji": "\ud83c\udfa8",
+      "emoji": "🎨",
       "tip": "Decorate your workspace with items that inspire you."
     },
     {
-      "emoji": "\ud83e\uddca",
+      "emoji": "🧊",
       "tip": "Drink cold water to boost alertness and metabolism."
     },
     {
-      "emoji": "\ud83d\udcda",
+      "emoji": "📚",
       "tip": "Read for 15 minutes before bed to improve sleep quality."
     },
     {
-      "emoji": "\ud83d\udde3\ufe0f",
-      "tip": "Say good morning to your colleagues \u2014 it builds rapport."
+      "emoji": "🗣️",
+      "tip": "Say good morning to your colleagues — it builds rapport."
     },
     {
-      "emoji": "\u270d\ufe0f",
+      "emoji": "✍️",
       "tip": "Keep a gratitude journal to boost your mood."
     }
   ],
@@ -142,62 +142,74 @@
   "leaderboard": [
     {
       "name": "Fatmata",
-      "points": 0,
+      "title": "",
+      "points": 83,
       "change": 0
     },
     {
       "name": "Gifty",
-      "points": 0,
+      "title": "",
+      "points": 60,
       "change": 0
     },
     {
       "name": "Hawa",
-      "points": 0,
+      "title": "",
+      "points": 11,
       "change": 0
     },
     {
       "name": "Jordan",
-      "points": 0,
+      "title": "",
+      "points": 8,
       "change": 0
     },
     {
-      "name": "Kwai",
-      "points": 0,
+      "name": "K.D",
+      "title": "",
+      "points": 15,
       "change": 0
     },
     {
       "name": "Lily",
+      "title": "",
       "points": 0,
       "change": 0
     },
     {
       "name": "Lucia",
-      "points": 0,
+      "title": "",
+      "points": 15,
       "change": 0
     },
     {
       "name": "Mahesh",
-      "points": 0,
+      "title": "",
+      "points": 4,
       "change": 0
     },
     {
       "name": "Rahul",
-      "points": 0,
+      "title": "",
+      "points": 20,
       "change": 0
     },
     {
       "name": "Saul",
-      "points": 0,
+      "title": "",
+      "points": 17,
       "change": 0
     },
     {
       "name": "Sergio",
-      "points": 0,
+      "title": "",
+      "points": 5,
       "change": 0
     },
     {
       "name": "Valenky",
-      "points": 0,
+      "title": "",
+      "points": ,64
       "change": 0
     }
   ],
@@ -209,96 +221,86 @@
   "announcements": [
     {
       "title": "Welcome to the Team Noticeboard!",
-      "body": "Everything you see here is controlled by editing data.json on GitHub. Change anything and push \u2014 it updates within minutes.",
+      "body": "If you have any suggestions for what you would like to displayed on here please let me know -Matyas.",
       "priority": "normal"
     }
   ],
   "kpis": [
     {
-      "label": "Occupancy",
-      "value": "82%",
-      "change": "5% vs last wk",
-      "trend": "up"
-    },
-    {
-      "label": "Rev Per Room",
-      "value": "94%",
-      "change": "2% vs last wk",
-      "trend": "up"
-    },
-    {
-      "label": "Complaints",
-      "value": "3%",
-      "change": "1% vs last wk",
+      "label": "Stay Score",
+      "value": "75.7%",
+      "change": -4.4,
       "trend": "down"
     },
     {
-      "label": "Staff Present",
-      "value": "93%",
-      "change": "flat",
-      "trend": "neutral"
-    },
-    {
-      "label": "Repeat Guests",
-      "value": "47%",
-      "change": "4% vs last mo",
-      "trend": "up"
-    },
-    {
-      "label": "Avg Review",
-      "value": "4.6",
-      "change": "0.1 vs last mo",
-      "trend": "up"
-    },
-    {
-      "label": "Upsell Rate",
-      "value": "21%",
-      "change": "3% vs last wk",
+      "label": "Review Site Index",
+      "value": "98.0",
+      "change": -4.1,
       "trend": "down"
     },
     {
-      "label": "Check-in Time",
-      "value": "88%",
-      "change": "on target",
-      "trend": "neutral"
-    },
-    {
-      "label": "Cleanliness",
-      "value": "96%",
-      "change": "2% vs last wk",
+      "label": "Problem Incidence",
+      "value": "33.3%",
+      "change": +12.4,
       "trend": "up"
     },
     {
-      "label": "Bar Sales",
-      "value": "73%",
-      "change": "6% vs last wk",
+      "label": "Problem Resolution",
+      "value": "57.1%",
+      "change": +19.6,
       "trend": "up"
     },
     {
-      "label": "No-Shows",
-      "value": "4%",
-      "change": "1% vs last wk",
+      "label": "Service Quality",
+      "value": "91.1%",
+      "change": +2.7,
+      "trend": "up"
+    },
+    {
+      "label": "Honors Appreciation",
+      "value": "60.0",
+      "change": -5.7,
       "trend": "down"
     },
     {
-      "label": "Loyalty Signups",
-      "value": "34%",
-      "change": "8% vs last mo",
+      "label": "Overall Cleanliness",
+      "value": "92.9%",
+      "change": +6.8,
       "trend": "up"
+    },
+    {
+      "label": "Room Quality",
+      "value": "73.2%",
+      "change": -3.5,
+      "trend": "down"
+    },
+    {
+      "label": "Breakfast",
+      "value": "89.7%",
+      "change": +6.9,
+      "trend": "up"
+    },
+    {
+      "label": "Restaurant",
+      "value": "80.0%",
+      "change": +8.6,
+      "trend": "up"
+    },
+   
     }
   ],
   "target": {
-    "label": "Monthly Sales Target",
-    "current": 24000,
-    "target": 35000,
-    "unit": "GBP",
-    "message": "Keep pushing \u2014 we are on track for a strong finish!"
+    "label": "Hilton Honors Enrollment",
+    "current": 8,
+    "target": 125,
+    "unit": "HH Enrollments",
+    "message": "Major Push Needed, Lets aim for 1 Enrollments / Shift / Staff"
   },
   "countdowns": [],
   "birthdays": [
     {
-      "name": "Alice Johnson",
-      "date": "06-04",
+      "name": "Matyas",
+      "date": "28-05",
       "type": "birthday"
     },
     {
@@ -368,34 +370,13 @@
       "default_status": "in"
     }
   ],
-  "tasks": [
-    {
-      "text": "Submit Q1 expense reports",
-      "assignee": "All Staff",
-      "priority": "high"
-    },
-    {
-      "text": "Update client onboarding docs",
-      "assignee": "Alice",
-      "priority": "medium"
-    },
-    {
-      "text": "Review new supplier contracts",
-      "assignee": "Bob",
-      "priority": "high"
-    },
-    {
-      "text": "Book team lunch for end of month",
-      "assignee": "Carmen",
-      "priority": "low"
-    }
-  ],
+  "tasks": [],
   "ticker": [
     "Welcome to the new and improved team noticeboard!",
-    "All-Hands meeting this Friday at 10am \u2014 do not forget!",
-    "Q1 expense reports are due by end of week",
-    "Big shoutout to Sarah for landing the Henderson account!",
-    "We are at 74% of our monthly target \u2014 let's finish strong!"
+    "Any Suggestions please come to me and ill se if i can add it to the notice board.",
+    "June is just around the corner, A/C complaints etc need to be noted on the handover without exception.",
+    "Big shoutout to Fatima for getting employee of the month in April! Well deserved",
+    "Remember to hand our Tripadvisor Cards whenever possible! we are #362 still. lets push to be under 300 by the end of the year."
   ],
   "image_slides": [],
   "important_numbers": [],
@@ -410,8 +391,40 @@
   "training_reminders": [],
   "supplies": [],
   "week_at_a_glance": {
-    "week": "",
-    "days": []
+    "week": "Week of 18 May 2026",
+    "days": [
+      {
+        "day": "Mon",
+        "events": [
+          "Go View London - Springfield Suite - 18:30 - 20:30 - 50 Pax - Comp Parking"
+        ]
+      },
+      {
+        "day": "Tue",
+        "events": [
+          "Venue Find - Springfield Suite - 08:00 - 11:00 -23 Pax  - Parking @ £7/Vehicle"
+        ]
+      },
+      {
+        "day": "Wed",
+        "events": [
+          "Menu Tasting - Restaurant - 17:00 - 18:00 - 3 Pax - Comp Parking"
+        ]
+      },
+      {
+        "day": "Thu",
+        "events": [
+          "Moxa Uk Ltd - Unstoppable Teams Meeting - Townshend Suite - 10:30 - 14:00 - 9 Pax",
+          "Jigsaw Conference Ltd - Chambers & Perceval Suite - 18:00 - 21:00"
+        ]
+      },
+      {
+        "day": "Fri",
+        "events": [
+          "Children's Birthday Party - Ealing Suite - 09:00 - 22:00 - 60 Pax - 5 Comp / 1 Van Comp / Standard Rates"
+        ]
+      }
+    ]
   },
   "reviews": {
     "listing_name_1": "Hotel / Venue",
@@ -422,10 +435,10 @@
     "form_url": ""
   },
   "employee_of_month": {
-    "name": "Lily",
+    "name": "Fatima",
     "role": "Front Office",
-    "month": "May 2026",
+    "month": "April 2026",
     "photo_url": "",
-    "blurb": "Lily went above and beyond this month \u2014 covering extra shifts, training two new starters, and getting glowing guest feedback. A thoroughly deserved win!"
+    "blurb": "Fatima is always bubbly and warm towards all staff and Guests, constantly gets reviews on all review sites. A clear example of a hard working staffmember! Congratulations."
   }
 }
