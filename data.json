@@ -26,108 +26,115 @@
     "onthisday": true,
     "intlday": true,
     "quote": true,
-    "word": false,
+    "word": true,
     "art": false,
-    "funstat": false,
-    "weeklywin": true,
+    "funstat": true,
+    "weeklywin": false,
     "weekglance": false,
     "kpis": true,
-    "thermometer": false,
+    "thermometer": true,
     "numbers": false,
     "supplies": false,
     "training": false,
     "countdowns": false,
     "leaderboard": true,
-    "status": true,
+    "status": false,
     "tasks": true,
     "meme": false,
     "reviews": true,
     "suggestionbox": false,
-    "tipofday": true,
+    "instagram": true,
+    "songofday": false,
+    "tipofday": false,
+    "teamphoto": false,
+    "worldclock": true,
+    "monthlyaward": true,
+    "milestones": true,
+    "deptspotlight": false,
     "announcements": true,
-    "birthdays": true,
+    "birthdays": false,
     "newstarter": false,
     "imageslides": false
   },
   "daily_tips": [
     {
-      "emoji": "\ud83d\udca1",
+      "emoji": "💡",
       "tip": "Take a 5-minute break every hour to stay fresh and focused."
     },
     {
-      "emoji": "\ud83c\udf31",
-      "tip": "Keep a plant on your desk \u2014 it improves air quality and mood."
+      "emoji": "🌱",
+      "tip": "Keep a plant on your desk — it improves air quality and mood."
     },
     {
-      "emoji": "\ud83d\udca7",
+      "emoji": "💧",
       "tip": "Drink a glass of water first thing in the morning to kickstart your metabolism."
     },
     {
-      "emoji": "\ud83d\udcdd",
+      "emoji": "📝",
       "tip": "Write your to-do list the night before to start the day with clarity."
     },
     {
-      "emoji": "\ud83d\udeb6",
+      "emoji": "🚶",
       "tip": "Take the stairs instead of the lift for a quick energy boost."
     },
     {
-      "emoji": "\ud83e\uddd8",
+      "emoji": "🧘",
       "tip": "Practice deep breathing for 2 minutes to reduce stress instantly."
     },
     {
-      "emoji": "\u2600\ufe0f",
+      "emoji": "☀️",
       "tip": "Get natural sunlight within the first hour of waking up."
     },
     {
-      "emoji": "\ud83d\udcf1",
+      "emoji": "📱",
       "tip": "Turn off notifications during deep work sessions."
     },
     {
-      "emoji": "\ud83e\udd57",
+      "emoji": "🥗",
       "tip": "Prep your lunch the night before to save time and eat healthier."
     },
     {
-      "emoji": "\ud83d\ude0a",
-      "tip": "Smile at three people today \u2014 it's contagious!"
+      "emoji": "😊",
+      "tip": "Smile at three people today — it's contagious!"
     },
     {
-      "emoji": "\ud83c\udfaf",
+      "emoji": "🎯",
       "tip": "Focus on one task at a time for better productivity."
     },
     {
-      "emoji": "\u23f0",
+      "emoji": "⏰",
       "tip": "Use the Pomodoro technique: 25 min work, 5 min break."
     },
     {
-      "emoji": "\ud83e\udde0",
+      "emoji": "🧠",
       "tip": "Your brain works best in the first 2 hours after waking."
     },
     {
-      "emoji": "\ud83d\udcf5",
+      "emoji": "📵",
       "tip": "Keep your phone in another room while sleeping."
     },
     {
-      "emoji": "\ud83c\udfc3",
+      "emoji": "🏃",
       "tip": "A 10-minute walk after lunch improves afternoon focus."
     },
     {
-      "emoji": "\ud83c\udfa8",
+      "emoji": "🎨",
       "tip": "Decorate your workspace with items that inspire you."
     },
     {
-      "emoji": "\ud83e\uddca",
+      "emoji": "🧊",
       "tip": "Drink cold water to boost alertness and metabolism."
     },
     {
-      "emoji": "\ud83d\udcda",
+      "emoji": "📚",
       "tip": "Read for 15 minutes before bed to improve sleep quality."
     },
     {
-      "emoji": "\ud83d\udde3\ufe0f",
-      "tip": "Say good morning to your colleagues \u2014 it builds rapport."
+      "emoji": "🗣️",
+      "tip": "Say good morning to your colleagues — it builds rapport."
     },
     {
-      "emoji": "\u270d\ufe0f",
+      "emoji": "✍️",
       "tip": "Keep a gratitude journal to boost your mood."
     }
   ],
@@ -138,61 +145,73 @@
   "leaderboard": [
     {
       "name": "Fatmata",
+      "title": "",
       "points": 0,
       "change": 0
     },
     {
       "name": "Gifty",
+      "title": "",
       "points": 0,
       "change": 0
     },
     {
       "name": "Hawa",
+      "title": "",
       "points": 0,
       "change": 0
     },
     {
       "name": "Jordan",
+      "title": "",
       "points": 0,
       "change": 0
     },
     {
       "name": "Kwai",
+      "title": "",
       "points": 0,
       "change": 0
     },
     {
       "name": "Lily",
+      "title": "",
       "points": 0,
       "change": 0
     },
     {
       "name": "Lucia",
+      "title": "",
       "points": 0,
       "change": 0
     },
     {
       "name": "Mahesh",
+      "title": "",
       "points": 0,
       "change": 0
     },
     {
       "name": "Rahul",
+      "title": "",
       "points": 0,
       "change": 0
     },
     {
       "name": "Saul",
+      "title": "",
       "points": 0,
       "change": 0
     },
     {
       "name": "Sergio",
+      "title": "",
       "points": 0,
       "change": 0
     },
     {
       "name": "Valenky",
+      "title": "",
       "points": 0,
       "change": 0
     }
@@ -202,45 +221,57 @@
     "detail": "After three months of hard work and outstanding collaboration, we have officially signed one of our biggest clients to date.",
     "who": "Sarah and the Sales Team"
   },
-  "announcements": [
-    {
-      "title": "Welcome to the Team Noticeboard!",
-      "body": "Everything you see here is controlled by editing data.json on GitHub. Change anything and push \u2014 it updates within minutes.",
-      "priority": "normal"
-    }
-  ],
+  "announcements": [],
   "kpis": [
     {
-      "label": "Sales This Month",
-      "value": "24k",
-      "change": "+12% vs last month",
-      "trend": "up"
-    },
-    {
-      "label": "Open Tickets",
-      "value": "8",
-      "change": "-3 this week",
+      "label": "Stay Score",
+      "value": "75.3%",
+      "change": 0,
       "trend": "down"
     },
     {
-      "label": "Team Members",
-      "value": "14",
-      "change": "All hands on deck",
-      "trend": "neutral"
+      "label": "Review Site Index",
+      "value": "98.0",
+      "change": 0,
+      "trend": "down"
     },
     {
-      "label": "Target Progress",
-      "value": "74%",
-      "change": "On track",
+      "label": "Service Quality ",
+      "value": "90.9%",
+      "change": 0,
+      "trend": "up"
+    },
+    {
+      "label": "Problem Incidence",
+      "value": "34.0%",
+      "change": 0,
+      "trend": "down"
+    },
+    {
+      "label": "Problem Resolution",
+      "value": "57.1%",
+      "change": 0,
+      "trend": "up"
+    },
+    {
+      "label": "Honors Appreciation",
+      "value": "60.0%",
+      "change": 0,
+      "trend": "down"
+    },
+    {
+      "label": "Overall Cleanliness",
+      "value": "92.7%",
+      "change": 0,
       "trend": "up"
     }
   ],
   "target": {
-    "label": "Monthly Sales Target",
-    "current": 24000,
-    "target": 35000,
-    "unit": "GBP",
-    "message": "Keep pushing \u2014 we are on track for a strong finish!"
+    "label": "Enrollment Target",
+    "current": 0,
+    "target": 125,
+    "unit": "HH Enrollments",
+    "message": "Major Push Needed ! Lets aim for 1 enrollment / shift / person. "
   },
   "countdowns": [],
   "birthdays": [
@@ -340,10 +371,9 @@
   ],
   "ticker": [
     "Welcome to the new and improved team noticeboard!",
-    "All-Hands meeting this Friday at 10am \u2014 do not forget!",
-    "Q1 expense reports are due by end of week",
-    "Big shoutout to Sarah for landing the Henderson account!",
-    "We are at 74% of our monthly target \u2014 let's finish strong!"
+    "Remember to log into Reception & Invoices Inbox at the start of your shift.",
+    "Lets push for those Tripadvisor Reviews ! ",
+    "Any suggestions for what should be on the Noticeboard please come to me. "
   ],
   "image_slides": [],
   "important_numbers": [],
@@ -359,7 +389,28 @@
   "supplies": [],
   "week_at_a_glance": {
     "week": "",
-    "days": []
+    "days": [
+      {
+        "day": "Mon",
+        "events": []
+      },
+      {
+        "day": "Tue",
+        "events": []
+      },
+      {
+        "day": "Wed",
+        "events": []
+      },
+      {
+        "day": "Thu",
+        "events": []
+      },
+      {
+        "day": "Fri",
+        "events": []
+      }
+    ]
   },
   "reviews": {
     "listing_name_1": "Hotel / Venue",
