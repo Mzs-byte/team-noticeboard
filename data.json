@@ -1,0 +1,94 @@
+{
+  "company_name": "Your Team Name",
+  "weather_city": "London",
+  "slide_duration": 12,
+  "slide_order": [
+    "announcements",
+    "onthisday",
+    "intlday",
+    "bankholidays",
+    "weather",
+    "weekglance",
+    "kpis",
+    "thermometer",
+    "leaderboard",
+    "employeeofmonth"
+  ],
+  "slide_toggles": {
+    "announcements": true,
+    "onthisday": true,
+    "intlday": true,
+    "bankholidays": true,
+    "weather": true,
+    "weekglance": true,
+    "kpis": true,
+    "thermometer": true,
+    "leaderboard": true,
+    "employeeofmonth": true
+  },
+  "announcements": [
+    {
+      "title": "Welcome to the Team Noticeboard",
+      "body": "Everything here is controlled by editing data.json, or by using the admin panel (hold the clock for 3 seconds, PIN 1234).",
+      "priority": "normal"
+    },
+    {
+      "title": "All-Hands Meeting Friday",
+      "body": "Join us in the main hall at 10am sharp. Coffee and pastries provided.",
+      "priority": "important"
+    }
+  ],
+  "kpis": [
+    { "label": "Occupancy", "value": "82%", "change": "5% vs last wk", "trend": "up" },
+    { "label": "Avg Review Score", "value": "4.6", "change": "0.1 vs last mo", "trend": "up" },
+    { "label": "Complaints", "value": "3%", "change": "1% vs last wk", "trend": "down" },
+    { "label": "Staff Present", "value": "93%", "change": "on target", "trend": "neutral" },
+    { "label": "Repeat Guests", "value": "47%", "change": "4% vs last mo", "trend": "up" },
+    { "label": "Upsell Rate", "value": "21%", "change": "3% vs last wk", "trend": "down" },
+    { "label": "Cleanliness", "value": "96%", "change": "2% vs last wk", "trend": "up" },
+    { "label": "Bar Sales", "value": "73%", "change": "6% vs last wk", "trend": "up" }
+  ],
+  "target": {
+    "label": "Hilton Honors Enrollments",
+    "current": 0,
+    "target": 100,
+    "unit": "sign-ups",
+    "message": "Let's hit our monthly enrollment goal!"
+  },
+  "leaderboard": [
+    { "name": "Fatmata", "points": 0, "change": 0 },
+    { "name": "Gifty", "points": 0, "change": 0 },
+    { "name": "Hawa", "points": 0, "change": 0 },
+    { "name": "Jordan", "points": 0, "change": 0 },
+    { "name": "Kwai", "points": 0, "change": 0 },
+    { "name": "Lily", "points": 0, "change": 0 },
+    { "name": "Lucia", "points": 0, "change": 0 },
+    { "name": "Mahesh", "points": 0, "change": 0 },
+    { "name": "Rahul", "points": 0, "change": 0 },
+    { "name": "Saul", "points": 0, "change": 0 },
+    { "name": "Sergio", "points": 0, "change": 0 },
+    { "name": "Valenky", "points": 0, "change": 0 }
+  ],
+  "employee_of_month": {
+    "name": "Lily",
+    "role": "Front Office",
+    "month": "This Month",
+    "photo_url": "",
+    "blurb": "Lily went above and beyond this month — covering extra shifts, training two new starters, and earning glowing guest feedback. A thoroughly deserved win!"
+  },
+  "week_at_a_glance": {
+    "week": "This Week",
+    "days": [
+      { "day": "Mon", "events": ["Team standup 9am", "Client visit 2pm"] },
+      { "day": "Tue", "events": ["Finance review 10am"] },
+      { "day": "Wed", "events": ["All-hands 10am", "Fire drill 3pm"] },
+      { "day": "Thu", "events": [] },
+      { "day": "Fri", "events": ["Early finish 4pm", "Team drinks 5pm"] }
+    ]
+  },
+  "ticker": [
+    "Welcome to the team noticeboard",
+    "All-Hands meeting Friday at 10am",
+    "Let's smash our Hilton Honors target this month!"
+  ]
+}
