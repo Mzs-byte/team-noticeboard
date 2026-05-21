@@ -50,46 +50,152 @@
     "imageslides": false
   },
   "daily_tips": [
-    {"emoji": "💡", "tip": "Take a 5-minute break every hour to stay fresh and focused."},
-    {"emoji": "🌱", "tip": "Keep a plant on your desk — it improves air quality and mood."},
-    {"emoji": "💧", "tip": "Drink a glass of water first thing in the morning to kickstart your metabolism."},
-    {"emoji": "📝", "tip": "Write your to-do list the night before to start the day with clarity."},
-    {"emoji": "🚶", "tip": "Take the stairs instead of the lift for a quick energy boost."},
-    {"emoji": "🧘", "tip": "Practice deep breathing for 2 minutes to reduce stress instantly."},
-    {"emoji": "☀️", "tip": "Get natural sunlight within the first hour of waking up."},
-    {"emoji": "📱", "tip": "Turn off notifications during deep work sessions."},
-    {"emoji": "🥗", "tip": "Prep your lunch the night before to save time and eat healthier."},
-    {"emoji": "😊", "tip": "Smile at three people today — it's contagious!"},
-    {"emoji": "🎯", "tip": "Focus on one task at a time for better productivity."},
-    {"emoji": "⏰", "tip": "Use the Pomodoro technique: 25 min work, 5 min break."},
-    {"emoji": "🧠", "tip": "Your brain works best in the first 2 hours after waking."},
-    {"emoji": "📵", "tip": "Keep your phone in another room while sleeping."},
-    {"emoji": "🏃", "tip": "A 10-minute walk after lunch improves afternoon focus."},
-    {"emoji": "🎨", "tip": "Decorate your workspace with items that inspire you."},
-    {"emoji": "🧊", "tip": "Drink cold water to boost alertness and metabolism."},
-    {"emoji": "📚", "tip": "Read for 15 minutes before bed to improve sleep quality."},
-    {"emoji": "🗣️", "tip": "Say good morning to your colleagues — it builds rapport."},
-    {"emoji": "✍️", "tip": "Keep a gratitude journal to boost your mood."}
+    {
+      "emoji": "\ud83d\udca1",
+      "tip": "Take a 5-minute break every hour to stay fresh and focused."
+    },
+    {
+      "emoji": "\ud83c\udf31",
+      "tip": "Keep a plant on your desk \u2014 it improves air quality and mood."
+    },
+    {
+      "emoji": "\ud83d\udca7",
+      "tip": "Drink a glass of water first thing in the morning to kickstart your metabolism."
+    },
+    {
+      "emoji": "\ud83d\udcdd",
+      "tip": "Write your to-do list the night before to start the day with clarity."
+    },
+    {
+      "emoji": "\ud83d\udeb6",
+      "tip": "Take the stairs instead of the lift for a quick energy boost."
+    },
+    {
+      "emoji": "\ud83e\uddd8",
+      "tip": "Practice deep breathing for 2 minutes to reduce stress instantly."
+    },
+    {
+      "emoji": "\u2600\ufe0f",
+      "tip": "Get natural sunlight within the first hour of waking up."
+    },
+    {
+      "emoji": "\ud83d\udcf1",
+      "tip": "Turn off notifications during deep work sessions."
+    },
+    {
+      "emoji": "\ud83e\udd57",
+      "tip": "Prep your lunch the night before to save time and eat healthier."
+    },
+    {
+      "emoji": "\ud83d\ude0a",
+      "tip": "Smile at three people today \u2014 it's contagious!"
+    },
+    {
+      "emoji": "\ud83c\udfaf",
+      "tip": "Focus on one task at a time for better productivity."
+    },
+    {
+      "emoji": "\u23f0",
+      "tip": "Use the Pomodoro technique: 25 min work, 5 min break."
+    },
+    {
+      "emoji": "\ud83e\udde0",
+      "tip": "Your brain works best in the first 2 hours after waking."
+    },
+    {
+      "emoji": "\ud83d\udcf5",
+      "tip": "Keep your phone in another room while sleeping."
+    },
+    {
+      "emoji": "\ud83c\udfc3",
+      "tip": "A 10-minute walk after lunch improves afternoon focus."
+    },
+    {
+      "emoji": "\ud83c\udfa8",
+      "tip": "Decorate your workspace with items that inspire you."
+    },
+    {
+      "emoji": "\ud83e\uddca",
+      "tip": "Drink cold water to boost alertness and metabolism."
+    },
+    {
+      "emoji": "\ud83d\udcda",
+      "tip": "Read for 15 minutes before bed to improve sleep quality."
+    },
+    {
+      "emoji": "\ud83d\udde3\ufe0f",
+      "tip": "Say good morning to your colleagues \u2014 it builds rapport."
+    },
+    {
+      "emoji": "\u270d\ufe0f",
+      "tip": "Keep a gratitude journal to boost your mood."
+    }
   ],
   "meme": {
     "url": "",
     "caption": ""
   },
   "leaderboard": [
-    {"name": "Alice Johnson", "title": "Sales Lead", "points": 340, "change": 20},
-    {"name": "Bob Smith", "title": "Account Manager", "points": 290, "change": -10},
-    {"name": "Carmen Diaz", "title": "Customer Success", "points": 275, "change": 35},
-    {"name": "David Lee", "title": "Developer", "points": 210, "change": 0},
-    {"name": "Evie Turner", "title": "Marketing", "points": 185, "change": 15},
-    {"name": "Frank Webb", "title": "Operations", "points": 140, "change": -5},
-    {"name": "Grace Park", "title": "Designer", "points": 130, "change": 10},
-    {"name": "Henry Stone", "title": "Support", "points": 120, "change": 5},
-    {"name": "Iris Chen", "title": "HR", "points": 110, "change": 15},
-    {"name": "Jack Ryan", "title": "Finance", "points": 100, "change": 0},
-    {"name": "Kate Wilson", "title": "Analyst", "points": 95, "change": -5},
-    {"name": "Leo Martinez", "title": "Engineer", "points": 90, "change": 20},
-    {"name": "Maya Patel", "title": "Product", "points": 85, "change": 10},
-    {"name": "Noah Brown", "title": "QA", "points": 80, "change": 5}
+    {
+      "name": "Fatmata",
+      "points": 0,
+      "change": 0
+    },
+    {
+      "name": "Gifty",
+      "points": 0,
+      "change": 0
+    },
+    {
+      "name": "Hawa",
+      "points": 0,
+      "change": 0
+    },
+    {
+      "name": "Jordan",
+      "points": 0,
+      "change": 0
+    },
+    {
+      "name": "Kwai",
+      "points": 0,
+      "change": 0
+    },
+    {
+      "name": "Lily",
+      "points": 0,
+      "change": 0
+    },
+    {
+      "name": "Lucia",
+      "points": 0,
+      "change": 0
+    },
+    {
+      "name": "Mahesh",
+      "points": 0,
+      "change": 0
+    },
+    {
+      "name": "Rahul",
+      "points": 0,
+      "change": 0
+    },
+    {
+      "name": "Saul",
+      "points": 0,
+      "change": 0
+    },
+    {
+      "name": "Sergio",
+      "points": 0,
+      "change": 0
+    },
+    {
+      "name": "Valenky",
+      "points": 0,
+      "change": 0
+    }
   ],
   "weekly_win": {
     "headline": "Landed the Henderson Account!",
@@ -99,58 +205,145 @@
   "announcements": [
     {
       "title": "Welcome to the Team Noticeboard!",
-      "body": "Everything you see here is controlled by editing data.json on GitHub. Change anything and push — it updates within minutes.",
+      "body": "Everything you see here is controlled by editing data.json on GitHub. Change anything and push \u2014 it updates within minutes.",
       "priority": "normal"
     }
   ],
   "kpis": [
-    {"label": "Sales This Month", "value": "24k", "change": "+12% vs last month", "trend": "up"},
-    {"label": "Open Tickets", "value": "8", "change": "-3 this week", "trend": "down"},
-    {"label": "Team Members", "value": "14", "change": "All hands on deck", "trend": "neutral"},
-    {"label": "Target Progress", "value": "74%", "change": "On track", "trend": "up"}
+    {
+      "label": "Sales This Month",
+      "value": "24k",
+      "change": "+12% vs last month",
+      "trend": "up"
+    },
+    {
+      "label": "Open Tickets",
+      "value": "8",
+      "change": "-3 this week",
+      "trend": "down"
+    },
+    {
+      "label": "Team Members",
+      "value": "14",
+      "change": "All hands on deck",
+      "trend": "neutral"
+    },
+    {
+      "label": "Target Progress",
+      "value": "74%",
+      "change": "On track",
+      "trend": "up"
+    }
   ],
   "target": {
     "label": "Monthly Sales Target",
     "current": 24000,
     "target": 35000,
     "unit": "GBP",
-    "message": "Keep pushing — we are on track for a strong finish!"
+    "message": "Keep pushing \u2014 we are on track for a strong finish!"
   },
   "countdowns": [],
   "birthdays": [
-    {"name": "Alice Johnson", "date": "06-04", "type": "birthday"},
-    {"name": "Bob Smith", "date": "06-15", "type": "birthday"},
-    {"name": "Carmen Diaz", "date": "06-04", "type": "anniversary", "years": 3},
-    {"name": "David Lee", "date": "07-01", "type": "birthday"}
+    {
+      "name": "Alice Johnson",
+      "date": "06-04",
+      "type": "birthday"
+    },
+    {
+      "name": "Bob Smith",
+      "date": "06-15",
+      "type": "birthday"
+    },
+    {
+      "name": "Carmen Diaz",
+      "date": "06-04",
+      "type": "anniversary",
+      "years": 3
+    },
+    {
+      "name": "David Lee",
+      "date": "07-01",
+      "type": "birthday"
+    }
   ],
   "team": [
-    {"name": "Alice Johnson", "default_status": "in"},
-    {"name": "Bob Smith", "default_status": "in"},
-    {"name": "Carmen Diaz", "default_status": "in"},
-    {"name": "David Lee", "default_status": "meeting"},
-    {"name": "Evie Turner", "default_status": "away"},
-    {"name": "Frank Webb", "default_status": "in"},
-    {"name": "Grace Park", "default_status": "in"},
-    {"name": "Henry Stone", "default_status": "in"},
-    {"name": "Iris Chen", "default_status": "in"},
-    {"name": "Jack Ryan", "default_status": "in"},
-    {"name": "Kate Wilson", "default_status": "away"},
-    {"name": "Leo Martinez", "default_status": "in"},
-    {"name": "Maya Patel", "default_status": "in"},
-    {"name": "Noah Brown", "default_status": "in"}
+    {
+      "name": "Fatmata",
+      "default_status": "in"
+    },
+    {
+      "name": "Gifty",
+      "default_status": "in"
+    },
+    {
+      "name": "Hawa",
+      "default_status": "in"
+    },
+    {
+      "name": "Jordan",
+      "default_status": "in"
+    },
+    {
+      "name": "Kwai",
+      "default_status": "in"
+    },
+    {
+      "name": "Lily",
+      "default_status": "in"
+    },
+    {
+      "name": "Lucia",
+      "default_status": "in"
+    },
+    {
+      "name": "Mahesh",
+      "default_status": "in"
+    },
+    {
+      "name": "Rahul",
+      "default_status": "in"
+    },
+    {
+      "name": "Saul",
+      "default_status": "in"
+    },
+    {
+      "name": "Sergio",
+      "default_status": "in"
+    },
+    {
+      "name": "Valenky",
+      "default_status": "in"
+    }
   ],
   "tasks": [
-    {"text": "Submit Q1 expense reports", "assignee": "All Staff", "priority": "high"},
-    {"text": "Update client onboarding docs", "assignee": "Alice", "priority": "medium"},
-    {"text": "Review new supplier contracts", "assignee": "Bob", "priority": "high"},
-    {"text": "Book team lunch for end of month", "assignee": "Carmen", "priority": "low"}
+    {
+      "text": "Submit Q1 expense reports",
+      "assignee": "All Staff",
+      "priority": "high"
+    },
+    {
+      "text": "Update client onboarding docs",
+      "assignee": "Alice",
+      "priority": "medium"
+    },
+    {
+      "text": "Review new supplier contracts",
+      "assignee": "Bob",
+      "priority": "high"
+    },
+    {
+      "text": "Book team lunch for end of month",
+      "assignee": "Carmen",
+      "priority": "low"
+    }
   ],
   "ticker": [
     "Welcome to the new and improved team noticeboard!",
-    "All-Hands meeting this Friday at 10am — do not forget!",
+    "All-Hands meeting this Friday at 10am \u2014 do not forget!",
     "Q1 expense reports are due by end of week",
     "Big shoutout to Sarah for landing the Henderson account!",
-    "We are at 74% of our monthly target — let's finish strong!"
+    "We are at 74% of our monthly target \u2014 let's finish strong!"
   ],
   "image_slides": [],
   "important_numbers": [],
@@ -169,68 +362,9 @@
     "days": []
   },
   "reviews": {
-    "google_place_id": "",
-    "google_api_key": "",
-    "ta_url_1": "",
-    "ta_url_2": "",
-    "handpicked": [
-      {
-        "platform": "ta1",
-        "author": "Sarah M.",
-        "rating": 5,
-        "text": "Absolutely outstanding service from the moment we arrived. The front desk team were incredibly welcoming and professional. Would highly recommend!",
-        "date": "2 Jun 2025"
-      },
-      {
-        "platform": "ta1",
-        "author": "James T.",
-        "rating": 5,
-        "text": "Exceptional experience from start to finish. The staff went above and beyond to make our stay special.",
-        "date": "28 May 2025"
-      },
-      {
-        "platform": "ta1",
-        "author": "Emma R.",
-        "rating": 5,
-        "text": "Wonderful hotel with a fantastic team. The attention to detail is remarkable.",
-        "date": "21 May 2025"
-      },
-      {
-        "platform": "ta1",
-        "author": "David L.",
-        "rating": 4,
-        "text": "Really impressed with the level of service. Great location too.",
-        "date": "15 May 2025"
-      },
-      {
-        "platform": "ta2",
-        "author": "FoodieL",
-        "rating": 5,
-        "text": "Incredible food and atmosphere. The Sunday roast was the best I've had in London!",
-        "date": "3 Jun 2025"
-      },
-      {
-        "platform": "ta2",
-        "author": "DinnerDate",
-        "rating": 5,
-        "text": "Perfect spot for a special occasion. Menu was creative and beautifully presented.",
-        "date": "27 May 2025"
-      },
-      {
-        "platform": "ta2",
-        "author": "LunchBreak",
-        "rating": 4,
-        "text": "Great lunch menu with plenty of choice. Quick and efficient service.",
-        "date": "20 May 2025"
-      },
-      {
-        "platform": "ta2",
-        "author": "WeekendDiner",
-        "rating": 5,
-        "text": "Outstanding from start to finish. The cocktails were exceptional!",
-        "date": "12 May 2025"
-      }
-    ]
+    "listing_name_1": "Hotel / Venue",
+    "listing_name_2": "Restaurant / Venue",
+    "handpicked": []
   },
   "suggestion_box": {
     "form_url": ""

@@ -32,6 +32,40 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;background:ra
 .dot.active{background:var(--blue);width:22px;border-radius:3px;}
 #lb-jump{display:flex;align-items:center;gap:6px;background:rgba(251,191,36,.12);border:1px solid rgba(251,191,36,.3);border-radius:10px;padding:7px 13px;cursor:pointer;font-family:var(--font-h);font-size:12px;font-weight:700;color:var(--amber);transition:all .2s;white-space:nowrap;flex-shrink:0;animation:pulse-glow 2.5s ease-in-out infinite;}
 #lb-jump:hover{background:rgba(251,191,36,.25);transform:translateY(-1px);}
+#rev-add-btn{display:flex;align-items:center;gap:6px;background:rgba(52,211,153,.12);border:1px solid rgba(52,211,153,.3);border-radius:10px;padding:7px 13px;cursor:pointer;font-family:var(--font-h);font-size:12px;font-weight:700;color:var(--green);transition:all .2s;white-space:nowrap;flex-shrink:0;}
+#rev-add-btn:hover{background:rgba(52,211,153,.25);transform:translateY(-1px);}
+
+/* REVIEW QUICK-ADD OVERLAY */
+#rev-add-overlay{display:none;position:fixed;inset:0;z-index:700;background:rgba(0,0,0,.8);backdrop-filter:blur(12px);align-items:center;justify-content:center;}
+#rev-add-overlay.open{display:flex;}
+#rev-add-panel{background:#0f1828;border:1px solid var(--border);border-radius:20px;padding:28px 32px;width:520px;max-width:95vw;}
+.rev-add-title{font-family:var(--font-d);font-size:28px;color:var(--green);margin-bottom:6px;}
+.rev-add-sub{font-size:13px;color:var(--text-dim);margin-bottom:22px;font-family:var(--font-h);}
+.rev-add-field{display:flex;flex-direction:column;gap:5px;margin-bottom:14px;}
+.rev-add-label{font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;}
+.rev-add-input,.rev-add-select,.rev-add-textarea{background:#0a1020;border:1px solid var(--border);border-radius:10px;padding:11px 14px;color:var(--text);font-family:var(--font-b);font-size:14px;outline:none;transition:border-color .2s;width:100%;}
+.rev-add-input:focus,.rev-add-select:focus,.rev-add-textarea:focus{border-color:var(--green);}
+.rev-add-input::placeholder,.rev-add-textarea::placeholder{color:var(--text-muted);}
+.rev-add-textarea{resize:none;min-height:90px;line-height:1.6;}
+.rev-add-select{cursor:pointer;}
+.rev-stars-row{display:flex;gap:8px;margin-bottom:14px;}
+.rev-star-btn{font-size:28px;cursor:pointer;opacity:.3;transition:opacity .15s,transform .15s;background:none;border:none;padding:0;}
+.rev-star-btn.active{opacity:1;}
+.rev-star-btn:hover{transform:scale(1.2);}
+.rev-add-actions{display:flex;gap:10px;margin-top:6px;}
+.rev-add-save{flex:1;background:var(--green);color:#000;border:none;border-radius:12px;padding:13px;cursor:pointer;font-family:var(--font-d);font-size:22px;letter-spacing:1px;transition:all .2s;}
+.rev-add-save:hover{background:#5eedad;transform:translateY(-1px);}
+.rev-add-cancel{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:13px 20px;cursor:pointer;font-family:var(--font-h);font-size:13px;font-weight:700;color:var(--text-dim);transition:all .2s;}
+.rev-add-cancel:hover{color:var(--red);border-color:var(--red);}
+.rev-add-history{margin-top:18px;border-top:1px solid var(--border);padding-top:14px;}
+.rev-add-history-title{font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;}
+.rev-hist-item{display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--surface);border-radius:8px;margin-bottom:6px;}
+.rev-hist-name{flex:1;font-size:13px;color:var(--text);font-weight:600;}
+.rev-hist-platform{font-size:11px;color:var(--text-dim);}
+.rev-hist-stars{font-size:12px;color:var(--amber);}
+.rev-hist-del{background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:14px;padding:2px 6px;border-radius:4px;transition:color .15s;}
+.rev-hist-del:hover{color:var(--red);}
+
 @keyframes pulse-glow{0%,100%{box-shadow:0 0 0 0 rgba(251,191,36,0);}50%{box-shadow:0 0 14px 3px rgba(251,191,36,.2);}}
 #clock-block{text-align:right;position:relative;cursor:pointer;user-select:none;}
 #clock{font-family:var(--font-d);font-size:30px;line-height:1;color:var(--text);letter-spacing:3px;}
@@ -250,23 +284,23 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;background:ra
 .cd-date{font-size:11px;color:var(--text-muted);font-family:var(--font-h);margin-top:8px;}
 
 /* LEADERBOARD */
-.lb-wrap{flex:1;display:flex;flex-direction:column;gap:7px;overflow-y:auto;}
-.lb-row{display:flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:12px 18px;position:relative;overflow:hidden;}
+.lb-wrap{flex:1;display:flex;flex-direction:column;gap:4px;overflow:hidden;}
+.lb-row{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:7px 14px;position:relative;overflow:hidden;}
 .lb-row.rank-1{background:rgba(251,191,36,.08);border-color:rgba(251,191,36,.3);}
 .lb-row.rank-2{background:rgba(148,163,184,.06);border-color:rgba(148,163,184,.2);}
 .lb-row.rank-3{background:rgba(205,127,50,.06);border-color:rgba(205,127,50,.2);}
 .lb-bar{position:absolute;left:0;top:0;bottom:0;background:rgba(255,255,255,.03);transition:width 1.2s cubic-bezier(.4,0,.2,1);}
-.lb-rank{font-family:var(--font-d);font-size:28px;min-width:36px;text-align:center;position:relative;z-index:1;}
+.lb-rank{font-family:var(--font-d);font-size:20px;min-width:28px;text-align:center;position:relative;z-index:1;}
 .rank-1 .lb-rank{color:var(--amber);}.rank-2 .lb-rank{color:#cbd5e1;}.rank-3 .lb-rank{color:#cd7f32;}
-.lb-medal{font-size:22px;}
+.lb-medal{font-size:16px;min-width:20px;}
 .lb-info{flex:1;position:relative;z-index:1;}
-.lb-name{font-size:16px;font-weight:700;color:var(--text);}
-.lb-job{font-size:11px;color:var(--text-muted);font-family:var(--font-h);margin-top:1px;}
-.lb-score{font-family:var(--font-d);font-size:38px;position:relative;z-index:1;line-height:1;}
+.lb-name{font-size:14px;font-weight:700;color:var(--text);}
+.lb-job{display:none;}
+.lb-score{font-family:var(--font-d);font-size:22px;position:relative;z-index:1;line-height:1;}
 .rank-1 .lb-score{color:var(--amber);}.rank-2 .lb-score{color:#cbd5e1;}.rank-3 .lb-score{color:#cd7f32;}
 .lb-row:not(.rank-1):not(.rank-2):not(.rank-3) .lb-score{color:var(--blue);}
-.lb-pts{font-size:10px;color:var(--text-muted);font-family:var(--font-h);text-align:right;}
-.lb-chg{font-size:12px;font-weight:700;font-family:var(--font-h);}
+.lb-pts{font-size:9px;color:var(--text-muted);font-family:var(--font-h);text-align:right;}
+.lb-chg{font-size:11px;font-weight:700;font-family:var(--font-h);}
 .lb-chg.up{color:var(--green);}.lb-chg.down{color:var(--red);}.lb-chg.same{color:var(--text-muted);}
 
 /* NEW STARTER */
@@ -281,7 +315,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;background:ra
 .starter-welcome{font-family:var(--font-h);font-size:13px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:2px;}
 
 /* STATUS */
-.status-grid{flex:1;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.status-grid{flex:1;display:grid;grid-template-columns:repeat(5,1fr);gap:10px;}
 .status-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:16px 14px;display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;transition:all .2s;user-select:none;}
 .status-card:hover{background:var(--surface2);}
 .status-card:active{transform:scale(.97);}
@@ -523,6 +557,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;background:ra
   <div id="company-name">Team Board</div>
   <div id="slide-dots"></div>
   <button id="lb-jump" onclick="jumpToLB()" title="Go to Leaderboard">🏅 Leaderboard</button>
+  <button id="rev-add-btn" onclick="openReviewAdd()" title="Add Review">⭐ Add Review</button>
   <div id="clock-block">
     <div id="clock-hold-ring"></div>
     <div id="clock">00:00</div>
@@ -565,6 +600,49 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;background:ra
     <div class="pin-btn" onclick="pinClear()">⌫</div><div class="pin-btn" onclick="pinPress(0)">0</div><div class="pin-btn" onclick="pinCancel()" style="font-size:13px;color:var(--text-muted)">ESC</div>
   </div>
   <div class="pin-error" id="pin-error"></div>
+</div>
+
+<!-- REVIEW QUICK-ADD -->
+<div id="rev-add-overlay" onclick="if(event.target.id==='rev-add-overlay')closeReviewAdd()">
+  <div id="rev-add-panel">
+    <div class="rev-add-title">⭐ Add New Review</div>
+    <div class="rev-add-sub">Fills in seconds — saves instantly, shows on screen immediately.</div>
+    <div style="display:flex;gap:12px;margin-bottom:14px;">
+      <div class="rev-add-field" style="flex:1">
+        <label class="rev-add-label">Listing</label>
+        <select class="rev-add-select" id="ra-platform">
+          <option value="ta1" id="ra-opt-ta1">🏨 Hotel / Venue 1</option>
+          <option value="ta2" id="ra-opt-ta2">🍽️ Restaurant / Venue 2</option>
+        </select>
+      </div>
+      <div class="rev-add-field" style="flex:1">
+        <label class="rev-add-label">Reviewer Name</label>
+        <input class="rev-add-input" id="ra-author" placeholder="e.g. John S." autocomplete="off">
+      </div>
+    </div>
+    <div class="rev-add-field">
+      <label class="rev-add-label">Star Rating</label>
+      <div class="rev-stars-row" id="ra-stars">
+        <button class="rev-star-btn" data-v="1" onclick="setRevStar(1)">★</button>
+        <button class="rev-star-btn" data-v="2" onclick="setRevStar(2)">★</button>
+        <button class="rev-star-btn" data-v="3" onclick="setRevStar(3)">★</button>
+        <button class="rev-star-btn" data-v="4" onclick="setRevStar(4)">★</button>
+        <button class="rev-star-btn active" data-v="5" onclick="setRevStar(5)">★</button>
+      </div>
+    </div>
+    <div class="rev-add-field">
+      <label class="rev-add-label">Review Text</label>
+      <textarea class="rev-add-textarea" id="ra-text" placeholder="Paste or type the review here…"></textarea>
+    </div>
+    <div class="rev-add-actions">
+      <button class="rev-add-save" onclick="saveReview()">✓ Add Review</button>
+      <button class="rev-add-cancel" onclick="closeReviewAdd()">Cancel</button>
+    </div>
+    <div class="rev-add-history">
+      <div class="rev-add-history-title">Recent reviews (click ✕ to remove)</div>
+      <div id="ra-history"></div>
+    </div>
+  </div>
 </div>
 
 <!-- ADMIN PANEL -->
@@ -729,6 +807,22 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;background:ra
           <input type="checkbox" id="toggle-deptspotlight" style="width:18px;height:18px;cursor:pointer;">
           <label for="toggle-deptspotlight" style="cursor:pointer;font-size:13px;color:var(--text);">🎯 Dept Spotlight</label>
         </div>
+        <div style="display:flex;align-items:center;gap:8px;background:var(--surface2);border-radius:8px;padding:8px 12px;">
+          <input type="checkbox" id="toggle-announcements" style="width:18px;height:18px;cursor:pointer;">
+          <label for="toggle-announcements" style="cursor:pointer;font-size:13px;color:var(--text);">📢 Announcements</label>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;background:var(--surface2);border-radius:8px;padding:8px 12px;">
+          <input type="checkbox" id="toggle-birthdays" style="width:18px;height:18px;cursor:pointer;">
+          <label for="toggle-birthdays" style="cursor:pointer;font-size:13px;color:var(--text);">🎂 Today's Birthdays</label>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;background:var(--surface2);border-radius:8px;padding:8px 12px;">
+          <input type="checkbox" id="toggle-newstarter" style="width:18px;height:18px;cursor:pointer;">
+          <label for="toggle-newstarter" style="cursor:pointer;font-size:13px;color:var(--text);">🌟 New Starter</label>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;background:var(--surface2);border-radius:8px;padding:8px 12px;">
+          <input type="checkbox" id="toggle-imageslides" style="width:18px;height:18px;cursor:pointer;">
+          <label for="toggle-imageslides" style="cursor:pointer;font-size:13px;color:var(--text);">🖼️ Image Slides</label>
+        </div>
       </div>
     </div>
 
@@ -825,17 +919,13 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;background:ra
     </div>
 
     <div class="adm-section">
-      <div class="adm-sec-title">⭐ Reviews — Google</div>
+      <div class="adm-sec-title">⭐ TripAdvisor Reviews</div>
+      <p class="adm-hint" style="margin-bottom:14px;">Use the <strong>⭐ Add Review</strong> button in the top bar to add reviews instantly — no GitHub push needed. Set your listing names below so the dropdown labels are correct.</p>
       <div class="adm-row">
-        <div class="adm-field"><label class="adm-label">Google Place ID</label><input class="adm-input" id="adm-gplace" placeholder="ChIJ…"></div>
-        <div class="adm-field"><label class="adm-label">Google API Key</label><input class="adm-input" id="adm-gapikey" type="password" placeholder="AIza…"></div>
+        <div class="adm-field"><label class="adm-label">Listing 1 Name</label><input class="adm-input" id="adm-listing-name-1" placeholder="e.g. The Grand Hotel"></div>
+        <div class="adm-field"><label class="adm-label">Listing 2 Name</label><input class="adm-input" id="adm-listing-name-2" placeholder="e.g. The Restaurant"></div>
       </div>
-      <div class="adm-sec-title" style="margin-top:12px">⭐ Reviews — TripAdvisor</div>
-      <div class="adm-row"><div class="adm-field"><label class="adm-label">Hotel Listing URL</label><input class="adm-input" id="adm-ta1" placeholder="https://tripadvisor.co.uk/Hotel_Review-…"></div></div>
-      <div class="adm-row"><div class="adm-field"><label class="adm-label">Restaurant Listing URL</label><input class="adm-input" id="adm-ta2" placeholder="https://tripadvisor.co.uk/Restaurant_Review-…"></div></div>
-      <div class="adm-sec-title" style="margin-top:12px">📝 Handpicked Reviews</div>
-      <div id="adm-reviews"></div>
-      <button class="btn-adm-add" onclick="addRow('adm-reviews',{platform:'google',author:'',rating:5,date:'',text:''},reviewRow)">+ Add Handpicked Review</button>
+      <button class="btn-adm-add" style="background:rgba(248,113,113,.1);border-color:rgba(248,113,113,.3);color:var(--red);margin-top:4px;" onclick="clearAllReviews()">🗑 Clear All Stored Reviews (cannot be undone)</button>
     </div>
 
     <div class="adm-section">
@@ -1239,16 +1329,20 @@ function buildSlides() {
     fetchOTD(mm, dd, otdEl);
   }
 
-  // 2 — Birthdays
-  var bdays = (cfg.birthdays || []).filter(function(b){ return b.date === key; });
-  bdays.forEach(function(b) {
-    var el = bdaySlide(b, null);
-    slides.push(el);
-    fetchWikiExtra(b.type, mm, dd, el);
-  });
+  // 6 — Today's Birthdays
+  if (isEnabled('birthdays')) {
+    var bdays = (cfg.birthdays || []).filter(function(b){ return b.date === key; });
+    bdays.forEach(function(b) {
+      var el = bdaySlide(b, null);
+      slides.push(el);
+      fetchWikiExtra(b.type, mm, dd, el);
+    });
+  }
 
-  // 3 — New Starter
-  if (cfg.new_starter && cfg.new_starter.enabled) slides.push(newStarterSlide(cfg.new_starter));
+  // 7 — New Starter
+  if (isEnabled('newstarter') && cfg.new_starter && cfg.new_starter.enabled) {
+    slides.push(newStarterSlide(cfg.new_starter));
+  }
 
   // 4 — International Day
   if (isEnabled('intlday')) {
@@ -1284,7 +1378,9 @@ function buildSlides() {
   }
 
   // 10 — Announcements
-  (cfg.announcements || []).forEach(function(a){ slides.push(annoSlide(a)); });
+  if (isEnabled('announcements')) {
+    (cfg.announcements || []).forEach(function(a){ slides.push(annoSlide(a)); });
+  }
 
   // 11 — Week at a Glance
   if (isEnabled('weekglance') && cfg.week_at_a_glance) {
@@ -1343,12 +1439,14 @@ function buildSlides() {
   }
 
   // 22 — Image Slides
-  (cfg.image_slides || []).forEach(function(s){ slides.push(imgSlide(s)); });
+  if (isEnabled('imageslides')) {
+    (cfg.image_slides || []).forEach(function(s){ slides.push(imgSlide(s)); });
+  }
 
   // 23 — Reviews (TripAdvisor only)
   if (isEnabled('reviews') && cfg.reviews) {
-    var ta1  = reviewSlide("ta1");     slides.push(ta1);  renderReviews("ta1",  (cfg.reviews.handpicked||[]).filter(function(r){ return r.platform==="ta1"; })  || SAMPLE_REVIEWS.ta1, "4.7");
-    var ta2  = reviewSlide("ta2");     slides.push(ta2);  renderReviews("ta2",  (cfg.reviews.handpicked||[]).filter(function(r){ return r.platform==="ta2"; })  || SAMPLE_REVIEWS.ta2, "4.6");
+    var ta1el = reviewSlide("ta1"); slides.push(ta1el); loadAndRenderReviews("ta1", ta1el);
+    var ta2el = reviewSlide("ta2"); slides.push(ta2el); loadAndRenderReviews("ta2", ta2el);
   }
 
   // 24 — Suggestion Box
@@ -1744,7 +1842,7 @@ function lbSlide(board) {
     var chgCls= p.change > 0 ? "up" : p.change < 0 ? "down" : "same";
     var chgTx = p.change > 0 ? "▲ +" + p.change : p.change < 0 ? "▼ " + p.change : "—";
     var pct   = Math.round(p.points / max * 100);
-    return '<div class="lb-row' + rCls + '" data-pct="' + pct + '"><div class="lb-bar" style="width:0%"></div><div class="lb-rank">' + rank + '</div><div class="lb-medal">' + (medals[i]||"") + '</div><div class="lb-info"><div class="lb-name">' + esc(p.name) + '</div>' + (p.title ? '<div class="lb-job">' + esc(p.title) + '</div>' : "") + '</div><div style="text-align:right"><div class="lb-score">' + p.points + '</div><div class="lb-pts">pts</div><div class="lb-chg ' + chgCls + '">' + chgTx + '</div></div></div>';
+    return '<div class="lb-row' + rCls + '" data-pct="' + pct + '"><div class="lb-bar" style="width:0%"></div><div class="lb-rank">' + rank + '</div><div class="lb-medal">' + (medals[i]||"") + '</div><div class="lb-info"><div class="lb-name">' + esc(p.name) + '</div></div><div style="text-align:right"><div class="lb-score">' + p.points + '</div><div class="lb-pts">pts</div><div class="lb-chg ' + chgCls + '">' + chgTx + '</div></div></div>';
   }).join("");
   el.innerHTML =
     '<div class="slide-hdr"><span class="slide-icon">🏅</span><span class="slide-title">Team Leaderboard</span><span class="slide-tag" style="background:rgba(251,191,36,.15);color:var(--amber)">' + esc((sorted[0]&&sorted[0].name)||"") + ' leads!</span></div>' +
@@ -1856,33 +1954,169 @@ function imgSlide(s) {
 }
 
 // ── REVIEWS ──
+var REV_KEY = "nb_reviews_v1";
+
+function getStoredReviews() {
+  try { return JSON.parse(localStorage.getItem(REV_KEY) || "[]"); } catch(e) { return []; }
+}
+function saveStoredReviews(arr) {
+  localStorage.setItem(REV_KEY, JSON.stringify(arr));
+}
+
+function loadAndRenderReviews(platform, el) {
+  var stored   = getStoredReviews().filter(function(r){ return r.platform === platform; });
+  var fallback = (cfg && cfg.reviews && cfg.reviews.handpicked || []).filter(function(r){ return r.platform === platform; });
+  var sample   = platform === "ta1" ? SAMPLE_REVIEWS.ta1 : SAMPLE_REVIEWS.ta2;
+  var reviews  = stored.length ? stored : (fallback.length ? fallback : sample);
+  // Sort newest first (stored have a ts field)
+  reviews = reviews.slice().sort(function(a,b){ return (b.ts||0) - (a.ts||0); });
+  var avg = reviews.length ? (reviews.reduce(function(s,r){ return s + (r.rating||5); }, 0) / reviews.length).toFixed(1) : "—";
+  renderReviews(platform, reviews.slice(0,4), avg, reviews.length);
+}
+
 function reviewSlide(platform) {
   var el = mkSlide("zoom");
   el.id = "rev-" + platform;
-  var names = {google:"Google Reviews", ta1:"TripAdvisor — Hotel", ta2:"TripAdvisor — Restaurant"};
-  var icons = {google:"🟡", ta1:"🟢", ta2:"🟢"};
+  // Platform names come from data.json if set, else defaults
+  var defaultNames = {ta1:"TripAdvisor", ta2:"TripAdvisor"};
+  var customNames  = cfg && cfg.reviews && cfg.reviews.listing_names || {};
+  var name1 = (cfg && cfg.reviews && cfg.reviews.listing_name_1) || "Hotel / Venue";
+  var name2 = (cfg && cfg.reviews && cfg.reviews.listing_name_2) || "Restaurant / Venue";
+  var name  = platform === "ta1" ? name1 : name2;
   el.innerHTML =
-    '<div class="slide-hdr"><span class="slide-icon">⭐</span><span class="slide-title">' + (names[platform]||platform) + '</span></div>' +
+    '<div class="slide-hdr"><span class="slide-icon">⭐</span><span class="slide-title">' + esc(name) + ' — Reviews</span></div>' +
     '<div class="review-wrap">' +
-      '<div class="review-platform-hdr"><div class="review-platform-logo">' + (icons[platform]||"⭐") + '</div><div class="review-platform-name">' + (names[platform]||platform) + '</div><div class="review-stars-big" id="rev-stars-' + platform + '">★★★★★</div><div class="review-score" id="rev-score-' + platform + '">—</div></div>' +
+      '<div class="review-platform-hdr">' +
+        '<div class="review-platform-logo">🟢</div>' +
+        '<div class="review-platform-name">TripAdvisor · ' + esc(name) + '</div>' +
+        '<div style="display:flex;align-items:center;gap:8px;">' +
+          '<div class="review-stars-big" id="rev-stars-' + platform + '">★★★★★</div>' +
+          '<div class="review-score" id="rev-score-' + platform + '">—</div>' +
+          '<div id="rev-count-' + platform + '" style="font-size:11px;color:var(--text-muted);font-family:var(--font-h);"></div>' +
+        '</div>' +
+      '</div>' +
       '<div class="review-cards" id="rev-cards-' + platform + '"><div class="loading-msg"><div class="spinner"></div>Loading…</div></div>' +
     '</div>';
   return el;
 }
 
-function renderReviews(platform, reviews, rating) {
+function renderReviews(platform, reviews, rating, total) {
   var scoreEl = document.getElementById("rev-score-" + platform);
+  var starsEl = document.getElementById("rev-stars-" + platform);
+  var countEl = document.getElementById("rev-count-" + platform);
   var cardsEl = document.getElementById("rev-cards-" + platform);
-  if (!scoreEl || !cardsEl) return;
-  if (rating) scoreEl.textContent = rating;
-  if (!reviews || !reviews.length) { cardsEl.innerHTML = '<div class="loading-msg">No reviews yet</div>'; return; }
+  if (!cardsEl) return;
+  if (scoreEl && rating) scoreEl.textContent = rating;
+  if (starsEl && rating) {
+    var r = Math.round(parseFloat(rating));
+    starsEl.textContent = "★".repeat(r) + "☆".repeat(5-r);
+  }
+  if (countEl && total) countEl.textContent = total + " review" + (total !== 1 ? "s" : "");
+  if (!reviews || !reviews.length) { cardsEl.innerHTML = '<div class="loading-msg">No reviews yet — click ⭐ Add Review to get started</div>'; return; }
   cardsEl.innerHTML = reviews.slice(0,4).map(function(r,i){
-    var stars   = starStr(r.rating || 5);
-    var init    = (r.author||"?").split(" ").map(function(n){ return n[0]; }).join("").slice(0,2).toUpperCase();
-    var colour  = AVATAR_COLOURS[i % AVATAR_COLOURS.length];
+    var stars  = "★".repeat(Math.round(r.rating||5)) + "☆".repeat(5-Math.round(r.rating||5));
+    var init   = (r.author||"?").split(" ").map(function(n){ return n[0]; }).join("").slice(0,2).toUpperCase();
+    var colour = AVATAR_COLOURS[i % AVATAR_COLOURS.length];
     return '<div class="review-card"><div class="review-card-top"><div class="review-avatar" style="background:' + colour + '">' + esc(init) + '</div><div><div class="review-name">' + esc(r.author||"Anonymous") + '</div><div class="review-date">' + esc(r.date||"") + '</div></div><div class="review-stars">' + stars + '</div></div><div class="review-text">' + esc(r.text||"") + '</div></div>';
   }).join("");
 }
+
+// ── REVIEW QUICK-ADD ──
+var revStarVal = 5;
+
+function openReviewAdd() {
+  revStarVal = 5;
+  setRevStar(5);
+  document.getElementById("ra-author").value = "";
+  document.getElementById("ra-text").value = "";
+  // Set listing names in dropdown if configured
+  if (cfg && cfg.reviews) {
+    var n1 = cfg.reviews.listing_name_1 || "Hotel / Venue";
+    var n2 = cfg.reviews.listing_name_2 || "Restaurant / Venue";
+    document.getElementById("ra-opt-ta1").textContent = "🏨 " + n1;
+    document.getElementById("ra-opt-ta2").textContent = "🍽️ " + n2;
+  }
+  renderRevHistory();
+  document.getElementById("rev-add-overlay").classList.add("open");
+  clearInterval(timer);
+  setTimeout(function(){ document.getElementById("ra-author").focus(); }, 200);
+}
+
+function closeReviewAdd() {
+  document.getElementById("rev-add-overlay").classList.remove("open");
+  startPlay();
+}
+
+function setRevStar(n) {
+  revStarVal = n;
+  document.querySelectorAll(".rev-star-btn").forEach(function(btn){
+    btn.classList.toggle("active", parseInt(btn.dataset.v) <= n);
+  });
+}
+
+function saveReview() {
+  var author = document.getElementById("ra-author").value.trim();
+  var text   = document.getElementById("ra-text").value.trim();
+  var plat   = document.getElementById("ra-platform").value;
+  if (!author) { document.getElementById("ra-author").focus(); return; }
+  if (!text)   { document.getElementById("ra-text").focus();   return; }
+  var now     = new Date();
+  var dateStr = now.toLocaleDateString("en-GB", {day:"numeric", month:"short", year:"numeric"});
+  var review  = {platform: plat, author: author, rating: revStarVal, text: text, date: dateStr, ts: now.getTime()};
+  var all     = getStoredReviews();
+  all.unshift(review); // newest first
+  saveStoredReviews(all);
+  // Refresh the slide on screen immediately
+  var el = document.getElementById("rev-" + plat);
+  if (el) loadAndRenderReviews(plat, el);
+  // Reset form for next entry
+  document.getElementById("ra-author").value = "";
+  document.getElementById("ra-text").value   = "";
+  revStarVal = 5;
+  setRevStar(5);
+  renderRevHistory();
+  // Brief flash to confirm
+  var btn = document.querySelector(".rev-add-save");
+  btn.textContent = "✓ Saved!";
+  btn.style.background = "var(--green)";
+  setTimeout(function(){ btn.textContent = "✓ Add Review"; }, 1500);
+}
+
+function renderRevHistory() {
+  var all     = getStoredReviews().slice(0, 6);
+  var histEl  = document.getElementById("ra-history");
+  if (!histEl) return;
+  if (!all.length) { histEl.innerHTML = '<div style="font-size:12px;color:var(--text-muted);">No reviews added yet.</div>'; return; }
+  var n1 = (cfg && cfg.reviews && cfg.reviews.listing_name_1) || "Venue 1";
+  var n2 = (cfg && cfg.reviews && cfg.reviews.listing_name_2) || "Venue 2";
+  histEl.innerHTML = all.map(function(r, i){
+    var pName = r.platform === "ta1" ? n1 : n2;
+    var stars = "★".repeat(Math.round(r.rating||5));
+    return '<div class="rev-hist-item"><span class="rev-hist-name">' + esc(r.author) + '</span><span class="rev-hist-platform">' + esc(pName) + '</span><span class="rev-hist-stars">' + stars + '</span><button class="rev-hist-del" onclick="deleteReview(' + i + ')">✕</button></div>';
+  }).join("");
+}
+
+function deleteReview(idx) {
+  var all = getStoredReviews();
+  if (idx < 0 || idx >= all.length) return;
+  var plat = all[idx].platform;
+  all.splice(idx, 1);
+  saveStoredReviews(all);
+  renderRevHistory();
+  var el = document.getElementById("rev-" + plat);
+  if (el) loadAndRenderReviews(plat, el);
+}
+
+function clearAllReviews() {
+  if (!confirm("Clear ALL stored reviews? This cannot be undone.")) return;
+  localStorage.removeItem(REV_KEY);
+  ["ta1","ta2"].forEach(function(p){
+    var el = document.getElementById("rev-" + p);
+    if (el) loadAndRenderReviews(p, el);
+  });
+  renderRevHistory();
+}
+
 
 function suggestionSlide(formUrl) {
   var el = mkSlide("zoom");
@@ -2384,7 +2618,11 @@ function renderSlideOrder() {
     worldclock: "🌍 World Clock",
     monthlyaward: "🏆 Employee of the Month",
     milestones: "🎯 Company Milestones",
-    deptspotlight: "💼 Department Spotlight"
+    deptspotlight: "💼 Department Spotlight",
+    announcements: "📢 Announcements",
+    birthdays: "🎂 Today's Birthdays",
+    newstarter: "🌟 New Starter",
+    imageslides: "🖼️ Image Slides"
   };
   
   var toggles = cfg.slide_toggles || {};
@@ -2453,7 +2691,7 @@ function populateAdmin() {
   document.getElementById("adm-dur").value      = cfg.slide_duration || 10;
   // Slide Toggles (default all enabled)
   var toggles = cfg.slide_toggles || {};
-  var toggleIds = ['newsheadlines','bankholidays','weekweather','upcomingbirthdays','onthisday','intlday','quote','word','art','funstat','weeklywin','weekglance','kpis','thermometer','numbers','supplies','training','countdowns','leaderboard','status','tasks','meme','reviews','suggestionbox','instagram','songofday','tipofday','teamphoto','worldclock','monthlyaward','milestones','deptspotlight'];
+  var toggleIds = ['newsheadlines','bankholidays','weekweather','upcomingbirthdays','onthisday','intlday','quote','word','art','funstat','weeklywin','weekglance','kpis','thermometer','numbers','supplies','training','countdowns','leaderboard','status','tasks','meme','reviews','suggestionbox','instagram','songofday','tipofday','teamphoto','worldclock','monthlyaward','milestones','deptspotlight','announcements','birthdays','newstarter','imageslides'];
   toggleIds.forEach(function(id){
     var el = document.getElementById('toggle-' + id);
     if (el) el.checked = toggles[id] !== false;
@@ -2483,11 +2721,9 @@ function populateAdmin() {
   document.getElementById("adm-week-label").value = (cfg.week_at_a_glance && cfg.week_at_a_glance.week) || "";
   renderWeekDays((cfg.week_at_a_glance && cfg.week_at_a_glance.days) || []);
   // Reviews
-  document.getElementById("adm-gplace").value   = (cfg.reviews && cfg.reviews.google_place_id) || "";
-  document.getElementById("adm-gapikey").value  = (cfg.reviews && cfg.reviews.google_api_key)  || "";
-  document.getElementById("adm-ta1").value      = (cfg.reviews && cfg.reviews.ta_url_1)        || "";
-  document.getElementById("adm-ta2").value      = (cfg.reviews && cfg.reviews.ta_url_2)        || "";
-  renderList("adm-reviews",  (cfg.reviews && cfg.reviews.handpicked) || [], reviewRow);
+  document.getElementById("adm-listing-name-1").value = (cfg.reviews && cfg.reviews.listing_name_1) || "";
+  document.getElementById("adm-listing-name-2").value = (cfg.reviews && cfg.reviews.listing_name_2) || "";
+  renderList("adm-reviews", [], reviewRow);
   // Suggestion
   document.getElementById("adm-suggest-url").value = (cfg.suggestion_box && cfg.suggestion_box.form_url) || "";
   // Lists
@@ -2594,7 +2830,7 @@ function exportData() {
   out.slide_duration = Number(document.getElementById("adm-dur").value) || 10;
   // Slide Toggles
   out.slide_toggles = {};
-  var toggleIds = ['newsheadlines','bankholidays','weekweather','upcomingbirthdays','onthisday','intlday','quote','word','art','funstat','weeklywin','weekglance','kpis','thermometer','numbers','supplies','training','countdowns','leaderboard','status','tasks','meme','reviews','suggestionbox','instagram','songofday','tipofday','teamphoto','worldclock','monthlyaward','milestones','deptspotlight'];
+  var toggleIds = ['newsheadlines','bankholidays','weekweather','upcomingbirthdays','onthisday','intlday','quote','word','art','funstat','weeklywin','weekglance','kpis','thermometer','numbers','supplies','training','countdowns','leaderboard','status','tasks','meme','reviews','suggestionbox','instagram','songofday','tipofday','teamphoto','worldclock','monthlyaward','milestones','deptspotlight','announcements','birthdays','newstarter','imageslides'];
   toggleIds.forEach(function(id){
     var el = document.getElementById('toggle-' + id);
     if (el) out.slide_toggles[id] = el.checked;
@@ -2608,7 +2844,7 @@ function exportData() {
     var ta = document.getElementById("adm-week-" + d);
     return {day:d, events:ta ? ta.value.split("\n").map(function(s){ return s.trim(); }).filter(Boolean) : []};
   })};
-  out.reviews = {google_place_id:document.getElementById("adm-gplace").value, google_api_key:document.getElementById("adm-gapikey").value, ta_url_1:document.getElementById("adm-ta1").value, ta_url_2:document.getElementById("adm-ta2").value, handpicked:readList("adm-reviews","platform,author,rating,date,text")};
+  out.reviews = {listing_name_1: document.getElementById("adm-listing-name-1").value || "Hotel / Venue", listing_name_2: document.getElementById("adm-listing-name-2").value || "Restaurant / Venue", handpicked: (cfg && cfg.reviews && cfg.reviews.handpicked) || []};
   out.suggestion_box = {form_url:document.getElementById("adm-suggest-url").value};
   out.announcements      = readList("adm-annos","title,body,priority");
   out.kpis               = readList("adm-kpis","label,value,change,trend");
