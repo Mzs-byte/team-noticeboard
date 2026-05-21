@@ -21,18 +21,29 @@ You can edit everything through the built-in **Admin Panel** — no need to touc
 
 ---
 
-## The 10 slides
+## The slides
 
 1. **Announcements** — notices, colour-coded by priority (normal / important / urgent).
 2. **On This Day in History** — a real historical event, fetched automatically.
 3. **International Day** — always shows the *next upcoming* one ("Coming up in X days").
 4. **Upcoming Bank Holidays** — UK holidays with a live countdown, fetched automatically.
 5. **Weather** — live 7-day forecast for your city.
-6. **This Week at a Glance** — Mon–Fri events.
+6. **This Week at a Glance** — full week, Monday to Sunday.
 7. **KPIs** — up to 12 metrics with ▲ / ▼ / ▬ trend arrows; the grid auto-sizes.
 8. **Target Thermometer** — animated progress toward a monthly goal (set up for Hilton Honors Enrollments).
 9. **Leaderboard** — your team ranked by points, with animated bars.
 10. **Employee of the Month** — name, role, blurb and a photo.
+11–14. **Reviews** — four separate slides, one per source: TripAdvisor Outlet 1,
+   TripAdvisor Outlet 2, Stay Experience, and Mixed (Google / Booking.com / other).
+   Each keeps the latest 3 reviews and shows one at a time, rotating to the next
+   each loop, with the source's average star rating shown.
+
+### Adding reviews
+Reviews are added manually (there's no reliable free way to auto-pull TripAdvisor
+into a static site). Tap **⭐ Add Review** in the top bar, pick the source, type the
+name, tap the stars, paste the text — it saves on the TV PC and appears instantly.
+Only the latest 3 per source are kept; the oldest drops off automatically. Set the
+display name for each source in the admin panel under **Review Source Names**.
 
 ### Weather-reactive theme
 The whole board re-tints itself to the current conditions — warm gold for clear
@@ -96,7 +107,7 @@ Buttons in the header: **⇅ Reorder** (drag slides into any order) and **Close*
 - **Employee of the Month** — name, role, month, blurb, and a **photo URL**.
   The photo must be a web link (upload the image into your GitHub repo and use
   its URL, or link one already online). No photo? Initials show instead.
-- **Week at a Glance** — one box per weekday; type one event per line.
+- **Week at a Glance** — one box per day, Monday to Sunday; type one event per line.
 - **Weather City** (General Settings) — drives both the forecast and the theme.
 - **Ticker** — the scrolling messages along the bottom.
 

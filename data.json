@@ -12,7 +12,11 @@
     "kpis",
     "thermometer",
     "leaderboard",
-    "employeeofmonth"
+    "employeeofmonth",
+    "rev_ta1",
+    "rev_ta2",
+    "rev_stay",
+    "rev_mixed"
   ],
   "slide_toggles": {
     "announcements": true,
@@ -24,7 +28,11 @@
     "kpis": true,
     "thermometer": true,
     "leaderboard": true,
-    "employeeofmonth": true
+    "employeeofmonth": true,
+    "rev_ta1": true,
+    "rev_ta2": true,
+    "rev_stay": true,
+    "rev_mixed": true
   },
   "announcements": [
     {
@@ -39,14 +47,54 @@
     }
   ],
   "kpis": [
-    { "label": "Occupancy", "value": "82%", "change": "5% vs last wk", "trend": "up" },
-    { "label": "Avg Review Score", "value": "4.6", "change": "0.1 vs last mo", "trend": "up" },
-    { "label": "Complaints", "value": "3%", "change": "1% vs last wk", "trend": "down" },
-    { "label": "Staff Present", "value": "93%", "change": "on target", "trend": "neutral" },
-    { "label": "Repeat Guests", "value": "47%", "change": "4% vs last mo", "trend": "up" },
-    { "label": "Upsell Rate", "value": "21%", "change": "3% vs last wk", "trend": "down" },
-    { "label": "Cleanliness", "value": "96%", "change": "2% vs last wk", "trend": "up" },
-    { "label": "Bar Sales", "value": "73%", "change": "6% vs last wk", "trend": "up" }
+    {
+      "label": "Occupancy",
+      "value": "82%",
+      "change": "5% vs last wk",
+      "trend": "up"
+    },
+    {
+      "label": "Avg Review Score",
+      "value": "4.6",
+      "change": "0.1 vs last mo",
+      "trend": "up"
+    },
+    {
+      "label": "Complaints",
+      "value": "3%",
+      "change": "1% vs last wk",
+      "trend": "down"
+    },
+    {
+      "label": "Staff Present",
+      "value": "93%",
+      "change": "on target",
+      "trend": "neutral"
+    },
+    {
+      "label": "Repeat Guests",
+      "value": "47%",
+      "change": "4% vs last mo",
+      "trend": "up"
+    },
+    {
+      "label": "Upsell Rate",
+      "value": "21%",
+      "change": "3% vs last wk",
+      "trend": "down"
+    },
+    {
+      "label": "Cleanliness",
+      "value": "96%",
+      "change": "2% vs last wk",
+      "trend": "up"
+    },
+    {
+      "label": "Bar Sales",
+      "value": "73%",
+      "change": "6% vs last wk",
+      "trend": "up"
+    }
   ],
   "target": {
     "label": "Hilton Honors Enrollments",
@@ -56,39 +104,131 @@
     "message": "Let's hit our monthly enrollment goal!"
   },
   "leaderboard": [
-    { "name": "Fatmata", "points": 0, "change": 0 },
-    { "name": "Gifty", "points": 0, "change": 0 },
-    { "name": "Hawa", "points": 0, "change": 0 },
-    { "name": "Jordan", "points": 0, "change": 0 },
-    { "name": "Kwai", "points": 0, "change": 0 },
-    { "name": "Lily", "points": 0, "change": 0 },
-    { "name": "Lucia", "points": 0, "change": 0 },
-    { "name": "Mahesh", "points": 0, "change": 0 },
-    { "name": "Rahul", "points": 0, "change": 0 },
-    { "name": "Saul", "points": 0, "change": 0 },
-    { "name": "Sergio", "points": 0, "change": 0 },
-    { "name": "Valenky", "points": 0, "change": 0 }
+    {
+      "name": "Fatmata",
+      "points": 0,
+      "change": 0
+    },
+    {
+      "name": "Gifty",
+      "points": 0,
+      "change": 0
+    },
+    {
+      "name": "Hawa",
+      "points": 0,
+      "change": 0
+    },
+    {
+      "name": "Jordan",
+      "points": 0,
+      "change": 0
+    },
+    {
+      "name": "Kwai",
+      "points": 0,
+      "change": 0
+    },
+    {
+      "name": "Lily",
+      "points": 0,
+      "change": 0
+    },
+    {
+      "name": "Lucia",
+      "points": 0,
+      "change": 0
+    },
+    {
+      "name": "Mahesh",
+      "points": 0,
+      "change": 0
+    },
+    {
+      "name": "Rahul",
+      "points": 0,
+      "change": 0
+    },
+    {
+      "name": "Saul",
+      "points": 0,
+      "change": 0
+    },
+    {
+      "name": "Sergio",
+      "points": 0,
+      "change": 0
+    },
+    {
+      "name": "Valenky",
+      "points": 0,
+      "change": 0
+    }
   ],
   "employee_of_month": {
     "name": "Lily",
     "role": "Front Office",
     "month": "This Month",
     "photo_url": "",
-    "blurb": "Lily went above and beyond this month — covering extra shifts, training two new starters, and earning glowing guest feedback. A thoroughly deserved win!"
+    "blurb": "Lily went above and beyond this month \u2014 covering extra shifts, training two new starters, and earning glowing guest feedback. A thoroughly deserved win!"
   },
   "week_at_a_glance": {
     "week": "This Week",
     "days": [
-      { "day": "Mon", "events": ["Team standup 9am", "Client visit 2pm"] },
-      { "day": "Tue", "events": ["Finance review 10am"] },
-      { "day": "Wed", "events": ["All-hands 10am", "Fire drill 3pm"] },
-      { "day": "Thu", "events": [] },
-      { "day": "Fri", "events": ["Early finish 4pm", "Team drinks 5pm"] }
+      {
+        "day": "Mon",
+        "events": [
+          "Team standup 9am",
+          "Client visit 2pm"
+        ]
+      },
+      {
+        "day": "Tue",
+        "events": [
+          "Finance review 10am"
+        ]
+      },
+      {
+        "day": "Wed",
+        "events": [
+          "All-hands 10am",
+          "Fire drill 3pm"
+        ]
+      },
+      {
+        "day": "Thu",
+        "events": []
+      },
+      {
+        "day": "Fri",
+        "events": [
+          "Early finish 4pm",
+          "Team drinks 5pm"
+        ]
+      },
+      {
+        "day": "Sat",
+        "events": [
+          "Brunch service 11am"
+        ]
+      },
+      {
+        "day": "Sun",
+        "events": [
+          "Late checkout noon"
+        ]
+      }
     ]
   },
   "ticker": [
     "Welcome to the team noticeboard",
     "All-Hands meeting Friday at 10am",
     "Let's smash our Hilton Honors target this month!"
-  ]
+  ],
+  "review_labels": {
+    "rev_ta1": "TripAdvisor \u2014 Outlet 1",
+    "rev_ta2": "TripAdvisor \u2014 Outlet 2",
+    "rev_stay": "Stay Experience",
+    "rev_mixed": "Guest Reviews"
+  }
 }
