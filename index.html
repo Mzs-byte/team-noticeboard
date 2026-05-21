@@ -223,6 +223,45 @@ body{transition:background 3s var(--tA);}
 .eom .role{font-size:18px;color:var(--accent);font-weight:600;}
 .eom .blurb{font-size:17px;color:var(--dim);line-height:1.65;padding:16px 20px;background:var(--surf2);border-radius:14px;border-left:4px solid var(--gold);margin-top:4px;}
 
+/* ── DAYS SINCE COUNTERS ── */
+.ds{flex:1;display:grid;gap:14px;}
+.ds.c1{grid-template-columns:1fr;}
+.ds.c2{grid-template-columns:1fr 1fr;}
+.ds.c3{grid-template-columns:repeat(3,1fr);}
+.ds.c4{grid-template-columns:repeat(2,1fr);grid-template-rows:1fr 1fr;}
+.ds.c6{grid-template-columns:repeat(3,1fr);grid-template-rows:1fr 1fr;}
+.dsc{position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:26px 22px;text-align:center;border-radius:22px;background:var(--surf);border:1px solid var(--line);}
+.dsc .em{font-size:40px;margin-bottom:6px;filter:drop-shadow(0 3px 10px rgba(0,0,0,.4));}
+.dsc .num{font-family:var(--fd);font-weight:900;line-height:.9;letter-spacing:-2px;color:var(--accent);}
+.ds.c1 .num{font-size:140px}.ds.c2 .num{font-size:104px}.ds.c3 .num,.ds.c4 .num{font-size:80px}.ds.c6 .num{font-size:62px}
+.dsc .unit{font-family:var(--fd);font-weight:700;font-size:18px;color:var(--dim);margin-top:2px;}
+.dsc .lab{font-size:14px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--dim);margin-top:12px;max-width:90%;}
+.dsc .fresh{font-family:var(--fd);font-weight:700;font-size:30px;color:var(--green);line-height:1.1;}
+.dsc .togo{font-size:11px;color:var(--muted);margin-top:8px;letter-spacing:.5px;}
+.dsc .mb{position:absolute;top:12px;right:14px;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;
+  padding:4px 11px;border-radius:30px;background:var(--surf2);border:1px solid var(--line);color:var(--accent);}
+/* milestone tiers */
+.dsc.t7{border-color:rgba(94,200,255,.4);box-shadow:0 0 28px rgba(94,200,255,.14);}
+.dsc.t7 .num{color:var(--accent);}
+.dsc.t30{border-color:rgba(255,209,102,.45);box-shadow:0 0 34px rgba(255,209,102,.18);}
+.dsc.t30 .num{color:var(--gold);animation:breathe 3s ease-in-out infinite;}
+.dsc.t30 .mb{color:var(--gold);background:rgba(255,209,102,.12);border-color:rgba(255,209,102,.3);}
+.dsc.t100{border-color:rgba(255,174,92,.5);box-shadow:0 0 42px rgba(255,174,92,.22);}
+.dsc.t100 .num{background:linear-gradient(92deg,var(--gold),var(--amber));-webkit-background-clip:text;background-clip:text;color:transparent;animation:breathe 2.4s ease-in-out infinite;}
+.dsc.t100 .mb{color:var(--amber);background:rgba(255,174,92,.14);border-color:rgba(255,174,92,.35);}
+.dsc.t365{border:none;animation:breathe 2s ease-in-out infinite;}
+.dsc.t365::before{content:'';position:absolute;inset:0;border-radius:22px;padding:2px;
+  background:linear-gradient(120deg,var(--gold),var(--amber),var(--accent2),var(--gold));background-size:300% 300%;
+  animation:borderflow 4s linear infinite;-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;}
+.dsc.t365 .num{background:linear-gradient(92deg,var(--gold),var(--amber));-webkit-background-clip:text;background-clip:text;color:transparent;}
+.dsc.t365 .mb{color:#1a1407;background:linear-gradient(92deg,var(--gold),var(--amber));border:none;}
+@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+@keyframes borderflow{0%{background-position:0% 50%}100%{background-position:300% 50%}}
+.dsc .spark{position:absolute;font-size:14px;opacity:0;pointer-events:none;animation:sparkle 2.6s ease-in-out infinite;}
+@keyframes sparkle{0%,100%{opacity:0;transform:scale(.6)}50%{opacity:.9;transform:scale(1.1)}}
+
 /* ── REVIEWS ── */
 .rv{flex:1;display:flex;flex-direction:column;padding:38px 48px;position:relative;overflow:hidden;}
 .rv .glow{position:absolute;top:-80px;left:-60px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,var(--glowA),transparent 70%);}
@@ -480,6 +519,12 @@ body{transition:background 3s var(--tA);}
       <div class="ahint">💡 Photo must be a web link (e.g. upload to your GitHub repo and use its URL). No photo? Initials show instead.</div>
     </div>
     <div class="as">
+      <div class="ast">📆 Days Since Counters</div>
+      <div id="a-dscounters"></div>
+      <button class="aadd" onclick="addRow('a-dscounters',{emoji:'📆',label:'',start:todayISO()},dsRow)">+ Add Counter</button>
+      <div class="ahint">💡 Each counts up automatically from its start date. Hit “Reset to today” when the streak breaks (e.g. a sick call). Milestones glow at 7, 30, 100 and 365 days.</div>
+    </div>
+    <div class="as">
       <div class="ast">🗓️ Week at a Glance</div>
       <div class="arow"><div class="af"><label class="al">Week Label</label><input class="ai" id="a-wklabel" placeholder="This Week"></div></div>
       <div id="a-wkdays"></div>
@@ -557,6 +602,7 @@ const TOGGLE_LABELS = {
 announcements:"📢 Announcements", onthisday:"📅 On This Day", intlday:"🌍 International Day",
 bankholidays:"📅 Bank Holidays", weather:"🌤️ Weather", weekglance:"🗓️ Week at a Glance",
 kpis:"📊 KPIs", thermometer:"🎯 Target Thermometer", leaderboard:"🏅 Leaderboard", employeeofmonth:"🌟 Employee of the Month",
+dayssince:"📆 Days Since Counters",
 rev_ta1:"⭐ TripAdvisor — Outlet 1", rev_ta2:"⭐ TripAdvisor — Outlet 2", rev_stay:"⭐ Stay Experience", rev_mixed:"⭐ Mixed Reviews"
 };
 const ALL_SLIDES = Object.keys(TOGGLE_LABELS);
@@ -668,6 +714,7 @@ function build(){
     thermometer:()=>{if(cfg.target)slides.push(thermoSlide(cfg.target));},
     leaderboard:()=>{if((cfg.leaderboard||[]).length){lbIdx=slides.length;slides.push(lbSlide(cfg.leaderboard));}},
     employeeofmonth:()=>{if(cfg.employee_of_month&&cfg.employee_of_month.name)slides.push(eomSlide(cfg.employee_of_month));},
+    dayssince:()=>{if((cfg.days_since||[]).length)slides.push(daysSinceSlide(cfg.days_since));},
     rev_ta1:()=>{slides.push(revSlide("rev_ta1"));},
     rev_ta2:()=>{slides.push(revSlide("rev_ta2"));},
     rev_stay:()=>{slides.push(revSlide("rev_stay"));},
@@ -805,6 +852,37 @@ function eomSlide(e){
   el.innerHTML=header("🌟","Employee of the Month",e.month||"")+
     '<div class="eom card"><div class="glow"></div><div class="pw rise">'+photo+'<div class="trophy">🏆</div></div>'+
     '<div class="info"><div class="badge rise">Spotlight</div><h1 class="rise">'+esc(e.name)+'</h1>'+(e.role?'<div class="role rise">'+esc(e.role)+'</div>':'')+(e.blurb?'<div class="blurb rise">'+esc(e.blurb)+'</div>':'')+'</div></div>';
+  return el;
+}
+
+// ════════ DAYS SINCE ════════
+function daysSince(startISO){
+  if(!startISO)return 0;
+  const start=new Date(startISO+"T00:00:00");
+  const now=new Date();const today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  return Math.max(0,Math.round((today-start)/864e5));
+}
+function dsTier(n){return n>=365?"t365":n>=100?"t100":n>=30?"t30":n>=7?"t7":"";}
+function dsBadge(n){return n>=365?"🏆 1 year+":n>=100?"🎉 100+ days":n>=30?"⭐ 30+ days":n>=7?"✨ 1 week+":"";}
+function dsToGo(n){
+  const tiers=[7,30,100,365];
+  for(const t of tiers){if(n<t)return (t-n)+" day"+((t-n)===1?"":"s")+" to "+(t===7?"1 week":t===30?"30":t===100?"100":"1 year")+"!";}
+  return "";
+}
+function daysSinceSlide(list){
+  const el=mk();const items=list.slice(0,6);const n=items.length;
+  const cls=n===1?"c1":n===2?"c2":n===3?"c3":n===4?"c4":"c6";
+  const cards=items.map(c=>{
+    const d=daysSince(c.start);const tier=dsTier(d);const badge=dsBadge(d);
+    const sparks=tier?'<span class="spark" style="top:18px;left:16px">✦</span><span class="spark" style="bottom:20px;right:18px;animation-delay:1.1s">✦</span><span class="spark" style="top:40%;right:24px;animation-delay:.6s">✧</span>':'';
+    const body=d===0
+      ? '<div class="fresh">Reset today —<br>fresh start!</div>'
+      : '<div class="num">'+d+'</div><div class="unit">day'+(d===1?"":"s")+' since</div>';
+    const togo=(d>0&&dsToGo(d))?'<div class="togo">'+dsToGo(d)+'</div>':'';
+    return '<div class="dsc rise '+tier+'">'+sparks+(badge?'<div class="mb">'+badge+'</div>':'')+
+      '<div class="em">'+(c.emoji||"📆")+'</div>'+body+'<div class="lab">'+esc(c.label||"")+'</div>'+togo+'</div>';
+  }).join("");
+  el.innerHTML=header("📆","Days Since")+'<div class="ds '+cls+'">'+cards+'</div>';
   return el;
 }
 
@@ -965,6 +1043,7 @@ function populateAdm(){
   renderList("a-annos",cfg.announcements||[],annoRow);
   renderList("a-kpis",cfg.kpis||[],kpiRow);
   renderList("a-lb",cfg.leaderboard||[],lbRow);
+  renderList("a-dscounters",cfg.days_since||[],dsRow);
   renderList("a-ticker",(cfg.ticker||[]).map(t=>({text:t})),tickerRow);
 }
 function renderList(id,items,fn){const el=$(id);if(!el)return;el.innerHTML="";items.forEach((it,i)=>el.appendChild(fn(it,i)));}
@@ -980,6 +1059,15 @@ function annoRow(a){return row('<div class="af"><label class="al">Title</label><
 function kpiRow(k){return row('<div class="af"><label class="al">Label</label><input class="ai" data-f="label" value="'+esc(k.label)+'"></div><div class="af" style="max-width:90px"><label class="al">Value</label><input class="ai" data-f="value" value="'+esc(k.value)+'"></div><div class="af"><label class="al">Change</label><input class="ai" data-f="change" value="'+esc(k.change)+'"></div><div class="af" style="max-width:100px"><label class="al">Trend</label><select class="asl" data-f="trend"><option'+(k.trend==="up"?" selected":"")+'>up</option><option'+(k.trend==="down"?" selected":"")+'>down</option><option'+((!k.trend||k.trend==="neutral")?" selected":"")+'>neutral</option></select></div><button class="adel" onclick="delRow(this)">✕</button>');}
 function lbRow(p){return row('<div class="af"><label class="al">Name</label><input class="ai" data-f="name" value="'+esc(p.name)+'"></div><div class="af" style="max-width:90px"><label class="al">Points</label><input class="ai" data-f="points" type="number" value="'+(p.points||0)+'"></div><div class="af" style="max-width:90px"><label class="al">Change</label><input class="ai" data-f="change" type="number" value="'+(p.change||0)+'"></div><button class="adel" onclick="delRow(this)">✕</button>');}
 function tickerRow(t){return row('<div class="af"><label class="al">Message</label><input class="ai" data-f="text" value="'+esc(t.text)+'"></div><button class="adel" onclick="delRow(this)">✕</button>');}
+function todayISO(){const n=new Date();return n.getFullYear()+"-"+String(n.getMonth()+1).padStart(2,"0")+"-"+String(n.getDate()).padStart(2,"0");}
+function dsRow(c){
+  return row('<div class="af" style="max-width:64px"><label class="al">Icon</label><input class="ai" data-f="emoji" value="'+esc(c.emoji||"📆")+'"></div>'+
+    '<div class="af"><label class="al">Label</label><input class="ai" data-f="label" value="'+esc(c.label||"")+'" placeholder="Days Since a Sick Call"></div>'+
+    '<div class="af" style="max-width:150px"><label class="al">Start Date</label><input class="ai" data-f="start" type="date" value="'+esc(c.start||todayISO())+'"></div>'+
+    '<button class="adel" style="color:var(--accent);align-self:flex-end;white-space:nowrap;padding:9px 12px" onclick="resetDs(this)">↺ Today</button>'+
+    '<button class="adel" style="align-self:flex-end" onclick="delRow(this)">✕</button>');
+}
+function resetDs(btn){const r=btn.closest(".arow");const inp=r.querySelector('[data-f="start"]');if(inp)inp.value=todayISO();}
 function delRow(b){b.closest(".arow").remove();}
 function addRow(id,def,fn){$(id).appendChild(fn(def));}
 function readList(id,fields){
@@ -1002,6 +1090,7 @@ function exportData(){
   out.announcements=readList("a-annos","title,body,priority");
   out.kpis=readList("a-kpis","label,value,change,trend");
   out.leaderboard=readList("a-lb","name,points,change");
+  out.days_since=readList("a-dscounters","emoji,label,start");
   out.ticker=readList("a-ticker","text").map(t=>t.text).filter(Boolean);
   const blob=new Blob([JSON.stringify(out,null,2)],{type:"application/json"});
   const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="data.json";a.click();

@@ -12,6 +12,7 @@
     "kpis",
     "thermometer",
     "leaderboard",
+    "dayssince",
     "employeeofmonth",
     "rev_ta1",
     "rev_ta2",
@@ -32,7 +33,8 @@
     "rev_ta1": true,
     "rev_ta2": true,
     "rev_stay": true,
-    "rev_mixed": true
+    "rev_mixed": true,
+    "dayssince": true
   },
   "announcements": [
     {
@@ -230,5 +232,22 @@
     "rev_ta2": "TripAdvisor \u2014 Outlet 2",
     "rev_stay": "Stay Experience",
     "rev_mixed": "Guest Reviews"
-  }
+  },
+  "days_since": [
+    {
+      "emoji": "\ud83e\udd12",
+      "label": "Days Since a Sick Call",
+      "start": "2026-05-09"
+    },
+    {
+      "emoji": "\ud83d\udee1\ufe0f",
+      "label": "Days Accident-Free",
+      "start": "2026-04-08"
+    },
+    {
+      "emoji": "\u2b50",
+      "label": "Days Since Last Complaint",
+      "start": "2026-05-16"
+    }
+  ]
 }

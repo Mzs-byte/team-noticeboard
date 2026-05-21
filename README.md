@@ -33,7 +33,11 @@ You can edit everything through the built-in **Admin Panel** — no need to touc
 8. **Target Thermometer** — animated progress toward a monthly goal (set up for Hilton Honors Enrollments).
 9. **Leaderboard** — your team ranked by points, with animated bars.
 10. **Employee of the Month** — name, role, blurb and a photo.
-11–14. **Reviews** — four separate slides, one per source: TripAdvisor Outlet 1,
+11. **Days Since** — automatic "X days since…" counters (sick call, accident-free, etc.)
+    that climb on their own. Several counters per slide; each glows and celebrates
+    at milestones (7, 30, 100, 365 days). Add/remove counters and reset any one to
+    "today" with one tap in the admin panel.
+12–15. **Reviews** — four separate slides, one per source: TripAdvisor Outlet 1,
    TripAdvisor Outlet 2, Stay Experience, and Mixed (Google / Booking.com / other).
    Each keeps the latest 3 reviews and shows one at a time, rotating to the next
    each loop, with the source's average star rating shown.
@@ -108,6 +112,9 @@ Buttons in the header: **⇅ Reorder** (drag slides into any order) and **Close*
   The photo must be a web link (upload the image into your GitHub repo and use
   its URL, or link one already online). No photo? Initials show instead.
 - **Week at a Glance** — one box per day, Monday to Sunday; type one event per line.
+- **Days Since** — add counters with an icon, label and start date. Each counts up
+  automatically. Use the **↺ Today** button on a row to reset it to zero when the
+  streak breaks; **+ Add Counter** / **✕** to add or remove them anytime.
 - **Weather City** (General Settings) — drives both the forecast and the theme.
 - **Ticker** — the scrolling messages along the bottom.
 
