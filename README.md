@@ -1,485 +1,181 @@
-# 📋 Team Noticeboard v6
-### A smart, looping digital noticeboard for front office teams — hosted free on GitHub Pages
+# Team Noticeboard
+
+A self-updating digital noticeboard for a TV screen. It loops through a set of
+slides — announcements, weather, KPIs, a leaderboard, employee of the month and
+more — and runs in any web browser. Designed to live on a PC connected to a TV.
 
 ---
 
-## 📱 What it looks like
+## The files
 
-A full-screen rotating display built for a tablet or wall screen. Slides auto-advance every 10 seconds with smooth transitions. A live scrolling ticker runs along the bottom at all times. The colour theme shifts automatically throughout the day — cool blue in the morning, warm amber in the afternoon, deep purple in the evening.
+| File | What it is | Do you edit it? |
+|------|-----------|-----------------|
+| `index.html` | The whole app — all the code and styling. | Rarely. Only if you want to change how something looks/works. |
+| `data.json` | All your content — names, scores, announcements, etc. | **Yes — this is the file you change most.** |
+| `sw.js` | Service worker. Makes the board load fast and stay fresh. | No. |
+| `manifest.json` | Lets the board be "installed" as an app window. | No. |
+| `README.md` | This file. | No. |
 
----
-
-## 🚀 First-Time Setup (10 minutes)
-
-### Step 1 — Create your GitHub repo
-
-1. Go to [github.com](https://github.com) and sign in
-2. Click **+** → **New repository**
-3. Name it `team-noticeboard`
-4. Set it to **Public**
-5. Click **Create repository**
-6. Upload all 4 files: `index.html`, `data.json`, `manifest.json`, `sw.js`
-
-### Step 2 — Enable GitHub Pages
-
-1. In your repo, click **Settings** → **Pages** (left sidebar)
-2. Under **Source**, choose **Deploy from a branch**
-3. Set branch to **main**, folder to **/ (root)**
-4. Click **Save**
-5. Wait 2 minutes — your board will be live at:
-
-👉 `https://mzs-byte.github.io/team-noticeboard/`
-
-### Step 3 — Install on your tablet
-
-1. Open **Chrome** on your Android tablet
-2. Go to your GitHub Pages URL
-3. Tap the **⋮ menu** (top right) → **Add to Home screen**
-4. Tap **Add**
-
-The board opens full screen like a native app — no browser bars, no distractions.
-
-### Step 4 — One-time cache clear (important!)
-
-After installing, do this once to make sure updates always come through:
-
-1. In Chrome → **Settings** → **Site settings** → **All sites**
-2. Find your GitHub Pages URL → tap **Clear & reset**
-3. Reopen the app
-
-From this point on, updates go live within 2–5 minutes of pushing to GitHub.
+You can also edit everything through the built-in **Admin Panel** (see below) — no
+need to touch `data.json` by hand unless you prefer to.
 
 ---
 
-## ✏️ How to Update Content
+## Getting it online (GitHub Pages)
 
-There are two ways to update content:
+1. Create a free GitHub account if you don't have one.
+2. Make a new repository named **`team-noticeboard`**.
+3. Upload `index.html`, `data.json`, `sw.js` and `manifest.json` into it.
+4. In the repo: **Settings → Pages → Source: "Deploy from a branch" → main / root → Save.**
+5. After a minute or two your board is live at:
+   `https://YOUR-USERNAME.github.io/team-noticeboard/`
 
-### Option A — Admin Panel (easiest)
-1. On the board, **hold the clock for 3 seconds**
-2. Enter your 4-digit PIN (default: `1234`)
-3. Edit anything in the panel
-4. Tap **⬇ Download data.json**
-5. Upload the downloaded file to GitHub to replace the old one
+Any time you change `data.json` and upload the new version, the board updates
+itself within a few minutes — no need to restart anything.
 
-### Option B — Edit data.json directly on GitHub
-1. Go to your repo on GitHub
-2. Click `data.json` → pencil icon (Edit)
-3. Make your changes
-4. Click **Commit changes**
-5. Board updates within 2–5 minutes automatically
+> **Note on the address:** the project is set up for a repo called
+> `team-noticeboard`. If you name the repo something else, open `manifest.json`
+> and `sw.js` and change `/team-noticeboard/` to match your repo name.
 
 ---
 
-## 🖥️ All Slides — What Shows & When
+## Showing it on the TV
 
-| Slide | Appears when |
-|---|---|
-| 📅 On This Day in History | Every day — fetched live from Wikipedia |
-| 🎂 Birthday / Anniversary | On the matching day from `birthdays` list |
-| 🌟 New Starter Spotlight | When `new_starter.enabled` is `true` |
-| 🌍 International Day | Automatically on UN international days |
-| 💭 Quote of the Day | Every day — cycles through 50 curated quotes |
-| 🌐 Word of the Day | Every day — cycles through 20 world languages |
-| 📊 Fun Stat of the Day | Every day — live from facts API |
-| 🏆 Weekly Win | When `weekly_win.headline` is set |
-| 📢 Announcements | One slide per item in `announcements` list |
-| 🗓️ Week at a Glance | When `week_at_a_glance` is set |
-| 📊 Key Metrics | When `kpis` list has entries |
-| 🎯 Target Thermometer | When `target` is set |
-| 📞 Important Numbers | When `important_numbers` list has entries |
-| 🧴 Supplies Status | When `supplies` list has entries |
-| 🎓 Training Reminders | When `training_reminders` list has entries |
-| ⏳ Countdowns | When `countdowns` list has entries |
-| 🏅 Leaderboard | When `leaderboard` list has entries |
-| 🚦 Team Status | When `team` list has entries |
-| ✅ Team Tasks | When `tasks` list has entries |
-| 😂 Meme / GIF | When `meme.url` is set |
-| 🖼️ Image Slides | One slide per item in `image_slides` list |
+1. On the PC connected to the TV, open Chrome or Edge.
+2. Go to your board's web address.
+3. Press **F11** for fullscreen.
 
----
+**To make it start automatically when the PC turns on** (so it behaves like an
+app), create a shortcut to Chrome with this target…
 
-## 📝 data.json — Full Reference
-
-### ⚙️ General Settings
-
-```json
-"company_name": "Your Team Name",
-"weather_city": "London",
-"slide_duration": 10,
-"news_rss": "https://feeds.bbci.co.uk/news/business/rss.xml"
+```
+"C:\Program Files\Google\Chrome\Application\chrome.exe" --kiosk --start-fullscreen https://YOUR-USERNAME.github.io/team-noticeboard/
 ```
 
-| Field | Description |
-|---|---|
-| `company_name` | Shown in the top-left corner |
-| `weather_city` | Any city — shows live temperature |
-| `slide_duration` | Seconds per slide (default: 10) |
-| `news_rss` | Any RSS feed — headlines appear in the ticker automatically |
+…and place the shortcut in the Windows Startup folder:
+`C:\Users\YOUR-NAME\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup`
+
+Also worth doing: set the PC's power settings so the screen never sleeps.
 
 ---
 
-### 🌟 New Starter Spotlight
+## The Admin Panel
 
-```json
-"new_starter": {
-  "enabled": true,
-  "name": "Jamie Collins",
-  "role": "Front Office Coordinator",
-  "start_date": "Monday 7 April 2025",
-  "fun_fact": "Jamie has visited 32 countries and speaks three languages!",
-  "welcome_msg": "Please give Jamie a warm welcome to the team!"
-}
-```
+This is how you edit content without touching files.
 
-Set `"enabled": false` to hide the slide when there is no new starter. Change back to `true` when the next person joins.
+1. **Hold down the clock** (top-right of the screen) for **3 seconds**.
+2. Enter the PIN. **Default is `1234`.**
+3. Edit anything, then scroll to the bottom and click **Download data.json**.
+4. Upload that downloaded `data.json` to GitHub to make it permanent.
 
----
+**Change the PIN** at the top of the admin panel. Do this first.
 
-### 🏆 Weekly Win
-
-```json
-"weekly_win": {
-  "headline": "Landed the Henderson Account!",
-  "detail": "After three months of hard work we signed one of our biggest clients.",
-  "who": "Sarah and the Sales Team"
-}
-```
-
-Remove `weekly_win` entirely or leave `headline` blank to hide the slide.
+Two buttons in the admin header:
+- **🔀 Reorder Slides** — drag slides into the order you want.
+- **✕ Close** — leave the admin panel.
 
 ---
 
-### 📢 Announcements
+## What's currently switched on
 
-```json
-"announcements": [
-  {
-    "title": "All-Hands Meeting This Friday",
-    "body": "Please join the call at 10am sharp. Attendance is mandatory.",
-    "priority": "important"
-  }
-]
-```
+The board is set to show these 9 slides, in this order:
 
-| Priority | Colour | Use for |
-|---|---|---|
-| `"normal"` | Blue | General info |
-| `"important"` | Amber | Things people must act on |
-| `"urgent"` | Red | Time-critical or safety notices |
+1. **Announcements** — your notices, colour-coded by priority.
+2. **On This Day in History** — pulls a real historical event automatically.
+3. **International Day** — always shows the next upcoming one (e.g. "Coming up in 4 days").
+4. **Upcoming Bank Holidays** — UK holidays, fetched automatically.
+5. **Weather** — live 7-day forecast for your city.
+6. **This Week at a Glance** — Mon–Fri events.
+7. **KPIs** — up to 12 metrics with up/down/flat arrows.
+8. **Leaderboard** — your team ranked by points.
+9. **Employee of the Month** — name, role, blurb and a photo.
 
-Add as many announcements as you like — each gets its own slide.
+Lots of other slide types exist in the code but are switched off (news, quotes,
+word of the day, countdowns, supplies, training, reviews, and more). You can turn
+any of them back on in the admin panel under **Slide Visibility Controls**.
 
 ---
 
-### 📊 KPIs
+## Editing the things you'll change most
 
-```json
-"kpis": [
-  { "label": "Sales This Month", "value": "£24k", "change": "+12%", "trend": "up" }
-]
-```
+### Announcements
+Admin panel → **Announcements**. Each has a title, body and priority
+(normal / important / urgent — which sets the colour).
 
-- Maximum 4 KPIs displayed at once
-- `trend` options: `"up"` · `"down"` · `"neutral"`
+### KPIs
+Admin panel → **KPIs**. Add up to 12. Each has a label, value, a change note
+and a trend (up / down / neutral). The grid automatically resizes:
+- 1–4 KPIs show large
+- 5–6, 7–9, 10–12 progressively smaller so they always fit one screen.
 
----
+### Leaderboard
+Admin panel → **Leaderboard**. Each person has a name, points and a change
+number (how much they moved this period). Job titles are not shown. Sorted by
+points automatically; top 3 get medals.
 
-### 🎯 Target Thermometer
+### Employee of the Month
+Admin panel → **Employee of the Month**. Name, role, month, a blurb, and a
+**photo URL**.
 
-```json
-"target": {
-  "label": "Monthly Sales Target",
-  "current": 24000,
-  "target": 35000,
-  "unit": "GBP",
-  "message": "Keep pushing — we're on track!"
-}
-```
+> **The photo must be a web link** — a static site can't read images from your
+> PC directly. Easiest method: upload the photo into your GitHub repo (e.g.
+> `lily.jpg`) and put that filename/URL in the Photo field. If the photo is
+> blank or the link is broken, the person's initials show instead, so it never
+> looks broken.
 
-The thermometer fills automatically. Colour changes from red → amber → green as you approach the target.
+### This Week at a Glance
+Admin panel → **Week at a Glance**. One box per weekday; type one event per line.
 
----
+### Weather
+Admin panel → **General Settings → Weather City**. Type a city name (e.g.
+"Manchester"). The 7-day forecast and the temperature in the top bar both use it.
 
-### 📞 Important Numbers
-
-```json
-"important_numbers": [
-  { "emoji": "💻", "label": "IT Helpdesk",      "number": "0800 123 456" },
-  { "emoji": "🔥", "label": "Fire Marshal",      "number": "0800 345 678" },
-  { "emoji": "🔒", "label": "Security",          "number": "0800 567 890" }
-]
-```
-
-Shows as a 3-column grid. Add up to 6 for best layout.
+### Company name / slide speed
+Admin panel → **General Settings**. Set your team/company name and how long each
+slide stays on screen (default 10 seconds).
 
 ---
 
-### 🧴 Supplies Status
+## How the automatic slides work
 
-```json
-"supplies": [
-  { "emoji": "☕", "item": "Coffee Pods",     "status": "critical" },
-  { "emoji": "📄", "item": "Printer Paper",   "status": "low"      },
-  { "emoji": "🖨️", "item": "Toner Cartridge", "status": "ok"       }
-]
-```
+These need no maintenance — they fetch fresh data on their own:
 
-| Status | Colour | Meaning |
-|---|---|---|
-| `"ok"` | Green | Well stocked |
-| `"low"` | Amber | Running low — order soon |
-| `"critical"` | Red | Almost out — order now |
+- **Weather** — Open-Meteo (free, no API key).
+- **Bank Holidays** — UK government API.
+- **On This Day** — Wikipedia.
+- **International Day** — built-in calendar, always rolls to the next one.
 
-Items flagged as low or critical are shown first automatically.
+If the PC has no internet, these slides show a gentle "couldn't load" message and
+the rest of the board keeps running.
 
 ---
 
-### 🎓 Training Reminders
+## Optional: the app icons
 
-```json
-"training_reminders": [
-  {
-    "title": "Fire Safety Refresher",
-    "due": "2025-04-18",
-    "assignee": "All Staff"
-  }
-]
-```
-
-- Date format: `"YYYY-MM-DD"`
-- Sorted automatically by nearest deadline
-- Colour coded: green (14+ days) → amber (7–14 days) → red (under 7 days)
+`manifest.json` refers to `icon-192.png` and `icon-512.png`. These are **not
+included** and are only used if you "install" the board as a desktop app window —
+they'd be the app's icon. The board works perfectly without them; you may just
+see a harmless note in the browser console. If you want them, add two square PNGs
+(192×192 and 512×512) to the repo with those exact names.
 
 ---
 
-### 🗓️ Week at a Glance
+## Quick troubleshooting
 
-```json
-"week_at_a_glance": {
-  "week": "Week of 7 Apr 2025",
-  "days": [
-    { "day": "Mon", "events": ["Team standup 9am", "Client visit 2pm"] },
-    { "day": "Tue", "events": ["Finance review 10am"] },
-    { "day": "Wed", "events": ["All-hands 10am", "Fire drill 3pm"] },
-    { "day": "Thu", "events": ["New starter: Jamie"] },
-    { "day": "Fri", "events": ["Early finish 4pm", "Team drinks 5pm"] }
-  ]
-}
-```
-
-Today's column is automatically highlighted in blue.
+| Problem | Fix |
+|--------|-----|
+| Changes not showing | Did you upload the new `data.json` to GitHub? Wait 1–2 min, then refresh (Ctrl+Shift+R). |
+| Weather blank | Check the city name is spelled correctly in admin. Give it ~10 seconds. |
+| Forgot the PIN | Clears if you reset the browser's site data; default is `1234`. |
+| A slide won't appear | Check it's ticked in **Slide Visibility Controls**, and that it has content. |
+| Employee photo broken | The URL is wrong or the image isn't public. Initials show as fallback. |
+| Want a different order | Admin → **🔀 Reorder Slides**, drag, then Download + upload `data.json`. |
 
 ---
 
-### ⏳ Countdown Timers
+## A note on the reviews
 
-```json
-"countdowns": [
-  { "label": "All-Hands Meeting", "date": "2025-04-11" },
-  { "label": "End of Quarter",    "date": "2025-06-30" }
-]
-```
-
-- Date format: `"YYYY-MM-DD"`
-- Maximum 4 displayed at once
-- Shows "Today!" when the date arrives
-
----
-
-### 🎂 Birthdays & Work Anniversaries
-
-```json
-"birthdays": [
-  { "name": "Alice Johnson", "date": "04-06", "type": "birthday"                },
-  { "name": "Bob Smith",     "date": "05-01", "type": "anniversary", "years": 3 }
-]
-```
-
-- Date format: `"MM-DD"` (no year needed)
-- `type`: `"birthday"` or `"anniversary"`
-- `years` (optional): shows years of service for anniversaries
-- A confetti slide appears automatically on the day
-- A famous person born on that date (birthday) or a historical event (anniversary) is fetched from Wikipedia automatically
-
----
-
-### 🏅 Leaderboard
-
-```json
-"leaderboard": [
-  { "name": "Alice Johnson", "title": "Sales Lead", "points": 340, "change": 20  },
-  { "name": "Bob Smith",     "title": "Account Mgr","points": 290, "change": -10 }
-]
-```
-
-- Sorted automatically by points — highest first
-- `change` is points gained or lost since last update — shows as ▲ +20 or ▼ -10
-- Top 3 get gold, silver, bronze medals automatically
-- Tap the **🏅 Leaderboard** button in the top bar to jump straight to this slide at any time
-
----
-
-### 🚦 Team Status Board
-
-```json
-"team": [
-  { "name": "Alice Johnson", "default_status": "in"      },
-  { "name": "Bob Smith",     "default_status": "meeting" }
-]
-```
-
-Available statuses for front office:
-
-| Status | Label | Use for |
-|---|---|---|
-| `"in"` | ✅ On Desk | At the front desk |
-| `"meeting"` | 📞 In Meeting | In a meeting or on a call |
-| `"away"` | ☕ On Break | On lunch or a short break |
-| `"out"` | 🚪 Out of Office | Out of the building |
-| `"off"` | 🌙 Off Today | Not working today |
-
-Team members tap their card on the board to update their status live. Status is saved on the device.
-
----
-
-### ✅ Team Tasks
-
-```json
-"tasks": [
-  { "text": "Submit Q1 expense reports", "assignee": "All Staff", "priority": "high"   },
-  { "text": "Update onboarding docs",    "assignee": "Alice",     "priority": "medium" }
-]
-```
-
-`priority` options: `"high"` · `"medium"` · `"low"`
-
----
-
-### 😂 Meme / GIF of the Day
-
-```json
-"meme": {
-  "url": "https://media.giphy.com/media/xyz/giphy.gif",
-  "caption": "Us on a Friday afternoon ☕"
-}
-```
-
-Paste any direct image URL or Giphy link. Caption is optional. Remove `meme` entirely to hide the slide.
-
----
-
-### 🖼️ Image Slides
-
-```json
-"image_slides": [
-  {
-    "title": "Team Photo",
-    "url": "https://your-image-url.com/photo.jpg",
-    "caption": "Our amazing team 💪",
-    "fullscreen": false
-  }
-]
-```
-
-| `fullscreen` | Style |
-|---|---|
-| `false` | Image sits inside a card with title bar |
-| `true` | Image fills the entire slide edge-to-edge |
-
----
-
-### ↔️ Ticker Messages
-
-```json
-"ticker": [
-  "All-Hands meeting this Friday at 10am",
-  "Coffee machine on 3rd floor is back in service"
-]
-```
-
-Messages scroll continuously at the bottom. If `news_rss` is set, live news headlines are automatically mixed in.
-
----
-
-## 🔐 Admin Panel
-
-### How to open it
-**Hold the clock in the top-right corner for 3 seconds** → PIN screen appears → enter your 4-digit PIN
-
-### Default PIN
-`1234` — change it inside the panel under **Change PIN**
-
-### What you can edit in the panel
-Everything — company name, all slide content, new starter toggle, supplies status, leaderboard points, image slides, ticker messages, and more.
-
-### Saving changes
-Hit **⬇ Download data.json** → the updated file downloads to your device → upload it to GitHub to replace the old one → board updates within 2–5 minutes.
-
----
-
-## 🎨 Design Customisation
-
-All colours and fonts live in the `:root` block at the top of `index.html`. Open the file in any text editor and change these values:
-
-```css
-:root {
-  --bg:     #070d1a;   /* main background */
-  --blue:   #38bdf8;   /* primary accent colour */
-  --amber:  #fbbf24;   /* warnings and weather */
-  --green:  #34d399;   /* positive / on track */
-  --red:    #f87171;   /* urgent / alerts */
-  --purple: #a78bfa;   /* secondary accent */
-  --text:   #f0f4ff;   /* main text colour */
-}
-```
-
-Use [coolors.co](https://coolors.co) or [htmlcolorcodes.com](https://htmlcolorcodes.com) to pick colours.
-
-### Time-of-day themes (automatic)
-| Time | Theme |
-|---|---|
-| 6am – 12pm | Cool blue morning |
-| 12pm – 6pm | Warm amber afternoon |
-| 6pm – 10pm | Rich purple evening |
-| 10pm – 6am | Deep dark default |
-
----
-
-## ❓ Troubleshooting
-
-**Board not updating after I push to GitHub**
-→ Wait 2–3 minutes for GitHub Pages CDN to refresh. Then in Chrome on the tablet: Settings → Site settings → find your URL → Clear & reset → reopen the app.
-
-**Weather not showing**
-→ Check `weather_city` spelling in data.json. Must be a real recognisable city name.
-
-**Meme / image not loading**
-→ The URL must be a direct link to the image file (ending in .jpg, .png, .gif etc). Links to web pages won't work.
-
-**Wikipedia facts not loading**
-→ This needs an internet connection. If offline, that slide will show a placeholder message.
-
-**Fun stat not loading**
-→ Falls back to a built-in bank of 20 facts automatically if the API is unavailable.
-
-**Admin panel PIN forgotten**
-→ Open `index.html`, search for `nb_admin_pin` — or just clear your browser storage for the site in Chrome settings, which resets the PIN to `1234`.
-
-**Slides moving too fast or too slow**
-→ Change `slide_duration` in data.json (number of seconds per slide).
-
----
-
-## 📁 File Reference
-
-| File | Purpose |
-|---|---|
-| `index.html` | The entire app — all slides, logic, admin panel, styling |
-| `data.json` | All your content — edit this to update the board |
-| `manifest.json` | Makes the app installable on Android |
-| `sw.js` | Service worker — ensures fast loading and updates |
-
----
-
-*Built with ❤️ for the front office team. Hosted free on GitHub Pages.*
+Reviews were trialled but left switched off, because there is no reliable free way
+to pull TripAdvisor reviews into a static site automatically. If you ever want
+them back, there's a manual "⭐ Add Review" quick-entry tool built in — turn the
+Reviews slide on in the admin panel and the button appears in the top bar.

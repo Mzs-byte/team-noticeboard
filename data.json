@@ -4,33 +4,29 @@
   "slide_duration": 10,
   "news_rss": "https://feeds.bbci.co.uk/news/business/rss.xml",
   "slide_order": [
-    "newsheadlines",
+    "announcements",
+    "onthisday",
+    "intlday",
     "bankholidays",
     "weekweather",
-    "upcomingbirthdays",
-    "onthisday",
-    "quote",
-    "tipofday",
-    "weeklywin",
-    "announcements",
+    "weekglance",
     "kpis",
     "leaderboard",
-    "status",
-    "tasks"
+    "employeeofmonth"
   ],
   "slide_toggles": {
-    "newsheadlines": true,
+    "newsheadlines": false,
     "bankholidays": true,
     "weekweather": true,
-    "upcomingbirthdays": true,
+    "upcomingbirthdays": false,
     "onthisday": true,
     "intlday": true,
-    "quote": true,
+    "quote": false,
     "word": false,
     "art": false,
     "funstat": false,
-    "weeklywin": true,
-    "weekglance": false,
+    "weeklywin": false,
+    "weekglance": true,
     "kpis": true,
     "thermometer": false,
     "numbers": false,
@@ -38,16 +34,24 @@
     "training": false,
     "countdowns": false,
     "leaderboard": true,
-    "status": true,
-    "tasks": true,
+    "status": false,
+    "tasks": false,
     "meme": false,
-    "reviews": true,
+    "reviews": false,
     "suggestionbox": false,
-    "tipofday": true,
+    "instagram": false,
+    "songofday": false,
+    "tipofday": false,
+    "teamphoto": false,
+    "worldclock": false,
+    "monthlyaward": false,
+    "milestones": false,
+    "deptspotlight": false,
     "announcements": true,
-    "birthdays": true,
+    "birthdays": false,
     "newstarter": false,
-    "imageslides": false
+    "imageslides": false,
+    "employeeofmonth": true
   },
   "daily_tips": [
     {
@@ -416,5 +420,12 @@
   },
   "suggestion_box": {
     "form_url": ""
+  },
+  "employee_of_month": {
+    "name": "Lily",
+    "role": "Front Office",
+    "month": "May 2026",
+    "photo_url": "",
+    "blurb": "Lily went above and beyond this month \u2014 covering extra shifts, training two new starters, and getting glowing guest feedback. A thoroughly deserved win!"
   }
 }

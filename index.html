@@ -326,6 +326,19 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;background:ra
 .starter-fact{font-size:16px;color:var(--text-dim);line-height:1.6;padding:14px 18px;background:var(--surface2);border-radius:12px;border-left:3px solid var(--amber);}
 .starter-welcome{font-family:var(--font-h);font-size:13px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:2px;}
 
+/* EMPLOYEE OF THE MONTH */
+.eom-card{flex:1;display:flex;align-items:center;gap:40px;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:32px 44px;position:relative;overflow:hidden;}
+.eom-glow{position:absolute;top:-60px;right:-60px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(251,191,36,.12) 0%,transparent 70%);pointer-events:none;}
+.eom-photo-wrap{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:14px;}
+.eom-photo{width:220px;height:220px;border-radius:24px;object-fit:cover;border:4px solid var(--amber);box-shadow:0 0 40px rgba(251,191,36,.25);background:var(--surface2);}
+.eom-photo-init{width:220px;height:220px;border-radius:24px;background:linear-gradient(135deg,var(--amber),var(--red));display:flex;align-items:center;justify-content:center;font-family:var(--font-d);font-size:90px;color:#fff;border:4px solid var(--amber);box-shadow:0 0 40px rgba(251,191,36,.25);}
+.eom-trophy{font-size:34px;}
+.eom-info{flex:1;display:flex;flex-direction:column;gap:12px;position:relative;z-index:1;}
+.eom-badge{font-family:var(--font-h);font-size:12px;font-weight:800;color:var(--amber);text-transform:uppercase;letter-spacing:3px;}
+.eom-name{font-family:var(--font-h);font-size:48px;font-weight:800;color:var(--text);line-height:1.05;}
+.eom-role{font-size:17px;color:var(--blue);font-weight:600;}
+.eom-blurb{font-size:16px;color:var(--text-dim);line-height:1.65;padding:14px 18px;background:var(--surface2);border-radius:12px;border-left:3px solid var(--amber);margin-top:4px;}
+
 /* STATUS */
 .status-grid{flex:1;display:grid;grid-template-columns:repeat(5,1fr);gap:10px;}
 .status-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:16px 14px;display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;transition:all .2s;user-select:none;}
@@ -835,6 +848,10 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;background:ra
           <input type="checkbox" id="toggle-imageslides" style="width:18px;height:18px;cursor:pointer;">
           <label for="toggle-imageslides" style="cursor:pointer;font-size:13px;color:var(--text);">🖼️ Image Slides</label>
         </div>
+        <div style="display:flex;align-items:center;gap:8px;background:var(--surface2);border-radius:8px;padding:8px 12px;">
+          <input type="checkbox" id="toggle-employeeofmonth" style="width:18px;height:18px;cursor:pointer;">
+          <label for="toggle-employeeofmonth" style="cursor:pointer;font-size:13px;color:var(--text);">🌟 Employee of the Month</label>
+        </div>
       </div>
     </div>
 
@@ -850,6 +867,18 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;background:ra
         <div class="adm-field"><label class="adm-label">Fun Fact</label><input class="adm-input" id="adm-starter-fact" placeholder="Jamie speaks three languages!"></div>
       </div>
       <div class="adm-row"><div class="adm-field"><label class="adm-label">Welcome Message</label><input class="adm-input" id="adm-starter-welcome" placeholder="Please give Jamie a warm welcome!"></div></div>
+    </div>
+
+    <div class="adm-section">
+      <div class="adm-sec-title">🌟 Employee of the Month</div>
+      <div class="adm-row">
+        <div class="adm-field"><label class="adm-label">Name</label><input class="adm-input" id="adm-eom-name" placeholder="Lily Chen"></div>
+        <div class="adm-field"><label class="adm-label">Role</label><input class="adm-input" id="adm-eom-role" placeholder="Front Office"></div>
+        <div class="adm-field" style="max-width:150px"><label class="adm-label">Month</label><input class="adm-input" id="adm-eom-month" placeholder="May 2026"></div>
+      </div>
+      <div class="adm-row"><div class="adm-field"><label class="adm-label">Photo URL</label><input class="adm-input" id="adm-eom-photo" placeholder="https://… (link to image)"></div></div>
+      <div class="adm-row"><div class="adm-field"><label class="adm-label">Blurb / Why they won</label><textarea class="adm-textarea" id="adm-eom-blurb" placeholder="Lily went above and beyond this month…"></textarea></div></div>
+      <p class="adm-hint">💡 Photo must be a web link. Easiest way: drop the image into your GitHub repo and use its URL, or paste a link to one already online. No photo? Their initials show instead.</p>
     </div>
 
     <div class="adm-section">
@@ -1361,9 +1390,9 @@ function buildSlides() {
     slides.push(newStarterSlide(cfg.new_starter));
   }
 
-  // 4 — International Day
+  // 4 — International Day (always shows next upcoming)
   if (isEnabled('intlday')) {
-    var intl = INTL_DAYS[key];
+    var intl = findNextIntlDay(now);
     if (intl) slides.push(intlSlide(intl));
   }
 
@@ -1392,6 +1421,11 @@ function buildSlides() {
   // 9 — Weekly Win
   if (isEnabled('weeklywin') && cfg.weekly_win && cfg.weekly_win.headline) {
     slides.push(winSlide(cfg.weekly_win));
+  }
+
+  // 9b — Employee of the Month
+  if (isEnabled('employeeofmonth') && cfg.employee_of_month && cfg.employee_of_month.name) {
+    slides.push(eomSlide(cfg.employee_of_month));
   }
 
   // 10 — Announcements
@@ -1601,15 +1635,40 @@ function bdaySlide(b, extra) {
   return el;
 }
 
+function findNextIntlDay(now) {
+  var year = now.getFullYear();
+  var todayMidnight = new Date(year, now.getMonth(), now.getDate());
+  var best = null, bestDiff = Infinity;
+  Object.keys(INTL_DAYS).forEach(function(key){
+    var parts = key.split("-");
+    var mm = parseInt(parts[0], 10) - 1;
+    var dd = parseInt(parts[1], 10);
+    var d = new Date(year, mm, dd);
+    if (d < todayMidnight) d = new Date(year + 1, mm, dd); // rolled past this year → next year
+    var diff = Math.round((d - todayMidnight) / 86400000);
+    if (diff < bestDiff) { bestDiff = diff; best = INTL_DAYS[key]; best._daysAway = diff; best._date = d; }
+  });
+  return best;
+}
+
 function intlSlide(intl) {
   var el = mkSlide("zoom");
+  var days = intl._daysAway;
+  var when, label;
+  if (days === 0)      { when = "Today is"; label = ""; }
+  else if (days === 1) { when = "Tomorrow is"; label = ""; }
+  else {
+    when = "Coming up in " + days + " days";
+    label = intl._date ? intl._date.toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"}) : "";
+  }
   el.innerHTML =
     '<div class="slide-hdr"><span class="slide-icon">🌍</span><span class="slide-title">International Day</span></div>' +
     '<div class="intl-card">' +
       '<div class="intl-globe">' + intl.emoji + '</div>' +
-      '<div class="intl-label">Today is</div>' +
+      '<div class="intl-label">' + esc(when) + '</div>' +
       '<div class="intl-name">' + esc(intl.name) + '</div>' +
       '<div class="intl-desc">' + esc(intl.desc) + '</div>' +
+      (label ? '<div class="intl-label" style="margin-top:4px;color:var(--blue);">📅 ' + esc(label) + '</div>' : "") +
       '<div class="intl-ribbon"></div>' +
     '</div>';
   return el;
@@ -1721,6 +1780,27 @@ function winSlide(w) {
     '<div class="slide-hdr"><span class="slide-icon">🏆</span><span class="slide-title">Weekly Win</span></div>' +
     '<div class="win-card"><div class="win-glow"></div><div class="win-trophy">🏆</div><div class="win-headline">' + esc(w.headline) + '</div><div class="win-detail">' + esc(w.detail || "") + '</div>' +
     (w.who ? '<div class="win-who"><span>⭐⭐⭐</span><span class="win-who-name">' + esc(w.who) + '</span><span>⭐⭐⭐</span></div>' : "") +
+    '</div>';
+  return el;
+}
+
+function eomSlide(e) {
+  var el = mkSlide("zoom");
+  var init = (e.name||"?").split(" ").map(function(n){ return n[0]; }).join("").slice(0,2).toUpperCase();
+  var photo = e.photo_url
+    ? '<img class="eom-photo" src="' + esc(e.photo_url) + '" alt="' + esc(e.name) + '" onerror="this.outerHTML=\'<div class=&quot;eom-photo-init&quot;>' + esc(init) + '</div>\'">'
+    : '<div class="eom-photo-init">' + esc(init) + '</div>';
+  el.innerHTML =
+    '<div class="slide-hdr"><span class="slide-icon">🌟</span><span class="slide-title">Employee of the Month</span></div>' +
+    '<div class="eom-card">' +
+      '<div class="eom-glow"></div>' +
+      '<div class="eom-photo-wrap">' + photo + '<div class="eom-trophy">🏆</div></div>' +
+      '<div class="eom-info">' +
+        '<div class="eom-badge">' + esc(e.month || "This Month") + '</div>' +
+        '<div class="eom-name">' + esc(e.name) + '</div>' +
+        (e.role ? '<div class="eom-role">' + esc(e.role) + '</div>' : "") +
+        (e.blurb ? '<div class="eom-blurb">' + esc(e.blurb) + '</div>' : "") +
+      '</div>' +
     '</div>';
   return el;
 }
@@ -2674,7 +2754,8 @@ function renderSlideOrder() {
     announcements: "📢 Announcements",
     birthdays: "🎂 Today's Birthdays",
     newstarter: "🌟 New Starter",
-    imageslides: "🖼️ Image Slides"
+    imageslides: "🖼️ Image Slides",
+    employeeofmonth: "🌟 Employee of the Month"
   };
   
   var toggles = cfg.slide_toggles || {};
@@ -2743,7 +2824,7 @@ function populateAdmin() {
   document.getElementById("adm-dur").value      = cfg.slide_duration || 10;
   // Slide Toggles (default all enabled)
   var toggles = cfg.slide_toggles || {};
-  var toggleIds = ['newsheadlines','bankholidays','weekweather','upcomingbirthdays','onthisday','intlday','quote','word','art','funstat','weeklywin','weekglance','kpis','thermometer','numbers','supplies','training','countdowns','leaderboard','status','tasks','meme','reviews','suggestionbox','instagram','songofday','tipofday','teamphoto','worldclock','monthlyaward','milestones','deptspotlight','announcements','birthdays','newstarter','imageslides'];
+  var toggleIds = ['newsheadlines','bankholidays','weekweather','upcomingbirthdays','onthisday','intlday','quote','word','art','funstat','weeklywin','weekglance','kpis','thermometer','numbers','supplies','training','countdowns','leaderboard','status','tasks','meme','reviews','suggestionbox','instagram','songofday','tipofday','teamphoto','worldclock','monthlyaward','milestones','deptspotlight','announcements','birthdays','newstarter','imageslides','employeeofmonth'];
   toggleIds.forEach(function(id){
     var el = document.getElementById('toggle-' + id);
     if (el) el.checked = toggles[id] !== false;
@@ -2769,6 +2850,13 @@ function populateAdmin() {
   document.getElementById("adm-starter-date").value     = ns.start_date  || "";
   document.getElementById("adm-starter-fact").value     = ns.fun_fact    || "";
   document.getElementById("adm-starter-welcome").value  = ns.welcome_msg || "";
+  // Employee of the Month
+  var eom = cfg.employee_of_month || {};
+  document.getElementById("adm-eom-name").value  = eom.name      || "";
+  document.getElementById("adm-eom-role").value  = eom.role      || "";
+  document.getElementById("adm-eom-month").value = eom.month     || "";
+  document.getElementById("adm-eom-photo").value = eom.photo_url || "";
+  document.getElementById("adm-eom-blurb").value = eom.blurb     || "";
   // Week
   document.getElementById("adm-week-label").value = (cfg.week_at_a_glance && cfg.week_at_a_glance.week) || "";
   renderWeekDays((cfg.week_at_a_glance && cfg.week_at_a_glance.days) || []);
@@ -2882,7 +2970,7 @@ function exportData() {
   out.slide_duration = Number(document.getElementById("adm-dur").value) || 10;
   // Slide Toggles
   out.slide_toggles = {};
-  var toggleIds = ['newsheadlines','bankholidays','weekweather','upcomingbirthdays','onthisday','intlday','quote','word','art','funstat','weeklywin','weekglance','kpis','thermometer','numbers','supplies','training','countdowns','leaderboard','status','tasks','meme','reviews','suggestionbox','instagram','songofday','tipofday','teamphoto','worldclock','monthlyaward','milestones','deptspotlight','announcements','birthdays','newstarter','imageslides'];
+  var toggleIds = ['newsheadlines','bankholidays','weekweather','upcomingbirthdays','onthisday','intlday','quote','word','art','funstat','weeklywin','weekglance','kpis','thermometer','numbers','supplies','training','countdowns','leaderboard','status','tasks','meme','reviews','suggestionbox','instagram','songofday','tipofday','teamphoto','worldclock','monthlyaward','milestones','deptspotlight','announcements','birthdays','newstarter','imageslides','employeeofmonth'];
   toggleIds.forEach(function(id){
     var el = document.getElementById('toggle-' + id);
     if (el) out.slide_toggles[id] = el.checked;
@@ -2891,6 +2979,7 @@ function exportData() {
   out.target = {label:document.getElementById("adm-tgt-label").value, current:Number(document.getElementById("adm-tgt-cur").value)||0, target:Number(document.getElementById("adm-tgt-tgt").value)||0, unit:document.getElementById("adm-tgt-unit").value, message:document.getElementById("adm-tgt-msg").value};
   out.meme = {url:document.getElementById("adm-meme-url").value, caption:document.getElementById("adm-meme-cap").value};
   out.new_starter = {enabled:document.getElementById("adm-starter-enabled").value==="true", name:document.getElementById("adm-starter-name").value, role:document.getElementById("adm-starter-role").value, start_date:document.getElementById("adm-starter-date").value, fun_fact:document.getElementById("adm-starter-fact").value, welcome_msg:document.getElementById("adm-starter-welcome").value};
+  out.employee_of_month = {name:document.getElementById("adm-eom-name").value, role:document.getElementById("adm-eom-role").value, month:document.getElementById("adm-eom-month").value, photo_url:document.getElementById("adm-eom-photo").value, blurb:document.getElementById("adm-eom-blurb").value};
   var dayNames = ["Mon","Tue","Wed","Thu","Fri"];
   out.week_at_a_glance = {week:document.getElementById("adm-week-label").value, days:dayNames.map(function(d){
     var ta = document.getElementById("adm-week-" + d);
