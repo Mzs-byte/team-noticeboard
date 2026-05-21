@@ -117,14 +117,26 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;background:ra
 .ann-bg-char{position:absolute;bottom:10px;right:24px;font-family:var(--font-d);font-size:120px;color:rgba(255,255,255,.025);line-height:1;user-select:none;}
 
 /* KPI */
-.kpi-grid{flex:1;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:10px;}
-.kpi-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px 24px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;}
+.kpi-grid{flex:1;display:grid;gap:10px;}
+.kpi-grid.tier-4{grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;}
+.kpi-grid.tier-6{grid-template-columns:repeat(3,1fr);grid-template-rows:1fr 1fr;}
+.kpi-grid.tier-9{grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);}
+.kpi-grid.tier-12{grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(3,1fr);}
+.kpi-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:18px 22px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;}
 .kpi-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;}
-.kpi-card.up::after{background:var(--green);}.kpi-card.down::after{background:var(--red);}.kpi-card.neutral::after{background:var(--blue);}
+.kpi-card.up::after{background:var(--green);}.kpi-card.down::after{background:var(--red);}.kpi-card.neutral::after{background:var(--text-muted);}
 .kpi-label{font-family:var(--font-h);font-size:11px;font-weight:700;color:var(--text-dim);text-transform:uppercase;letter-spacing:1.5px;}
-.kpi-value{font-family:var(--font-d);font-size:54px;line-height:1;color:var(--text);}
-.kpi-change{font-family:var(--font-h);font-size:13px;font-weight:700;}
-.kpi-card.up .kpi-change{color:var(--green);}.kpi-card.down .kpi-change{color:var(--red);}.kpi-card.neutral .kpi-change{color:var(--blue);}
+.kpi-value{font-family:var(--font-d);line-height:1;color:var(--text);}
+.kpi-grid.tier-4 .kpi-value{font-size:54px;}
+.kpi-grid.tier-6 .kpi-value{font-size:42px;}
+.kpi-grid.tier-9 .kpi-value{font-size:34px;}
+.kpi-grid.tier-12 .kpi-value{font-size:28px;}
+.kpi-grid.tier-9 .kpi-card,.kpi-grid.tier-12 .kpi-card{padding:14px 16px;border-radius:13px;}
+.kpi-change{font-family:var(--font-h);font-size:13px;font-weight:700;display:flex;align-items:center;gap:5px;}
+.kpi-grid.tier-9 .kpi-change,.kpi-grid.tier-12 .kpi-change{font-size:12px;}
+.kpi-arrow{font-size:15px;line-height:1;}
+.kpi-grid.tier-9 .kpi-arrow,.kpi-grid.tier-12 .kpi-arrow{font-size:13px;}
+.kpi-card.up .kpi-change{color:var(--green);}.kpi-card.down .kpi-change{color:var(--red);}.kpi-card.neutral .kpi-change{color:var(--text-muted);}
 
 /* TASKS */
 .tasks-grid{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:8px;overflow-y:auto;}
@@ -1248,14 +1260,19 @@ setInterval(tick, 1000);
 // ═══════════════════════════════════════════════════════════
 function loadWeather() {
   var city = (cfg && cfg.weather_city) ? cfg.weather_city : "London";
-  fetch("https://wttr.in/" + encodeURIComponent(city) + "?format=j1")
+  fetch("https://geocoding-api.open-meteo.com/v1/search?count=1&language=en&format=json&name=" + encodeURIComponent(city))
     .then(function(r){ return r.json(); })
-    .then(function(d){
-      var c = d.current_condition && d.current_condition[0];
-      if (!c) return;
-      document.getElementById("w-temp").textContent = c.temp_C + "°C";
-      var desc = c.weatherDesc && c.weatherDesc[0] && c.weatherDesc[0].value || "";
-      document.getElementById("w-desc").textContent = desc.toLowerCase();
+    .then(function(g){
+      if (!g.results || !g.results.length) return;
+      var lat = g.results[0].latitude, lon = g.results[0].longitude;
+      return fetch("https://api.open-meteo.com/v1/forecast?latitude=" + lat + "&longitude=" + lon + "&current=temperature_2m,weathercode&timezone=auto")
+        .then(function(r){ return r.json(); })
+        .then(function(d){
+          var cur = d.current;
+          if (!cur) return;
+          document.getElementById("w-temp").textContent = Math.round(cur.temperature_2m) + "°C";
+          document.getElementById("w-desc").textContent = weatherDesc(cur.weathercode).toLowerCase();
+        });
     }).catch(function(){});
 }
 setInterval(loadWeather, 1800000);
@@ -1732,11 +1749,15 @@ function weekSlide(w) {
 
 function kpiSlide(kpis) {
   var el = mkSlide("slide-up");
-  var cards = kpis.slice(0,4).map(function(k){
-    var arrow = k.trend === "up" ? "↑" : k.trend === "down" ? "↓" : "→";
-    return '<div class="kpi-card ' + (k.trend||"neutral") + '"><div class="kpi-label">' + esc(k.label) + '</div><div class="kpi-value">' + esc(k.value) + '</div><div class="kpi-change">' + arrow + " " + esc(k.change||"") + '</div></div>';
+  var list = kpis.slice(0, 12);
+  var n = list.length;
+  var tier = n <= 4 ? "tier-4" : n <= 6 ? "tier-6" : n <= 9 ? "tier-9" : "tier-12";
+  var cards = list.map(function(k){
+    var trend = k.trend || "neutral";
+    var arrow = trend === "up" ? "▲" : trend === "down" ? "▼" : "▬";
+    return '<div class="kpi-card ' + trend + '"><div class="kpi-label">' + esc(k.label) + '</div><div class="kpi-value">' + esc(k.value) + '</div><div class="kpi-change"><span class="kpi-arrow">' + arrow + '</span>' + esc(k.change||"") + '</div></div>';
   }).join("");
-  el.innerHTML = '<div class="slide-hdr"><span class="slide-icon">📊</span><span class="slide-title">Key Metrics</span></div><div class="kpi-grid">' + cards + '</div>';
+  el.innerHTML = '<div class="slide-hdr"><span class="slide-icon">📊</span><span class="slide-title">Key Metrics</span></div><div class="kpi-grid ' + tier + '">' + cards + '</div>';
   return el;
 }
 
@@ -2209,34 +2230,65 @@ function weekWeatherSlide() {
 
 function fetchWeekWeather(el) {
   var city = (cfg && cfg.weather_city) ? cfg.weather_city : "London";
-  fetch("https://wttr.in/" + encodeURIComponent(city) + "?format=j1")
+  var wrap = el.querySelector(".weekweather-wrap");
+  // Step 1: geocode city name to lat/long (Open-Meteo, no key)
+  fetch("https://geocoding-api.open-meteo.com/v1/search?count=1&language=en&format=json&name=" + encodeURIComponent(city))
     .then(function(r){ return r.json(); })
-    .then(function(d){
-      var forecast = d.weather || [];
-      if (!forecast.length) { el.querySelector(".weekweather-wrap").innerHTML = '<div class="loading-msg">No forecast available</div>'; return; }
-      var cards = forecast.slice(0,7).map(function(day,i){
-        var date = new Date(day.date);
-        var dayName = i === 0 ? "Today" : date.toLocaleDateString("en-GB",{weekday:"short"});
-        var icon = getWeatherIcon(day.hourly[4].weatherCode);
-        var high = day.maxtempC;
-        var low = day.mintempC;
-        return '<div class="ww-day"><div class="ww-day-name">' + dayName + '</div><div class="ww-icon">' + icon + '</div><div class="ww-temp"><span class="ww-high">' + high + '°</span><span class="ww-low">' + low + '°</span></div><div class="ww-desc">' + esc(day.hourly[4].weatherDesc[0].value) + '</div></div>';
-      }).join("");
-      el.querySelector(".weekweather-wrap").innerHTML = cards;
+    .then(function(g){
+      if (!g.results || !g.results.length) { wrap.innerHTML = '<div class="loading-msg">City not found: ' + esc(city) + '</div>'; return; }
+      var lat = g.results[0].latitude;
+      var lon = g.results[0].longitude;
+      // Step 2: fetch 7-day daily forecast for those coordinates
+      return fetch("https://api.open-meteo.com/v1/forecast?latitude=" + lat + "&longitude=" + lon + "&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=auto&forecast_days=7")
+        .then(function(r){ return r.json(); })
+        .then(function(d){
+          var daily = d.daily;
+          if (!daily || !daily.time || !daily.time.length) { wrap.innerHTML = '<div class="loading-msg">No forecast available</div>'; return; }
+          var cards = daily.time.slice(0,7).map(function(dateStr, i){
+            var date = new Date(dateStr);
+            var dayName = i === 0 ? "Today" : date.toLocaleDateString("en-GB",{weekday:"short"});
+            var icon = getWeatherIcon(daily.weathercode[i]);
+            var high = Math.round(daily.temperature_2m_max[i]);
+            var low  = Math.round(daily.temperature_2m_min[i]);
+            var desc = weatherDesc(daily.weathercode[i]);
+            return '<div class="ww-day"><div class="ww-day-name">' + dayName + '</div><div class="ww-icon">' + icon + '</div><div class="ww-temp"><span class="ww-high">' + high + '°</span><span class="ww-low">' + low + '°</span></div><div class="ww-desc">' + esc(desc) + '</div></div>';
+          }).join("");
+          wrap.innerHTML = cards;
+        });
     }).catch(function(){
-      el.querySelector(".weekweather-wrap").innerHTML = '<div class="loading-msg">Could not load forecast</div>';
+      wrap.innerHTML = '<div class="loading-msg">Could not load forecast</div>';
     });
 }
 
 function getWeatherIcon(code) {
-  var c = String(code);
-  if (c === "113") return "☀️";
-  if (c === "116") return "⛅";
-  if (c === "119" || c === "122") return "☁️";
-  if (c.startsWith("1")) return "🌤️";
-  if (c.startsWith("2") || c.startsWith("3")) return "🌧️";
-  if (c.startsWith("4")) return "❄️";
+  var c = Number(code);
+  if (c === 0) return "☀️";                          // clear
+  if (c === 1 || c === 2) return "🌤️";              // mainly clear / partly cloudy
+  if (c === 3) return "☁️";                          // overcast
+  if (c === 45 || c === 48) return "🌫️";            // fog
+  if (c >= 51 && c <= 57) return "🌦️";              // drizzle
+  if (c >= 61 && c <= 67) return "🌧️";              // rain
+  if (c >= 71 && c <= 77) return "❄️";              // snow
+  if (c >= 80 && c <= 82) return "🌧️";              // rain showers
+  if (c === 85 || c === 86) return "🌨️";            // snow showers
+  if (c >= 95) return "⛈️";                          // thunderstorm
   return "🌥️";
+}
+
+function weatherDesc(code) {
+  var c = Number(code);
+  if (c === 0) return "Clear";
+  if (c === 1) return "Mainly clear";
+  if (c === 2) return "Partly cloudy";
+  if (c === 3) return "Overcast";
+  if (c === 45 || c === 48) return "Fog";
+  if (c >= 51 && c <= 57) return "Drizzle";
+  if (c >= 61 && c <= 67) return "Rain";
+  if (c >= 71 && c <= 77) return "Snow";
+  if (c >= 80 && c <= 82) return "Showers";
+  if (c === 85 || c === 86) return "Snow showers";
+  if (c >= 95) return "Thunderstorm";
+  return "Cloudy";
 }
 
 // ── UPCOMING BIRTHDAYS THIS MONTH ──

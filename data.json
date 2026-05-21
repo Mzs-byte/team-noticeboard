@@ -1,5 +1,5 @@
 {
-  "company_name": "DoubleTree by Hilton London Ealing",
+  "company_name": "Your Team Name",
   "weather_city": "London",
   "slide_duration": 10,
   "news_rss": "https://feeds.bbci.co.uk/news/business/rss.xml",
@@ -26,115 +26,108 @@
     "onthisday": true,
     "intlday": true,
     "quote": true,
-    "word": true,
+    "word": false,
     "art": false,
-    "funstat": true,
-    "weeklywin": false,
+    "funstat": false,
+    "weeklywin": true,
     "weekglance": false,
     "kpis": true,
-    "thermometer": true,
+    "thermometer": false,
     "numbers": false,
     "supplies": false,
     "training": false,
     "countdowns": false,
     "leaderboard": true,
-    "status": false,
+    "status": true,
     "tasks": true,
     "meme": false,
     "reviews": true,
     "suggestionbox": false,
-    "instagram": true,
-    "songofday": false,
-    "tipofday": false,
-    "teamphoto": false,
-    "worldclock": true,
-    "monthlyaward": true,
-    "milestones": true,
-    "deptspotlight": false,
+    "tipofday": true,
     "announcements": true,
-    "birthdays": false,
+    "birthdays": true,
     "newstarter": false,
     "imageslides": false
   },
   "daily_tips": [
     {
-      "emoji": "💡",
+      "emoji": "\ud83d\udca1",
       "tip": "Take a 5-minute break every hour to stay fresh and focused."
     },
     {
-      "emoji": "🌱",
-      "tip": "Keep a plant on your desk — it improves air quality and mood."
+      "emoji": "\ud83c\udf31",
+      "tip": "Keep a plant on your desk \u2014 it improves air quality and mood."
     },
     {
-      "emoji": "💧",
+      "emoji": "\ud83d\udca7",
       "tip": "Drink a glass of water first thing in the morning to kickstart your metabolism."
     },
     {
-      "emoji": "📝",
+      "emoji": "\ud83d\udcdd",
       "tip": "Write your to-do list the night before to start the day with clarity."
     },
     {
-      "emoji": "🚶",
+      "emoji": "\ud83d\udeb6",
       "tip": "Take the stairs instead of the lift for a quick energy boost."
     },
     {
-      "emoji": "🧘",
+      "emoji": "\ud83e\uddd8",
       "tip": "Practice deep breathing for 2 minutes to reduce stress instantly."
     },
     {
-      "emoji": "☀️",
+      "emoji": "\u2600\ufe0f",
       "tip": "Get natural sunlight within the first hour of waking up."
     },
     {
-      "emoji": "📱",
+      "emoji": "\ud83d\udcf1",
       "tip": "Turn off notifications during deep work sessions."
     },
     {
-      "emoji": "🥗",
+      "emoji": "\ud83e\udd57",
       "tip": "Prep your lunch the night before to save time and eat healthier."
     },
     {
-      "emoji": "😊",
-      "tip": "Smile at three people today — it's contagious!"
+      "emoji": "\ud83d\ude0a",
+      "tip": "Smile at three people today \u2014 it's contagious!"
     },
     {
-      "emoji": "🎯",
+      "emoji": "\ud83c\udfaf",
       "tip": "Focus on one task at a time for better productivity."
     },
     {
-      "emoji": "⏰",
+      "emoji": "\u23f0",
       "tip": "Use the Pomodoro technique: 25 min work, 5 min break."
     },
     {
-      "emoji": "🧠",
+      "emoji": "\ud83e\udde0",
       "tip": "Your brain works best in the first 2 hours after waking."
     },
     {
-      "emoji": "📵",
+      "emoji": "\ud83d\udcf5",
       "tip": "Keep your phone in another room while sleeping."
     },
     {
-      "emoji": "🏃",
+      "emoji": "\ud83c\udfc3",
       "tip": "A 10-minute walk after lunch improves afternoon focus."
     },
     {
-      "emoji": "🎨",
+      "emoji": "\ud83c\udfa8",
       "tip": "Decorate your workspace with items that inspire you."
     },
     {
-      "emoji": "🧊",
+      "emoji": "\ud83e\uddca",
       "tip": "Drink cold water to boost alertness and metabolism."
     },
     {
-      "emoji": "📚",
+      "emoji": "\ud83d\udcda",
       "tip": "Read for 15 minutes before bed to improve sleep quality."
     },
     {
-      "emoji": "🗣️",
-      "tip": "Say good morning to your colleagues — it builds rapport."
+      "emoji": "\ud83d\udde3\ufe0f",
+      "tip": "Say good morning to your colleagues \u2014 it builds rapport."
     },
     {
-      "emoji": "✍️",
+      "emoji": "\u270d\ufe0f",
       "tip": "Keep a gratitude journal to boost your mood."
     }
   ],
@@ -145,73 +138,61 @@
   "leaderboard": [
     {
       "name": "Fatmata",
-      "title": "",
       "points": 0,
       "change": 0
     },
     {
       "name": "Gifty",
-      "title": "",
       "points": 0,
       "change": 0
     },
     {
       "name": "Hawa",
-      "title": "",
       "points": 0,
       "change": 0
     },
     {
       "name": "Jordan",
-      "title": "",
       "points": 0,
       "change": 0
     },
     {
       "name": "Kwai",
-      "title": "",
       "points": 0,
       "change": 0
     },
     {
       "name": "Lily",
-      "title": "",
       "points": 0,
       "change": 0
     },
     {
       "name": "Lucia",
-      "title": "",
       "points": 0,
       "change": 0
     },
     {
       "name": "Mahesh",
-      "title": "",
       "points": 0,
       "change": 0
     },
     {
       "name": "Rahul",
-      "title": "",
       "points": 0,
       "change": 0
     },
     {
       "name": "Saul",
-      "title": "",
       "points": 0,
       "change": 0
     },
     {
       "name": "Sergio",
-      "title": "",
       "points": 0,
       "change": 0
     },
     {
       "name": "Valenky",
-      "title": "",
       "points": 0,
       "change": 0
     }
@@ -221,57 +202,93 @@
     "detail": "After three months of hard work and outstanding collaboration, we have officially signed one of our biggest clients to date.",
     "who": "Sarah and the Sales Team"
   },
-  "announcements": [],
+  "announcements": [
+    {
+      "title": "Welcome to the Team Noticeboard!",
+      "body": "Everything you see here is controlled by editing data.json on GitHub. Change anything and push \u2014 it updates within minutes.",
+      "priority": "normal"
+    }
+  ],
   "kpis": [
     {
-      "label": "Stay Score",
-      "value": "75.3%",
-      "change": 0,
-      "trend": "down"
-    },
-    {
-      "label": "Review Site Index",
-      "value": "98.0",
-      "change": 0,
-      "trend": "down"
-    },
-    {
-      "label": "Service Quality ",
-      "value": "90.9%",
-      "change": 0,
+      "label": "Occupancy",
+      "value": "82%",
+      "change": "5% vs last wk",
       "trend": "up"
     },
     {
-      "label": "Problem Incidence",
-      "value": "34.0%",
-      "change": 0,
-      "trend": "down"
-    },
-    {
-      "label": "Problem Resolution",
-      "value": "57.1%",
-      "change": 0,
+      "label": "Rev Per Room",
+      "value": "94%",
+      "change": "2% vs last wk",
       "trend": "up"
     },
     {
-      "label": "Honors Appreciation",
-      "value": "60.0%",
-      "change": 0,
+      "label": "Complaints",
+      "value": "3%",
+      "change": "1% vs last wk",
       "trend": "down"
     },
     {
-      "label": "Overall Cleanliness",
-      "value": "92.7%",
-      "change": 0,
+      "label": "Staff Present",
+      "value": "93%",
+      "change": "flat",
+      "trend": "neutral"
+    },
+    {
+      "label": "Repeat Guests",
+      "value": "47%",
+      "change": "4% vs last mo",
+      "trend": "up"
+    },
+    {
+      "label": "Avg Review",
+      "value": "4.6",
+      "change": "0.1 vs last mo",
+      "trend": "up"
+    },
+    {
+      "label": "Upsell Rate",
+      "value": "21%",
+      "change": "3% vs last wk",
+      "trend": "down"
+    },
+    {
+      "label": "Check-in Time",
+      "value": "88%",
+      "change": "on target",
+      "trend": "neutral"
+    },
+    {
+      "label": "Cleanliness",
+      "value": "96%",
+      "change": "2% vs last wk",
+      "trend": "up"
+    },
+    {
+      "label": "Bar Sales",
+      "value": "73%",
+      "change": "6% vs last wk",
+      "trend": "up"
+    },
+    {
+      "label": "No-Shows",
+      "value": "4%",
+      "change": "1% vs last wk",
+      "trend": "down"
+    },
+    {
+      "label": "Loyalty Signups",
+      "value": "34%",
+      "change": "8% vs last mo",
       "trend": "up"
     }
   ],
   "target": {
-    "label": "Enrollment Target",
-    "current": 0,
-    "target": 125,
-    "unit": "HH Enrollments",
-    "message": "Major Push Needed ! Lets aim for 1 enrollment / shift / person. "
+    "label": "Monthly Sales Target",
+    "current": 24000,
+    "target": 35000,
+    "unit": "GBP",
+    "message": "Keep pushing \u2014 we are on track for a strong finish!"
   },
   "countdowns": [],
   "birthdays": [
@@ -371,9 +388,10 @@
   ],
   "ticker": [
     "Welcome to the new and improved team noticeboard!",
-    "Remember to log into Reception & Invoices Inbox at the start of your shift.",
-    "Lets push for those Tripadvisor Reviews ! ",
-    "Any suggestions for what should be on the Noticeboard please come to me. "
+    "All-Hands meeting this Friday at 10am \u2014 do not forget!",
+    "Q1 expense reports are due by end of week",
+    "Big shoutout to Sarah for landing the Henderson account!",
+    "We are at 74% of our monthly target \u2014 let's finish strong!"
   ],
   "image_slides": [],
   "important_numbers": [],
@@ -389,28 +407,7 @@
   "supplies": [],
   "week_at_a_glance": {
     "week": "",
-    "days": [
-      {
-        "day": "Mon",
-        "events": []
-      },
-      {
-        "day": "Tue",
-        "events": []
-      },
-      {
-        "day": "Wed",
-        "events": []
-      },
-      {
-        "day": "Thu",
-        "events": []
-      },
-      {
-        "day": "Fri",
-        "events": []
-      }
-    ]
+    "days": []
   },
   "reviews": {
     "listing_name_1": "Hotel / Venue",
